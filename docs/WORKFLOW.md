@@ -4,6 +4,18 @@ sql-gym uses **ChatPRD + `prd/` + Linear + GitHub**. Product scope lives in **`p
 
 Cursor applies [.cursor/rules/workflow.mdc](../.cursor/rules/workflow.mdc) (read this doc) and [.cursor/rules/engineering.mdc](../.cursor/rules/engineering.mdc) (code quality).
 
+## Plugins (install in Cursor)
+
+Install from the [Cursor marketplace](https://cursor.com/marketplace) as needed.
+
+| Step | Plugin | Role |
+|------|--------|------|
+| 1–2, 5–6 | **ChatPRD** | Product specs, implementation planning, PRD alignment, post-ship updates |
+| 3 | **Linear** (MCP / marketplace) | Epics, issues, status—link `prd/`, not full PRD copy |
+| 4+ (implementation) | **Superpowers** | TDD, technical plan execution, code review, branch/PR finish |
+
+Do not install overlapping planners (e.g. Compound Engineering or pstack) unless you replace this stack intentionally.
+
 ## Tool roles
 
 | Tool | Owns |
@@ -12,12 +24,15 @@ Cursor applies [.cursor/rules/workflow.mdc](../.cursor/rules/workflow.mdc) (read
 | **`prd/`** (in repo) | Committed specs agents and humans read |
 | **Linear** | Backlog, cycles, issue status, priorities |
 | **GitHub** | Code, branches, PRs, CI |
+| **Superpowers** | Implementation workflows only (not product discovery) |
 
 ## End-to-end flow
 
 Each step has an owner and an outcome. Skills named below are from the **ChatPRD** Cursor plugin.
 
 ### 1. `write-prd` — decide *what* to build
+
+**Plugin:** ChatPRD only (not Superpowers `brainstorming`).
 
 **When:** Starting the project, a new phase, or a major feature area.
 
@@ -29,9 +44,11 @@ Each step has an owner and an outcome. Skills named below are from the **ChatPRD
 
 ### 2. `implement-from-prd` — plan *how* to build it
 
+**Plugin:** ChatPRD for the milestone plan; Superpowers **optional** after approval for technical step breakdown (`executing-plans`).
+
 **When:** Before writing application code for a phase or large epic.
 
-**What happens:** The **implement-from-prd** skill reads the relevant `prd/` doc and proposes a **milestone plan**: files to touch, order of work, risks. You review and approve (or adjust) before anyone edits code.
+**What happens:** The **implement-from-prd** skill reads the relevant `prd/` doc and proposes a **milestone plan**: files to touch, order of work, risks. You review and approve (or adjust) before anyone edits code. If helpful, run Superpowers **executing-plans** on the approved plan only—do not change product scope.
 
 **Outcome:** Agreed implementation plan—no surprise architecture or scope creep mid-flight.
 
@@ -39,9 +56,11 @@ Each step has an owner and an outcome. Skills named below are from the **ChatPRD
 
 ### 3. Linear — track *tasks* for humans
 
+**Plugin:** Linear MCP (marketplace).
+
 **When:** After you have a plan and want a backlog the team can prioritize.
 
-**What happens:** Create a **parent epic per phase** and **child issues** from milestones. Each issue links to a `prd/…` section and lists acceptance criteria (see [Linear conventions](#linear-conventions)).
+**What happens:** Create a **parent epic per phase** and **child issues** from milestones (agent can assist via Linear MCP). Each issue links to a `prd/…` section and lists acceptance criteria (see [Linear conventions](#linear-conventions)).
 
 **Outcome:** Traceable work items. Linear holds status and assignment; it does **not** replace the PRD.
 
@@ -49,9 +68,11 @@ Each step has an owner and an outcome. Skills named below are from the **ChatPRD
 
 ### 4. Code + GitHub PR — ship the change
 
+**Plugins:** Superpowers (TDD, `code-reviewer`, `finishing-a-development-branch` as needed) + `engineering.mdc`.
+
 **When:** Picking up a Linear issue (or an approved task without Linear).
 
-**What happens:** Branch, implement against the issue’s acceptance criteria, open a PR using [.github/pull_request_template.md](../.github/pull_request_template.md). Follow [.cursor/rules/engineering.mdc](../.cursor/rules/engineering.mdc) while coding.
+**What happens:** Branch, implement against the issue’s acceptance criteria, open a PR using [.github/pull_request_template.md](../.github/pull_request_template.md). Follow [.cursor/rules/engineering.mdc](../.cursor/rules/engineering.mdc) while coding. After a logical chunk, use Superpowers **code-reviewer** against the approved plan.
 
 **Outcome:** Reviewable diff on GitHub, linked to Linear when applicable (`GYM-NN:` in title).
 
@@ -102,7 +123,7 @@ Phases and detailed scope live in [prd/00-product-vision.md](../prd/00-product-v
 
 ## ChatPRD plugin
 
-Enable the **ChatPRD** Cursor plugin for this repo (product/requirements only—not code style).
+Product/requirements only—not code style.
 
 | Intent | Skill |
 |--------|--------|
@@ -110,6 +131,19 @@ Enable the **ChatPRD** Cursor plugin for this repo (product/requirements only—
 | Plan implementation from a PRD | `implement-from-prd` |
 | Pre-merge requirement check | `check-prd-alignment` |
 | Record what shipped vs spec | `update-prd` |
+
+## Superpowers plugin
+
+Implementation only—do not use for product scope (see [Process rules](#process-rules-agents)).
+
+| Intent | Skill |
+|--------|--------|
+| Execute an approved technical plan | `executing-plans` |
+| Test-driven implementation | TDD skills (when stack has tests) |
+| Review code vs plan and standards | `code-reviewer` |
+| Merge / PR / branch cleanup | `finishing-a-development-branch` |
+
+**Not used here:** `brainstorming` (use ChatPRD `write-prd` for product work).
 
 ## Engineering standards (code quality)
 
@@ -128,6 +162,8 @@ Do **not** use ChatPRD skills for engineering style; they are for requirements a
 - Do not implement product features until [prd/README.md](../prd/README.md) names an active phase and the relevant `prd/` doc exists.
 - Do not invent requirements or mark phases complete without updating `prd/`.
 - Do not expand scope beyond the active Linear issue / PRD section without user approval.
+- **Product specs:** ChatPRD + `prd/` only—do not use Superpowers `brainstorming` for feature or phase discovery.
+- **Implementation:** Superpowers (`executing-plans`, TDD skills, `code-reviewer`, `finishing-a-development-branch`) only after an approved plan from `implement-from-prd`.
 - **Linear:** link `prd/…` and list acceptance criteria; do not paste the full PRD into the issue.
 - **PRs:** note PRD deviations in the description, not only in chat.
 
