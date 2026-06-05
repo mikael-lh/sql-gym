@@ -4,7 +4,7 @@
 
 ## Agent pre-review (before user review)
 
-Check only after **`sql-gym-pre-review`** passes (agent fixed blocking findings and re-ran checks—do not check boxes to hand off a failing PR).
+Check only after **`sql-gym-pre-review`** passes: independent **reviewer** agent found no blocking items, **fixer** addressed prior blocking findings, tests/lint green—do not check boxes to hand off a failing PR.
 
 - [ ] `check-prd-alignment` — no blocking gaps (or approved deviation noted)
 - [ ] Superpowers `code-reviewer` (or N/A — docs-only) — blocking feedback addressed

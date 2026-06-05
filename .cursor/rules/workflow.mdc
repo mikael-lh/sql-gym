@@ -14,7 +14,7 @@ alwaysApply: true
 
 # Before PR is ready for user review
 
-Run **`sql-gym-pre-review`**: execute the checklist, **fix blocking issues on the branch**, and **re-run** until it passes. Do **not** check PR boxes or ask for **user** review while blocking items remain.
+Run **`sql-gym-pre-review`**: **reviewer** agent (no commits) and **fixer** agent (commits) must not be the same role as blind self-review—the implementer does not approve its own judgment pass. Use **sql-gym-pre-review-reviewer** in a **new** agent/chat or readonly Task, then **sql-gym-pre-review-fix**, and repeat until the reviewer reports no blocking items. Do **not** check PR boxes or ask for **user** review while blocking reviewer findings remain.
 
 Checklist (all must pass before handoff):
 
