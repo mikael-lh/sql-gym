@@ -2,11 +2,11 @@
 
 sql-gym uses **ChatPRD + `prd/` + Linear + GitHub**. Product scope lives in **`prd/`**; this document is **how** the team and agents work.
 
-Cursor applies [.cursor/rules/workflow.mdc](../.cursor/rules/workflow.mdc) (read this doc), [.cursor/rules/engineering.mdc](../.cursor/rules/engineering.mdc) (code quality), and [.cursor/rules/superpowers.mdc](../.cursor/rules/superpowers.mdc) (Superpowers scope).
+Cursor applies [.cursor/rules/workflow.mdc](../.cursor/rules/workflow.mdc) (read this doc) and [.cursor/rules/engineering.mdc](../.cursor/rules/engineering.mdc) (code quality).
 
 ## Plugins (install in Cursor)
 
-Install and verify with [PLUGIN_SETUP.md](PLUGIN_SETUP.md).
+Install from the [Cursor marketplace](https://cursor.com/marketplace) as needed.
 
 | Step | Plugin | Role |
 |------|--------|------|
@@ -24,7 +24,7 @@ Do not install overlapping planners (e.g. Compound Engineering or pstack) unless
 | **`prd/`** (in repo) | Committed specs agents and humans read |
 | **Linear** | Backlog, cycles, issue status, priorities |
 | **GitHub** | Code, branches, PRs, CI |
-| **Superpowers** | Implementation workflows only (see [superpowers.mdc](../.cursor/rules/superpowers.mdc)) |
+| **Superpowers** | Implementation workflows only (not product discovery) |
 
 ## End-to-end flow
 
@@ -56,7 +56,7 @@ Each step has an owner and an outcome. Skills named below are from the **ChatPRD
 
 ### 3. Linear — track *tasks* for humans
 
-**Plugin:** Linear MCP (marketplace / [PLUGIN_SETUP.md](PLUGIN_SETUP.md#2-linear-backlog)).
+**Plugin:** Linear MCP (marketplace).
 
 **When:** After you have a plan and want a backlog the team can prioritize.
 
@@ -123,7 +123,7 @@ Phases and detailed scope live in [prd/00-product-vision.md](../prd/00-product-v
 
 ## ChatPRD plugin
 
-Install and verify: [PLUGIN_SETUP.md § 1](PLUGIN_SETUP.md#1-chatprd-requirements). Product/requirements only—not code style.
+Product/requirements only—not code style.
 
 | Intent | Skill |
 |--------|--------|
@@ -134,7 +134,7 @@ Install and verify: [PLUGIN_SETUP.md § 1](PLUGIN_SETUP.md#1-chatprd-requirement
 
 ## Superpowers plugin
 
-Install and verify: [PLUGIN_SETUP.md § 3](PLUGIN_SETUP.md#3-superpowers-implementation). Implementation only—see [superpowers.mdc](../.cursor/rules/superpowers.mdc).
+Implementation only—do not use for product scope (see [Process rules](#process-rules-agents)).
 
 | Intent | Skill |
 |--------|--------|
@@ -162,6 +162,8 @@ Do **not** use ChatPRD skills for engineering style; they are for requirements a
 - Do not implement product features until [prd/README.md](../prd/README.md) names an active phase and the relevant `prd/` doc exists.
 - Do not invent requirements or mark phases complete without updating `prd/`.
 - Do not expand scope beyond the active Linear issue / PRD section without user approval.
+- **Product specs:** ChatPRD + `prd/` only—do not use Superpowers `brainstorming` for feature or phase discovery.
+- **Implementation:** Superpowers (`executing-plans`, TDD skills, `code-reviewer`, `finishing-a-development-branch`) only after an approved plan from `implement-from-prd`.
 - **Linear:** link `prd/…` and list acceptance criteria; do not paste the full PRD into the issue.
 - **PRs:** note PRD deviations in the description, not only in chat.
 
