@@ -1,8 +1,8 @@
 # Development workflow
 
-sql-gym uses **ChatPRD + `prd/` + Linear + GitHub**. Product scope lives in **`prd/`**; this document is **how** the **user** (solo developer) and **agents** work together.
+sql-gym uses **ChatPRD + `prd/` + Linear + GitHub**. Product scope lives in **`prd/`**; this document is **how** the **user** and **agents** work together.
 
-**Terms:** **user** = solo developer; **agent** = Cursor agent (local or cloud).
+**Terms:** **user** = developer; **agent** = Cursor agent (local or cloud).
 
 Hard gates and the PR handoff checklist are **always applied** via [.cursor/rules/workflow.mdc](../.cursor/rules/workflow.mdc). This file is the full playbook.
 
