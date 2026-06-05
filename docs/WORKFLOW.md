@@ -113,11 +113,9 @@ Enable the **ChatPRD** Cursor plugin for this repo (product/requirements only—
 
 ## Engineering standards (code quality)
 
-There is no MCP that enforces DRY or simplicity. Use:
-
 | Mechanism | Role |
 |-----------|------|
-| [.cursor/rules/engineering.mdc](../.cursor/rules/engineering.mdc) | Always-on agent guidance: minimal scope, simplicity, DRY, match conventions |
+| [.cursor/rules/engineering.mdc](../.cursor/rules/engineering.mdc) | Always-on agent guidance: minimal scope, simplicity, DRY, documentation, match conventions |
 | **CI** (add when stack is chosen) | Automated format, lint, and tests on every PR |
 | **Human PR review** | Architecture and design judgment |
 

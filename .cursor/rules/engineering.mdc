@@ -12,3 +12,4 @@ Apply when writing or reviewing code in this repo.
 - **DRY:** Do not copy-paste logic; reuse existing helpers when they already fit. Extract shared code only when duplication is real and the abstraction is obvious—do not invent one-off utilities for a single use.
 - **Conventions:** Match surrounding naming, structure, and patterns; extend existing code before adding parallel implementations.
 - **Tests:** Add tests when they protect real behavior; skip tests that only restate the implementation.
+- **Documentation:** Keep code, technical decisions, and architecture understandable—clear inline comments where non-obvious, PR descriptions that explain *why*, and dedicated READMEs for modules or subsystems that need more than a few lines.
