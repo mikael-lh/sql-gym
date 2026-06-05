@@ -1,31 +1,32 @@
 ---
-description: Code quality — simplicity, DRY, minimal scope, Google eng-practices (adapted)
+description: Code quality — simplicity, DRY, minimal scope, Google eng-practices (authoring)
 alwaysApply: true
 ---
 
 # Engineering standards
 
-Apply when writing and reviewing code in this repo. Full review checklist: [docs/references/google-eng-practices.md](docs/references/google-eng-practices.md) ([google/eng-practices](https://github.com/google/eng-practices)).
+Apply when **writing** code in this repo. Authoring principles below are adapted from [google/eng-practices](https://github.com/google/eng-practices) ([repo summary](docs/references/google-eng-practices.md)). For the full **review** checklist, use that doc in **sql-gym-pre-review**—not here.
 
-## Change authoring
+## Writing changes
 
-- **Minimal scope:** Smallest correct change; no drive-by refactors or unrelated edits. Prefer **small CLs**—one main concern per PR when practical.
-- **Simplicity:** Prefer the straightforward solution; avoid premature abstraction and extra layers. Do not build for speculative future requirements.
-- **DRY:** Do not copy-paste logic; reuse existing helpers when they already fit. Extract shared code only when duplication is real and the abstraction is obvious—do not invent one-off utilities for a single use.
-- **Conventions:** Match surrounding naming, structure, and patterns; extend existing code before adding parallel implementations.
-- **PR descriptions:** Explain *what*, *why*, and how tested—not only which files changed ([CL descriptions](https://github.com/google/eng-practices/blob/master/review/developer/cl-descriptions.md)).
+- **Minimal scope:** Smallest correct change; no drive-by refactors. Prefer **small PRs**—one main concern each when practical.
+- **Design fit:** Put change in the right layer; integrate with existing design. Do not add abstraction or features for a hypothetical future.
+- **Simplicity:** Straightforward solution first; avoid extra layers readers cannot follow quickly.
+- **DRY:** Reuse existing helpers when they fit. Extract only when duplication is real and the abstraction is obvious.
+- **Naming:** Names should communicate purpose without reading surrounding comments.
+- **Conventions:** Match the codebase. Repo linter/config and local patterns beat generic style when they conflict.
+- **Style vs behavior:** Do not mix large formatting-only edits with functional changes in one PR.
+- **PR descriptions:** *What*, *why*, and how tested—not only files touched.
 
 ## Tests, comments, documentation
 
-- **Tests:** Add tests when they protect real behavior; skip tests that only restate the implementation. Add tests in the same change as production code when possible.
-- **Comments:** Explain *why*, not *what*; remove obsolete TODOs. If code needs a long *what* comment, simplify the code.
-- **Documentation:** Update READMEs or module docs when behavior, setup, or usage changes.
+- **Tests:** Add with production code when possible. Tests should fail when behavior breaks; keep them simple—no clever test code.
+- **Functionality:** Exercise edge cases you can; align behavior with the PRD / Linear acceptance criteria.
+- **Comments:** Explain *why*, not *what*. If the code needs a long *what* comment, simplify the code. Remove obsolete TODOs.
+- **Documentation:** Update READMEs or module docs when setup, behavior, or usage changes.
 
-## Code review mindset (agents reviewing PRs)
+## When reviewing
 
-- **Code health:** Each merge should improve overall maintainability, not add small degradations.
-- **Continuous improvement:** Do not block on perfection; flag important issues clearly and use **`Nit:`** for optional polish.
-- **Context:** Consider the whole file and system—not only the diff hunk.
-- **Good practices:** Note what was done well, not only problems.
+Use [docs/references/google-eng-practices.md](docs/references/google-eng-practices.md) and **sql-gym-pre-review**—do not duplicate the reviewer checklist in this rule.
 
-Language-specific style: follow repo tooling and [Google style guides](https://google.github.io/styleguide/) when no project config exists yet.
+Language-specific style: [Google style guides](https://google.github.io/styleguide/) when no project tooling exists yet.

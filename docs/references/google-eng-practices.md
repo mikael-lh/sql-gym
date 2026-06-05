@@ -54,6 +54,6 @@ Project-specific config (Ruff, SQLFluff, etc.) overrides when present in the rep
 
 | Layer | Role |
 |-------|------|
-| [.cursor/rules/engineering.mdc](../../.cursor/rules/engineering.mdc) | Always-on authoring principles (aligned with Google) |
-| [sql-gym-pre-review](../../.cursor/skills/sql-gym-pre-review/SKILL.md) | Agent review pass using this checklist |
+| [.cursor/rules/engineering.mdc](../../.cursor/rules/engineering.mdc) | Always-on **authoring** principles (subset of Google—no reviewer checklist) |
+| [sql-gym-pre-review](../../.cursor/skills/sql-gym-pre-review/SKILL.md) | Agent **review** pass using the checklist below |
 | [docs/WORKFLOW.md](../WORKFLOW.md) | Pre-review before user review |
