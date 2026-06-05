@@ -53,7 +53,7 @@ Repo tooling (`pyproject.toml`, Ruff, ESLint, SQLFluff, etc.) **overrides** thes
 ### SQL
 
 - Dialect and linter rules from repo config when present
-- General clarity: [Kickstarter SQL style guide](https://github.com/kristerkoch/sql-style-guide)
+- General clarity: [Simon Holywell SQL Style Guide](https://www.sqlstyle.guide/) (portable ANSI SQL; formerly mirrored as the “Kickstarter” guide)
 
 ### HTML & CSS (web UI)
 
