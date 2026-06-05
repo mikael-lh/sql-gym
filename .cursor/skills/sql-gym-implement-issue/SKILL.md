@@ -19,7 +19,7 @@ If there is no approved plan, run **sql-gym-start-issue** first and stop.
 ## Steps
 
 1. Re-read the Linear issue and linked `prd/` acceptance criteria.
-2. Create a branch: `cursor/<short-desc>-e2d9` or `feature/tim-NN-<short-desc>`.
+2. Create a branch using the `cursor/<short-desc>-<suffix>` convention (the cloud agent template supplies the suffix for the active session, e.g. `cursor/tim-42-parser-7a6a`).
 3. Implement **only** the acceptance criteria from the approved plan. Follow [.cursor/rules/engineering.mdc](../../../.cursor/rules/engineering.mdc).
 4. Optional: Superpowers **`executing-plans`** for step order; TDD skills when tests exist.
 5. Run tests/lint if configured. If they fail, **fix and re-run** before opening the PR (same branch).
