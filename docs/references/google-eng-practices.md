@@ -44,11 +44,30 @@ From [What to look for in a code review](https://github.com/google/eng-practices
 
 ## Language style guides
 
-Google’s language guides (use when this repo’s stack is chosen and documented in `WORKFLOW.md`):
+Repo tooling (`pyproject.toml`, Ruff, ESLint, SQLFluff, etc.) **overrides** these guides when configured.
+
+### Python (sql-gym backend)
+
+- [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html) (pyguide), built on [PEP 8](https://peps.python.org/pep-0008/)
+
+### SQL
+
+- Dialect and linter rules from repo config when present
+- General clarity: [Simon Holywell SQL Style Guide](https://www.sqlstyle.guide/) (portable ANSI SQL; formerly mirrored as the “Kickstarter” guide)
+
+### HTML & CSS (web UI)
+
+A **browser UI** (editor, results, progress) is the likely shape for sql-gym, but not confirmed until `prd/00-product-vision.md` and phase PRDs—Phase 0 could still be CLI-only. When adding or changing frontend markup or styles:
+
+- [Google HTML/CSS Style Guide](https://google.github.io/styleguide/htmlcssguide.html)
+
+For JS application code (e.g. React, if chosen):
+
+- [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html)
+
+### Other
 
 - [Google style guide index](https://google.github.io/styleguide/)
-
-Project-specific config (Ruff, SQLFluff, etc.) overrides when present in the repo.
 
 ## Where this is enforced
 
