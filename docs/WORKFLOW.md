@@ -1,6 +1,8 @@
 # Development workflow
 
-sql-gym uses **ChatPRD + `prd/` + Linear + GitHub**. This document is the playbook; [AGENTS.md](../AGENTS.md) is the short agent-facing summary.
+sql-gym uses **ChatPRD + `prd/` + Linear + GitHub**. Product scope, phases, and acceptance criteria live in **`prd/`** only—this document covers **process** (how we work).
+
+Entry point for agents: [AGENTS.md](../AGENTS.md).
 
 ## Tool roles
 
@@ -11,21 +13,7 @@ sql-gym uses **ChatPRD + `prd/` + Linear + GitHub**. This document is the playbo
 | **Linear** | Backlog, cycles, issue status, priorities |
 | **GitHub** | Code, branches, PRs, CI |
 
-Do not duplicate full PRD text in Linear issues — link `prd/…` and list acceptance criteria.
-
-## Phased delivery (outline only)
-
-Phases will be defined in `prd/00-product-vision.md` after requirements gathering. Expected shape (names and scope **TBD**):
-
-| Phase | Typical focus |
-|-------|----------------|
-| 0 | Sample data, problem format, CLI or API grading |
-| 1 | Web UI: editor, run, deterministic grade |
-| 2 | AI hints (e.g. local Ollama) |
-| 3 | Problem generator + concept/difficulty filters |
-| 4 | Hosting, limits, optional warehouse connection |
-
-Update [prd/README.md](../prd/README.md) when phases are approved.
+Do not duplicate full PRD text in Linear issues—link `prd/…` and list acceptance criteria.
 
 ## End-to-end flow
 
@@ -49,6 +37,8 @@ Update [prd/README.md](../prd/README.md) when phases are approved.
 
 6. update-prd + close Linear issues; deferrals → PRD "Future work"
 ```
+
+Phases and scope are defined in [prd/00-product-vision.md](../prd/00-product-vision.md) and indexed in [prd/README.md](../prd/README.md)—not in this file.
 
 ## Linear conventions
 
@@ -88,10 +78,17 @@ PR ready for GYM-42: run tests, check-prd-alignment against prd/phase-1-….md.
 
 ## ChatPRD plugin
 
-Enable the ChatPRD Cursor plugin for this repo. Skills: `write-prd`, `implement-from-prd`, `check-prd-alignment`, `update-prd`.
+Enable the ChatPRD Cursor plugin for this repo.
 
-## What agents must not do
+| Intent | Skill |
+|--------|--------|
+| Write or expand specs | `write-prd` (save under `prd/`) |
+| Plan implementation from a PRD | `implement-from-prd` |
+| Pre-merge requirement check | `check-prd-alignment` |
+| Record what shipped vs spec | `update-prd` |
 
-- Invent product requirements or mark phases complete without PRD updates
-- Use an LLM to decide pass/fail on SQL answers
-- Expand scope beyond the active Linear issue / PRD section without user approval
+## Process rules (agents)
+
+- Do not invent product requirements or mark phases complete without PRD updates.
+- Do not expand scope beyond the active Linear issue / PRD section without user approval.
+- Document PRD deviations in the PR description, not only in chat.

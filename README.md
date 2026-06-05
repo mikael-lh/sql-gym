@@ -1,6 +1,6 @@
 # sql-gym
 
-A lightweight gym for SQL: write queries against curated datasets, get instant pass/fail feedback, and level up by concept and difficulty.
+A lightweight gym for SQL: practice on curated datasets, run queries, and level up by concept and difficulty.
 
 ## Status
 

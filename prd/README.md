@@ -25,6 +25,15 @@ ChatPRD project: (link TBD)
 
 **None.** Agents must not implement product features until `00-product-vision.md` exists and this section names an active phase.
 
+## Product principles (draft)
+
+Direction from early planning—not binding acceptance criteria until captured in `00-product-vision.md` and phase PRDs:
+
+- **Deterministic grading:** pass/fail by comparing query results (or equivalent rules), not LLM judgment.
+- **AI later unless specced:** hints, tutoring, or problem generation belong in a phase PRD before implementation.
+
+Revise or remove items here once the vision doc is written.
+
 ## Open questions (for requirements session)
 
 Collect answers before writing `00-product-vision.md`:
