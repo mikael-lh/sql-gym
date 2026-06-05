@@ -2,7 +2,27 @@
 
 sql-gym uses **ChatPRD + `prd/` + Linear + GitHub**. Product scope lives in **`prd/`**; this document is **how** the team and agents work.
 
-Cursor applies [.cursor/rules/workflow.mdc](../.cursor/rules/workflow.mdc) (read this doc) and [.cursor/rules/engineering.mdc](../.cursor/rules/engineering.mdc) (code quality).
+Hard gates and the PR handoff checklist are **always applied** via [.cursor/rules/workflow.mdc](../.cursor/rules/workflow.mdc). This file is the full playbook.
+
+## Quick reference (agents)
+
+Same as `workflow.mdc` — use this section if you opened the doc mid-task.
+
+**Gates**
+
+- No product work without active phase in [prd/README.md](../prd/README.md) + relevant `prd/` doc.
+- Product specs: ChatPRD + `prd/` only (not Superpowers `brainstorming`).
+- Application code: approved `implement-from-prd` plan first.
+- Stay within the Linear issue / PRD section unless the user expands scope.
+
+**Before PR is ready for human review**
+
+- `check-prd-alignment` → note gaps in PR
+- Superpowers `code-reviewer` + cursor-team-kit `deslop` (or N/A docs-only)
+- Tests/lint, or state CI not configured yet
+- PR description: summary, risks, test plan, deviations
+
+Details: [Pre-review before human review](#pre-review-before-human-review).
 
 ## Plugins (install in Cursor)
 
@@ -74,15 +94,15 @@ Each step has an owner and an outcome. Skills named below are from the **ChatPRD
 
 **What happens:** Branch, implement against the issue’s acceptance criteria, open a PR using [.github/pull_request_template.md](../.github/pull_request_template.md). Follow [.cursor/rules/engineering.mdc](../.cursor/rules/engineering.mdc) while coding. After a logical chunk, use Superpowers **code-reviewer** against the approved plan.
 
-**Outcome:** Reviewable diff on GitHub, linked to Linear when applicable (`TIM-NN:` in title).
+**Outcome:** Reviewable diff on GitHub, linked to Linear when applicable (`TIM-NN:` in title). Complete [pre-review](#pre-review-before-human-review) before marking the PR ready for you.
 
 ---
 
 ### 5. `check-prd-alignment` — verify *what* shipped matches spec
 
-**When:** PR is ready for review or merge.
+**When:** Part of [pre-review](#pre-review-before-human-review), before the PR is ready for human review.
 
-**What happens:** Run the **check-prd-alignment** skill against the relevant `prd/phase-*.md` section. It flags missing acceptance criteria, spec drift, and scope gaps.
+**What happens:** Run the **check-prd-alignment** skill against the relevant `prd/phase-*.md` section. It flags missing acceptance criteria, spec drift, and scope gaps. Record the result in the PR description.
 
 **Outcome:** Confidence the merge matches product intent—not a substitute for code review or tests.
 
@@ -115,10 +135,27 @@ Phases and detailed scope live in [prd/00-product-vision.md](../prd/00-product-v
   - …
   ```
 
+## Pre-review before human review
+
+Agents (especially cloud) run automated checks **before** you review. You judge product and architecture; agents handle hygiene and spec alignment.
+
+| Step | Tool | Notes |
+|------|------|--------|
+| Spec alignment | ChatPRD `check-prd-alignment` | vs linked `prd/` section; note gaps in PR |
+| Code vs plan | Superpowers `code-reviewer` | vs approved `implement-from-prd` plan |
+| Slop / style pass | cursor-team-kit `deslop` | on changed code; skip for docs-only PRs |
+| Verification | tests / lint locally | when [CI](#engineering-standards-code-quality) exists, must be green first |
+
+**PR description must include:** summary, risks, test plan (or “CI not configured — ran …”), alignment notes, PRD deviations.
+
+Install plugins: `/add-plugin superpowers`, `/add-plugin cursor-team-kit`.
+
+---
+
 ## GitHub conventions
 
 - **Default branch:** `main`
-- **PRs:** use [.github/pull_request_template.md](../.github/pull_request_template.md)
+- **PRs:** use [.github/pull_request_template.md](../.github/pull_request_template.md) (includes agent pre-review checklist)
 - **Done:** merged PR + Linear issue closed + PRD updated if scope changed
 
 ## ChatPRD plugin
@@ -150,8 +187,8 @@ Implementation only—do not use for product scope (see [Process rules](#process
 | Mechanism | Role |
 |-----------|------|
 | [.cursor/rules/engineering.mdc](../.cursor/rules/engineering.mdc) | Always-on agent guidance: minimal scope, simplicity, DRY, documentation, match conventions |
-| **CI** (add when stack is chosen) | Automated format, lint, and tests on every PR |
-| **Human PR review** | Architecture and design judgment |
+| **CI** (add when stack is chosen) | Automated format, lint, and tests on every PR; add as first pre-review checkbox when enabled |
+| **Human PR review** | Architecture and design judgment (after agent pre-review passes) |
 
 Optional later: enable **Cursor Bugbot** on the repo for automated PR review once you have substantial code—it catches bugs and issues, not product scope.
 
@@ -159,13 +196,10 @@ Do **not** use ChatPRD skills for engineering style; they are for requirements a
 
 ## Process rules (agents)
 
-- Do not implement product features until [prd/README.md](../prd/README.md) names an active phase and the relevant `prd/` doc exists.
-- Do not invent requirements or mark phases complete without updating `prd/`.
-- Do not expand scope beyond the active Linear issue / PRD section without user approval.
-- **Product specs:** ChatPRD + `prd/` only—do not use Superpowers `brainstorming` for feature or phase discovery.
-- **Implementation:** Superpowers (`executing-plans`, TDD skills, `code-reviewer`, `finishing-a-development-branch`) only after an approved plan from `implement-from-prd`.
-- **Linear:** link `prd/…` and list acceptance criteria; do not paste the full PRD into the issue.
-- **PRs:** note PRD deviations in the description, not only in chat.
+Enforced in [.cursor/rules/workflow.mdc](../.cursor/rules/workflow.mdc). Also:
+
+- Do not mark phases complete without updating `prd/`.
+- **Implementation:** Superpowers (`executing-plans`, TDD skills, `finishing-a-development-branch`) only after an approved plan from `implement-from-prd`.
 
 ## Agent session prompts (examples)
 
@@ -178,7 +212,7 @@ Working on Linear TIM-42. Read prd/phase-1-….md § "Run SQL". Propose a plan (
 ```
 
 ```text
-PR ready for TIM-42: run tests, check-prd-alignment against prd/phase-1-….md.
+PR ready for TIM-42: complete pre-review (check-prd-alignment, code-reviewer, deslop, tests); then mark ready for human review.
 ```
 
 ## Secrets
