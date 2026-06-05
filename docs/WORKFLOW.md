@@ -203,6 +203,20 @@ Enforced in [.cursor/rules/workflow.mdc](../.cursor/rules/workflow.mdc). Also:
 - Do not mark phases complete without updating `prd/`.
 - **Implementation:** Superpowers (`executing-plans`, TDD skills, `finishing-a-development-branch`) only after an approved plan from `implement-from-prd`.
 
+## Repo skills (invoke by name)
+
+Thin wrappers around the flow below. Prefer these over “follow WORKFLOW step by step.”
+
+| Skill | When |
+|-------|------|
+| **sql-gym-start-issue** | Picking up `TIM-NN` — plan only; stops for user approval |
+| **sql-gym-implement-issue** | After plan approved — code + draft PR |
+| **sql-gym-pre-review** | Implementation done — alignment, review, deslop; ready for user review |
+
+Chain: **start-issue** → (user approves) → **implement-issue** → **pre-review** → (user reviews and merges).
+
+Skills live in [.cursor/skills/](../.cursor/skills/).
+
 ## Example prompts (user → agent)
 
 ```text
@@ -210,11 +224,15 @@ Requirements pass: run write-prd; save under prd/; update prd/README.md active p
 ```
 
 ```text
-Working on Linear TIM-42. Read prd/phase-1-….md § "Run SQL". Propose a plan (implement-from-prd) before editing files.
+sql-gym-start-issue for TIM-42
 ```
 
 ```text
-PR ready for TIM-42: complete pre-review (check-prd-alignment, code-reviewer, deslop, tests); then mark ready for user review.
+Plan approved — sql-gym-implement-issue for TIM-42
+```
+
+```text
+sql-gym-pre-review for the current PR (TIM-42)
 ```
 
 ## Secrets
