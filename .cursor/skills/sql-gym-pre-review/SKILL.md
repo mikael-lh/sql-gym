@@ -1,30 +1,57 @@
 ---
 name: sql-gym-pre-review
-description: Run agent pre-review before user review — check-prd-alignment, code-reviewer, deslop, tests. Use when a PR is implemented and ready for checklist pass.
+description: Orchestrate agent pre-review — independent reviewer, fixer loop until pass, then checklist and handoff to user. Use after sql-gym-implement-issue.
 ---
 
-# sql-gym: pre-review
+# sql-gym: pre-review (orchestrator)
 
 Run before marking a PR ready for **user** review. Does **not** replace **user** judgment on product/architecture.
 
-## Inputs
+**Two roles:** a **reviewer** agent (no writes) and a **fixer** agent (commits on the branch). The agent that **implemented** the PR must **not** perform the judgment review alone.
 
-Ask if missing:
+## Default flow
 
-- PR URL or branch name
-- Linear issue id (`TIM-NN`) and linked `prd/` section
+```text
+implement-issue → draft PR
+  → pre-review-reviewer (pass 1)     [independent agent / new chat / readonly Task]
+  → if blocking: pre-review-fix       [implementer agent]
+  → pre-review-reviewer (pass 2+)     [independent again]
+  → repeat until reviewer: no blocking
+  → final verification (tests/lint/deslop) + check PR boxes + ready for user
+```
 
-## Steps
+| Skill | Role | Writes branch? |
+|-------|------|----------------|
+| **sql-gym-pre-review-reviewer** | Alignment + code review findings | **No** |
+| **sql-gym-pre-review-fix** | Apply blocking fixes + tests/deslop | **Yes** |
+| **This skill** | Coordinate the loop and final handoff | As fixer only when no separate fixer is used |
 
-1. Identify the PR diff and linked `prd/phase-*.md` section (from issue or PR description).
-2. ChatPRD **`check-prd-alignment`** — record gaps, missing AC, and deviations in the PR description.
-3. Superpowers **`code-reviewer`** against the approved implementation plan and [engineering.mdc](../../../.cursor/rules/engineering.mdc).
-4. Review the diff against [docs/references/google-eng-practices.md](../../../docs/references/google-eng-practices.md) (design, functionality, complexity, tests, naming, comments, documentation, context). Record findings in the PR; use **`Nit:`** for non-blocking items.
-5. cursor-team-kit **`deslop`** on changed code files (or mark N/A if docs-only).
-6. Run tests/lint; if CI is not configured, state what was run manually in the PR.
-7. Update the PR description with: summary, risks, test plan, alignment notes, PRD deviations, and notable **Nit:** items.
-8. Check all boxes under **Agent pre-review** in the PR template.
-9. Mark the PR ready for **user** review (or tell the **user** it is ready).
+**Docs-only PRs:** Reviewer may mark code tools N/A; fixer runs only if needed.
+
+## When you are the orchestrator (single session)
+
+If the **user** invoked **`sql-gym-pre-review`** in the implementer session:
+
+1. Run **sql-gym-pre-review-reviewer** via a **Task** subagent (**readonly**) or ask the **user** to start a **new** agent with the PR link.
+2. If blocking findings exist, either run **sql-gym-pre-review-fix** yourself (fixer hat) **or** ask the **user** to run it in the implementer agent—then **never** approve your own fixes without a **new** reviewer pass.
+3. After reviewer reports **no blocking items**, run tests/lint/deslop if not already green, update the PR description, check **Agent pre-review** boxes, mark ready for **user** review.
+
+Do **not** check boxes or ask for **user** review while blocking reviewer findings remain.
+
+## Blocking vs non-blocking
+
+| Kind | Owner | Action |
+|------|-------|--------|
+| **Blocking** | Reviewer lists | Fixer addresses on branch; re-run reviewer |
+| **`Nit:`** | Reviewer lists | Optional; may remain at handoff |
+
+## Escalate to the user
+
+- Product/architecture decision or approved PRD deviation needed
+- Cannot run independent reviewer (no Task, same session only)
+- Stuck after multiple reviewer/fix cycles
+
+Leave boxes **unchecked** and PR **draft**.
 
 ## Stop
 
@@ -32,5 +59,5 @@ Do not merge. The **user** performs final review and merge.
 
 ## References
 
-- [docs/WORKFLOW.md](../../../docs/WORKFLOW.md) — [Pre-review before user review](../../../docs/WORKFLOW.md#pre-review-before-user-review)
+- [docs/WORKFLOW.md](../../../docs/WORKFLOW.md#pre-review-before-user-review)
 - [.cursor/rules/workflow.mdc](../../../.cursor/rules/workflow.mdc)

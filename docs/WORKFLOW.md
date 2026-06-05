@@ -104,7 +104,7 @@ Each step has an owner and an outcome. Skills named below are from the **ChatPRD
 
 **When:** Part of [pre-review](#pre-review-before-user-review), before the PR is ready for **user** review.
 
-**What happens:** The **agent** runs **check-prd-alignment** against the relevant `prd/phase-*.md` section. It flags missing acceptance criteria, spec drift, and scope gaps. The **agent** records the result in the PR description.
+**What happens:** The **agent** runs **check-prd-alignment** against the relevant `prd/phase-*.md` section. It flags missing acceptance criteria, spec drift, and scope gaps. Blocking gaps are **fixed** (or escalated for an approved deviation) as part of the [pre-review iteration loop](#pre-review-before-user-review).
 
 **Outcome:** Confidence the merge matches product intent—not a substitute for code review or tests.
 
@@ -141,15 +141,33 @@ Phases and detailed scope live in [prd/00-product-vision.md](../prd/00-product-v
 
 **Agents** (especially cloud) run automated checks **before** the **user** reviews. The **user** judges product and architecture; **agents** handle hygiene and spec alignment.
 
+### Two roles (do not self-review)
+
+| Role | Skill | May commit? |
+|------|-------|-------------|
+| **Reviewer** | **sql-gym-pre-review-reviewer** | **No** — findings only |
+| **Fixer** | **sql-gym-pre-review-fix** | **Yes** — blocking fixes, tests, deslop |
+
+The **implementer** agent must **not** run the judgment review alone. Use a **new agent/chat**, **Cloud Agent handoff**, or a **readonly Task** subagent (`code-reviewer` / `explore`) for the reviewer pass.
+
+**Iterate until pass:** Reviewer → (if blocking) fixer on same branch → reviewer again → … until the reviewer reports **no blocking items**. Then run final tests/lint, check PR boxes, mark ready for **user** review. Non-blocking items may stay as **`Nit:`** per [google-eng-practices.md](references/google-eng-practices.md).
+
+Orchestration: **sql-gym-pre-review** (full loop).
+
 | Step | Tool | Who runs it |
 |------|------|-------------|
-| Spec alignment | ChatPRD `check-prd-alignment` | **Agent** — note gaps in PR |
-| Code vs plan | Superpowers `code-reviewer` | **Agent** — vs approved `implement-from-prd` plan |
-| Code review | [google-eng-practices.md](references/google-eng-practices.md) checklist | **Agent** — design, complexity, tests, naming, comments, docs; `Nit:` for optional |
-| Slop / style pass | cursor-team-kit `deslop` | **Agent** — on changed code; skip for docs-only PRs |
-| Verification | tests / lint | **Agent** — when [CI](#engineering-standards-code-quality) exists, must be green first |
+| Spec alignment | ChatPRD `check-prd-alignment` | **Reviewer** agent |
+| Code vs plan | Superpowers `code-reviewer` | **Reviewer** agent |
+| Code review | [google-eng-practices.md](references/google-eng-practices.md) checklist | **Reviewer** agent; `Nit:` for optional |
+| Apply fixes | Branch edits | **Fixer** agent |
+| Slop / style pass | cursor-team-kit `deslop` | **Fixer** agent (or N/A docs-only) |
+| Verification | tests / lint | **Fixer** agent — must be green before re-review |
 
-**PR description must include:** summary, risks, test plan (or “CI not configured — ran …”), alignment notes, PRD deviations.
+Post each reviewer pass under **`## Pre-review findings (pass N)`** on the PR.
+
+**PR description must include:** summary, risks, test plan (or “CI not configured — ran …”), alignment notes, PRD deviations, and any remaining **`Nit:`** items.
+
+**Escalate** to the **user** (leave boxes unchecked, keep draft) when a product/architecture call is needed, independent review is not possible, plugins cannot run, or agents are stuck after several cycles.
 
 The **user** installs plugins: `/add-plugin superpowers`, `/add-plugin cursor-team-kit`.
 
@@ -212,9 +230,11 @@ Thin wrappers around the flow below. Prefer these over “follow WORKFLOW step b
 |-------|------|
 | **sql-gym-start-issue** | Picking up `TIM-NN` — plan only; stops for user approval |
 | **sql-gym-implement-issue** | After plan approved — code + draft PR |
-| **sql-gym-pre-review** | Implementation done — alignment, review, deslop; ready for user review |
+| **sql-gym-pre-review-reviewer** | Independent review pass — findings only, no commits |
+| **sql-gym-pre-review-fix** | Apply blocking reviewer findings + tests/deslop |
+| **sql-gym-pre-review** | Orchestrate reviewer ↔ fixer loop, then ready for user review |
 
-Chain: **start-issue** → (user approves) → **implement-issue** → **pre-review** → (user reviews and merges).
+Chain: **start-issue** → (user approves) → **implement-issue** → **pre-review-reviewer** ↔ **pre-review-fix** (until no blocking) → **pre-review** final handoff → (user reviews and merges).
 
 Skills live in [.cursor/skills/](../.cursor/skills/).
 
@@ -233,7 +253,15 @@ Plan approved — sql-gym-implement-issue for TIM-42
 ```
 
 ```text
-sql-gym-pre-review for the current PR (TIM-42)
+sql-gym-pre-review-reviewer for PR TIM-42 (new agent — review only, no commits)
+```
+
+```text
+Blocking findings attached — sql-gym-pre-review-fix for TIM-42
+```
+
+```text
+Reviewer pass clean — sql-gym-pre-review for TIM-42 (final boxes + ready for my review)
 ```
 
 ## Secrets

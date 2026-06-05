@@ -4,9 +4,11 @@
 
 ## Agent pre-review (before user review)
 
-- [ ] `check-prd-alignment` run — result noted below
-- [ ] Superpowers `code-reviewer` (or N/A — docs-only)
-- [ ] Reviewed against [google-eng-practices](docs/references/google-eng-practices.md) (or N/A — docs-only)
+Check only after **`sql-gym-pre-review`** passes: independent **reviewer** agent found no blocking items, **fixer** addressed prior blocking findings, tests/lint green—do not check boxes to hand off a failing PR.
+
+- [ ] `check-prd-alignment` — no blocking gaps (or approved deviation noted)
+- [ ] Superpowers `code-reviewer` (or N/A — docs-only) — blocking feedback addressed
+- [ ] Reviewed against [google-eng-practices](docs/references/google-eng-practices.md) (or N/A — docs-only) — blocking items fixed
 - [ ] cursor-team-kit `deslop` (or N/A — docs-only)
 - [ ] Tests/lint run (or **CI not configured yet** — manual checks: ___)
 

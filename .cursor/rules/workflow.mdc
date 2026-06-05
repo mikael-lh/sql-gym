@@ -14,15 +14,18 @@ alwaysApply: true
 
 # Before PR is ready for user review
 
-Complete this checklist; summarize results in the PR description:
+Run **`sql-gym-pre-review`**: **reviewer** agent (no commits) and **fixer** agent (commits) must not be the same role as blind self-review—the implementer does not approve its own judgment pass. Use **sql-gym-pre-review-reviewer** in a **new** agent/chat or readonly Task, then **sql-gym-pre-review-fix**, and repeat until the reviewer reports no blocking items. Do **not** check PR boxes or ask for **user** review while blocking reviewer findings remain.
 
-- [ ] `check-prd-alignment` vs linked `prd/` section (note gaps)
-- [ ] Superpowers `code-reviewer` vs approved plan + [engineering.mdc](engineering.mdc)
+Checklist (all must pass before handoff):
+
+- [ ] `check-prd-alignment` vs linked `prd/` section (no unapproved blocking gaps)
+- [ ] Superpowers `code-reviewer` vs approved plan + [engineering.mdc](engineering.mdc) (blocking feedback addressed)
+- [ ] [google-eng-practices](docs/references/google-eng-practices.md) review (blocking items fixed; `Nit:` optional)
 - [ ] cursor-team-kit `deslop` on changed code (or N/A — docs-only)
-- [ ] Tests/lint run, or state **CI not configured yet** and what was run manually
+- [ ] Tests/lint green, or state **CI not configured yet** and what was run manually
 - [ ] PR: summary, risks, test plan, PRD deviations (if any)
 
-Do not ask the **user** to review until the above is done.
+Escalate to the **user** for product/architecture decisions or if stuck—do not mark boxes done to bypass a failed check.
 
 # Playbook
 

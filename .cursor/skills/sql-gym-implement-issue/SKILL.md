@@ -22,15 +22,16 @@ If there is no approved plan, run **sql-gym-start-issue** first and stop.
 2. Create a branch: `cursor/<short-desc>-e2d9` or `feature/tim-NN-<short-desc>`.
 3. Implement **only** the acceptance criteria from the approved plan. Follow [.cursor/rules/engineering.mdc](../../../.cursor/rules/engineering.mdc).
 4. Optional: Superpowers **`executing-plans`** for step order; TDD skills when tests exist.
-5. Run tests/lint if configured; otherwise note in the PR what was run manually.
+5. Run tests/lint if configured. If they fail, **fix and re-run** before opening the PR (same branch).
 6. Open or update a PR using [.github/pull_request_template.md](../../../.github/pull_request_template.md). Title: `TIM-NN: <summary>`. Description: *what*, *why*, test plan ([CL descriptions](https://github.com/google/eng-practices/blob/master/review/developer/cl-descriptions.md)).
-7. Fill the template; leave agent pre-review boxes unchecked unless already done. Prefer a **small, focused** PR ([small CLs](https://github.com/google/eng-practices/blob/master/review/developer/small-cls.md)).
+7. Fill the template; leave **Agent pre-review** boxes **unchecked**. Prefer a **small, focused** PR ([small CLs](https://github.com/google/eng-practices/blob/master/review/developer/small-cls.md)).
+8. Optional quick self-check: `code-reviewer` or a diff read against acceptance criteria. If you find **blocking** gaps, fix on the branch before handoff—do not rely on pre-review to discover obvious misses only.
 
 ## Stop
 
-Do **not** mark the PR ready for **user** review. Do **not** run full pre-review in this skill.
+Do **not** mark the PR ready for **user** review. Do **not** check pre-review boxes or run the full pre-review loop in this skill—that is **`sql-gym-pre-review`**, which **iterates until checks pass**.
 
-Tell the **user** to invoke **`sql-gym-pre-review`** when implementation is complete.
+Tell the **user** to run **`sql-gym-pre-review-reviewer`** in a **new** agent/chat (or Cloud Agent) when implementation is complete. Do **not** run the full judgment review in this same session without a readonly Task subagent.
 
 ## References
 
