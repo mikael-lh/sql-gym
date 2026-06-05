@@ -4,39 +4,50 @@ A lightweight gym for SQL: practice on curated datasets, run queries, and level 
 
 ## Status
 
-**Early setup.** Process and agent workflow are documented; product requirements and application code are not started yet.
+**Early setup.** The development workflow is documented below; product requirements and application code are not started yet.
 
-- Workflow (full playbook): [docs/WORKFLOW.md](docs/WORKFLOW.md)
-- Product specs: [prd/README.md](prd/README.md) (requirements gathering pending)
+| | |
+|--|--|
+| Full workflow reference | [docs/WORKFLOW.md](docs/WORKFLOW.md) |
+| Product specs | [prd/README.md](prd/README.md) |
+| Linear project | [sql-gym](https://linear.app/times-api/project/sql-gym-ce6a8985c99e) (`TIM-` issues) |
 
-## Working with this repo (humans)
+## Setup
 
-Use **Cursor agents** for implementation and review; you own product decisions, plan approval, and merge. Specs live in **`prd/`**; tasks in **Linear** (`TIM-` prefix, [sql-gym project](https://linear.app/times-api/project/sql-gym-ce6a8985c99e)); code in **GitHub PRs**.
+Install these Cursor marketplace plugins once (details in [WORKFLOW](docs/WORKFLOW.md#plugins-install-in-cursor)):
 
-### One-time setup
+- **ChatPRD** — specs, implementation plans, PRD alignment
+- **Linear** (MCP) — backlog and issue status
+- **Superpowers** — implementation and code review during builds
+- **cursor-team-kit** (optional) — `deslop` pass on changed code
 
-1. Install Cursor plugins (see [WORKFLOW — Plugins](docs/WORKFLOW.md#plugins-install-in-cursor)): **ChatPRD**, **Linear** (MCP), **Superpowers**. Optional: **cursor-team-kit** (`deslop`) on desktop.
-2. Connect ChatPRD and Linear MCP in Cursor settings if prompts fail in cloud agents.
+Connect ChatPRD and Linear in Cursor settings if skills fail to run (common in Cloud sessions).
 
-### Typical flow
+## How we work
 
-| Step | You do | Agent skill / ChatPRD |
-|------|--------|------------------------|
-| 1. Requirements | Approve specs and active phase in [prd/README.md](prd/README.md) | ChatPRD `write-prd` → files under `prd/` |
-| 2. Backlog | Create or refine Linear issues (`TIM-NN`) linking a `prd/` section + acceptance criteria | — |
-| 3. Plan | Review and **approve** the implementation plan | **`sql-gym-start-issue`** for `TIM-NN` (plan only; agent stops) |
-| 4. Build | Confirm plan approved | **`sql-gym-implement-issue`** → branch + **draft PR** (template in [.github/pull_request_template.md](.github/pull_request_template.md)) |
-| 5. Agent pre-review | Start a **new agent/chat** for review (not the implementer session) | **`sql-gym-pre-review-reviewer`** → findings on the PR, no commits |
-| 6. Fixes | If blocking items exist | **`sql-gym-pre-review-fix`** on the PR branch → push → go back to step 5 |
-| 7. Handoff | When reviewer reports no blocking items | **`sql-gym-pre-review`** → check PR boxes, mark ready for **your** review |
-| 8. Ship | Review PR, merge, close Linear issue; update `prd/` if scope changed | ChatPRD `update-prd` when appropriate |
+Specs live in **`prd/`** in this repo. Work is tracked in **Linear**, shipped via **GitHub PRs**, and built with **Cursor** using the repo skills named in the prompts below. You own product calls, plan sign-off, and merge.
 
-Agents **iterate** until pre-review passes—they should not check boxes or ask you to review while blocking findings remain. You still do final review (architecture, product judgment).
+## Workflow
 
-### Prompts to copy
+| Step | Your job | In Cursor |
+|------|----------|-----------|
+| **Requirements** | Approve specs; set the active phase in [prd/README.md](prd/README.md) | `write-prd` → commit under `prd/` |
+| **Backlog** | Create Linear issues (`TIM-NN`) with a `prd/` link and acceptance criteria | — |
+| **Plan** | Review and approve the implementation plan | `sql-gym-start-issue` for `TIM-NN` |
+| **Build** | Confirm the plan is approved | `sql-gym-implement-issue` → branch + draft PR |
+| **Review** | Open a **new Cursor chat** for review (not the same session that built the PR) | `sql-gym-pre-review-reviewer` |
+| **Fix** | If the review lists blocking items | `sql-gym-pre-review-fix`, then run review again |
+| **Ready for you** | When review reports no blocking items | `sql-gym-pre-review` → PR checklist complete |
+| **Ship** | Review the PR, merge, close the Linear issue; update `prd/` if scope changed | `update-prd` when useful |
+
+Pre-review **loops** until blocking findings are resolved—don’t review a PR that still has open blocking items on the checklist. Your merge review is still the final call on product and architecture.
+
+PRs use [.github/pull_request_template.md](.github/pull_request_template.md).
+
+### Prompts
 
 ```text
-Requirements: run write-prd; save under prd/; update prd/README.md active phase when I approve.
+Run write-prd; save under prd/; update prd/README.md active phase when I approve.
 ```
 
 ```text
@@ -48,7 +59,7 @@ Plan approved — sql-gym-implement-issue for TIM-42
 ```
 
 ```text
-sql-gym-pre-review-reviewer for PR TIM-42 (new agent — review only, no commits)
+sql-gym-pre-review-reviewer for PR TIM-42 — review only, no commits
 ```
 
 ```text
@@ -56,13 +67,13 @@ Blocking findings on the PR — sql-gym-pre-review-fix for TIM-42
 ```
 
 ```text
-Reviewer pass clean — sql-gym-pre-review for TIM-42 (final boxes + ready for my review)
+Reviewer pass clean — sql-gym-pre-review for TIM-42 — ready for my review
 ```
 
-### Gates (do not skip)
+## Project rules
 
-- No product features until [prd/README.md](prd/README.md) names an **active phase** and the relevant `prd/` doc exists.
-- No application code until you approve a plan from `implement-from-prd` / **sql-gym-start-issue**.
-- Pre-review: **reviewer** and **implementer** must not be the same blind self-review—use a new chat or a readonly review subagent.
+- **No product work** until [prd/README.md](prd/README.md) names an active phase and the matching `prd/` doc exists.
+- **No application code** until you approve a plan (`sql-gym-start-issue` / `implement-from-prd`).
+- **Independent review** — use a fresh Cursor chat for `sql-gym-pre-review-reviewer`; don’t use the same session that implemented the PR for the judgment pass.
 
-More detail: [docs/WORKFLOW.md](docs/WORKFLOW.md) · Repo skills: [.cursor/skills/](.cursor/skills/)
+Deeper process detail, plugin roles, and engineering standards: [docs/WORKFLOW.md](docs/WORKFLOW.md).
