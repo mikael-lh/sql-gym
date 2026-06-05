@@ -13,7 +13,7 @@ Specs will be added here via ChatPRD / `write-prd`. Do not treat informal chat n
 
 ## Linear
 
-- **Project:** [sql-gym](https://linear.app/times-api/project/sql-gym-ce6a8985c99e) (Times API team; issue prefix `TIM-`)
+- **Project:** [sql-gym](https://linear.app/times-api/project/sql-gym-ce6a8985c99e) (issue prefix `TIM-`)
 - **Requirements epic:** [TIM-16](https://linear.app/times-api/issue/TIM-16/requirements-or-product-vision-write-prd)
 
 ## ChatPRD
