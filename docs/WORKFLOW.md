@@ -1,8 +1,8 @@
 # Development workflow
 
-sql-gym uses **ChatPRD + `prd/` + Linear + GitHub**. Product scope lives in **`prd/`**; this document is **how** the **human** (solo developer) and **agents** work together.
+sql-gym uses **ChatPRD + `prd/` + Linear + GitHub**. Product scope lives in **`prd/`**; this document is **how** the **user** (solo developer) and **agents** work together.
 
-**Terms:** **human** = solo developer; **agent** = Cursor agent (local or cloud).
+**Terms:** **user** = solo developer; **agent** = Cursor agent (local or cloud).
 
 Hard gates and the PR handoff checklist are **always applied** via [.cursor/rules/workflow.mdc](../.cursor/rules/workflow.mdc). This file is the full playbook.
 
@@ -15,20 +15,20 @@ Same as `workflow.mdc` — use when the agent opened this doc mid-task.
 - No product work without active phase in [prd/README.md](../prd/README.md) + relevant `prd/` doc.
 - Product specs: ChatPRD + `prd/` only (not Superpowers `brainstorming`).
 - Application code: approved `implement-from-prd` plan first.
-- Stay within the Linear issue / PRD section unless the **human** expands scope.
+- Stay within the Linear issue / PRD section unless the **user** expands scope.
 
-**Before PR is ready for human review**
+**Before PR is ready for user review**
 
 - `check-prd-alignment` → note gaps in PR
 - Superpowers `code-reviewer` + cursor-team-kit `deslop` (or N/A docs-only)
 - Tests/lint, or state CI not configured yet
 - PR description: summary, risks, test plan, deviations
 
-Details: [Pre-review before human review](#pre-review-before-human-review).
+Details: [Pre-review before user review](#pre-review-before-user-review).
 
 ## Plugins (install in Cursor)
 
-The **human** installs from the [Cursor marketplace](https://cursor.com/marketplace) as needed.
+The **user** installs from the [Cursor marketplace](https://cursor.com/marketplace) as needed.
 
 | Step | Plugin | Role |
 |------|--------|------|
@@ -36,14 +36,14 @@ The **human** installs from the [Cursor marketplace](https://cursor.com/marketpl
 | 3 | **Linear** (MCP / marketplace) | Epics, issues, status—link `prd/`, not full PRD copy |
 | 4+ (implementation) | **Superpowers** | TDD, technical plan execution, code review, branch/PR finish |
 
-Do not install overlapping planners (e.g. Compound Engineering or pstack) unless the **human** replaces this stack intentionally.
+Do not install overlapping planners (e.g. Compound Engineering or pstack) unless the **user** replaces this stack intentionally.
 
 ## Tool roles
 
 | Tool | Owns |
 |------|------|
 | **ChatPRD** | Authoritative specs; optional cloud copy |
-| **`prd/`** (in repo) | Committed specs the human and agents read |
+| **`prd/`** (in repo) | Committed specs the user and agents read |
 | **Linear** | Backlog, cycles, issue status, priorities |
 | **GitHub** | Code, branches, PRs, CI |
 | **Superpowers** | Implementation workflows only (not product discovery) |
@@ -58,7 +58,7 @@ Each step has an owner and an outcome. Skills named below are from the **ChatPRD
 
 **When:** Starting the project, a new phase, or a major feature area.
 
-**What happens:** The **human** runs ChatPRD **write-prd** with the **agent** (or directs the agent to run it). Output is requirements—vision, phases, acceptance criteria—saved under `prd/`, starting with `prd/00-product-vision.md` and `prd/phase-N-….md` for the phase being scoped.
+**What happens:** The **user** runs ChatPRD **write-prd** with the **agent** (or directs the agent to run it). Output is requirements—vision, phases, acceptance criteria—saved under `prd/`, starting with `prd/00-product-vision.md` and `prd/phase-N-….md` for the phase being scoped.
 
 **Outcome:** Committed specs in git. [prd/README.md](../prd/README.md) is updated with the **active phase** so agents know implementation is allowed.
 
@@ -70,7 +70,7 @@ Each step has an owner and an outcome. Skills named below are from the **ChatPRD
 
 **When:** Before writing application code for a phase or large epic.
 
-**What happens:** The **agent** runs **implement-from-prd** on the relevant `prd/` doc and proposes a **milestone plan**: files to touch, order of work, risks. The **human** reviews and approves (or adjusts) before the **agent** edits code. If helpful, the **agent** may run Superpowers **executing-plans** on the approved plan only—without changing product scope.
+**What happens:** The **agent** runs **implement-from-prd** on the relevant `prd/` doc and proposes a **milestone plan**: files to touch, order of work, risks. The **user** reviews and approves (or adjusts) before the **agent** edits code. If helpful, the **agent** may run Superpowers **executing-plans** on the approved plan only—without changing product scope.
 
 **Outcome:** Agreed implementation plan—no surprise architecture or scope creep mid-flight.
 
@@ -80,9 +80,9 @@ Each step has an owner and an outcome. Skills named below are from the **ChatPRD
 
 **Plugin:** Linear MCP (marketplace).
 
-**When:** After the **human** has an approved plan and wants a prioritized backlog.
+**When:** After the **user** has an approved plan and wants a prioritized backlog.
 
-**What happens:** The **human** or **agent** creates a **parent epic per phase** and **child issues** from milestones. Each issue links to a `prd/…` section and lists acceptance criteria (see [Linear conventions](#linear-conventions)).
+**What happens:** The **user** or **agent** creates a **parent epic per phase** and **child issues** from milestones. Each issue links to a `prd/…` section and lists acceptance criteria (see [Linear conventions](#linear-conventions)).
 
 **Outcome:** Traceable work items. Linear holds status; it does **not** replace the PRD.
 
@@ -96,13 +96,13 @@ Each step has an owner and an outcome. Skills named below are from the **ChatPRD
 
 **What happens:** The **agent** branches, implements against acceptance criteria, and opens a PR using [.github/pull_request_template.md](../.github/pull_request_template.md). The **agent** follows [.cursor/rules/engineering.mdc](../.cursor/rules/engineering.mdc) while coding. After a logical chunk, the **agent** runs Superpowers **code-reviewer** against the approved plan.
 
-**Outcome:** Reviewable diff on GitHub, linked to Linear when applicable (`TIM-NN:` in title). The **agent** completes [pre-review](#pre-review-before-human-review) before marking the PR ready for **human** review.
+**Outcome:** Reviewable diff on GitHub, linked to Linear when applicable (`TIM-NN:` in title). The **agent** completes [pre-review](#pre-review-before-user-review) before marking the PR ready for **user** review.
 
 ---
 
 ### 5. `check-prd-alignment` — verify *what* shipped matches spec
 
-**When:** Part of [pre-review](#pre-review-before-human-review), before the PR is ready for **human** review.
+**When:** Part of [pre-review](#pre-review-before-user-review), before the PR is ready for **user** review.
 
 **What happens:** The **agent** runs **check-prd-alignment** against the relevant `prd/phase-*.md` section. It flags missing acceptance criteria, spec drift, and scope gaps. The **agent** records the result in the PR description.
 
@@ -114,7 +114,7 @@ Each step has an owner and an outcome. Skills named below are from the **ChatPRD
 
 **When:** After merge (or phase complete).
 
-**What happens:** The **human** or **agent** runs **update-prd** to update ChatPRD / `prd/` if behavior differed from spec. The **human** closes the Linear issue; deferred work goes into PRD **Future work** instead of a silent backlog.
+**What happens:** The **user** or **agent** runs **update-prd** to update ChatPRD / `prd/` if behavior differed from spec. The **user** closes the Linear issue; deferred work goes into PRD **Future work** instead of a silent backlog.
 
 **Outcome:** Specs and tickets match what is actually in `main`.
 
@@ -137,9 +137,9 @@ Phases and detailed scope live in [prd/00-product-vision.md](../prd/00-product-v
   - …
   ```
 
-## Pre-review before human review
+## Pre-review before user review
 
-**Agents** (especially cloud) run automated checks **before** the **human** reviews. The **human** judges product and architecture; **agents** handle hygiene and spec alignment.
+**Agents** (especially cloud) run automated checks **before** the **user** reviews. The **user** judges product and architecture; **agents** handle hygiene and spec alignment.
 
 | Step | Tool | Who runs it |
 |------|------|-------------|
@@ -150,7 +150,7 @@ Phases and detailed scope live in [prd/00-product-vision.md](../prd/00-product-v
 
 **PR description must include:** summary, risks, test plan (or “CI not configured — ran …”), alignment notes, PRD deviations.
 
-The **human** installs plugins: `/add-plugin superpowers`, `/add-plugin cursor-team-kit`.
+The **user** installs plugins: `/add-plugin superpowers`, `/add-plugin cursor-team-kit`.
 
 ---
 
@@ -190,7 +190,7 @@ Implementation only—do not use for product scope (see [Process rules](#process
 |-----------|------|
 | [.cursor/rules/engineering.mdc](../.cursor/rules/engineering.mdc) | Always-on **agent** guidance: minimal scope, simplicity, DRY, documentation, match conventions |
 | **CI** (add when stack is chosen) | Automated format, lint, and tests on every PR; add as first pre-review checkbox when enabled |
-| **Human PR review** | Architecture and design judgment (after agent pre-review passes) |
+| **User PR review** | Architecture and design judgment (after agent pre-review passes) |
 
 Optional later: enable **Cursor Bugbot** on the repo for automated PR review once there is substantial code—it catches bugs and issues, not product scope.
 
@@ -203,10 +203,10 @@ Enforced in [.cursor/rules/workflow.mdc](../.cursor/rules/workflow.mdc). Also:
 - Do not mark phases complete without updating `prd/`.
 - **Implementation:** Superpowers (`executing-plans`, TDD skills, `finishing-a-development-branch`) only after an approved plan from `implement-from-prd`.
 
-## Example prompts (human → agent)
+## Example prompts (user → agent)
 
 ```text
-Requirements pass: run write-prd; save under prd/; update prd/README.md active phase when the human approves.
+Requirements pass: run write-prd; save under prd/; update prd/README.md active phase when the user approves.
 ```
 
 ```text
@@ -214,9 +214,9 @@ Working on Linear TIM-42. Read prd/phase-1-….md § "Run SQL". Propose a plan (
 ```
 
 ```text
-PR ready for TIM-42: complete pre-review (check-prd-alignment, code-reviewer, deslop, tests); then mark ready for human review.
+PR ready for TIM-42: complete pre-review (check-prd-alignment, code-reviewer, deslop, tests); then mark ready for user review.
 ```
 
 ## Secrets
 
-No secrets are committed. When the app is built, document required env vars in `.env.example`. On Cursor Cloud VMs, the **agent** should ask the **human** to add secrets in Cloud settings—do not assume a local `.env` exists.
+No secrets are committed. When the app is built, document required env vars in `.env.example`. On Cursor Cloud VMs, the **agent** should ask the **user** to add secrets in Cloud settings—do not assume a local `.env` exists.

@@ -2,7 +2,7 @@
 
 - Issue: TIM-___ (or N/A for process-only PRs)
 
-## Agent pre-review (before human review)
+## Agent pre-review (before user review)
 
 - [ ] `check-prd-alignment` run — result noted below
 - [ ] Superpowers `code-reviewer` (or N/A — docs-only)
