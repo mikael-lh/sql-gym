@@ -176,6 +176,7 @@ The **user** installs plugins: `/add-plugin superpowers`, `/add-plugin cursor-te
 ## GitHub conventions
 
 - **Default branch:** `main`
+- **Branch naming:** `cursor/<short-desc>-<suffix>` — the cloud agent template supplies the suffix for the active session (e.g. `cursor/tim-42-parser-7a6a`). Do not use `feature/…` or other conventions.
 - **PRs:** use [.github/pull_request_template.md](../.github/pull_request_template.md) (includes agent pre-review checklist)
 - **Done:** merged PR + Linear issue closed + PRD updated if scope changed
 
