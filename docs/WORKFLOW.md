@@ -74,7 +74,7 @@ Each step has an owner and an outcome. Skills named below are from the **ChatPRD
 
 **What happens:** Branch, implement against the issue’s acceptance criteria, open a PR using [.github/pull_request_template.md](../.github/pull_request_template.md). Follow [.cursor/rules/engineering.mdc](../.cursor/rules/engineering.mdc) while coding. After a logical chunk, use Superpowers **code-reviewer** against the approved plan.
 
-**Outcome:** Reviewable diff on GitHub, linked to Linear when applicable (`GYM-NN:` in title).
+**Outcome:** Reviewable diff on GitHub, linked to Linear when applicable (`TIM-NN:` in title).
 
 ---
 
@@ -102,7 +102,7 @@ Phases and detailed scope live in [prd/00-product-vision.md](../prd/00-product-v
 
 ## Linear conventions
 
-- **Project:** sql-gym (or your team’s equivalent)
+- **Project:** [sql-gym](https://linear.app/times-api/project/sql-gym-ce6a8985c99e) (separate from Times API backlog; same team, `TIM-` issue IDs)
 - **Epic:** one parent issue per phase (e.g. `Phase 0 – Data & grading`)
 - **Issue title:** `Phase N | Short title`
 - **Issue body template:**
@@ -174,11 +174,11 @@ Requirements pass: run write-prd; save under prd/; update prd/README.md active p
 ```
 
 ```text
-Working on Linear GYM-42. Read prd/phase-1-….md § "Run SQL". Propose a plan (implement-from-prd) before editing files.
+Working on Linear TIM-42. Read prd/phase-1-….md § "Run SQL". Propose a plan (implement-from-prd) before editing files.
 ```
 
 ```text
-PR ready for GYM-42: run tests, check-prd-alignment against prd/phase-1-….md.
+PR ready for TIM-42: run tests, check-prd-alignment against prd/phase-1-….md.
 ```
 
 ## Secrets

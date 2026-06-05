@@ -1,6 +1,6 @@
 ## Linear
 
-- Issue: GYM-___ (or N/A for process-only PRs)
+- Issue: TIM-___ (or N/A for process-only PRs)
 
 ## PRD
 
