@@ -8,7 +8,3 @@ A lightweight gym for SQL: practice on curated datasets, run queries, and level 
 
 - Workflow: [docs/WORKFLOW.md](docs/WORKFLOW.md)
 - Product specs: [prd/README.md](prd/README.md) (requirements gathering pending)
-
-## License
-
-MIT — see [LICENSE](LICENSE).

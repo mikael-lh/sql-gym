@@ -1,14 +1,6 @@
 ---
-description: Process gate — read prd/ and docs/WORKFLOW.md before product work
+description: Follow docs/WORKFLOW.md for development process
 alwaysApply: true
 ---
 
-# Workflow (mandatory)
-
-- Do **not** implement product features until `prd/00-product-vision.md` exists and [prd/README.md](prd/README.md) names an active phase.
-- Do not invent requirements; use `prd/` and ChatPRD links only.
-- Before coding: read [prd/README.md](prd/README.md), then the active `prd/phase-*.md` (or linked ChatPRD doc). If the user names a Linear issue, implement only its acceptance criteria.
-- New phase or large epic: propose a milestone plan and wait for approval before editing.
-- PRs: use [.github/pull_request_template.md](.github/pull_request_template.md); include Linear ID in the title when applicable; note PRD deviations in the description.
-
-Full playbook (Linear, GitHub, ChatPRD skills, example prompts): [docs/WORKFLOW.md](docs/WORKFLOW.md).
+Before product work, read and follow [docs/WORKFLOW.md](docs/WORKFLOW.md). Requirements and the active phase are defined in [prd/README.md](prd/README.md).

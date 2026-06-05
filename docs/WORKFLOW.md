@@ -2,7 +2,7 @@
 
 sql-gym uses **ChatPRD + `prd/` + Linear + GitHub**. Product scope, phases, and acceptance criteria live in **`prd/`** only—this document covers **process** (how we work).
 
-Entry point for agents: [AGENTS.md](../AGENTS.md).
+Cursor loads this via [.cursor/rules/workflow.mdc](../.cursor/rules/workflow.mdc).
 
 ## Tool roles
 
@@ -92,3 +92,7 @@ Enable the ChatPRD Cursor plugin for this repo.
 - Do not invent product requirements or mark phases complete without PRD updates.
 - Do not expand scope beyond the active Linear issue / PRD section without user approval.
 - Document PRD deviations in the PR description, not only in chat.
+
+## Secrets
+
+No secrets are committed. When the app is built, document required env vars in `.env.example`. On Cursor Cloud VMs, ask the user to add secrets in Cloud settings—do not assume a local `.env` exists.
