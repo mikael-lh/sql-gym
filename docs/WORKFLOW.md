@@ -104,7 +104,7 @@ Each step has an owner and an outcome. Skills named below are from the **ChatPRD
 
 **When:** Part of [pre-review](#pre-review-before-user-review), before the PR is ready for **user** review.
 
-**What happens:** The **agent** runs **check-prd-alignment** against the relevant `prd/phase-*.md` section. It flags missing acceptance criteria, spec drift, and scope gaps. The **agent** records the result in the PR description.
+**What happens:** The **agent** runs **check-prd-alignment** against the relevant `prd/phase-*.md` section. It flags missing acceptance criteria, spec drift, and scope gaps. Blocking gaps are **fixed** (or escalated for an approved deviation) as part of the [pre-review iteration loop](#pre-review-before-user-review).
 
 **Outcome:** Confidence the merge matches product intent—not a substitute for code review or tests.
 
@@ -141,15 +141,19 @@ Phases and detailed scope live in [prd/00-product-vision.md](../prd/00-product-v
 
 **Agents** (especially cloud) run automated checks **before** the **user** reviews. The **user** judges product and architecture; **agents** handle hygiene and spec alignment.
 
+**Iterate until pass:** If any check produces a **blocking** finding, the **agent** fixes it on the **same branch**, commits, pushes, and **re-runs** the checks. Do **not** check off the PR template or mark the PR ready for **user** review until blocking items are resolved. Non-blocking items may be recorded as **`Nit:`** per [google-eng-practices.md](references/google-eng-practices.md).
+
 | Step | Tool | Who runs it |
 |------|------|-------------|
-| Spec alignment | ChatPRD `check-prd-alignment` | **Agent** — note gaps in PR |
-| Code vs plan | Superpowers `code-reviewer` | **Agent** — vs approved `implement-from-prd` plan |
+| Spec alignment | ChatPRD `check-prd-alignment` | **Agent** — fix blocking gaps or escalate for approved deviation |
+| Code vs plan | Superpowers `code-reviewer` | **Agent** — vs approved `implement-from-prd` plan; address blocking feedback |
 | Code review | [google-eng-practices.md](references/google-eng-practices.md) checklist | **Agent** — design, complexity, tests, naming, comments, docs; `Nit:` for optional |
 | Slop / style pass | cursor-team-kit `deslop` | **Agent** — on changed code; skip for docs-only PRs |
-| Verification | tests / lint | **Agent** — when [CI](#engineering-standards-code-quality) exists, must be green first |
+| Verification | tests / lint | **Agent** — must be green (or manual equivalent documented) |
 
-**PR description must include:** summary, risks, test plan (or “CI not configured — ran …”), alignment notes, PRD deviations.
+**PR description must include:** summary, risks, test plan (or “CI not configured — ran …”), alignment notes, PRD deviations, and any remaining **`Nit:`** items.
+
+**Escalate** to the **user** (leave boxes unchecked, keep draft) when a product/architecture call is needed, plugins cannot run, or the agent is stuck after several fix cycles.
 
 The **user** installs plugins: `/add-plugin superpowers`, `/add-plugin cursor-team-kit`.
 
@@ -212,9 +216,9 @@ Thin wrappers around the flow below. Prefer these over “follow WORKFLOW step b
 |-------|------|
 | **sql-gym-start-issue** | Picking up `TIM-NN` — plan only; stops for user approval |
 | **sql-gym-implement-issue** | After plan approved — code + draft PR |
-| **sql-gym-pre-review** | Implementation done — alignment, review, deslop; ready for user review |
+| **sql-gym-pre-review** | Implementation done — run checks, **iterate fixes** until pass, then ready for user review |
 
-Chain: **start-issue** → (user approves) → **implement-issue** → **pre-review** → (user reviews and merges).
+Chain: **start-issue** → (user approves) → **implement-issue** → **pre-review** (loop until blocking checks pass) → (user reviews and merges).
 
 Skills live in [.cursor/skills/](../.cursor/skills/).
 
@@ -233,7 +237,7 @@ Plan approved — sql-gym-implement-issue for TIM-42
 ```
 
 ```text
-sql-gym-pre-review for the current PR (TIM-42)
+sql-gym-pre-review for the current PR (TIM-42) — fix blocking issues and re-run until pass, then mark ready for my review
 ```
 
 ## Secrets

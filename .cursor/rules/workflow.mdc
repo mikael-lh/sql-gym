@@ -14,15 +14,18 @@ alwaysApply: true
 
 # Before PR is ready for user review
 
-Complete this checklist; summarize results in the PR description:
+Run **`sql-gym-pre-review`**: execute the checklist, **fix blocking issues on the branch**, and **re-run** until it passes. Do **not** check PR boxes or ask for **user** review while blocking items remain.
 
-- [ ] `check-prd-alignment` vs linked `prd/` section (note gaps)
-- [ ] Superpowers `code-reviewer` vs approved plan + [engineering.mdc](engineering.mdc)
+Checklist (all must pass before handoff):
+
+- [ ] `check-prd-alignment` vs linked `prd/` section (no unapproved blocking gaps)
+- [ ] Superpowers `code-reviewer` vs approved plan + [engineering.mdc](engineering.mdc) (blocking feedback addressed)
+- [ ] [google-eng-practices](docs/references/google-eng-practices.md) review (blocking items fixed; `Nit:` optional)
 - [ ] cursor-team-kit `deslop` on changed code (or N/A — docs-only)
-- [ ] Tests/lint run, or state **CI not configured yet** and what was run manually
+- [ ] Tests/lint green, or state **CI not configured yet** and what was run manually
 - [ ] PR: summary, risks, test plan, PRD deviations (if any)
 
-Do not ask the **user** to review until the above is done.
+Escalate to the **user** for product/architecture decisions or if stuck—do not mark boxes done to bypass a failed check.
 
 # Playbook
 
