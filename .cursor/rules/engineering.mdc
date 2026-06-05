@@ -1,15 +1,32 @@
 ---
-description: Code quality — simplicity, DRY, minimal scope
+description: Code quality — simplicity, DRY, minimal scope, Google eng-practices (authoring)
 alwaysApply: true
 ---
 
 # Engineering standards
 
-Apply when writing or reviewing code in this repo.
+Apply when **writing** code in this repo. Authoring principles below are adapted from [google/eng-practices](https://github.com/google/eng-practices) ([repo summary](docs/references/google-eng-practices.md)). For the full **review** checklist, use that doc in **sql-gym-pre-review**—not here.
 
-- **Minimal scope:** Smallest correct change; no drive-by refactors or unrelated edits.
-- **Simplicity:** Prefer the straightforward solution; avoid premature abstraction and extra layers.
-- **DRY:** Do not copy-paste logic; reuse existing helpers when they already fit. Extract shared code only when duplication is real and the abstraction is obvious—do not invent one-off utilities for a single use.
-- **Conventions:** Match surrounding naming, structure, and patterns; extend existing code before adding parallel implementations.
-- **Tests:** Add tests when they protect real behavior; skip tests that only restate the implementation.
-- **Documentation:** Keep code, technical decisions, and architecture understandable—clear inline comments where non-obvious, PR descriptions that explain *why*, and dedicated READMEs for modules or subsystems that need more than a few lines.
+## Writing changes
+
+- **Minimal scope:** Smallest correct change; no drive-by refactors. Prefer **small PRs**—one main concern each when practical.
+- **Design fit:** Put change in the right layer; integrate with existing design. Do not add abstraction or features for a hypothetical future.
+- **Simplicity:** Straightforward solution first; avoid extra layers readers cannot follow quickly.
+- **DRY:** Reuse existing helpers when they fit. Extract only when duplication is real and the abstraction is obvious.
+- **Naming:** Names should communicate purpose without reading surrounding comments.
+- **Conventions:** Match the codebase. Repo linter/config and local patterns beat generic style when they conflict.
+- **Style vs behavior:** Do not mix large formatting-only edits with functional changes in one PR.
+- **PR descriptions:** *What*, *why*, and how tested—not only files touched.
+
+## Tests, comments, documentation
+
+- **Tests:** Add with production code when possible. Tests should fail when behavior breaks; keep them simple—no clever test code.
+- **Functionality:** Exercise edge cases you can; align behavior with the PRD / Linear acceptance criteria.
+- **Comments:** Explain *why*, not *what*. If the code needs a long *what* comment, simplify the code. Remove obsolete TODOs.
+- **Documentation:** Update READMEs or module docs when setup, behavior, or usage changes.
+
+## When reviewing
+
+Use [docs/references/google-eng-practices.md](docs/references/google-eng-practices.md) and **sql-gym-pre-review**—do not duplicate the reviewer checklist in this rule.
+
+Language-specific style: [Google style guides](https://google.github.io/styleguide/) when no project tooling exists yet.

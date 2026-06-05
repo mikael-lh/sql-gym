@@ -145,6 +145,7 @@ Phases and detailed scope live in [prd/00-product-vision.md](../prd/00-product-v
 |------|------|-------------|
 | Spec alignment | ChatPRD `check-prd-alignment` | **Agent** — note gaps in PR |
 | Code vs plan | Superpowers `code-reviewer` | **Agent** — vs approved `implement-from-prd` plan |
+| Code review | [google-eng-practices.md](references/google-eng-practices.md) checklist | **Agent** — design, complexity, tests, naming, comments, docs; `Nit:` for optional |
 | Slop / style pass | cursor-team-kit `deslop` | **Agent** — on changed code; skip for docs-only PRs |
 | Verification | tests / lint | **Agent** — when [CI](#engineering-standards-code-quality) exists, must be green first |
 
@@ -188,7 +189,7 @@ Implementation only—do not use for product scope (see [Process rules](#process
 
 | Mechanism | Role |
 |-----------|------|
-| [.cursor/rules/engineering.mdc](../.cursor/rules/engineering.mdc) | Always-on **agent** guidance: minimal scope, simplicity, DRY, documentation, match conventions |
+| [.cursor/rules/engineering.mdc](../.cursor/rules/engineering.mdc) | Always-on **agent** guidance: minimal scope, simplicity, DRY, documentation, [Google eng-practices](references/google-eng-practices.md) (adapted) |
 | **CI** (add when stack is chosen) | Automated format, lint, and tests on every PR; add as first pre-review checkbox when enabled |
 | **User PR review** | Architecture and design judgment (after agent pre-review passes) |
 

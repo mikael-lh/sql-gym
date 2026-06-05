@@ -23,8 +23,8 @@ If there is no approved plan, run **sql-gym-start-issue** first and stop.
 3. Implement **only** the acceptance criteria from the approved plan. Follow [.cursor/rules/engineering.mdc](../../../.cursor/rules/engineering.mdc).
 4. Optional: Superpowers **`executing-plans`** for step order; TDD skills when tests exist.
 5. Run tests/lint if configured; otherwise note in the PR what was run manually.
-6. Open or update a PR using [.github/pull_request_template.md](../../../.github/pull_request_template.md). Title: `TIM-NN: <summary>`.
-7. Fill the template; leave agent pre-review boxes unchecked unless already done.
+6. Open or update a PR using [.github/pull_request_template.md](../../../.github/pull_request_template.md). Title: `TIM-NN: <summary>`. Description: *what*, *why*, test plan ([CL descriptions](https://github.com/google/eng-practices/blob/master/review/developer/cl-descriptions.md)).
+7. Fill the template; leave agent pre-review boxes unchecked unless already done. Prefer a **small, focused** PR ([small CLs](https://github.com/google/eng-practices/blob/master/review/developer/small-cls.md)).
 
 ## Stop
 

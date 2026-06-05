@@ -19,11 +19,12 @@ Ask if missing:
 1. Identify the PR diff and linked `prd/phase-*.md` section (from issue or PR description).
 2. ChatPRD **`check-prd-alignment`** — record gaps, missing AC, and deviations in the PR description.
 3. Superpowers **`code-reviewer`** against the approved implementation plan and [engineering.mdc](../../../.cursor/rules/engineering.mdc).
-4. cursor-team-kit **`deslop`** on changed code files (or mark N/A if docs-only).
-5. Run tests/lint; if CI is not configured, state what was run manually in the PR.
-6. Update the PR description with: summary, risks, test plan, alignment notes, PRD deviations.
-7. Check all boxes under **Agent pre-review** in the PR template.
-8. Mark the PR ready for **user** review (or tell the **user** it is ready).
+4. Review the diff against [docs/references/google-eng-practices.md](../../../docs/references/google-eng-practices.md) (design, functionality, complexity, tests, naming, comments, documentation, context). Record findings in the PR; use **`Nit:`** for non-blocking items.
+5. cursor-team-kit **`deslop`** on changed code files (or mark N/A if docs-only).
+6. Run tests/lint; if CI is not configured, state what was run manually in the PR.
+7. Update the PR description with: summary, risks, test plan, alignment notes, PRD deviations, and notable **Nit:** items.
+8. Check all boxes under **Agent pre-review** in the PR template.
+9. Mark the PR ready for **user** review (or tell the **user** it is ready).
 
 ## Stop
 
