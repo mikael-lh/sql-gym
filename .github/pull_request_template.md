@@ -2,6 +2,13 @@
 
 - Issue: TIM-___ (or N/A for process-only PRs)
 
+## Agent pre-review (before human review)
+
+- [ ] `check-prd-alignment` run — result noted below
+- [ ] Superpowers `code-reviewer` (or N/A — docs-only)
+- [ ] cursor-team-kit `deslop` (or N/A — docs-only)
+- [ ] Tests/lint run (or **CI not configured yet** — manual checks: ___)
+
 ## PRD
 
 - [ ] N/A — process/docs only
@@ -14,6 +21,10 @@
 ## Deviations from PRD
 
 <!-- none / explain -->
+
+## Summary & risks
+
+<!-- what changed, what could go wrong -->
 
 ## Test plan
 
