@@ -21,7 +21,7 @@ If there are no reviewer findings yet, run **sql-gym-pre-review-reviewer** first
 
 1. Checkout the PR branch.
 2. For each **blocking** item from the latest reviewer pass, implement the fix. Do **not** expand scope beyond the issue / PRD without **user** approval.
-3. cursor-team-kit **`deslop`** on changed code (or N/A — docs-only).
+3. cursor-team-kit **`deslop`** on changed code (or N/A — docs-only). **If cursor-team-kit is unavailable**, do a manual slop pass: remove redundant comments, dead code, and AI-ism phrasing; note "manual deslop (cursor-team-kit unavailable)" in the PR description and leave the deslop PR box **unchecked**.
 4. Run tests/lint (or manual equivalent); fix until green.
 5. Commit, push, and update the PR description with what changed (e.g. “Pre-review fix pass 2 — …”).
 6. Tell the **user** to run **`sql-gym-pre-review-reviewer`** again in a **new** agent/session (or Task readonly subagent). Increment pass number.

@@ -30,12 +30,15 @@ Ask if missing:
 
 1. Read the PR diff, description, and linked `prd/phase-*.md` section. Do **not** assume unstated intent from the implementer.
 2. ChatPRD **`check-prd-alignment`** — missing AC, spec drift, deviations.
+   - **If ChatPRD is unavailable:** manually read each acceptance criterion in the linked `prd/` section and compare it against the diff. Document this as "manual alignment check (ChatPRD unavailable)" in findings. Leave the `check-prd-alignment` PR box **unchecked**.
 3. Superpowers **`code-reviewer`** vs the approved plan and [engineering.mdc](../../../.cursor/rules/engineering.mdc).
+   - **If Superpowers is unavailable:** manually review the diff against the approved plan and `engineering.mdc` using available tools. Document this as "manual code review (Superpowers unavailable)" in findings. Leave the Superpowers PR box **unchecked**.
 4. Review the diff against [docs/references/google-eng-practices.md](../../../docs/references/google-eng-practices.md). Use **`Nit:`** only for non-blocking items.
 5. **Triage** every item as **blocking** or **`Nit:`**.
 6. Post results under **`## Pre-review findings (pass N)`** in the PR description or a PR comment. Include:
    - Blocking list (numbered)
    - `Nit:` list (optional)
+   - Which tools ran vs were unavailable (and manual fallback used instead)
    - Whether the PR is **ready for fix pass** (any blocking → yes, fix required)
 
 ## Stop
