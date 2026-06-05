@@ -1,0 +1,6 @@
+---
+description: Follow docs/WORKFLOW.md for development process
+alwaysApply: true
+---
+
+Before product work, read and follow [docs/WORKFLOW.md](docs/WORKFLOW.md). Requirements and the active phase are in [prd/README.md](prd/README.md). When writing code, also follow [.cursor/rules/engineering.mdc](.cursor/rules/engineering.mdc).
