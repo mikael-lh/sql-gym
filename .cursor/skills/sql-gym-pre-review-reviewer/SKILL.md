@@ -34,18 +34,16 @@ Ask if missing:
 3. Superpowers **`code-reviewer`** vs the approved plan and [engineering.mdc](../../../.cursor/rules/engineering.mdc).
    - **If Superpowers is unavailable:** manually review the diff against the approved plan and `engineering.mdc` using available tools. Document this as "manual code review (Superpowers unavailable)" in findings. Leave the Superpowers PR box **unchecked**.
 4. Review the diff against [docs/references/google-eng-practices.md](../../../docs/references/google-eng-practices.md). Use **`Nit:`** only for non-blocking items.
-5. **Triage** every item as **blocking** or **`Nit:`**.
-6. Post results under **`## Pre-review findings (pass N)`** in the PR description or a PR comment. Include:
+5. **Triage** every item as **blocking** or **`Nit:`** and return the lists to the caller (orchestrator or **user**). Do not check PR boxes or mark ready for **user** review. Include:
    - Blocking list (numbered)
    - `Nit:` list (optional)
    - Which tools ran vs were unavailable (and manual fallback used instead)
-   - Whether the PR is **ready for fix pass** (any blocking → yes, fix required)
 
 ## Stop
 
-Hand off to **`sql-gym-pre-review-fix`** (implementer agent) when there are blocking items.
+Return findings to **`sql-gym-pre-review`** (preferred) or hand off to **`sql-gym-pre-review-fix`** when invoked standalone and there are blocking items.
 
-If **no blocking items**, say so explicitly and tell the **user** to run **`sql-gym-pre-review`** (or the fixer) for final tests/deslop/boxes—or run objective checks yourself only if the **user** asked you to complete the full pre-review in one flow.
+If **no blocking items**, report that to the caller; full checklist and handoff are handled by **`sql-gym-pre-review`**.
 
 Do **not** merge.
 

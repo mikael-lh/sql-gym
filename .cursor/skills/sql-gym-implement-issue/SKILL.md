@@ -31,7 +31,7 @@ If there is no approved plan, run **sql-gym-start-issue** first and stop.
 
 Do **not** mark the PR ready for **user** review. Do **not** check pre-review boxes or run the full pre-review loop in this skill—that is **`sql-gym-pre-review`**, which **iterates until checks pass**.
 
-Tell the **user** to run **`sql-gym-pre-review-reviewer`** in a **new** agent/chat (or Cloud Agent) when implementation is complete. Do **not** run the full judgment review in this same session without a readonly Task subagent.
+Tell the **user** to run **`sql-gym-pre-review`** when implementation is complete (same or new Cursor chat / Cloud Agent).
 
 ## References
 

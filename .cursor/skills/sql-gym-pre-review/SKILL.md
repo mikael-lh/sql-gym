@@ -32,9 +32,10 @@ implement-issue → draft PR
 
 If the **user** invoked **`sql-gym-pre-review`** in the implementer session:
 
-1. Run **sql-gym-pre-review-reviewer** via a **Task** subagent (**readonly**) or ask the **user** to start a **new** agent with the PR link.
-2. If blocking findings exist, either run **sql-gym-pre-review-fix** yourself (fixer hat) **or** ask the **user** to run it in the implementer agent—then **never** approve your own fixes without a **new** reviewer pass.
-3. After reviewer reports **no blocking items**, run tests/lint/deslop if not already green, update the PR description, check **Agent pre-review** boxes, mark ready for **user** review.
+1. Run a review pass per **sql-gym-pre-review-reviewer** via a **Task** subagent (**readonly**) or follow that skill’s steps yourself in reviewer mode—do not self-approve in the implementer voice.
+2. Post each pass under **`## Pre-review findings (pass N)`** on the PR (blocking list, `Nit:` list, fix required yes/no).
+3. If blocking findings exist, run **sql-gym-pre-review-fix** (fixer hat) on the branch, then run another review pass before treating fixes as done.
+4. After a pass reports **no blocking items**, run tests/lint/deslop if not already green, update the PR description, check **Agent pre-review** boxes, mark ready for **user** review.
 
 Do **not** check boxes or ask for **user** review while blocking reviewer findings remain.
 
