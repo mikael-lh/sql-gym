@@ -44,11 +44,19 @@ From [What to look for in a code review](https://github.com/google/eng-practices
 
 ## Language style guides
 
-Google’s language guides (use when this repo’s stack is chosen and documented in `WORKFLOW.md`):
+### Python (sql-gym)
+
+Primary reference: [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html) (pyguide). It extends [PEP 8](https://peps.python.org/pep-0008/) with project conventions for readability and consistency.
+
+When this repo adds tooling (`pyproject.toml`, Ruff, Black, etc.), **repo config wins** over generic pyguide where they differ.
+
+### SQL
+
+When SQL is linted (e.g. SQLFluff), follow the dialect and rules chosen in repo config. General SQL clarity: [Kickstarter SQL style guide](https://github.com/kristerkoch/sql-style-guide).
+
+### Other languages
 
 - [Google style guide index](https://google.github.io/styleguide/)
-
-Project-specific config (Ruff, SQLFluff, etc.) overrides when present in the repo.
 
 ## Where this is enforced
 

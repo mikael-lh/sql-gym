@@ -29,4 +29,4 @@ Apply when **writing** code in this repo. Authoring principles below are adapted
 
 Use [docs/references/google-eng-practices.md](docs/references/google-eng-practices.md) and **sql-gym-pre-review**—do not duplicate the reviewer checklist in this rule.
 
-Language-specific style: [Google style guides](https://google.github.io/styleguide/) when no project tooling exists yet.
+**Python:** Follow the [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html); repo Ruff/format config overrides when present. **SQL:** match repo SQL style/linter when configured.
