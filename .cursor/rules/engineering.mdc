@@ -1,15 +1,31 @@
 ---
-description: Code quality — simplicity, DRY, minimal scope
+description: Code quality — simplicity, DRY, minimal scope, Google eng-practices (adapted)
 alwaysApply: true
 ---
 
 # Engineering standards
 
-Apply when writing or reviewing code in this repo.
+Apply when writing and reviewing code in this repo. Full review checklist: [docs/references/google-eng-practices.md](docs/references/google-eng-practices.md) ([google/eng-practices](https://github.com/google/eng-practices)).
 
-- **Minimal scope:** Smallest correct change; no drive-by refactors or unrelated edits.
-- **Simplicity:** Prefer the straightforward solution; avoid premature abstraction and extra layers.
+## Change authoring
+
+- **Minimal scope:** Smallest correct change; no drive-by refactors or unrelated edits. Prefer **small CLs**—one main concern per PR when practical.
+- **Simplicity:** Prefer the straightforward solution; avoid premature abstraction and extra layers. Do not build for speculative future requirements.
 - **DRY:** Do not copy-paste logic; reuse existing helpers when they already fit. Extract shared code only when duplication is real and the abstraction is obvious—do not invent one-off utilities for a single use.
 - **Conventions:** Match surrounding naming, structure, and patterns; extend existing code before adding parallel implementations.
-- **Tests:** Add tests when they protect real behavior; skip tests that only restate the implementation.
-- **Documentation:** Keep code, technical decisions, and architecture understandable—clear inline comments where non-obvious, PR descriptions that explain *why*, and dedicated READMEs for modules or subsystems that need more than a few lines.
+- **PR descriptions:** Explain *what*, *why*, and how tested—not only which files changed ([CL descriptions](https://github.com/google/eng-practices/blob/master/review/developer/cl-descriptions.md)).
+
+## Tests, comments, documentation
+
+- **Tests:** Add tests when they protect real behavior; skip tests that only restate the implementation. Add tests in the same change as production code when possible.
+- **Comments:** Explain *why*, not *what*; remove obsolete TODOs. If code needs a long *what* comment, simplify the code.
+- **Documentation:** Update READMEs or module docs when behavior, setup, or usage changes.
+
+## Code review mindset (agents reviewing PRs)
+
+- **Code health:** Each merge should improve overall maintainability, not add small degradations.
+- **Continuous improvement:** Do not block on perfection; flag important issues clearly and use **`Nit:`** for optional polish.
+- **Context:** Consider the whole file and system—not only the diff hunk.
+- **Good practices:** Note what was done well, not only problems.
+
+Language-specific style: follow repo tooling and [Google style guides](https://google.github.io/styleguide/) when no project config exists yet.
