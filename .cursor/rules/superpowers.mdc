@@ -1,0 +1,13 @@
+---
+description: Superpowers — implementation only; product stays in ChatPRD/prd
+alwaysApply: true
+---
+
+# Superpowers scope
+
+Use the **Superpowers** plugin only for **implementation** after requirements exist in `prd/`.
+
+- **Product scope, phases, acceptance criteria:** ChatPRD + `prd/` only. Do **not** use Superpowers `brainstorming` for feature or product discovery.
+- **Allowed:** `executing-plans`, TDD skills, `code-reviewer`, `finishing-a-development-branch`—aligned with the approved plan from `implement-from-prd` and [.cursor/rules/engineering.mdc](engineering.mdc).
+
+Setup checklist: [docs/PLUGIN_SETUP.md](../docs/PLUGIN_SETUP.md).
