@@ -1,15 +1,15 @@
 # Product requirements
 
-**Status: requirements not started.**
+**Status: product vision drafted for review.**
 
-Specs will be added here via ChatPRD / `write-prd`. Do not treat informal chat notes as requirements.
+Specs are added here via ChatPRD / `write-prd` or the local repo workflow when ChatPRD cloud access is unavailable. Do not treat informal chat notes as requirements.
 
 ## Index
 
 | Phase | Document | Linear epic | Status |
 |-------|----------|-------------|--------|
-| — | [00-product-vision.md](00-product-vision.md) | — | **not created** |
-| 0+ | `phase-N-….md` | — | TBD after vision |
+| - | [00-product-vision.md](00-product-vision.md) | [TIM-16](https://linear.app/times-api/issue/TIM-16/requirements-or-product-vision-write-prd) | Draft |
+| 0 | `phase-0-product-scaffolding.md` | TBD | Proposed after vision approval |
 
 ## Linear
 
@@ -19,9 +19,11 @@ Specs will be added here via ChatPRD / `write-prd`. Do not treat informal chat n
 ## ChatPRD
 
 ```text
-ChatPRD project: (link TBD)
+ChatPRD project: not created in cloud; local PRD drafted in repo.
 ```
 
 ## Active phase
 
-**None.** Do not implement product features until `00-product-vision.md` exists and this section names an active phase.
+**None yet.** Proposed next phase: **Phase 0 - Product scaffolding**.
+
+Do not implement product features until the product vision is approved, the Phase 0 PRD exists, and this section names Phase 0 as active.
