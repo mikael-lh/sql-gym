@@ -2,7 +2,7 @@
 
 **Status: product vision drafted for review.**
 
-Specs are added here via ChatPRD / `write-prd` or the local repo workflow when ChatPRD cloud access is unavailable. Do not treat informal chat notes as requirements.
+Specs are added here via repo-local `write-prd`. Do not treat informal chat notes as requirements.
 
 ## Index
 
@@ -16,10 +16,11 @@ Specs are added here via ChatPRD / `write-prd` or the local repo workflow when C
 - **Project:** [sql-gym](https://linear.app/times-api/project/sql-gym-ce6a8985c99e) (issue prefix `TIM-`)
 - **Requirements epic:** [TIM-16](https://linear.app/times-api/issue/TIM-16/requirements-or-product-vision-write-prd)
 
-## ChatPRD
+## PRD workflow
 
 ```text
-ChatPRD project: not created in cloud; local PRD drafted in repo.
+Source of truth: local markdown in prd/.
+Skills: write-prd, implement-from-prd, check-prd-alignment, update-prd.
 ```
 
 ## Active phase

@@ -51,7 +51,7 @@ Do **not** check boxes or ask for **user** review while blocking reviewer findin
 - Product/architecture decision or approved PRD deviation needed
 - Cannot run independent reviewer (no Task, same session only)
 - Stuck after multiple reviewer/fix cycles
-- A required plugin is unavailable **and** manual fallback is insufficient to make a confident judgment (e.g. complex alignment question that needs ChatPRD context)
+- The linked PRD is missing, ambiguous, or insufficient to make a confident alignment judgment
 
 When a plugin is unavailable but a manual fallback was used, document which tool was skipped and which fallback was applied — do **not** silently mark that box passed. Leave it unchecked; note it in the PR description.
 
