@@ -56,6 +56,15 @@ Full local validation:
 ./scripts/validate-env.sh
 ```
 
+### Cursor Cloud Agents
+
+Cloud environment hooks are version-controlled in [`.cursor/environment.json`](.cursor/environment.json):
+
+- `scripts/cloud-env-bootstrap.sh` — idempotent VM bootstrap (`uv`, permissions)
+- `scripts/cloud-env-update.sh` — per-session `uv sync --locked`
+
+Cursor runs both via the `install` field on every agent startup (after `git pull`). See [Cloud environment setup](https://cursor.com/docs/cloud-agent/setup.md).
+
 ## Baseline validation checks
 
 For TIM-21 and future scaffold PRs, reviewers and agents should run these checks from the repo root:
