@@ -58,6 +58,22 @@ R5 is satisfied for the initial Times dataset placeholder. R6 is satisfied for t
 
 No Phase 0 non-goals were implemented: there is no real dataset loading, SQL execution, real grading, AI integration, authentication, durable progress storage, or exercise catalog.
 
+### TIM-18 - Domain model boundaries
+
+Merged PR: [#30](https://github.com/mikael-lh/sql-gym/pull/30).
+
+TIM-18 established lightweight domain model boundaries:
+
+- Dataset and provenance concepts are modeled with Pydantic, including the Times Archive demo dataset and `times-api` schema/fixture references.
+- Exercise concepts are modeled with difficulty, practice mode, PostgreSQL target dialect, placeholder prompt, and sample SQL.
+- Attempt, grading result, and progress concepts are modeled without adding SQL execution, grading providers, persistence, or accounts.
+- The `/practice` placeholder context now consumes the domain model constants instead of duplicating raw view data.
+- Tests cover Pydantic validation, immutability, Times provenance, PostgreSQL target dialect, and demo-only attempt/grading/progress state.
+
+R4 is satisfied for the initial domain model boundaries. R5 and R6 remain satisfied through the Times demo dataset model and demo-only progress model. Later milestones may replace the constants or fixture-backed data without rewriting the product shell.
+
+No Phase 0 non-goals were implemented: there is no real dataset loading, SQL execution, real grading, AI integration, authentication, durable progress storage, or exercise catalog.
+
 ## Source vision
 
 This phase supports the SQL Gym product vision in `prd/00-product-vision.md`.
