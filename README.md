@@ -4,12 +4,13 @@ A lightweight gym for SQL: practice on curated datasets, run queries, and level 
 
 ## Status
 
-**Early setup.** Product vision and a draft Phase 0 PRD are in `prd/`; application code and a runnable stack are not started yet.
+**Early setup.** Product vision and an active Phase 0 PRD are in `prd/`; application code and a runnable stack are not started yet.
 
 | | |
 |--|--|
 | Full workflow reference | [docs/WORKFLOW.md](docs/WORKFLOW.md) |
 | Product specs | [prd/README.md](prd/README.md) |
+| Phase 0 implementation plan | [docs/phase-0-implementation-plan.md](docs/phase-0-implementation-plan.md) |
 | Linear project | [sql-gym](https://linear.app/times-api/project/sql-gym-ce6a8985c99e) (`TIM-` issues) |
 
 ## Setup
@@ -32,7 +33,7 @@ Specs live in **`prd/`** in this repo. Work is tracked in **Linear**, shipped vi
 |------|----------|-----------|
 | **Requirements** | Approve specs; set the active phase in [prd/README.md](prd/README.md) | local `write-prd` -> commit under `prd/` |
 | **Backlog** | Create Linear issues (`TIM-NN`) with a `prd/` link and acceptance criteria | — |
-| **Plan** | Review and approve the implementation plan | `sql-gym-start-issue` for `TIM-NN` |
+| **Plan** | Review and approve the implementation plan | `sql-gym-start-issue` for `TIM-NN` plus engineering-principles check |
 | **Build** | Confirm the plan is approved | `sql-gym-implement-issue` → branch + draft PR |
 | **Pre-review** | Wait for the loop to finish; then review the PR yourself | **`sql-gym-pre-review`** for `TIM-NN` (see below) |
 | **Ship** | Merge, close the Linear issue; update `prd/` if scope changed | local `update-prd` when useful |

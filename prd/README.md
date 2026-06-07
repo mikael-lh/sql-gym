@@ -28,3 +28,5 @@ Skills: write-prd, implement-from-prd, check-prd-alignment, update-prd.
 **Phase 0 - Product scaffolding** (`phase-0-product-scaffolding.md`).
 
 Do not implement application code until a Phase 0 implementation plan is approved.
+
+Proposed implementation plan: [`docs/phase-0-implementation-plan.md`](../docs/phase-0-implementation-plan.md).

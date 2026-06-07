@@ -70,7 +70,7 @@ Each step has an owner and an outcome. Skills named below are repo-local skills 
 
 **When:** Before writing application code for a phase or large epic.
 
-**What happens:** The **agent** runs local **implement-from-prd** on the relevant `prd/` doc and proposes a **milestone plan**: files to touch, order of work, risks. The **user** reviews and approves (or adjusts) before the **agent** edits code. If helpful, the **agent** may run Superpowers **executing-plans** on the approved plan only—without changing product scope.
+**What happens:** The **agent** runs local **implement-from-prd** on the relevant `prd/` doc and proposes a **milestone plan**: files to touch, order of work, risks. Before presenting the plan, the **agent** checks it against [google-eng-practices.md](references/google-eng-practices.md) and [.cursor/rules/engineering.mdc](../.cursor/rules/engineering.mdc), then fixes blocking planning gaps or calls out remaining trade-offs. The **user** reviews and approves (or adjusts) before the **agent** edits code. If helpful, the **agent** may run Superpowers **executing-plans** on the approved plan only—without changing product scope.
 
 **Outcome:** Agreed implementation plan—no surprise architecture or scope creep mid-flight.
 
