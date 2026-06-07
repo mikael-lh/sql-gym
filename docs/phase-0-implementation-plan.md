@@ -2,7 +2,7 @@
 
 ## Status
 
-Proposed for approval. Do not write application code from this plan until the user approves it.
+Implemented. This plan was approved and completed through the tracked Phase 0 Linear issues.
 
 ## Source
 
