@@ -1,6 +1,6 @@
 # Development workflow
 
-sql-gym uses **ChatPRD + `prd/` + Linear + GitHub**. Product scope lives in **`prd/`**; this document is **how** the **user** and **agents** work together.
+sql-gym uses **repo-local PRD skills + `prd/` + Linear + GitHub**. Product scope lives in **`prd/`**; this document is **how** the **user** and **agents** work together.
 
 **Terms:** **user** = developer; **agent** = Cursor agent (local or cloud).
 
@@ -13,26 +13,26 @@ Same as `workflow.mdc` — use when the agent opened this doc mid-task.
 **Gates**
 
 - No product work without active phase in [prd/README.md](../prd/README.md) + relevant `prd/` doc.
-- Product specs: ChatPRD + `prd/` only (not Superpowers `brainstorming`).
-- Application code: approved `implement-from-prd` plan first.
+- Product specs: repo-local PRD skills + `prd/` only (not Superpowers `brainstorming`).
+- Application code: approved local `implement-from-prd` plan first.
 - Stay within the Linear issue / PRD section unless the **user** expands scope.
 
 **Before PR is ready for user review**
 
-- `check-prd-alignment` → note gaps in PR
+- local `check-prd-alignment` -> note gaps in PR
 - Superpowers `code-reviewer` + cursor-team-kit `deslop` (or N/A docs-only)
 - Tests/lint, or state CI not configured yet
 - PR description: summary, risks, test plan, deviations
 
 Details: [Pre-review before user review](#pre-review-before-user-review).
 
-## Plugins (install in Cursor)
+## Tools and plugins
 
-The **user** installs from the [Cursor marketplace](https://cursor.com/marketplace) as needed.
+The **user** installs marketplace plugins from the [Cursor marketplace](https://cursor.com/marketplace) as needed. Repo-local skills are committed under `.cursor/skills/` and do not require marketplace installation.
 
-| Step | Plugin | Role |
-|------|--------|------|
-| 1–2, 5–6 | **ChatPRD** | Product specs, implementation planning, PRD alignment, post-ship updates |
+| Step | Tool | Role |
+|------|------|------|
+| 1–2, 5–6 | **Repo-local PRD skills** | Product specs, implementation planning, PRD alignment, post-ship updates |
 | 3 | **Linear** (MCP / marketplace) | Epics, issues, status—link `prd/`, not full PRD copy |
 | 4+ (implementation) | **Superpowers** | TDD, technical plan execution, code review, branch/PR finish |
 
@@ -42,23 +42,23 @@ Do not install overlapping planners (e.g. Compound Engineering or pstack) unless
 
 | Tool | Owns |
 |------|------|
-| **ChatPRD** | Authoritative specs; optional cloud copy |
-| **`prd/`** (in repo) | Committed specs the user and agents read |
+| **Repo-local PRD skills** | Deterministic PRD workflows that read and write `prd/` |
+| **`prd/`** (in repo) | Authoritative committed specs the user and agents read |
 | **Linear** | Backlog, cycles, issue status, priorities |
 | **GitHub** | Code, branches, PRs, CI |
 | **Superpowers** | Implementation workflows only (not product discovery) |
 
 ## End-to-end flow
 
-Each step has an owner and an outcome. Skills named below are from the **ChatPRD** Cursor plugin.
+Each step has an owner and an outcome. Skills named below are repo-local skills in [.cursor/skills/](../.cursor/skills/).
 
 ### 1. `write-prd` — decide *what* to build
 
-**Plugin:** ChatPRD only (not Superpowers `brainstorming`).
+**Skill:** local `write-prd` only (not Superpowers `brainstorming`).
 
 **When:** Starting the project, a new phase, or a major feature area.
 
-**What happens:** The **user** runs ChatPRD **write-prd** with the **agent** (or directs the agent to run it). Output is requirements—vision, phases, acceptance criteria—saved under `prd/`, starting with `prd/00-product-vision.md` and `prd/phase-N-….md` for the phase being scoped.
+**What happens:** The **user** runs local **write-prd** with the **agent** (or directs the agent to run it). Output is requirements—vision, phases, acceptance criteria—saved under `prd/`, starting with `prd/00-product-vision.md` and `prd/phase-N-….md` for the phase being scoped.
 
 **Outcome:** Committed specs in git. [prd/README.md](../prd/README.md) is updated with the **active phase** so agents know implementation is allowed.
 
@@ -66,11 +66,11 @@ Each step has an owner and an outcome. Skills named below are from the **ChatPRD
 
 ### 2. `implement-from-prd` — plan *how* to build it
 
-**Plugin:** ChatPRD for the milestone plan; Superpowers **optional** after approval for technical step breakdown (`executing-plans`).
+**Skill:** local `implement-from-prd` for the milestone plan; Superpowers **optional** after approval for technical step breakdown (`executing-plans`).
 
 **When:** Before writing application code for a phase or large epic.
 
-**What happens:** The **agent** runs **implement-from-prd** on the relevant `prd/` doc and proposes a **milestone plan**: files to touch, order of work, risks. The **user** reviews and approves (or adjusts) before the **agent** edits code. If helpful, the **agent** may run Superpowers **executing-plans** on the approved plan only—without changing product scope.
+**What happens:** The **agent** runs local **implement-from-prd** on the relevant `prd/` doc and proposes a **milestone plan**: files to touch, order of work, risks. The **user** reviews and approves (or adjusts) before the **agent** edits code. If helpful, the **agent** may run Superpowers **executing-plans** on the approved plan only—without changing product scope.
 
 **Outcome:** Agreed implementation plan—no surprise architecture or scope creep mid-flight.
 
@@ -104,7 +104,7 @@ Each step has an owner and an outcome. Skills named below are from the **ChatPRD
 
 **When:** Part of [pre-review](#pre-review-before-user-review), before the PR is ready for **user** review.
 
-**What happens:** The **agent** runs **check-prd-alignment** against the relevant `prd/phase-*.md` section. It flags missing acceptance criteria, spec drift, and scope gaps. Blocking gaps are **fixed** (or escalated for an approved deviation) as part of the [pre-review iteration loop](#pre-review-before-user-review).
+**What happens:** The **agent** runs local **check-prd-alignment** against the relevant `prd/phase-*.md` section. It flags missing acceptance criteria, spec drift, and scope gaps. Blocking gaps are **fixed** (or escalated for an approved deviation) as part of the [pre-review iteration loop](#pre-review-before-user-review).
 
 **Outcome:** Confidence the merge matches product intent—not a substitute for code review or tests.
 
@@ -114,7 +114,7 @@ Each step has an owner and an outcome. Skills named below are from the **ChatPRD
 
 **When:** After merge (or phase complete).
 
-**What happens:** The **user** or **agent** runs **update-prd** to update ChatPRD / `prd/` if behavior differed from spec. The **user** closes the Linear issue; deferred work goes into PRD **Future work** instead of a silent backlog.
+**What happens:** The **user** or **agent** runs local **update-prd** to update `prd/` if behavior differed from spec. The **user** closes the Linear issue; deferred work goes into PRD **Future work** instead of a silent backlog.
 
 **Outcome:** Specs and tickets match what is actually in `main`.
 
@@ -156,7 +156,7 @@ Orchestration: **sql-gym-pre-review** (full loop).
 
 | Step | Tool | Who runs it |
 |------|------|-------------|
-| Spec alignment | ChatPRD `check-prd-alignment` | **Reviewer** agent |
+| Spec alignment | local `check-prd-alignment` | **Reviewer** agent |
 | Code vs plan | Superpowers `code-reviewer` | **Reviewer** agent |
 | Code review | [google-eng-practices.md](references/google-eng-practices.md) checklist | **Reviewer** agent; `Nit:` for optional |
 | Apply fixes | Branch edits | **Fixer** agent |
@@ -180,9 +180,9 @@ The **user** installs plugins: `/add-plugin superpowers`, `/add-plugin cursor-te
 - **PRs:** use [.github/pull_request_template.md](../.github/pull_request_template.md) (includes agent pre-review checklist)
 - **Done:** merged PR + Linear issue closed + PRD updated if scope changed
 
-## ChatPRD plugin
+## Repo-local PRD skills
 
-Product/requirements only—not code style.
+Product/requirements only--not code style. These skills live in [.cursor/skills/](../.cursor/skills/) and do not require ChatPRD cloud access.
 
 | Intent | Skill |
 |--------|--------|
@@ -202,7 +202,7 @@ Implementation only—do not use for product scope (see [Process rules](#process
 | Review code vs plan and standards | `code-reviewer` |
 | Merge / PR / branch cleanup | `finishing-a-development-branch` |
 
-**Not used here:** `brainstorming` (use ChatPRD `write-prd` for product work).
+**Not used here:** `brainstorming` (use local `write-prd` for product work).
 
 ## Engineering standards (code quality)
 
@@ -214,14 +214,14 @@ Implementation only—do not use for product scope (see [Process rules](#process
 
 Optional later: enable **Cursor Bugbot** on the repo for automated PR review once there is substantial code—it catches bugs and issues, not product scope.
 
-Do **not** use ChatPRD skills for engineering style; they are for requirements and alignment only.
+Do **not** use PRD skills for engineering style; they are for requirements and alignment only.
 
 ## Process rules (agents)
 
 Enforced in [.cursor/rules/workflow.mdc](../.cursor/rules/workflow.mdc). Also:
 
 - Do not mark phases complete without updating `prd/`.
-- **Implementation:** Superpowers (`executing-plans`, TDD skills, `finishing-a-development-branch`) only after an approved plan from `implement-from-prd`.
+- **Implementation:** Superpowers (`executing-plans`, TDD skills, `finishing-a-development-branch`) only after an approved plan from local `implement-from-prd`.
 
 ## Repo skills (invoke by name)
 
@@ -229,6 +229,10 @@ Thin wrappers around the flow below. Prefer these over “follow WORKFLOW step b
 
 | Skill | When |
 |-------|------|
+| **write-prd** | Write or revise a local product, phase, or feature PRD |
+| **implement-from-prd** | Plan implementation from a local PRD; stops for approval |
+| **check-prd-alignment** | Compare a branch or PR diff against a local PRD |
+| **update-prd** | Record what shipped, deviations, and future work in `prd/` |
 | **sql-gym-start-issue** | Picking up `TIM-NN` — plan only; stops for user approval |
 | **sql-gym-implement-issue** | After plan approved — code + draft PR |
 | **sql-gym-pre-review-reviewer** | Independent review pass — findings only, no commits |
@@ -243,6 +247,10 @@ Skills live in [.cursor/skills/](../.cursor/skills/).
 
 ```text
 Requirements pass: run write-prd; save under prd/; update prd/README.md active phase when the user approves.
+```
+
+```text
+implement-from-prd for prd/phase-0-product-scaffolding.md; produce the plan only and stop for approval.
 ```
 
 ```text

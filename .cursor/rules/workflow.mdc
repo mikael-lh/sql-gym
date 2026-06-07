@@ -7,8 +7,8 @@ alwaysApply: true
 
 - Read [prd/README.md](prd/README.md) before product work.
 - **No product features** until it names an **active phase** and the relevant `prd/` doc exists.
-- **No invented requirements** — ChatPRD + `prd/` only (not Superpowers `brainstorming`).
-- **No application code** until `implement-from-prd` is run and the **user** approves the plan.
+- **No invented requirements** — repo-local PRD skills + `prd/` only (not Superpowers `brainstorming`).
+- **No application code** until local `implement-from-prd` is run and the **user** approves the plan.
 - **Scope:** implement only the active Linear issue / PRD section unless the **user** expands it.
 - **Linear issues:** link `prd/…` + acceptance criteria; do not paste the full PRD.
 
@@ -18,7 +18,7 @@ Run **`sql-gym-pre-review`**: **reviewer** agent (no commits) and **fixer** agen
 
 Checklist (all must pass before handoff):
 
-- [ ] `check-prd-alignment` vs linked `prd/` section (no unapproved blocking gaps)
+- [ ] local `check-prd-alignment` vs linked `prd/` section (no unapproved blocking gaps)
 - [ ] Superpowers `code-reviewer` vs approved plan + [engineering.mdc](engineering.mdc) (blocking feedback addressed)
 - [ ] [google-eng-practices](docs/references/google-eng-practices.md) review (blocking items fixed; `Nit:` optional)
 - [ ] cursor-team-kit `deslop` on changed code (or N/A — docs-only)

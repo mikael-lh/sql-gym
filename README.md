@@ -14,14 +14,13 @@ A lightweight gym for SQL: practice on curated datasets, run queries, and level 
 
 ## Setup
 
-Install these Cursor marketplace plugins once (details in [WORKFLOW](docs/WORKFLOW.md#plugins-install-in-cursor)):
+Install these Cursor marketplace plugins once (details in [WORKFLOW](docs/WORKFLOW.md#tools-and-plugins)):
 
-- **ChatPRD** — specs, implementation plans, PRD alignment
 - **Linear** (MCP) — backlog and issue status
 - **Superpowers** — implementation and code review during builds
 - **cursor-team-kit** (optional) — `deslop` pass on changed code
 
-Connect ChatPRD and Linear in Cursor settings if a skill fails to run (common in Cloud sessions).
+Specs, implementation plans, PRD alignment, and PRD updates use repo-local skills in [.cursor/skills](.cursor/skills). Connect Linear in Cursor settings if Linear-backed issue lookup fails.
 
 ## How we work
 
@@ -31,12 +30,12 @@ Specs live in **`prd/`** in this repo. Work is tracked in **Linear**, shipped vi
 
 | Step | Your job | In Cursor |
 |------|----------|-----------|
-| **Requirements** | Approve specs; set the active phase in [prd/README.md](prd/README.md) | `write-prd` → commit under `prd/` |
+| **Requirements** | Approve specs; set the active phase in [prd/README.md](prd/README.md) | local `write-prd` -> commit under `prd/` |
 | **Backlog** | Create Linear issues (`TIM-NN`) with a `prd/` link and acceptance criteria | — |
 | **Plan** | Review and approve the implementation plan | `sql-gym-start-issue` for `TIM-NN` |
 | **Build** | Confirm the plan is approved | `sql-gym-implement-issue` → branch + draft PR |
 | **Pre-review** | Wait for the loop to finish; then review the PR yourself | **`sql-gym-pre-review`** for `TIM-NN` (see below) |
-| **Ship** | Merge, close the Linear issue; update `prd/` if scope changed | `update-prd` when useful |
+| **Ship** | Merge, close the Linear issue; update `prd/` if scope changed | local `update-prd` when useful |
 
 ### Pre-review (one command)
 
@@ -69,7 +68,7 @@ sql-gym-pre-review for TIM-42 — run the full pre-review loop and mark the PR r
 ## Project rules
 
 - **No product work** until [prd/README.md](prd/README.md) names an active phase and the matching `prd/` doc exists.
-- **No application code** until you approve a plan (`sql-gym-start-issue` / `implement-from-prd`).
+- **No application code** until you approve a plan (`sql-gym-start-issue` / local `implement-from-prd`).
 - **Your merge review** is still the final gate on product and architecture after pre-review passes.
 
 Deeper process detail, plugin roles, optional split-session pre-review, and engineering standards: [docs/WORKFLOW.md](docs/WORKFLOW.md).
