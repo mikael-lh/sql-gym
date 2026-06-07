@@ -36,6 +36,15 @@ def test_home_page_presents_core_loop_and_placeholders() -> None:
 
     assert "Placeholders, not live features" in response.text
     assert "Future work" in response.text
+    for expected_placeholder in [
+        "Dataset selection",
+        "Difficulty selection",
+        "Practice mode",
+        "SQL editor",
+        "Grading feedback",
+        "Progress tracking",
+    ]:
+        assert expected_placeholder in response.text
     assert "Start practice - coming soon" in response.text
     assert "disabled" in response.text
 

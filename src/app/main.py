@@ -27,6 +27,16 @@ PLACEHOLDERS = [
         "description": "Times dataset samples arrive in a later Phase 0 milestone.",
     },
     {
+        "title": "Difficulty selection",
+        "description": (
+            "Beginner, intermediate, and advanced paths are reserved for future exercises."
+        ),
+    },
+    {
+        "title": "Practice mode",
+        "description": "Timed and untimed practice options are visible here but not active yet.",
+    },
+    {
         "title": "SQL editor",
         "description": (
             "The editor is reserved for a future implementation; queries do not run yet."
@@ -35,6 +45,13 @@ PLACEHOLDERS = [
     {
         "title": "Grading feedback",
         "description": "Exact-result and AI-assisted grading remain future work.",
+    },
+    {
+        "title": "Progress tracking",
+        "description": (
+            "Completion history and skill progress will stay demo-only until persistence is "
+            "approved."
+        ),
     },
 ]
 
