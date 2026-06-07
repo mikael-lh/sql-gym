@@ -26,7 +26,7 @@ CORE_LOOP = [
 PLACEHOLDERS = [
     {
         "title": "Dataset selection",
-        "description": "Times dataset samples arrive in a later Phase 0 milestone.",
+        "description": "Times Archive demo samples are available on the practice placeholder page.",
     },
     {
         "title": "Difficulty selection",
