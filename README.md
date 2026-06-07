@@ -4,7 +4,7 @@ A lightweight gym for SQL: practice on curated datasets, run queries, and level 
 
 ## Status
 
-**Early setup.** The development workflow is documented below; product requirements and application code are not started yet.
+**Early setup.** Product vision and a draft Phase 0 PRD are in `prd/`; application code and a runnable stack are not started yet.
 
 | | |
 |--|--|
