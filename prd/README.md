@@ -1,6 +1,6 @@
 # Product requirements
 
-**Status: Phase 0 product scaffolding drafted for review.**
+**Status: Phase 0 product scaffolding approved for planning.**
 
 Specs are added here via repo-local `write-prd`. Do not treat informal chat notes as requirements.
 
@@ -9,7 +9,7 @@ Specs are added here via repo-local `write-prd`. Do not treat informal chat note
 | Phase | Document | Linear epic | Status |
 |-------|----------|-------------|--------|
 | - | [00-product-vision.md](00-product-vision.md) | [TIM-16](https://linear.app/times-api/issue/TIM-16/requirements-or-product-vision-write-prd) | Merged |
-| 0 | [phase-0-product-scaffolding.md](phase-0-product-scaffolding.md) | TBD | Draft |
+| 0 | [phase-0-product-scaffolding.md](phase-0-product-scaffolding.md) | [TIM-17](https://linear.app/times-api/issue/TIM-17/phase-0-or-product-scaffolding) | Active for planning |
 
 ## Linear
 
@@ -25,6 +25,6 @@ Skills: write-prd, implement-from-prd, check-prd-alignment, update-prd.
 
 ## Active phase
 
-**None yet.** Proposed next phase: **Phase 0 - Product scaffolding**.
+**Phase 0 - Product scaffolding** (`phase-0-product-scaffolding.md`).
 
-Do not implement product features until the Phase 0 PRD is approved and this section names Phase 0 as active.
+Do not implement application code until a Phase 0 implementation plan is approved.
