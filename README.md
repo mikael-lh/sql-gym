@@ -56,7 +56,21 @@ Full local validation:
 ./scripts/validate-env.sh
 ```
 
-Phase 0 currently provides the web app foundation only. SQL execution, grading, Times sample fixtures, progress tracking, authentication, and AI feedback are placeholders or future milestones.
+## Baseline validation checks
+
+For TIM-21 and future scaffold PRs, reviewers and agents should run these checks from the repo root:
+
+| Purpose | Command |
+|---------|---------|
+| Production package build | `uv build` |
+| Lint | `uv run ruff check .` |
+| Static type check | `uv run mypy .` |
+| Test suite | `uv run pytest` |
+| Full repo validation | `./scripts/validate-env.sh` |
+
+`./scripts/validate-env.sh` wraps the build, lint, static check, and test commands above, then verifies the PRD/workflow files that future agents rely on.
+
+Phase 0 currently provides the web app foundation only. SQL execution, grading, authentication, durable progress storage, and AI feedback are placeholders or future milestones. Times demo fixtures and static progress values are sample-only; they are not final production data or persistence.
 
 ## Cursor setup
 
