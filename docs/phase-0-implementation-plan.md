@@ -16,6 +16,8 @@ Proposed for approval. Do not write application code from this plan until the us
 - **Progress model:** Use static/local placeholder data only. Do not add accounts, durable storage, or a persistence abstraction in Phase 0.
 - **Times dataset:** Use sample data and schema references from `https://github.com/mikael-lh/times-api` as the initial Times dataset source. Commit only a tiny demo fixture set in SQL Gym and document provenance clearly.
 - **SQL dialect:** Use PostgreSQL-compatible SQL as the first teaching dialect. Phase 0 should not execute SQL, but copy and domain metadata should describe future exercises as PostgreSQL-targeted unless a later PRD changes dialect support.
+- **Domain models:** Use Pydantic models for placeholder dataset, exercise, attempt, grading, and progress data. The fixture-backed data is JSON-like, so runtime validation is useful without adding custom abstraction.
+- **Production build:** Use `uv build` as the Phase 0 production build command. The scaffold should build a Python package even before deployment packaging is finalized.
 - **Accessibility baseline:** Use semantic HTML, keyboard-reachable controls, visible focus states, sufficient contrast, and a basic responsive layout.
 
 ## Milestones
@@ -26,7 +28,7 @@ Proposed for approval. Do not write application code from this plan until the us
 
 **Files to create or modify:**
 
-- `pyproject.toml` - define Python 3.12 project metadata, dependencies, and scripts/tool configuration.
+- `pyproject.toml` - define Python 3.12 project metadata, dependencies, package build metadata, and scripts/tool configuration.
 - `uv.lock` - lock Python dependencies.
 - `app/` - add the minimum FastAPI package structure.
 - `templates/` and `static/` - reserve server-rendered UI and stylesheet locations.
@@ -38,11 +40,12 @@ Proposed for approval. Do not write application code from this plan until the us
 - Prefer FastAPI, Jinja2 templates, `uv`, pytest, ruff, and mypy.
 - Keep JavaScript minimal in Phase 0; add HTMX or a richer editor package only when an approved feature needs it.
 - Configure the app so `uv run fastapi dev app.main:app` or an equivalent documented command starts local development.
+- Configure `uv build` as the production build command and document what artifact it creates.
 - Add a test runner because the PRD requires a test command, but keep initial coverage small.
 
 **Acceptance criteria covered:** R1, R7.
 
-**Checks:** `uv sync`, `uv run ruff check .`, `uv run mypy .`, `uv run pytest`, `./scripts/validate-env.sh`.
+**Checks:** `uv sync`, `uv build`, `uv run ruff check .`, `uv run mypy .`, `uv run pytest`, `./scripts/validate-env.sh`.
 
 **Risks:** Dependency setup may need a Cursor Cloud environment update if installs are slow or missing system tooling.
 
@@ -86,7 +89,7 @@ Proposed for approval. Do not write application code from this plan until the us
 
 **Implementation notes:**
 
-- Keep domain modules framework-agnostic and typed with dataclasses, Pydantic models, or simple typed dictionaries.
+- Keep domain modules framework-agnostic and typed with Pydantic models.
 - Use immutable placeholder data that the UI can consume.
 - Capture sample provenance from `times-api` schema/data sources in fixture metadata or docs.
 - Do not add database clients, AI clients, SQL parsers, or execution engines.
@@ -127,6 +130,7 @@ Proposed for approval. Do not write application code from this plan until the us
 
 **Files to create or modify:**
 
+- Python package build configuration if the scaffold needs extra metadata beyond `pyproject.toml`.
 - Test configuration files for pytest if needed.
 - Initial tests for the app shell, practice placeholders, and domain data.
 - `scripts/validate-env.sh` - include app command checks once the stack exists.
@@ -136,11 +140,12 @@ Proposed for approval. Do not write application code from this plan until the us
 
 - Keep tests small and behavior-focused.
 - Ensure commands documented in `README.md` match `uv` commands exactly.
+- Include `uv build` in docs and validation so the PRD production build acceptance criterion is covered.
 - Avoid broad test infrastructure beyond Phase 0 needs.
 
 **Acceptance criteria covered:** R1.
 
-**Checks:** `uv run ruff check .`, `uv run mypy .`, `uv run pytest`, `./scripts/validate-env.sh`.
+**Checks:** `uv build`, `uv run ruff check .`, `uv run mypy .`, `uv run pytest`, `./scripts/validate-env.sh`.
 
 **Risks:** Tests can become brittle if they assert layout details instead of user-visible content and placeholder states.
 

@@ -30,7 +30,12 @@ Use committed files under `prd/` as the product source of truth. Do not fetch or
    - For each milestone, list files to create or modify, key implementation details, acceptance criteria covered, tests/checks, and risks.
    - Map every PRD requirement and acceptance criterion to at least one milestone.
    - Call out out-of-scope items explicitly so they are not accidentally implemented.
-5. Present the plan for user review.
+5. Check the plan against engineering principles.
+   - Read `docs/references/google-eng-practices.md` and `.cursor/rules/engineering.mdc`.
+   - Confirm the plan has small focused changes, design fit, low complexity, clear tests, clear naming, and documentation updates.
+   - Revise the plan before presenting it if the check finds blocking gaps.
+   - Call out any remaining non-blocking trade-offs or risks for user review.
+6. Present the plan for user review.
    - Ask the user to approve or adjust the plan.
    - Do not edit application code until the user approves the plan.
 
@@ -47,5 +52,6 @@ Use committed files under `prd/` as the product source of truth. Do not fetch or
 - Ordered milestone plan.
 - File-level change list per milestone.
 - Requirement coverage mapping.
+- Engineering-principles check results.
 - Risks, unknowns, and blocked decisions.
 - Clear approval request before implementation starts.
