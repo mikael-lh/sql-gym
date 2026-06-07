@@ -2,7 +2,26 @@
 
 ## Status
 
-Approved for planning. This phase should not be implemented until an implementation plan is created from it and approved.
+Active. The implementation plan in `docs/phase-0-implementation-plan.md` is approved, and Phase 0 implementation has started.
+
+## What was actually built
+
+### TIM-19 - Stack and developer workflow
+
+Merged PR: [#24](https://github.com/mikael-lh/sql-gym/pull/24).
+
+TIM-19 established the Python/FastAPI development foundation:
+
+- Python 3.12 project metadata and dependency locking via `uv`.
+- FastAPI app package under `src/app` with a health endpoint and initial server-rendered scaffold page.
+- Top-level `templates/` and `static/` locations for server-rendered HTML and browser assets.
+- Documented setup, development server, production build, lint/static check, test, and validation commands.
+- Baseline pytest coverage for the scaffold page, health endpoint, and static stylesheet.
+- `scripts/validate-env.sh` now checks dependency sync, production package build, ruff, mypy, and pytest when the Python scaffold exists.
+
+R1 is satisfied for the initial web app scaffold. R7 is partially satisfied for the stack and command documentation; later Phase 0 milestones must keep docs updated as product shell, domain boundaries, Times samples, practice placeholders, and progress placeholders are added.
+
+No Phase 0 non-goals were implemented: there is no SQL execution, real grading, AI integration, authentication, durable progress storage, or exercise catalog.
 
 ## Source vision
 
@@ -152,8 +171,8 @@ Phase 0 is successful when a reviewer can:
 
 ## Open questions
 
-- Which web stack should the implementation plan choose?
-- Should Phase 0 use local-only progress placeholders or introduce a persistence abstraction?
-- What is the canonical source and schema for the initial Times dataset?
-- Which SQL dialect should later phases target first?
-- What accessibility and responsive layout baseline should Phase 0 enforce?
+- Which web stack should the implementation plan choose? **Answered:** Python 3.12, FastAPI, server-rendered templates, minimal JavaScript, and `uv`.
+- Should Phase 0 use local-only progress placeholders or introduce a persistence abstraction? **Answered:** use static/local placeholder data only; do not add persistence in Phase 0.
+- What is the canonical source and schema for the initial Times dataset? **Partially answered:** use sample data and schema references from `times-api` for Phase 0 demo fixtures; production refresh process and canonical schema selection remain follow-up decisions.
+- Which SQL dialect should later phases target first? **Answered:** PostgreSQL-compatible SQL.
+- What accessibility and responsive layout baseline should Phase 0 enforce? **Answered:** semantic HTML, keyboard-reachable controls, visible focus states, sufficient contrast, and basic responsive layout.
