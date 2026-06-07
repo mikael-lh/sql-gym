@@ -53,6 +53,15 @@ done
 check "GitHub CLI authenticated" gh auth status
 check "origin remote configured" git remote get-url origin
 
+if [[ -f pyproject.toml ]]; then
+  check "uv available" uv --version
+  check "dependencies are synced" uv sync --locked
+  check "production build" uv build
+  check "ruff lint" uv run ruff check .
+  check "mypy static check" uv run mypy .
+  check "pytest suite" uv run pytest
+fi
+
 echo
 echo "=== Summary ==="
 echo "Passed: $pass"
@@ -65,5 +74,9 @@ fi
 
 echo "Environment validation PASSED."
 echo
-echo "Application stack: not scaffolded yet (see prd/phase-0-product-scaffolding.md)."
-echo "Active phase: Phase 0 - Product scaffolding (planning approved; app code still requires an approved implementation plan)."
+if [[ -f pyproject.toml ]]; then
+  echo "Application stack: Python 3.12 + FastAPI + uv."
+else
+  echo "Application stack: not scaffolded yet (see prd/phase-0-product-scaffolding.md)."
+fi
+echo "Active phase: Phase 0 - Product scaffolding (future product work still requires approved plans)."

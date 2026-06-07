@@ -4,7 +4,7 @@ A lightweight gym for SQL: practice on curated datasets, run queries, and level 
 
 ## Status
 
-**Early setup.** Product vision and an active Phase 0 PRD are in `prd/`; application code and a runnable stack are not started yet.
+**Phase 0 scaffold started.** Product vision and an active Phase 0 PRD are in `prd/`; the initial Python/FastAPI development workflow is in place.
 
 | | |
 |--|--|
@@ -14,6 +14,51 @@ A lightweight gym for SQL: practice on curated datasets, run queries, and level 
 | Linear project | [sql-gym](https://linear.app/times-api/project/sql-gym-ce6a8985c99e) (`TIM-` issues) |
 
 ## Setup
+
+SQL Gym uses Python 3.12, FastAPI, server-rendered templates, and [`uv`](https://docs.astral.sh/uv/) for dependency management. This keeps the scaffold close to the adjacent [`times-api`](https://github.com/mikael-lh/times-api) Python ecosystem while preserving a simple web app path for later SQL practice features.
+
+Install dependencies:
+
+```bash
+uv sync
+```
+
+Run the development server:
+
+```bash
+uv run uvicorn app.main:app --reload
+```
+
+Production build:
+
+```bash
+uv build
+```
+
+This writes Python package artifacts to `dist/`: a source distribution (`.tar.gz`) and an installable wheel (`.whl`).
+
+Lint and static checks:
+
+```bash
+uv run ruff check .
+uv run mypy .
+```
+
+Tests:
+
+```bash
+uv run pytest
+```
+
+Full local validation:
+
+```bash
+./scripts/validate-env.sh
+```
+
+Phase 0 currently provides the web app foundation only. SQL execution, grading, Times sample fixtures, progress tracking, authentication, and AI feedback are placeholders or future milestones.
+
+## Cursor setup
 
 Install these Cursor marketplace plugins once (details in [WORKFLOW](docs/WORKFLOW.md#tools-and-plugins)):
 
