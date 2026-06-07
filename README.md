@@ -26,7 +26,7 @@ uv sync
 Run the development server:
 
 ```bash
-uv run fastapi dev app.main:app
+uv run uvicorn app.main:app --reload
 ```
 
 Production build:
