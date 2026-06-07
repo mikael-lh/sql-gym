@@ -35,6 +35,8 @@ Production build:
 uv build
 ```
 
+This writes Python package artifacts to `dist/`: a source distribution (`.tar.gz`) and an installable wheel (`.whl`).
+
 Lint and static checks:
 
 ```bash

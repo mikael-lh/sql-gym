@@ -79,4 +79,4 @@ if [[ -f pyproject.toml ]]; then
 else
   echo "Application stack: not scaffolded yet (see prd/phase-0-product-scaffolding.md)."
 fi
-echo "Active phase: Phase 0 - Product scaffolding (planning approved; app code still requires an approved implementation plan)."
+echo "Active phase: Phase 0 - Product scaffolding (future product work still requires approved plans)."
