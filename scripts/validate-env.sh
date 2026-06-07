@@ -66,4 +66,4 @@ fi
 echo "Environment validation PASSED."
 echo
 echo "Application stack: not scaffolded yet (see prd/phase-0-product-scaffolding.md)."
-echo "Active phase: none — approve Phase 0 PRD and update prd/README.md before implementation."
+echo "Active phase: Phase 0 - Product scaffolding (planning approved; app code still requires an approved implementation plan)."

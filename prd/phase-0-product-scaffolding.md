@@ -2,7 +2,7 @@
 
 ## Status
 
-Draft for review. This phase should not be implemented until the user approves this PRD and an implementation plan is created from it.
+Approved for planning. This phase should not be implemented until an implementation plan is created from it and approved.
 
 ## Source vision
 
