@@ -40,6 +40,24 @@ R2 and R3 are satisfied for the initial app shell and layout boundaries. Follow-
 
 No Phase 0 non-goals were implemented: there is no SQL execution, real grading, AI integration, authentication, durable progress storage, or exercise catalog.
 
+### TIM-22 - Practice flow placeholders
+
+Merged PR: [#28](https://github.com/mikael-lh/sql-gym/pull/28).
+
+TIM-22 added the first dedicated practice placeholder surface:
+
+- `/practice` now shows disabled placeholder controls for dataset, difficulty, and timed or untimed mode selection.
+- The Times Archive demo dataset is referenced with `times-api` provenance, schema reference, fixture path, and copy that states it is not final production Times data.
+- A tiny schema-aligned Times demo fixture is committed under `src/app/fixtures/times/`.
+- The SQL editor area is a disabled PostgreSQL-targeted placeholder with sample SQL and no execution behavior.
+- Grading feedback and progress tracking are visible as future-work/demo-only placeholders.
+- Static demo progress values are shown without accounts, persistence, or durable progress storage.
+- Tests cover the practice page placeholders, Times provenance, PostgreSQL label, health endpoint, and static stylesheet.
+
+R5 is satisfied for the initial Times dataset placeholder. R6 is satisfied for the visible static/demo-only progress placeholder. R2 and R3 remain satisfied with a more detailed practice surface.
+
+No Phase 0 non-goals were implemented: there is no real dataset loading, SQL execution, real grading, AI integration, authentication, durable progress storage, or exercise catalog.
+
 ## Source vision
 
 This phase supports the SQL Gym product vision in `prd/00-product-vision.md`.

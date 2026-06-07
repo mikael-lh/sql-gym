@@ -9,7 +9,7 @@ Specs are added here via repo-local `write-prd`. Do not treat informal chat note
 | Phase | Document | Linear epic | Status |
 |-------|----------|-------------|--------|
 | - | [00-product-vision.md](00-product-vision.md) | [TIM-16](https://linear.app/times-api/issue/TIM-16/requirements-or-product-vision-write-prd) | Merged |
-| 0 | [phase-0-product-scaffolding.md](phase-0-product-scaffolding.md) | [TIM-17](https://linear.app/times-api/issue/TIM-17/phase-0-or-product-scaffolding) | Active; TIM-19 and TIM-20 merged |
+| 0 | [phase-0-product-scaffolding.md](phase-0-product-scaffolding.md) | [TIM-17](https://linear.app/times-api/issue/TIM-17/phase-0-or-product-scaffolding) | Active; TIM-19, TIM-20, and TIM-22 merged |
 
 ## Linear
 
