@@ -16,8 +16,37 @@ def test_home_page_renders_scaffold() -> None:
 
     assert response.status_code == 200
     assert "SQL Gym" in response.text
-    assert "Phase 0 scaffold" in response.text
-    assert "Product features are intentionally deferred" in response.text
+    assert "Practice realistic SQL questions on curated datasets" in response.text
+    assert "Phase 0 app shell" in response.text
+
+
+def test_home_page_presents_core_loop_and_placeholders() -> None:
+    response = asyncio.run(get("/"))
+
+    assert response.status_code == 200
+    for expected_step in [
+        "Pick a dataset",
+        "Pick a difficulty",
+        "Choose timed or untimed practice",
+        "Complete a SQL exercise",
+        "Review grading feedback",
+        "Move to the next exercise",
+    ]:
+        assert expected_step in response.text
+
+    assert "Placeholders, not live features" in response.text
+    assert "Future work" in response.text
+    for expected_placeholder in [
+        "Dataset selection",
+        "Difficulty selection",
+        "Practice mode",
+        "SQL editor",
+        "Grading feedback",
+        "Progress tracking",
+    ]:
+        assert expected_placeholder in response.text
+    assert "Start practice - coming soon" in response.text
+    assert "disabled" in response.text
 
 
 def test_health_endpoint_reports_ok() -> None:

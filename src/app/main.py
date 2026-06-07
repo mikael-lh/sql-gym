@@ -12,6 +12,49 @@ STATIC_DIR = PROJECT_ROOT / "static"
 
 templates = Jinja2Templates(directory=TEMPLATES_DIR)
 
+CORE_LOOP = [
+    "Pick a dataset",
+    "Pick a difficulty",
+    "Choose timed or untimed practice",
+    "Complete a SQL exercise",
+    "Review grading feedback",
+    "Move to the next exercise",
+]
+
+PLACEHOLDERS = [
+    {
+        "title": "Dataset selection",
+        "description": "Times dataset samples arrive in a later Phase 0 milestone.",
+    },
+    {
+        "title": "Difficulty selection",
+        "description": (
+            "Beginner, intermediate, and advanced paths are reserved for future exercises."
+        ),
+    },
+    {
+        "title": "Practice mode",
+        "description": "Timed and untimed practice options are visible here but not active yet.",
+    },
+    {
+        "title": "SQL editor",
+        "description": (
+            "The editor is reserved for a future implementation; queries do not run yet."
+        ),
+    },
+    {
+        "title": "Grading feedback",
+        "description": "Exact-result and AI-assisted grading remain future work.",
+    },
+    {
+        "title": "Progress tracking",
+        "description": (
+            "Completion history and skill progress will stay demo-only until persistence is "
+            "approved."
+        ),
+    },
+]
+
 
 def create_app() -> FastAPI:
     app = FastAPI(
@@ -31,7 +74,13 @@ def create_app() -> FastAPI:
             "index.html",
             {
                 "page_title": "SQL Gym",
-                "status_label": "Phase 0 scaffold",
+                "status_label": "Phase 0 app shell",
+                "positioning": (
+                    "Practice realistic SQL questions on curated datasets, then build toward "
+                    "faster, clearer answers."
+                ),
+                "core_loop": CORE_LOOP,
+                "placeholders": PLACEHOLDERS,
             },
         )
 
