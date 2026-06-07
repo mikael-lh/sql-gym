@@ -1,0 +1,3 @@
+{
+  "install": "bash scripts/cloud-env-bootstrap.sh && bash scripts/cloud-env-update.sh"
+}
