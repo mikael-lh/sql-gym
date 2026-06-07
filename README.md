@@ -79,7 +79,33 @@ For TIM-21 and future scaffold PRs, reviewers and agents should run these checks
 
 `./scripts/validate-env.sh` wraps the build, lint, static check, and test commands above, then verifies the PRD/workflow files that future agents rely on.
 
-Phase 0 currently provides the web app foundation only. SQL execution, grading, authentication, durable progress storage, and AI feedback are placeholders or future milestones. Times demo fixtures and static progress values are sample-only; they are not final production data or persistence.
+## Phase 0 behavior status
+
+Working behavior:
+
+- FastAPI app startup via `uv run uvicorn app.main:app --reload`.
+- Server-rendered home and practice pages.
+- `/health` returns a basic status response.
+- Static stylesheet serving under `/static/`.
+- Pydantic domain models for dataset, exercise, attempt, grading, and progress concepts.
+- Tiny Times Archive demo fixture and static demo progress values.
+- Baseline validation with `uv build`, ruff, mypy, pytest, and `./scripts/validate-env.sh`.
+
+Placeholder behavior:
+
+- Times demo fixture data is sample-only; it is not the final production Times dataset.
+- Dataset, difficulty, timed or untimed mode, SQL editor, grading feedback, and progress controls are visible placeholders.
+- SQL is not executed.
+- Grading is not implemented.
+- Authentication, user accounts, durable progress storage, and AI feedback are not implemented.
+
+## Remaining follow-up decisions
+
+- Production Times refresh process: decide the canonical source, schema refresh workflow, and fixture-to-production data path.
+- Grading model: choose exact-result grading rules, partial-credit behavior, and feedback shape.
+- Persistence: decide whether progress, attempts, and exercise state need a database or another storage layer.
+- Authentication: decide if and when accounts are required for learner progress or personalization.
+- AI provider: choose whether AI feedback is in scope, which provider to use, and what rubric constrains it.
 
 ## Cursor setup
 
@@ -137,7 +163,7 @@ sql-gym-pre-review for TIM-42 — run the full pre-review loop and mark the PR r
 ## Project rules
 
 - **No product work** until [prd/README.md](prd/README.md) names an active phase and the matching `prd/` doc exists.
-- **No application code** until you approve a plan (`sql-gym-start-issue` / local `implement-from-prd`).
+- **No application code** until there is an approved plan (`sql-gym-start-issue` / local `implement-from-prd`).
 - **Your merge review** is still the final gate on product and architecture after pre-review passes.
 
 Deeper process detail, plugin roles, optional split-session pre-review, and engineering standards: [docs/WORKFLOW.md](docs/WORKFLOW.md).
