@@ -23,6 +23,20 @@ R1 is satisfied for the initial web app scaffold. R7 is partially satisfied for 
 
 No Phase 0 non-goals were implemented: there is no SQL execution, real grading, AI integration, authentication, durable progress storage, or exercise catalog.
 
+### TIM-21 - Baseline lint, test, and build checks
+
+Merged PR: [#32](https://github.com/mikael-lh/sql-gym/pull/32).
+
+TIM-21 made the Phase 0 validation baseline explicit and reviewable:
+
+- The README now has a dedicated baseline validation section listing `uv build`, `uv run ruff check .`, `uv run mypy .`, `uv run pytest`, and `./scripts/validate-env.sh`.
+- `tests/test_developer_workflow.py` guards that the README documents the baseline commands and that `scripts/validate-env.sh` continues to run the same build, lint, static check, and test commands.
+- The merged branch passed production build, ruff, mypy, pytest, `./scripts/validate-env.sh`, and `git diff --check`.
+
+R1 remains satisfied for build, lint/static check, and test commands. R7 is strengthened because future agents and reviewers now have one explicit baseline validation checklist.
+
+No Phase 0 non-goals were implemented: there is no SQL execution, real grading, AI integration, authentication, durable progress storage, broad testing infrastructure, or exercise catalog.
+
 ### TIM-20 - Web app scaffold and app shell
 
 Merged PR: [#26](https://github.com/mikael-lh/sql-gym/pull/26).
