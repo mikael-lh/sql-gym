@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero" aria-labelledby="practice-title">
+  <p class="eyebrow">{{ status_label }}</p>
+  <h1 id="practice-title">Practice setup preview</h1>
+  <p class="lede">
+    Selectors, editor, grading, and progress are visible here as Phase 0 placeholders only.
+  </p>
+  <p class="notice">
+    No SQL is executed, no answers are graded, and no progress is persisted.
+  </p>
+</section>
+
+<section class="practice-grid" aria-label="Practice placeholder controls">
+  <article class="panel">
+    <p class="eyebrow">Dataset</p>
+    <h2>{{ dataset.name }}</h2>
+    <p>{{ dataset.note }}</p>
+    <dl class="metadata-list">
+      <div>
+        <dt>Source</dt>
+        <dd><a href="{{ dataset.source_url }}">{{ dataset.source }}</a></dd>
+      </div>
+      <div>
+        <dt>Schema</dt>
+        <dd>{{ dataset.schema_reference }}</dd>
+      </div>
+      <div>
+        <dt>Fixture</dt>
+        <dd>{{ dataset.fixture_path }}</dd>
+      </div>
+    </dl>
+    <button class="disabled-action" type="button" disabled>Dataset locked - demo only</button>
+  </article>
+
+  <article class="panel">
+    <p class="eyebrow">Difficulty</p>
+    <h2>Select a path</h2>
+    <div class="option-stack">
+      {% for difficulty in difficulties %}
+      <button class="option-button" type="button" disabled>
+        <strong>{{ difficulty.label }}</strong>
+        <span>{{ difficulty.description }}</span>
+      </button>
+      {% endfor %}
+    </div>
+  </article>
+
+  <article class="panel">
+    <p class="eyebrow">Mode</p>
+    <h2>Timed or untimed</h2>
+    <div class="option-stack">
+      {% for mode in modes %}
+      <button class="option-button" type="button" disabled>
+        <strong>{{ mode.label }}</strong>
+        <span>{{ mode.description }}</span>
+      </button>
+      {% endfor %}
+    </div>
+  </article>
+</section>
+
+<section class="panel" aria-labelledby="editor-title">
+  <div>
+    <p class="eyebrow">PostgreSQL target dialect</p>
+    <h2 id="editor-title">SQL editor placeholder</h2>
+  </div>
+  <textarea class="sql-placeholder" aria-label="SQL editor placeholder" disabled>{{ sample_sql }}</textarea>
+</section>
+
+<section class="practice-grid" aria-label="Feedback and progress placeholders">
+  {% for area in placeholder_areas %}
+  <article class="placeholder-card">
+    <span class="badge">Future work</span>
+    <h3>{{ area.title }}</h3>
+    <p>{{ area.description }}</p>
+  </article>
+  {% endfor %}
+</section>
+
+<section class="panel" aria-labelledby="progress-title">
+  <p class="eyebrow">Demo-only progress</p>
+  <h2 id="progress-title">Progress tracking placeholder</h2>
+  <div class="metric-grid">
+    {% for item in progress %}
+    <div class="metric-card">
+      <span>{{ item.label }}</span>
+      <strong>{{ item.value }}</strong>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

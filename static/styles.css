@@ -9,6 +9,25 @@ body {
   margin: 0;
 }
 
+.site-header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 72rem;
+  padding: 1rem 2rem 0;
+}
+
+a {
+  color: #2f6fed;
+}
+
+.brand {
+  color: #172033;
+  font-weight: 800;
+  text-decoration: none;
+}
+
 .page-shell {
   display: flex;
   flex-direction: column;
@@ -110,4 +129,91 @@ h3 {
   font-weight: 700;
   margin-top: 1.5rem;
   padding: 0.85rem 1.25rem;
+}
+
+.primary-link {
+  display: inline-block;
+  font-weight: 700;
+  margin-top: 1rem;
+}
+
+.practice-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+
+.metadata-list {
+  display: grid;
+  gap: 0.75rem;
+  margin: 1.5rem 0 0;
+}
+
+.metadata-list div {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.metadata-list dt {
+  color: #5b6b8a;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.metadata-list dd {
+  margin: 0;
+}
+
+.option-stack {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.option-button {
+  background: #f8fafc;
+  border: 1px dashed #94a3b8;
+  border-radius: 0.9rem;
+  color: #334155;
+  cursor: not-allowed;
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.9rem;
+  text-align: left;
+}
+
+.sql-placeholder {
+  background: #172033;
+  border: 0;
+  border-radius: 1rem;
+  color: #e5edf7;
+  display: block;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  line-height: 1.5;
+  margin-top: 1rem;
+  min-height: 9rem;
+  padding: 1rem;
+  resize: vertical;
+  width: 100%;
+}
+
+.metric-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  margin-top: 1rem;
+}
+
+.metric-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.9rem;
+  display: grid;
+  gap: 0.35rem;
+  padding: 1rem;
+}
+
+.metric-card span {
+  color: #64748b;
 }

@@ -6,6 +6,8 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
+from app.practice import get_practice_context
+
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 TEMPLATES_DIR = PROJECT_ROOT / "templates"
 STATIC_DIR = PROJECT_ROOT / "static"
@@ -82,6 +84,14 @@ def create_app() -> FastAPI:
                 "core_loop": CORE_LOOP,
                 "placeholders": PLACEHOLDERS,
             },
+        )
+
+    @app.get("/practice", response_class=HTMLResponse, tags=["pages"])
+    def practice(request: Request) -> HTMLResponse:
+        return templates.TemplateResponse(
+            request,
+            "practice.html",
+            get_practice_context() | {"request": request},
         )
 
     return app
