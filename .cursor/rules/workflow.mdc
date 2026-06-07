@@ -7,7 +7,7 @@ alwaysApply: true
 
 - Read [prd/README.md](prd/README.md) before product work.
 - **No product features** until it names an **active phase** and the relevant `prd/` doc exists.
-- **No invented requirements** — repo-local PRD skills + `prd/` only (not Superpowers `brainstorming`).
+- **No invented requirements** — repo-local PRD skills + `prd/` only (not Superpowers `brainstorming`; do not call ChatPRD MCP unless the **user** asks).
 - **No application code** until local `implement-from-prd` is run and the **user** approves the plan.
 - **Scope:** implement only the active Linear issue / PRD section unless the **user** expands it.
 - **Linear issues:** link `prd/…` + acceptance criteria; do not paste the full PRD.
@@ -22,10 +22,17 @@ Checklist (all must pass before handoff):
 - [ ] Superpowers `code-reviewer` vs approved plan + [engineering.mdc](engineering.mdc) (blocking feedback addressed)
 - [ ] [google-eng-practices](docs/references/google-eng-practices.md) review (blocking items fixed; `Nit:` optional)
 - [ ] cursor-team-kit `deslop` on changed code (or N/A — docs-only)
-- [ ] Tests/lint green, or state **CI not configured yet** and what was run manually
+- [ ] Tests/lint green, or state **CI not configured yet** and run `./scripts/validate-env.sh` (or stack lint/test when they exist); note what ran in the PR
 - [ ] PR: summary, risks, test plan, PRD deviations (if any)
 
 Escalate to the **user** for product/architecture decisions or if stuck—do not mark boxes done to bypass a failed check.
+
+# Agent environment
+
+Stable ops for agents (local and Cloud). Current phase, stack, and dev commands: [prd/README.md](prd/README.md), [README.md](README.md), and `./scripts/validate-env.sh`.
+
+- **Linear MCP** for backlog (`TIM-` issues, [sql-gym project](https://linear.app/times-api/project/sql-gym-ce6a8985c99e)). If lookup fails, ask the **user** to fix MCP auth in Cursor settings.
+- **No committed secrets.** When the app exists, document vars in `.env.example`. On Cloud VMs, ask the **user** to add secrets in Cloud settings—do not assume a local `.env`.
 
 # Playbook
 

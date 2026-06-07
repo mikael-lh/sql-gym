@@ -72,13 +72,3 @@ sql-gym-pre-review for TIM-42 — run the full pre-review loop and mark the PR r
 - **Your merge review** is still the final gate on product and architecture after pre-review passes.
 
 Deeper process detail, plugin roles, optional split-session pre-review, and engineering standards: [docs/WORKFLOW.md](docs/WORKFLOW.md).
-
-## For Cloud agents
-
-Process gates and pre-review rules live in [.cursor/rules/workflow.mdc](.cursor/rules/workflow.mdc) (always applied) and [docs/WORKFLOW.md](docs/WORKFLOW.md). This section is **environment ops only**.
-
-- **No runnable app yet** — no dependency manifests, dev server, lint, or test commands. Active phase in [prd/README.md](prd/README.md) is **None** until Phase 0 is approved.
-- **Smoke check:** `./scripts/validate-env.sh` from repo root (use when CI is not configured).
-- **PRD work:** repo-local skills in [.cursor/skills](.cursor/skills) (`write-prd`, `implement-from-prd`, etc.) — do not call ChatPRD MCP unless the user asks.
-- **Linear MCP** for backlog (`TIM-` issues, [sql-gym project](https://linear.app/times-api/project/sql-gym-ce6a8985c99e)). If lookup fails, check MCP auth in Cursor settings.
-- **Secrets:** none committed; when the app exists, document vars in `.env.example` and ask the user to add Cloud secrets — do not assume a local `.env`.
