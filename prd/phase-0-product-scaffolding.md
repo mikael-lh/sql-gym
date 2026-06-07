@@ -2,7 +2,7 @@
 
 ## Status
 
-Active. The implementation plan in `docs/phase-0-implementation-plan.md` is approved, and Phase 0 implementation has started.
+Complete. The approved Phase 0 implementation plan in `docs/phase-0-implementation-plan.md` has been implemented through the tracked Phase 0 Linear issues.
 
 ## What was actually built
 
@@ -85,6 +85,23 @@ TIM-18 established lightweight domain model boundaries:
 - Tests cover Pydantic validation, immutability, Times provenance, PostgreSQL target dialect, and demo-only attempt/grading/progress state.
 
 R4 is satisfied for the initial domain model boundaries. R5 and R6 remain satisfied through the Times demo dataset model and demo-only progress model. Later milestones may replace the constants or fixture-backed data without rewriting the product shell.
+
+No Phase 0 non-goals were implemented: there is no real dataset loading, SQL execution, real grading, AI integration, authentication, durable progress storage, or exercise catalog.
+
+### TIM-23 - Developer documentation
+
+Merged PR: [#38](https://github.com/mikael-lh/sql-gym/pull/38).
+
+TIM-23 updated the developer-facing README documentation:
+
+- The README now separates Phase 0 working behavior from placeholder behavior.
+- The documented working behavior includes FastAPI startup, server-rendered home and practice pages, the health endpoint, static stylesheet serving, Pydantic domain models, tiny Times demo fixtures, static demo progress, and baseline validation commands.
+- Placeholder behavior is explicit: Times demo data is sample-only, practice controls are non-functional placeholders, SQL is not executed, grading is not implemented, and auth, durable progress storage, and AI feedback are not implemented.
+- Remaining follow-up decisions are documented for the production Times refresh process, grading model, persistence, authentication, and AI provider.
+- README workflow gates now explicitly preserve the approved-plan requirement before application code.
+- `tests/test_developer_workflow.py` guards the behavior-status documentation, remaining follow-up decisions, and workflow gate wording.
+
+R7 is satisfied for Phase 0: the repo explains setup, run, build, lint/static check, test, validation, placeholder status, workflow gates, and remaining follow-up decisions.
 
 No Phase 0 non-goals were implemented: there is no real dataset loading, SQL execution, real grading, AI integration, authentication, durable progress storage, or exercise catalog.
 

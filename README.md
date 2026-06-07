@@ -4,7 +4,7 @@ A lightweight gym for SQL: practice on curated datasets, run queries, and level 
 
 ## Status
 
-**Phase 0 scaffold started.** Product vision and an active Phase 0 PRD are in `prd/`; the initial Python/FastAPI development workflow is in place.
+**Phase 0 scaffold complete.** Product vision and the completed Phase 0 PRD are in `prd/`; new product scope requires a PRD update or new phase PRD plus an approved implementation plan.
 
 | | |
 |--|--|
