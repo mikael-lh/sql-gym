@@ -1,6 +1,5 @@
 from pathlib import Path
 
-
 README = Path("README.md")
 VALIDATE_ENV = Path("scripts/validate-env.sh")
 
