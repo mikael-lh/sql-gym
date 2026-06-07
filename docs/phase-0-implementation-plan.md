@@ -12,10 +12,10 @@ Proposed for approval. Do not write application code from this plan until the us
 
 ## Planning decisions
 
-- **Web stack:** Use Next.js with TypeScript and React. This gives SQL Gym a conventional web app scaffold, routing, production build support, lint/static checks, and a straightforward path for future server-side features without adding a separate backend in Phase 0.
+- **Web stack:** Use Python 3.12 with FastAPI, server-rendered templates, and minimal JavaScript. This keeps the scaffold close to the existing `times-api` Python ecosystem while still providing routes, production serving, lint/static checks, tests, and a path to richer browser interactions later.
 - **Progress model:** Use static/local placeholder data only. Do not add accounts, durable storage, or a persistence abstraction in Phase 0.
-- **Times dataset:** Reference the Times dataset as the first intended dataset, but keep source and schema selection as a documented follow-up decision.
-- **SQL dialect:** Do not enforce a dialect in Phase 0. Use copy that says later exercises are expected to target a Postgres-style dialect unless a later PRD decides otherwise.
+- **Times dataset:** Use sample data and schema references from `https://github.com/mikael-lh/times-api` as the initial Times dataset source. Commit only a tiny demo fixture set in SQL Gym and document provenance clearly.
+- **SQL dialect:** Use PostgreSQL-compatible SQL as the first teaching dialect. Phase 0 should not execute SQL, but copy and domain metadata should describe future exercises as PostgreSQL-targeted unless a later PRD changes dialect support.
 - **Accessibility baseline:** Use semantic HTML, keyboard-reachable controls, visible focus states, sufficient contrast, and a basic responsive layout.
 
 ## Milestones
@@ -26,21 +26,23 @@ Proposed for approval. Do not write application code from this plan until the us
 
 **Files to create or modify:**
 
-- `package.json` - add scripts for `dev`, `build`, `lint`, and `test`.
-- `package-lock.json` - lock npm dependencies.
-- `next.config.*`, `tsconfig.json`, `eslint.config.*` - configure Next.js, TypeScript, and lint/static checks.
-- `src/` or `app/` scaffold files - add only the minimum files required by the chosen Next.js app structure.
+- `pyproject.toml` - define Python 3.12 project metadata, dependencies, and scripts/tool configuration.
+- `uv.lock` - lock Python dependencies.
+- `app/` - add the minimum FastAPI package structure.
+- `templates/` and `static/` - reserve server-rendered UI and stylesheet locations.
+- `tests/` - add the initial test package.
 - `README.md` - document selected stack and commands.
 
 **Implementation notes:**
 
-- Prefer the current stable Next.js app router with TypeScript.
-- Keep configuration minimal and generated defaults intact unless the repo needs a specific change.
-- Add a test runner only if it can be justified by the Phase 0 acceptance criteria; keep initial coverage small.
+- Prefer FastAPI, Jinja2 templates, `uv`, pytest, ruff, and mypy.
+- Keep JavaScript minimal in Phase 0; add HTMX or a richer editor package only when an approved feature needs it.
+- Configure the app so `uv run fastapi dev app.main:app` or an equivalent documented command starts local development.
+- Add a test runner because the PRD requires a test command, but keep initial coverage small.
 
 **Acceptance criteria covered:** R1, R7.
 
-**Checks:** install, `npm run build`, `npm run lint`, `npm test`, `./scripts/validate-env.sh`.
+**Checks:** `uv sync`, `uv run ruff check .`, `uv run mypy .`, `uv run pytest`, `./scripts/validate-env.sh`.
 
 **Risks:** Dependency setup may need a Cursor Cloud environment update if installs are slow or missing system tooling.
 
@@ -50,9 +52,10 @@ Proposed for approval. Do not write application code from this plan until the us
 
 **Files to create or modify:**
 
-- `app/page.tsx` or equivalent home route - landing surface with SQL Gym name, positioning, and core loop.
-- `app/layout.tsx` and global styles - page shell, metadata, and baseline layout.
-- Component files under `src/components/` or `app/_components/` - reusable sections for core loop, placeholder cards, and status badges.
+- `app/main.py` - FastAPI app, routes, and static/template mounting.
+- `templates/base.html` and `templates/index.html` - page shell and landing surface with SQL Gym name, positioning, and core loop.
+- `static/styles.css` - baseline layout, placeholder states, and focus styles.
+- Optional Python view/model helpers if route data needs structure.
 - Tests for rendered shell content.
 
 **Implementation notes:**
@@ -63,7 +66,7 @@ Proposed for approval. Do not write application code from this plan until the us
 
 **Acceptance criteria covered:** R1, R2, R3.
 
-**Checks:** `npm run build`, `npm run lint`, `npm test`, manual browser check with screenshot/video once UI exists.
+**Checks:** `uv run ruff check .`, `uv run mypy .`, `uv run pytest`, manual browser check with screenshot/video once UI exists.
 
 **Risks:** UI can overpromise functionality; keep placeholder language explicit.
 
@@ -73,22 +76,24 @@ Proposed for approval. Do not write application code from this plan until the us
 
 **Files to create or modify:**
 
-- `src/domain/datasets.ts` - dataset type and Times placeholder record.
-- `src/domain/exercises.ts` - exercise type and placeholder exercise metadata.
-- `src/domain/attempts.ts` - attempt type without execution behavior.
-- `src/domain/grading.ts` - grading result type with placeholder statuses.
-- `src/domain/progress.ts` - progress summary type using static/demo-only data.
-- Focused tests for exported placeholder data and type-level assumptions where practical.
+- `app/domain/datasets.py` - dataset type and Times sample dataset metadata.
+- `app/domain/exercises.py` - exercise type and placeholder exercise metadata.
+- `app/domain/attempts.py` - attempt type without execution behavior.
+- `app/domain/grading.py` - grading result type with placeholder statuses.
+- `app/domain/progress.py` - progress summary type using static/demo-only data.
+- `app/fixtures/times/` - tiny Times sample fixture files derived from `times-api`.
+- Focused tests for exported placeholder data and model assumptions.
 
 **Implementation notes:**
 
-- Keep domain modules framework-agnostic.
+- Keep domain modules framework-agnostic and typed with dataclasses, Pydantic models, or simple typed dictionaries.
 - Use immutable placeholder data that the UI can consume.
+- Capture sample provenance from `times-api` schema/data sources in fixture metadata or docs.
 - Do not add database clients, AI clients, SQL parsers, or execution engines.
 
 **Acceptance criteria covered:** R4, R5, R6.
 
-**Checks:** `npm run lint`, `npm test`, `npm run build`.
+**Checks:** `uv run ruff check .`, `uv run mypy .`, `uv run pytest`.
 
 **Risks:** Types may become too detailed; keep them lightweight and replaceable.
 
@@ -98,20 +103,21 @@ Proposed for approval. Do not write application code from this plan until the us
 
 **Files to create or modify:**
 
-- Practice route, such as `app/practice/page.tsx`.
-- Placeholder components for dataset selection, difficulty, mode, SQL editor, grading feedback, and progress.
+- Practice route, such as `GET /practice` in `app/main.py`.
+- Templates or template partials for dataset selection, difficulty, mode, SQL editor, grading feedback, and progress.
 - Static data imports from the domain modules.
 - Tests for placeholder labels and disabled or future-work states.
 
 **Implementation notes:**
 
-- Reference the Times dataset as intended first dataset.
+- Reference the Times dataset as the first dataset using committed demo samples derived from `times-api`.
+- Label SQL exercise metadata as PostgreSQL-targeted, while keeping SQL execution out of Phase 0.
 - Use static progress data and label it demo-only.
 - Provide non-functional editor and grading placeholders unless a later approved PRD expands scope.
 
 **Acceptance criteria covered:** R2, R3, R5, R6.
 
-**Checks:** `npm run build`, `npm run lint`, `npm test`, manual browser check with screenshot/video.
+**Checks:** `uv run ruff check .`, `uv run mypy .`, `uv run pytest`, manual browser check with screenshot/video.
 
 **Risks:** Placeholder controls must not submit or grade anything.
 
@@ -121,7 +127,7 @@ Proposed for approval. Do not write application code from this plan until the us
 
 **Files to create or modify:**
 
-- Test configuration files for the selected runner.
+- Test configuration files for pytest if needed.
 - Initial tests for the app shell, practice placeholders, and domain data.
 - `scripts/validate-env.sh` - include app command checks once the stack exists.
 - Optional CI workflow only if repo convention or user direction calls for it.
@@ -129,12 +135,12 @@ Proposed for approval. Do not write application code from this plan until the us
 **Implementation notes:**
 
 - Keep tests small and behavior-focused.
-- Ensure commands documented in `README.md` match scripts exactly.
+- Ensure commands documented in `README.md` match `uv` commands exactly.
 - Avoid broad test infrastructure beyond Phase 0 needs.
 
 **Acceptance criteria covered:** R1.
 
-**Checks:** `npm run build`, `npm run lint`, `npm test`, `./scripts/validate-env.sh`.
+**Checks:** `uv run ruff check .`, `uv run mypy .`, `uv run pytest`, `./scripts/validate-env.sh`.
 
 **Risks:** Tests can become brittle if they assert layout details instead of user-visible content and placeholder states.
 
@@ -152,7 +158,7 @@ Proposed for approval. Do not write application code from this plan until the us
 
 - State clearly what works in Phase 0 and what is a placeholder.
 - Preserve the workflow gates: future product work still needs a PRD, plan, implementation PR, and pre-review.
-- Document remaining follow-up decisions: Times source/schema, SQL dialect, grading model, persistence, auth, and AI provider.
+- Document remaining follow-up decisions: production Times refresh process, grading model, persistence, auth, and AI provider.
 
 **Acceptance criteria covered:** R7.
 
