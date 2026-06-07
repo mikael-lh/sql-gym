@@ -23,6 +23,23 @@ R1 is satisfied for the initial web app scaffold. R7 is partially satisfied for 
 
 No Phase 0 non-goals were implemented: there is no SQL execution, real grading, AI integration, authentication, durable progress storage, or exercise catalog.
 
+### TIM-20 - Web app scaffold and app shell
+
+Merged PR: [#26](https://github.com/mikael-lh/sql-gym/pull/26).
+
+TIM-20 turned the initial scaffold into a product-facing app shell:
+
+- The landing page now includes the SQL Gym name and short positioning.
+- The shell presents the intended core loop: pick dataset, pick difficulty, choose timed or untimed practice, complete a SQL exercise, review grading feedback, and move to the next exercise.
+- Future product surfaces are marked as placeholders with `Future work` labels.
+- The shell reserves visible boundaries for dataset selection, difficulty selection, practice mode, SQL editor, grading feedback, and progress tracking.
+- The start-practice action is disabled and labeled as coming soon.
+- Tests now cover the shell positioning, core loop, placeholder boundaries, disabled action, health endpoint, and stylesheet.
+
+R2 and R3 are satisfied for the initial app shell and layout boundaries. Follow-up milestones still own real Times samples, domain model boundaries, practice placeholders backed by data, progress placeholder data, and fuller developer documentation.
+
+No Phase 0 non-goals were implemented: there is no SQL execution, real grading, AI integration, authentication, durable progress storage, or exercise catalog.
+
 ## Source vision
 
 This phase supports the SQL Gym product vision in `prd/00-product-vision.md`.
