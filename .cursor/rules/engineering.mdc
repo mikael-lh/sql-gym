@@ -31,6 +31,6 @@ Use [docs/references/google-eng-practices.md](docs/references/google-eng-practic
 
 **Python:** [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html); Ruff/format config overrides when present.
 
-**SQL:** Match repo SQL linter/dialect when configured.
+**SQL:** [Simon Holywell SQL Style Guide](https://www.sqlstyle.guide/) for portable ANSI clarity; repo SQL linter/dialect overrides when configured.
 
 **HTML/CSS / JS (only when the PRD includes a web UI):** [HTML/CSS guide](https://google.github.io/styleguide/htmlcssguide.html), [JavaScript guide](https://google.github.io/styleguide/jsguide.html) for framework code; frontend linter config overrides when present.
