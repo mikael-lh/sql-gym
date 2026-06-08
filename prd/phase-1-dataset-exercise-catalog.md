@@ -2,7 +2,7 @@
 
 ## Status
 
-Active. The user approved this PRD. Do not create implementation issues or write application code until there is a scoped implementation plan from local `implement-from-prd` and the user approves that plan.
+Complete (2026-06-08). Shipped via TIM-25, TIM-27, TIM-29, TIM-28, and TIM-26 ([TIM-24](https://linear.app/times-api/issue/TIM-24/phase-1-or-dataset-and-exercise-catalog) epic).
 
 ## Source context
 
@@ -10,14 +10,16 @@ This phase follows the SQL Gym product vision in `prd/00-product-vision.md`, esp
 
 Phase 0 in `prd/phase-0-product-scaffolding.md` established the FastAPI scaffold, server-rendered pages, Pydantic domain model boundaries, a Times Archive dataset placeholder, a single placeholder exercise, static demo progress, and baseline validation commands. It intentionally did not implement a real catalog, SQL execution, grading, AI feedback, authentication, or durable progress storage.
 
-Current implementation context:
+Implementation context at ship:
 
-- `src/app/domain/datasets.py` defines `Dataset` and `DatasetProvenance`, with one `TIMES_ARCHIVE_DEMO_DATASET`.
-- `src/app/domain/exercises.py` defines `Exercise`, difficulty/mode/dialect literals, selection options, and one `TIMES_ARCHIVE_PLACEHOLDER_EXERCISE`.
-- `src/app/practice.py` assembles a single practice-page context from domain constants.
-- `templates/practice.html` shows disabled placeholder controls for dataset, difficulty, mode, editor, grading, and progress.
-- `src/app/fixtures/times/archive_articles_demo.json` contains tiny Times rows with provenance metadata. Phase 1 can move Times catalog entries to production-ready status because the Times source/schema decision is resolved for this phase.
-- Existing tests in `tests/test_app.py`, `tests/test_domain.py`, and `tests/test_developer_workflow.py` guard placeholder copy, domain validation, Times provenance, and developer workflow documentation.
+- `src/app/domain/` — catalog models (`datasets.py`, `exercises.py`, `catalog.py`) with production-ready `TIMES_ARCHIVE_CATALOG_DATASET`.
+- `src/app/catalog/` — JSON-backed Times exercise loader and `TIMES_ARCHIVE_CATALOG` (50 entries).
+- `src/app/practice.py` — catalog browsing filters and exercise preview lookup helpers.
+- `templates/practice.html` — catalog browsing inside `/practice` with filters and exercise cards.
+- `templates/practice_exercise.html` — exercise preview at `/practice/{dataset_id}/{exercise_id}`.
+- `templates/404.html` — user-friendly not-found responses for unknown preview routes.
+- `src/app/fixtures/times/archive_articles_demo.json` — small schema-aligned article row fixture (still demo-sized).
+- Tests in `tests/test_app.py`, `tests/test_domain.py`, and `tests/test_developer_workflow.py` guard catalog behavior, placeholder honesty, and docs.
 
 ## Problem
 
@@ -166,3 +168,18 @@ Phase 1 is successful when a reviewer can:
 - Exercise details reserve structured fields for future expected results, but exact grading stays out of scope.
 - Unknown dataset or exercise detail routes return a user-friendly 404 response; empty filter results use an inline empty state.
 - Times source and schema are production-ready for Phase 1 catalog use, so the initial Times catalog can be production catalog data rather than demo-only data.
+
+## What was actually built
+
+- Catalog domain model with validation (`TIM-25`, PR #56).
+- 50 Times Archive exercises in structured JSON with loader and tests (`TIM-27`, PR #57).
+- Practice-flow catalog browsing with dataset/difficulty/mode filters (`TIM-29`, PR #58).
+- Exercise preview routes, hint/sample SQL disclosure, and 404 handling (`TIM-28`, PR #59).
+- README and developer workflow doc guards for Phase 1 boundaries (`TIM-26`, PR #60).
+
+## Deviations and deferred work
+
+- **Article row data:** catalog exercise metadata is production-ready, but article rows still come from the two-row demo fixture. A later phase should wire full Times article data or document the refresh path.
+- **Home page:** `/` still presents Phase 0 shell copy; catalog work is centered on `/practice`.
+- **Exercise availability:** `availability_status` replaced a separate `is_placeholder` boolean on `Exercise` during implementation.
+- **Still out of scope (unchanged):** SQL execution, grading, auth, durable progress, AI feedback, timed scoring, and non-developer authoring tooling.
