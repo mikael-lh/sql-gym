@@ -45,7 +45,7 @@ Return findings to **`sql-gym-pre-review`** (preferred) or hand off to **`sql-gy
 
 If **no blocking items**, report that to the caller; full checklist and handoff are handled by **`sql-gym-pre-review`**.
 
-Do **not** merge.
+Do **not** merge (per [workflow.mdc](../../rules/workflow.mdc) gates).
 
 ## References
 

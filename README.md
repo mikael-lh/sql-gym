@@ -38,24 +38,7 @@ uv build
 
 This writes Python package artifacts to `dist/`: a source distribution (`.tar.gz`) and an installable wheel (`.whl`).
 
-Lint and static checks:
-
-```bash
-uv run ruff check .
-uv run mypy .
-```
-
-Tests:
-
-```bash
-uv run pytest
-```
-
-Full local validation:
-
-```bash
-./scripts/validate-env.sh
-```
+Lint, type-check, tests, and full repo validation: [Baseline validation checks](#baseline-validation-checks).
 
 ### Cursor Cloud Agents
 
@@ -121,9 +104,9 @@ Specs, implementation plans, PRD alignment, and PRD updates use repo skills in [
 
 ## How we work
 
-Specs live in **`prd/`** in this repo. Work is tracked in **Linear**, shipped via **GitHub PRs**, and built with **Cursor** using the repo skills in the prompts below. You own product calls and plan sign-off. You merge by default; agents merge only when you explicitly authorize autonomous GitHub MCP merges for that run.
+Specs live in **`prd/`**. Work is tracked in **Linear**, shipped via **GitHub PRs**, and built with **Cursor** repo skills (prompts below). You own product calls, plan sign-off, and merge by default; agents merge only when you explicitly authorize autonomous GitHub MCP merges. Agent gates: [.cursor/rules/workflow.mdc](.cursor/rules/workflow.mdc). Full playbook: [docs/WORKFLOW.md](docs/WORKFLOW.md) ([end-to-end flow](docs/WORKFLOW.md#end-to-end-flow)).
 
-## Workflow
+### Workflow
 
 | Step | Your job | In Cursor |
 |------|----------|-----------|
@@ -131,18 +114,12 @@ Specs live in **`prd/`** in this repo. Work is tracked in **Linear**, shipped vi
 | **Backlog** | Create Linear issues (`TIM-NN`) with a `prd/` link and acceptance criteria | — |
 | **Plan** | Review and approve the phase implementation plan | `implement-from-prd` plus engineering-principles check |
 | **Build** | Confirm the plan is approved | `sql-gym-implement-issue` for one `TIM-NN`, or `sql-gym-run-phase` for approved autonomous phase execution |
-| **Pre-review** | Wait for the loop to finish; then review the PR yourself | **`sql-gym-pre-review`** for `TIM-NN` (see below) |
+| **Pre-review** | Wait for the loop to finish; then review the PR yourself | **`sql-gym-pre-review`** for `TIM-NN` |
 | **Ship** | Merge, close the Linear issue; assess `update-prd` after merged implementation | `update-prd` when PRD reality changed |
 
-### Pre-review (one command)
+### Pre-review
 
-After **`sql-gym-implement-issue`** opens a draft PR, run **`sql-gym-pre-review`** in Cursor. That skill **orchestrates the full pass**: independent review (via a readonly subagent or a new chat if needed), fixes on the branch, re-review until there are no blocking findings, then tests/lint, PR checklist, and “ready for your review.”
-
-You do **not** need to invoke `sql-gym-pre-review-reviewer` or `sql-gym-pre-review-fix` yourself unless you choose to split work across separate chats (optional; see [pre-review skills](.cursor/skills/sql-gym-pre-review-reviewer/SKILL.md) and [fix skill](.cursor/skills/sql-gym-pre-review-fix/SKILL.md)).
-
-If pre-review stalls (product decision, plugins unavailable, stuck after several fix rounds), it should leave the PR in draft with checklist boxes unchecked—resolve the blocker and run **`sql-gym-pre-review`** again.
-
-PRs use [.github/pull_request_template.md](.github/pull_request_template.md).
+After **`sql-gym-implement-issue`** opens a draft PR, run **`sql-gym-pre-review`** — it orchestrates independent review, fixes, and handoff. Procedure: [sql-gym-pre-review skill](.cursor/skills/sql-gym-pre-review/SKILL.md). PR template: [.github/pull_request_template.md](.github/pull_request_template.md).
 
 ### Prompts
 
@@ -161,12 +138,3 @@ sql-gym-run-phase for Phase 1 — autonomous implementation and GitHub MCP squas
 ```text
 sql-gym-pre-review for TIM-42 — run the full pre-review loop and mark the PR ready for my review when blocking checks pass
 ```
-
-
-## Project rules
-
-- **No product work** until [prd/README.md](prd/README.md) names an active phase and the matching `prd/` doc exists.
-- **No application code** until there is an approved plan from `implement-from-prd`.
-- **Your merge review** is still the final gate on product and architecture after pre-review passes.
-
-Deeper process detail, stack roles, optional split-session pre-review, and engineering standards: [docs/WORKFLOW.md](docs/WORKFLOW.md) ([end-to-end flow](docs/WORKFLOW.md#end-to-end-flow)).

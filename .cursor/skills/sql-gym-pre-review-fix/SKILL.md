@@ -30,7 +30,7 @@ If there are no reviewer findings yet, run **`sql-gym-pre-review`** (or a review
 
 Do **not** mark the PR ready for **user** review until **sql-gym-pre-review** completes (reviewer reports no blocking items + final checklist).
 
-Do **not** merge.
+Do **not** merge (per [workflow.mdc](../../rules/workflow.mdc) gates).
 
 ## References
 

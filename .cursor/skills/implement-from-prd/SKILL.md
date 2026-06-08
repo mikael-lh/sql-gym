@@ -11,7 +11,7 @@ The user wants to plan implementation for an approved local PRD or a specific PR
 
 ## Source of truth
 
-Use committed files under `prd/` as the product source of truth. Do not fetch or require ChatPRD cloud documents.
+Committed markdown under `prd/` (per [workflow.mdc](../../rules/workflow.mdc) gates).
 
 ## Workflow
 
@@ -30,9 +30,7 @@ Use committed files under `prd/` as the product source of truth. Do not fetch or
    - For each milestone, list files to create or modify, key implementation details, acceptance criteria covered, tests/checks, and risks.
    - Map every PRD requirement and acceptance criterion to at least one milestone.
    - Call out out-of-scope items explicitly so they are not accidentally implemented.
-5. Check the plan against engineering principles.
-   - Read `docs/references/google-eng-practices.md` and `.cursor/rules/engineering.mdc`.
-   - Confirm the plan has small focused changes, design fit, low complexity, clear tests, clear naming, and documentation updates.
+5. Check the plan against [.cursor/rules/engineering.mdc](../../rules/engineering.mdc) and [google-eng-practices](../../../docs/references/google-eng-practices.md).
    - Revise the plan before presenting it if the check finds blocking gaps.
    - Call out any remaining non-blocking trade-offs or risks for user review.
 6. Present the plan for user review.

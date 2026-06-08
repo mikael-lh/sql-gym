@@ -1,6 +1,7 @@
 from pathlib import Path
 
 README = Path("README.md")
+WORKFLOW_RULE = Path(".cursor/rules/workflow.mdc")
 VALIDATE_ENV = Path("scripts/validate-env.sh")
 
 
@@ -24,10 +25,15 @@ README_REQUIRED_PHASE0_DOCS = (
     "AI provider",
 )
 
-README_REQUIRED_WORKFLOW_GATES = (
-    "No product work",
+README_WORKFLOW_POINTERS = (
+    ".cursor/rules/workflow.mdc",
+    "sql-gym-pre-review",
+    "docs/WORKFLOW.md",
+)
+
+WORKFLOW_GATE_TEXT = (
+    "No product features",
     "No application code",
-    "approved plan",
     "sql-gym-pre-review",
 )
 
@@ -47,11 +53,18 @@ def test_readme_documents_phase_0_behavior_status() -> None:
         assert expected_text in readme
 
 
-def test_readme_preserves_prd_workflow_gates() -> None:
+def test_readme_points_to_workflow_gates() -> None:
     readme = README.read_text()
 
-    for expected_text in README_REQUIRED_WORKFLOW_GATES:
+    for expected_text in README_WORKFLOW_POINTERS:
         assert expected_text in readme
+
+
+def test_workflow_rule_preserves_prd_gates() -> None:
+    workflow_rule = WORKFLOW_RULE.read_text()
+
+    for expected_text in WORKFLOW_GATE_TEXT:
+        assert expected_text in workflow_rule
 
 
 def test_validate_env_runs_baseline_validation_checks() -> None:

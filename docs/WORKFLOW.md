@@ -91,13 +91,7 @@ The **user** installs marketplace plugins: `/add-plugin superpowers`, `/add-plug
 
 ## Pre-review before user review
 
-**Agents** (especially cloud) run hygiene checks **before** the **user** reviews or before an explicitly authorized autonomous merge. The **user** owns product and architecture judgment; **agents** handle spec alignment and code quality.
-
-**Default:** invoke [**sql-gym-pre-review**](../.cursor/skills/sql-gym-pre-review/SKILL.md) — it orchestrates reviewer ↔ fixer until there are no blocking findings, then checks PR boxes and marks ready for handoff.
-
-**Optional split across sessions:** [sql-gym-pre-review-reviewer](../.cursor/skills/sql-gym-pre-review-reviewer/SKILL.md) (findings only) and [sql-gym-pre-review-fix](../.cursor/skills/sql-gym-pre-review-fix/SKILL.md) (blocking fixes on the branch).
-
-Gate (no handoff while blocking findings remain): [.cursor/rules/workflow.mdc](../.cursor/rules/workflow.mdc#workflow-gates). PR checkboxes: [.github/pull_request_template.md](../.github/pull_request_template.md). Procedure, fallbacks, and escalation: the skills above — not repeated here.
+Run [**sql-gym-pre-review**](../.cursor/skills/sql-gym-pre-review/SKILL.md) before **user** review or authorized autonomous merge — it orchestrates independent review, fixes, and handoff. Optional split-session skills: [reviewer](../.cursor/skills/sql-gym-pre-review-reviewer/SKILL.md), [fix](../.cursor/skills/sql-gym-pre-review-fix/SKILL.md). Gates: [.cursor/rules/workflow.mdc](../.cursor/rules/workflow.mdc#workflow-gates). PR checkboxes: [.github/pull_request_template.md](../.github/pull_request_template.md).
 
 ## Linear conventions
 
@@ -139,10 +133,6 @@ Common user prompts live in [README.md § Prompts](../README.md#prompts). Use th
 
 ```text
 implement-from-prd for prd/phase-0-product-scaffolding.md; produce the plan only and stop for approval.
-```
-
-```text
-sql-gym-run-phase for Phase 1 — autonomous implementation and GitHub MCP squash merge authorized for implementation PRs and update-prd PRs
 ```
 
 ```text
