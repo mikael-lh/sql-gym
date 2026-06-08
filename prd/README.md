@@ -2,7 +2,7 @@
 
 **Status: Phase 1 dataset and exercise catalog active.**
 
-Specs are added here via repo-local `write-prd`. Do not treat informal chat notes as requirements.
+Specs are added here via the `write-prd` repo skill. Do not treat informal chat notes as requirements.
 
 ## Index
 
@@ -19,10 +19,7 @@ Specs are added here via repo-local `write-prd`. Do not treat informal chat note
 
 ## PRD workflow
 
-```text
-Source of truth: local markdown in prd/.
-Skills: write-prd, implement-from-prd, sql-gym-implement-issue, sql-gym-run-phase, check-prd-alignment, update-prd.
-```
+Source of truth: committed markdown in `prd/`. Repo skills and when to use them: [docs/WORKFLOW.md § Skills catalog](../docs/WORKFLOW.md#skills-catalog).
 
 ## Active phase
 

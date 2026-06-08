@@ -102,7 +102,7 @@ Gate (no handoff while blocking findings remain): [.cursor/rules/workflow.mdc](.
 ## Linear conventions
 
 - **Project:** [sql-gym](https://linear.app/times-api/project/sql-gym-ce6a8985c99e) (separate from the Times API product backlog; issues use prefix `TIM-`)
-- **Epic:** one parent issue per phase (e.g. `Phase 0 – Data & grading`)
+- **Epic:** one parent issue per phase (e.g. `Phase 1 | Dataset and exercise catalog`)
 - **Issue title:** `Phase N | Short title`
 - **Issue body template:**
 
@@ -159,4 +159,4 @@ Reviewer pass clean — sql-gym-pre-review for TIM-42 (final boxes + ready for m
 
 ## Secrets
 
-No secrets are committed. When the app is built, document required env vars in `.env.example`. On Cursor Cloud VMs, the **agent** should ask the **user** to add secrets in Cloud settings—do not assume a local `.env` exists.
+See [.cursor/rules/workflow.mdc § Agent references](../.cursor/rules/workflow.mdc#agent-references).

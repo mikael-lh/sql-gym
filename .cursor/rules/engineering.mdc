@@ -5,7 +5,7 @@ alwaysApply: true
 
 # Engineering standards
 
-Apply when **writing** code in this repo. Authoring principles below are adapted from [google/eng-practices](https://github.com/google/eng-practices) ([repo summary](docs/references/google-eng-practices.md)). For the full **review** checklist, use that doc in **sql-gym-pre-review**—not here.
+Apply when **writing** code in this repo. Authoring principles below are adapted from [google/eng-practices](https://github.com/google/eng-practices) ([repo summary](docs/references/google-eng-practices.md)). For the full **review** checklist, use that doc in **sql-gym-pre-review-reviewer** (orchestrated by **sql-gym-pre-review**)—not here.
 
 ## Writing changes
 
@@ -33,4 +33,4 @@ Use [docs/references/google-eng-practices.md](docs/references/google-eng-practic
 
 **SQL:** [Simon Holywell SQL Style Guide](https://www.sqlstyle.guide/) for portable ANSI clarity; repo SQL linter/dialect overrides when configured.
 
-**HTML/CSS / JS (only when the PRD includes a web UI):** [HTML/CSS guide](https://google.github.io/styleguide/htmlcssguide.html), [JavaScript guide](https://google.github.io/styleguide/jsguide.html) for framework code; frontend linter config overrides when present.
+**HTML/CSS / JS (when changing frontend markup, styles, or application JS):** [HTML/CSS guide](https://google.github.io/styleguide/htmlcssguide.html), [JavaScript guide](https://google.github.io/styleguide/jsguide.html) for framework code; frontend linter config overrides when present.
