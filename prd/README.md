@@ -21,7 +21,7 @@ Specs are added here via repo-local `write-prd`. Do not treat informal chat note
 
 ```text
 Source of truth: local markdown in prd/.
-Skills: write-prd, implement-from-prd, check-prd-alignment, update-prd.
+Skills: write-prd, implement-from-prd, sql-gym-implement-issue, sql-gym-run-phase, check-prd-alignment, update-prd.
 ```
 
 ## Active phase

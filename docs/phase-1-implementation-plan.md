@@ -159,4 +159,4 @@ Approved by the user. Do not write application code outside the scoped Linear is
 
 ## Approval
 
-Approved by the user after local `implement-from-prd` planning. Implement only one Linear issue at a time using `sql-gym-start-issue` / `sql-gym-implement-issue`.
+Approved by the user after local `implement-from-prd` planning. Implement only one Linear issue at a time using `sql-gym-implement-issue`, or use `sql-gym-run-phase` when the user has authorized sequential autonomous execution.

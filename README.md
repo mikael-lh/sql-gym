@@ -119,7 +119,7 @@ Specs, implementation plans, PRD alignment, and PRD updates use repo-local skill
 
 ## How we work
 
-Specs live in **`prd/`** in this repo. Work is tracked in **Linear**, shipped via **GitHub PRs**, and built with **Cursor** using the repo skills in the prompts below. You own product calls, plan sign-off, and merge.
+Specs live in **`prd/`** in this repo. Work is tracked in **Linear**, shipped via **GitHub PRs**, and built with **Cursor** using the repo skills in the prompts below. You own product calls and plan sign-off. You merge by default; agents merge only when you explicitly authorize autonomous GitHub MCP merges for that run.
 
 ## Workflow
 
@@ -128,9 +128,9 @@ Specs live in **`prd/`** in this repo. Work is tracked in **Linear**, shipped vi
 | **Requirements** | Approve specs; set the active phase in [prd/README.md](prd/README.md) | local `write-prd` -> commit under `prd/` |
 | **Backlog** | Create Linear issues (`TIM-NN`) with a `prd/` link and acceptance criteria | — |
 | **Plan** | Review and approve the phase implementation plan | local `implement-from-prd` plus engineering-principles check |
-| **Build** | Confirm the plan is approved | `sql-gym-implement-issue` for `TIM-NN` → issue/PRD/plan check + branch + draft PR |
+| **Build** | Confirm the plan is approved | `sql-gym-implement-issue` for one `TIM-NN`, or `sql-gym-run-phase` for approved autonomous phase execution |
 | **Pre-review** | Wait for the loop to finish; then review the PR yourself | **`sql-gym-pre-review`** for `TIM-NN` (see below) |
-| **Ship** | Merge, close the Linear issue; update `prd/` if scope changed | local `update-prd` when useful |
+| **Ship** | Merge, close the Linear issue; assess `update-prd` after merged implementation | local `update-prd` when PRD reality changed |
 
 ### Pre-review (one command)
 
@@ -150,6 +150,10 @@ Run write-prd; save under prd/; update prd/README.md active phase when I approve
 
 ```text
 Plan approved — sql-gym-implement-issue for TIM-42
+```
+
+```text
+sql-gym-run-phase for Phase 1 — autonomous implementation and GitHub MCP squash merge authorized for implementation PRs and update-prd PRs
 ```
 
 ```text

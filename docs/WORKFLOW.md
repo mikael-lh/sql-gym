@@ -50,73 +50,36 @@ Do not install overlapping planners (e.g. Compound Engineering or pstack) unless
 
 ## End-to-end flow
 
+Canonical chain:
+
+```text
+write-prd
+  -> user approves and merges PRD
+  -> implement-from-prd
+  -> user approves and merges plan + Linear issues are created
+  -> sql-gym-implement-issue
+  -> sql-gym-pre-review
+       -> pre-review-reviewer <-> pre-review-fix until no blocking findings
+       -> pre-review final handoff
+  -> user reviews and merges, or autonomous phase runner merges when explicitly authorized for implementation PRs
+  -> update-prd
+  -> user approves and merges PRD reality update, or autonomous phase runner merges when explicitly authorized for update-prd PRs
+```
+
 Each step has an owner and an outcome. Skills named below are repo-local skills in [.cursor/skills/](../.cursor/skills/).
 
-### 1. `write-prd` — decide *what* to build
+| Step | Owner | What happens | Outcome |
+|------|-------|--------------|---------|
+| `write-prd` | User + agent | Define or revise product/phase requirements under `prd/`. Do not use Superpowers `brainstorming` for product scope. | PRD PR merged; `prd/README.md` names the active phase only after user approval. |
+| `implement-from-prd` | User + agent | Produce the phase milestone plan, check it against engineering guidance, and stop for approval. | Approved implementation plan PR merged. |
+| Linear backlog | User or agent | Create a parent issue and child `TIM-NN` issues from the approved plan. Each issue links `prd/…` and concise acceptance criteria. | Traceable issue list; Linear tracks status but does not replace `prd/`. |
+| `sql-gym-implement-issue` | Agent | For one `TIM-NN`, verify Linear + PRD + approved plan alignment, branch, implement, test, and open a PR. | Focused implementation PR with pre-review boxes unchecked. |
+| `sql-gym-pre-review` | Agent + independent reviewer | Orchestrate `pre-review-reviewer` ↔ `pre-review-fix` until there are no blocking findings, then run final verification and update PR boxes. | PR ready for user review or autonomous merge if explicitly authorized. |
+| Merge | User, or autonomous runner when explicitly authorized for implementation PRs | Merge the implementation PR. Autonomous agents use GitHub MCP `merge_pull_request`; do not use `gh` for writes. | Shipped change on `main`. |
+| `update-prd` | Agent | Record what actually shipped, deviations, deferred scope, and completed requirements when PRD reality changed. | PRD reality update PR. |
+| PRD reality merge | User, or autonomous runner when explicitly authorized for update-prd PRs | Merge the `update-prd` PR, close/update Linear, pull `main`, continue if running a phase. | Specs and tickets match `main`. |
 
-**Skill:** local `write-prd` only (not Superpowers `brainstorming`).
-
-**When:** Starting the project, a new phase, or a major feature area.
-
-**What happens:** The **user** runs local **write-prd** with the **agent** (or directs the agent to run it). Output is requirements—vision, phases, acceptance criteria—saved under `prd/`, starting with `prd/00-product-vision.md` and `prd/phase-N-….md` for the phase being scoped.
-
-**Outcome:** Committed specs in git. [prd/README.md](../prd/README.md) is updated with the **active phase** so agents know implementation is allowed.
-
----
-
-### 2. `implement-from-prd` — plan *how* to build it
-
-**Skill:** local `implement-from-prd` for the milestone plan; Superpowers **optional** after approval for technical step breakdown (`executing-plans`).
-
-**When:** Before writing application code for a phase or large epic.
-
-**What happens:** The **agent** runs local **implement-from-prd** on the relevant `prd/` doc and proposes a **milestone plan**: files to touch, order of work, risks. Before presenting the plan, the **agent** checks it against [google-eng-practices.md](references/google-eng-practices.md) and [.cursor/rules/engineering.mdc](../.cursor/rules/engineering.mdc), then fixes blocking planning gaps or calls out remaining trade-offs. The **user** reviews and approves (or adjusts) before the **agent** edits code. If helpful, the **agent** may run Superpowers **executing-plans** on the approved plan only—without changing product scope.
-
-**Outcome:** Agreed implementation plan—no surprise architecture or scope creep mid-flight.
-
----
-
-### 3. Linear — track tasks
-
-**Plugin:** Linear MCP (marketplace).
-
-**When:** After the **user** has an approved plan and wants a prioritized backlog.
-
-**What happens:** The **user** or **agent** creates a **parent epic per phase** and **child issues** from milestones. Each issue links to a `prd/…` section and lists acceptance criteria (see [Linear conventions](#linear-conventions)).
-
-**Outcome:** Traceable work items. Linear holds status; it does **not** replace the PRD.
-
----
-
-### 4. Code + GitHub PR — ship the change
-
-**Plugins:** Superpowers (TDD, `code-reviewer`, `finishing-a-development-branch` as needed) + `engineering.mdc`.
-
-**When:** Picking up a Linear issue (or an approved task without Linear).
-
-**What happens:** The **agent** runs **sql-gym-implement-issue** for one `TIM-NN` issue. Before coding, that skill reads the Linear issue, linked `prd/` section, and matching approved implementation plan milestone; if they conflict or the issue expands scope, the agent stops for user correction. Then the agent branches, implements against that issue's acceptance criteria, and opens a PR using [.github/pull_request_template.md](../.github/pull_request_template.md). The **agent** follows [.cursor/rules/engineering.mdc](../.cursor/rules/engineering.mdc) while coding. After a logical chunk, the **agent** runs Superpowers **code-reviewer** against the approved plan.
-
-**Outcome:** Reviewable diff on GitHub, linked to Linear when applicable (`TIM-NN:` in title). The **agent** completes [pre-review](#pre-review-before-user-review) before marking the PR ready for **user** review.
-
----
-
-### 5. `check-prd-alignment` — verify *what* shipped matches spec
-
-**When:** Part of [pre-review](#pre-review-before-user-review), before the PR is ready for **user** review.
-
-**What happens:** The **agent** runs local **check-prd-alignment** against the relevant `prd/phase-*.md` section. It flags missing acceptance criteria, spec drift, and scope gaps. Blocking gaps are **fixed** (or escalated for an approved deviation) as part of the [pre-review iteration loop](#pre-review-before-user-review).
-
-**Outcome:** Confidence the merge matches product intent—not a substitute for code review or tests.
-
----
-
-### 6. `update-prd` + close Linear — record reality
-
-**When:** After merge (or phase complete).
-
-**What happens:** The **user** or **agent** runs local **update-prd** to update `prd/` if behavior differed from spec. The **user** closes the Linear issue; deferred work goes into PRD **Future work** instead of a silent backlog.
-
-**Outcome:** Specs and tickets match what is actually in `main`.
+For approved phase plans that should run without per-ticket prompts, use **`sql-gym-run-phase`**.
 
 ---
 
@@ -139,7 +102,7 @@ Phases and detailed scope live in [prd/00-product-vision.md](../prd/00-product-v
 
 ## Pre-review before user review
 
-**Agents** (especially cloud) run automated checks **before** the **user** reviews. The **user** judges product and architecture; **agents** handle hygiene and spec alignment.
+**Agents** (especially cloud) run automated checks **before** the **user** reviews or before an explicitly authorized autonomous merge. The **user** owns product and architecture judgment through PRD/plan approval; **agents** handle hygiene and spec alignment.
 
 ### Two roles (do not self-review)
 
@@ -150,7 +113,7 @@ Phases and detailed scope live in [prd/00-product-vision.md](../prd/00-product-v
 
 The **implementer** agent must **not** run the judgment review alone. Use a **new agent/chat**, **Cloud Agent handoff**, or a **readonly Task** subagent (`code-reviewer` / `explore`) for the reviewer pass.
 
-**Iterate until pass:** Reviewer → (if blocking) fixer on same branch → reviewer again → … until the reviewer reports **no blocking items**. Then run final tests/lint, check PR boxes, mark ready for **user** review. Non-blocking items may stay as **`Nit:`** per [google-eng-practices.md](references/google-eng-practices.md).
+**Iterate until pass:** Reviewer → (if blocking) fixer on same branch → reviewer again → … until the reviewer reports **no blocking items**. Then run final tests/lint, check PR boxes, and mark ready for **user** review or authorized autonomous merge. Non-blocking items may stay as **`Nit:`** per [google-eng-practices.md](references/google-eng-practices.md).
 
 Orchestration: **sql-gym-pre-review** (full loop).
 
@@ -234,11 +197,12 @@ Thin wrappers around the flow below. Prefer these over “follow WORKFLOW step b
 | **check-prd-alignment** | Compare a branch or PR diff against a local PRD |
 | **update-prd** | Record what shipped, deviations, and future work in `prd/` |
 | **sql-gym-implement-issue** | After phase plan approval — verify one `TIM-NN` against PRD/plan, code, and open draft PR |
+| **sql-gym-run-phase** | Autonomously run approved phase child issues in sequence |
 | **sql-gym-pre-review-reviewer** | Independent review pass — findings only, no commits |
 | **sql-gym-pre-review-fix** | Apply blocking reviewer findings + tests/deslop |
 | **sql-gym-pre-review** | Orchestrate reviewer ↔ fixer loop, then ready for user review |
 
-Chain: **implement-from-prd** → (user approves phase plan + Linear issues exist) → **sql-gym-implement-issue** → **pre-review-reviewer** ↔ **pre-review-fix** (until no blocking) → **pre-review** final handoff → (user reviews and merges).
+Chain: **write-prd** → (user approves and merges) → **implement-from-prd** → (user approves and merges + Linear issues exist) → **sql-gym-implement-issue** → **sql-gym-pre-review** (`pre-review-reviewer` ↔ `pre-review-fix` until no blocking) → merge → **update-prd** → merge.
 
 Skills live in [.cursor/skills/](../.cursor/skills/).
 
@@ -254,6 +218,10 @@ implement-from-prd for prd/phase-0-product-scaffolding.md; produce the plan only
 
 ```text
 Plan approved — sql-gym-implement-issue for TIM-42
+```
+
+```text
+sql-gym-run-phase for Phase 1 — autonomous implementation and GitHub MCP squash merge authorized for implementation PRs and update-prd PRs
 ```
 
 ```text
