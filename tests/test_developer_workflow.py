@@ -13,10 +13,18 @@ BASELINE_COMMANDS = (
     "./scripts/validate-env.sh",
 )
 
+README_REQUIRED_PHASE1_DOCS = (
+    "## Phase 1 behavior status",
+    "50 structured exercise entries",
+    "/practice` catalog browsing",
+    "/practice/{dataset_id}/{exercise_id}` exercise preview",
+    "SQL is not executed",
+    "Grading is not implemented",
+)
+
 README_REQUIRED_PHASE0_DOCS = (
     "## Phase 0 behavior status",
     "Working behavior",
-    "Placeholder behavior",
     "## Remaining follow-up decisions",
     "Production Times refresh process",
     "Grading model",
@@ -46,6 +54,13 @@ def test_readme_documents_baseline_validation_checks() -> None:
     assert "## Baseline validation checks" in readme
     for command in BASELINE_COMMANDS:
         assert command in readme
+
+
+def test_readme_documents_phase_1_behavior_status() -> None:
+    readme = README.read_text()
+
+    for expected_text in README_REQUIRED_PHASE1_DOCS:
+        assert expected_text in readme
 
 
 def test_readme_documents_phase_0_behavior_status() -> None:
