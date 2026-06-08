@@ -28,6 +28,7 @@ Current implementation context:
 - **Attempt persistence:** **session-only** for Phase 2 (no accounts, no durable attempt history).
 - **SQL editor:** **CodeMirror 6** on exercise preview pages (not plain textarea).
 - **Home page:** refresh `/` to reflect Phase 1 catalog and Phase 2 execution/grading boundaries honestly (not a new standalone catalog route).
+- **Grading coverage:** strict grid-match grading for **all 50** Times Archive catalog exercises (not a pilot subset).
 
 ## Problem
 
@@ -37,7 +38,7 @@ Learners can browse and preview 50 Times Archive exercises, but they cannot run 
 
 - Load production Times Archive article rows from a `times-api` export into PostgreSQL for learner queries.
 - Let learners write and run PostgreSQL on exercise preview pages using CodeMirror.
-- Grade a defined pilot set of exercises with strict grid-match comparison against stored expected results.
+- Grade **all 50** catalog exercises with strict grid-match comparison against stored expected results.
 - Show clear pass/fail feedback and preserve placeholder honesty for capabilities still deferred (AI grading, accounts, durable progress, timed scoring).
 - Keep execution and grading boundaries testable with focused PRs and documented local setup (Docker Compose).
 - Refresh the home page so new users can discover the practice catalog and understand what works in Phase 2.
@@ -48,7 +49,6 @@ Learners can browse and preview 50 Times Archive exercises, but they cannot run 
 - User authentication, accounts, or cross-session personalization.
 - Durable progress, attempt history, or database-backed learner state beyond the practice database dataset tables.
 - Timed-mode scoring or interview timers.
-- Grading all 50 exercises in the first Phase 2 slice (pilot subset is acceptable if requirements and tests cover the pattern).
 - Scheduled or automated Times refresh beyond a documented import path for developers.
 - Non-developer exercise authoring tooling.
 - Arbitrary user-uploaded datasets.
@@ -60,7 +60,7 @@ Learners can browse and preview 50 Times Archive exercises, but they cannot run 
 
 As a learner, I want to run my SQL against real Times article data so practice feels realistic.
 
-As a learner, I want to know whether my query result exactly matches the expected answer for gradable exercises.
+As a learner, I want to know whether my query result exactly matches the expected answer for any catalog exercise I submit.
 
 As a learner, I want the app to be honest about what still does not work (AI feedback, saved progress across visits, timed scoring).
 
@@ -87,7 +87,7 @@ Acceptance criteria:
 - A documented import path loads Times article data from `times-api` into a schema aligned with `times-api/schema/archive_articles.json` (or the current canonical archive schema in that repo).
 - `TIMES_ARCHIVE_CATALOG_DATASET` provenance and docs reference the Docker-backed data path rather than the two-row demo JSON as the execution source of truth.
 - Import/setup steps are documented in README or a linked dev doc (e.g. `docs/times-data-setup.md`).
-- Tests or validation scripts verify the imported row count is above the Phase 1 demo size and that required columns exist for pilot exercises.
+- Tests or validation scripts verify the imported row count is above the Phase 1 demo size and that required columns exist for catalog exercises.
 
 ### R2. SQL execution on exercise preview
 
@@ -102,18 +102,18 @@ Acceptance criteria:
 - Learners cannot mutate practice data, create objects, or access non-practice schemas.
 - UI copy states that only PostgreSQL against the Times practice database is supported.
 
-### R3. Strict grid-match grading (pilot exercises)
+### R3. Strict grid-match grading (all 50 exercises)
 
-The app must grade submitted results for a documented pilot set of catalog exercises using strict grid match.
+The app must grade submitted results for **every** Times Archive catalog exercise (all 50 entries) using strict grid match.
 
 Acceptance criteria:
 
-- For each pilot exercise, expected results are defined in catalog or companion data using `ExpectedResultSpec` (and any companion grid payload required for strict match).
+- Each of the 50 catalog exercises has a complete expected result definition in catalog or companion data using `ExpectedResultSpec` and the companion grid payload required for strict match.
+- Catalog validation or tests reject any exercise missing expected-result data required for grading.
 - **Strict grid match** means: identical column names and order, identical row count, identical cell values in row order (including NULL representation as defined in the grading spec).
 - Grading returns pass or fail with a concise summary; no partial credit in Phase 2.
-- Exercises outside the pilot set may remain run-only or show “grading not configured yet” without implying failure.
 - Grading does not execute learner SQL twice in ways that cause flaky comparisons unless documented; comparison uses deterministic result capture.
-- Tests cover pass case, fail case (wrong values, wrong row count, wrong column order), and exercises without expected results.
+- Tests cover pass case, fail case (wrong values, wrong row count, wrong column order), and catalog-wide coverage (all 50 exercises have gradable expected results).
 
 ### R4. Session-only attempts and feedback
 
@@ -133,7 +133,7 @@ UI and docs must reflect Phase 2 capabilities and remaining boundaries.
 
 Acceptance criteria:
 
-- Exercise preview and practice pages clearly distinguish: SQL execution works (Phase 2), grading works for pilot exercises, AI grading / accounts / durable progress / timed scoring do not.
+- Exercise preview and practice pages clearly distinguish: SQL execution and strict grading work for all catalog exercises (Phase 2); AI grading / accounts / durable progress / timed scoring do not.
 - `/` home page is updated to describe Phase 1 catalog + Phase 2 execution/grading and link learners into `/practice` (no standalone catalog route).
 - README Phase 2 behavior section is updated when implementation lands (may be deferred to the docs milestone).
 - `./scripts/validate-env.sh` remains the full local validation entry point; Phase 2 adds documented checks for Docker/DB where feasible without blocking contributors who skip execution locally (document any optional vs required checks).
@@ -155,7 +155,6 @@ Acceptance criteria:
 - Query timeout or row limit exceeded: user-friendly error; no partial grading.
 - SQL syntax error: show database error message sanitized for learners.
 - Non-`SELECT` statements (if disallowed): reject with clear policy message.
-- Exercise without expected result payload: run allowed; grading unavailable message (not a fail).
 - Strict match on floating-point or type formatting: define comparison rules in implementation plan (prefer exact types from PostgreSQL result sets; document NULL vs empty string).
 - Session lost: attempt state reset; no error crash.
 - Unknown dataset/exercise routes: existing Phase 1 404 behavior preserved.
@@ -166,7 +165,6 @@ Acceptance criteria:
 - Accounts, login, or cross-device progress.
 - Durable attempt storage in PostgreSQL or other DB tables for learners.
 - Timed-mode timers, scoring, or leaderboards.
-- Grading every catalog exercise (pilot subset required; expand later).
 - Automated scheduled refresh from `times-api`.
 - Monaco editor (CodeMirror 6 is the chosen editor).
 - CI provisioning of Docker Postgres unless separately approved (document local/agent setup first).
@@ -176,8 +174,9 @@ Acceptance criteria:
 Phase 2 is successful when a reviewer can:
 
 - Run `docker compose up` (or documented equivalent), import Times data, and start the app with a valid `DATABASE_URL`.
-- Open a pilot exercise preview, write SQL in CodeMirror, run it against real Times rows, and submit for grading.
-- See strict pass/fail feedback that matches documented grid-match rules.
+- Open any catalog exercise preview, write SQL in CodeMirror, run it against real Times rows, and submit for strict pass/fail grading.
+- See strict pass/fail feedback that matches documented grid-match rules on any of the 50 exercises.
+- Confirm every catalog exercise has expected-result data and is gradable (tests or validation enforce count = 50).
 - Confirm session-only behavior (no account, no persisted history across a fresh session).
 - Land on an updated home page that routes them to `/practice` with accurate capability copy.
 - Run documented validation commands successfully.
@@ -185,8 +184,8 @@ Phase 2 is successful when a reviewer can:
 ## Open questions
 
 - **times-api export pin:** which commit, archive file, or export command is canonical for Phase 2 imports?
-- **Pilot exercise count:** how many of the 50 exercises must ship with expected results in the first release (suggest 5–10 representative exercises across difficulties)?
 - **Table naming:** confirm learner-facing table name(s) in Postgres (e.g. `times_archive`) match exercise prompts and sample SQL.
+- **Expected-result authoring:** how expected-result grids for all 50 exercises are produced and verified (reference queries, exported grids, or generated from times-api data).
 - **CodeMirror delivery:** CDN vs vendored static assets (implementation plan should pick one for offline/agent use).
 - **Session mechanism:** Starlette session middleware vs signed cookie payload (implementation plan decides).
 - **Optional validate-env:** whether `./scripts/validate-env.sh` requires Docker Postgres or treats DB checks as optional when `DATABASE_URL` is unset.
