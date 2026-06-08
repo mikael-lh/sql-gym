@@ -34,35 +34,20 @@ CORE_LOOP = [
 
 PLACEHOLDERS = [
     {
-        "title": "Dataset selection",
-        "description": "Times Archive demo samples are available on the practice placeholder page.",
+        "title": "Accounts and durable progress",
+        "description": "Learner attempts stay in the browser session only; no sign-in or saved history.",
     },
     {
-        "title": "Difficulty selection",
-        "description": (
-            "Beginner, intermediate, and advanced paths are reserved for future exercises."
-        ),
+        "title": "AI grading and explanations",
+        "description": "Strict grid-match grading is live; AI feedback and partial credit are not.",
     },
     {
-        "title": "Practice mode",
-        "description": "Timed and untimed practice options are visible here but not active yet.",
+        "title": "Timed-mode scoring",
+        "description": "Timed exercises are labeled in the catalog but interview timers are not active.",
     },
     {
-        "title": "SQL editor",
-        "description": (
-            "The editor is reserved for a future implementation; queries do not run yet."
-        ),
-    },
-    {
-        "title": "Grading feedback",
-        "description": "Exact-result and AI-assisted grading remain future work.",
-    },
-    {
-        "title": "Progress tracking",
-        "description": (
-            "Completion history and skill progress will stay demo-only until persistence is "
-            "approved."
-        ),
+        "title": "Standalone catalog route",
+        "description": "Catalog browsing remains integrated into `/practice` only.",
     },
 ]
 
@@ -90,10 +75,10 @@ def create_app() -> FastAPI:
             "index.html",
             {
                 "page_title": "SQL Gym",
-                "status_label": "Phase 0 app shell",
+                "status_label": "Phase 2 practice",
                 "positioning": (
-                    "Practice realistic SQL questions on curated datasets, then build toward "
-                    "faster, clearer answers."
+                    "Browse 50 Times Archive SQL exercises, run PostgreSQL against imported "
+                    "article data, and get strict pass/fail grading on exercise previews."
                 ),
                 "core_loop": CORE_LOOP,
                 "placeholders": PLACEHOLDERS,

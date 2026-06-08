@@ -4,12 +4,16 @@ A lightweight gym for SQL: practice on curated datasets, run queries, and level 
 
 ## Status
 
-**Phase 1 complete** — dataset and exercise catalog ([prd/phase-1-dataset-exercise-catalog.md](prd/phase-1-dataset-exercise-catalog.md)). Phase 0 scaffold is complete. New product scope requires a new phase PRD plus an approved implementation plan.
+**Phase 2 complete** — SQL execution and strict grid-match grading ([prd/phase-2-sql-execution-grading.md](prd/phase-2-sql-execution-grading.md)). Phase 1 catalog and Phase 0 scaffold are complete. New product scope requires a new phase PRD plus an approved implementation plan.
 
 | | |
 |--|--|
 | Full workflow reference | [docs/WORKFLOW.md](docs/WORKFLOW.md) |
 | Product specs | [prd/README.md](prd/README.md) |
+| Phase 2 implementation plan | [docs/phase-2-implementation-plan.md](docs/phase-2-implementation-plan.md) |
+| Times data setup | [docs/times-data-setup.md](docs/times-data-setup.md) |
+| Grading rules | [docs/grading.md](docs/grading.md) |
+| Phase 2 manual test plan | [docs/phase-2-manual-test-plan.md](docs/phase-2-manual-test-plan.md) |
 | Phase 1 implementation plan | [docs/phase-1-implementation-plan.md](docs/phase-1-implementation-plan.md) |
 | Phase 0 implementation plan | [docs/phase-0-implementation-plan.md](docs/phase-0-implementation-plan.md) |
 | Linear project | [sql-gym](https://linear.app/times-api/project/sql-gym-ce6a8985c99e) (`TIM-` issues) |
@@ -61,7 +65,34 @@ For TIM-21 and future scaffold PRs, reviewers and agents should run these checks
 | Test suite | `uv run pytest` |
 | Full repo validation | `./scripts/validate-env.sh` |
 
-`./scripts/validate-env.sh` wraps the build, lint, static check, and test commands above, then verifies the PRD/workflow files that future agents rely on.
+`./scripts/validate-env.sh` wraps the build, lint, static check, and test commands above, then verifies the PRD/workflow files that future agents rely on. When `DATABASE_URL` is set, it also pings Postgres (optional; skipped when unset).
+
+### Docker Postgres and Times data
+
+```bash
+cp .env.example .env
+docker compose up -d
+./scripts/import-times-from-times-api.sh
+```
+
+See [docs/times-data-setup.md](docs/times-data-setup.md) for GCS credentials and troubleshooting.
+
+## Phase 2 behavior status
+
+Working behavior:
+
+- Docker Compose PostgreSQL with imported Times Archive rows (`times_archive` table).
+- CodeMirror SQL editor on exercise preview pages with **Run SQL** and **Submit for grading**.
+- Strict grid-match grading for all 50 catalog exercises (session-only attempts).
+- Learner-facing SELECT-only execution with timeout and row limits.
+- Home and practice copy that distinguish working behavior from deferred features.
+
+Placeholder behavior:
+
+- Authentication, accounts, and durable progress storage.
+- AI grading, explanations, and partial credit.
+- Timed-mode scoring and interview timers.
+- Standalone `/catalog` route (catalog remains in `/practice`).
 
 ## Phase 1 behavior status
 
@@ -75,13 +106,7 @@ Working behavior:
 - Inline empty states when practice filters return no exercises.
 - Hints and sample SQL disclosure patterns that keep illustrative SQL hidden by default.
 
-Placeholder behavior:
-
-- SQL is not executed.
-- Grading is not implemented.
-- Authentication, user accounts, durable progress storage, and AI feedback are not implemented.
-- Timed-mode scoring behavior is not active even when exercises are labeled Timed.
-- Article row data still uses the small schema-aligned demo fixture while catalog exercises are production-ready metadata.
+Historical note: Phase 1 shipped catalog browsing and exercise previews before Phase 2 added execution and grading on preview pages.
 
 ## Phase 0 behavior status
 
@@ -100,11 +125,11 @@ Historical placeholder behavior (superseded on `/practice` by Phase 1 catalog br
 
 ## Remaining follow-up decisions
 
-- Production Times refresh process: decide the canonical source, schema refresh workflow, and fixture-to-production data path.
-- Grading model: choose exact-result grading rules, partial-credit behavior, and feedback shape.
-- Persistence: decide whether progress, attempts, and exercise state need a database or another storage layer.
-- Authentication: decide if and when accounts are required for learner progress or personalization.
-- AI provider: choose whether AI feedback is in scope, which provider to use, and what rubric constrains it.
+- Production Times refresh automation beyond the documented GCS import path.
+- Persistence: learner accounts, attempt history, and cross-session progress.
+- Authentication and personalization.
+- AI provider: explanations, hints, and partial credit beyond strict grid match.
+- Timed-mode scoring behavior.
 
 ## Cursor setup
 

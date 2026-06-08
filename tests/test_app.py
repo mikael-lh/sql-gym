@@ -30,11 +30,12 @@ def test_home_page_renders_scaffold() -> None:
 
     assert response.status_code == 200
     assert "SQL Gym" in response.text
-    assert "Practice realistic SQL questions on curated datasets" in response.text
-    assert "Phase 0 app shell" in response.text
+    assert "Times Archive SQL exercises" in response.text
+    assert "Phase 2 practice" in response.text
+    assert "Start practice" in response.text
 
 
-def test_home_page_presents_core_loop_and_placeholders() -> None:
+def test_home_page_presents_core_loop_and_deferred_boundaries() -> None:
     response = asyncio.run(get("/"))
 
     assert response.status_code == 200
@@ -48,19 +49,14 @@ def test_home_page_presents_core_loop_and_placeholders() -> None:
     ]:
         assert expected_step in response.text
 
-    assert "Placeholders, not live features" in response.text
+    assert "Still deferred" in response.text
     assert "Future work" in response.text
     for expected_placeholder in [
-        "Dataset selection",
-        "Difficulty selection",
-        "Practice mode",
-        "SQL editor",
-        "Grading feedback",
-        "Progress tracking",
+        "Accounts and durable progress",
+        "AI grading and explanations",
+        "Timed-mode scoring",
     ]:
         assert expected_placeholder in response.text
-    assert "Start practice - coming soon" in response.text
-    assert "disabled" in response.text
 
 
 def test_practice_page_renders_catalog_backed_flow() -> None:

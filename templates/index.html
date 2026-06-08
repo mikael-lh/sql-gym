@@ -8,15 +8,16 @@
     {{ positioning }}
   </p>
   <p class="notice">
-    This shell shows the intended product shape. SQL execution, grading, and progress tracking are coming soon.
+    Phase 2 supports session-only run and grade on exercise previews. Accounts, AI feedback, and
+    durable progress are still deferred.
   </p>
-  <a class="primary-link" href="/practice">View practice placeholders</a>
+  <a class="primary-link" href="/practice">Start practice</a>
 </section>
 
 <section class="panel" aria-labelledby="loop-title">
   <div>
     <p class="eyebrow">Core loop</p>
-    <h2 id="loop-title">How practice will work</h2>
+    <h2 id="loop-title">How practice works</h2>
   </div>
   <ol class="loop-list">
     {% for step in core_loop %}
@@ -27,8 +28,8 @@
 
 <section class="panel" aria-labelledby="placeholder-title">
   <div>
-    <p class="eyebrow">Coming soon</p>
-    <h2 id="placeholder-title">Placeholders, not live features</h2>
+    <p class="eyebrow">Still deferred</p>
+    <h2 id="placeholder-title">Honest boundaries</h2>
   </div>
   <div class="placeholder-grid">
     {% for placeholder in placeholders %}
@@ -39,6 +40,5 @@
     </article>
     {% endfor %}
   </div>
-  <button class="disabled-action" type="button" disabled>Start practice - coming soon</button>
 </section>
 {% endblock %}

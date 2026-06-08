@@ -62,6 +62,26 @@ if [[ -f pyproject.toml ]]; then
   check "pytest suite" uv run pytest
 fi
 
+if [[ -n "${DATABASE_URL:-}" ]]; then
+  check "postgres reachable via DATABASE_URL" uv run python - <<'PY'
+import os
+import sys
+
+import psycopg
+
+database_url = os.environ.get("DATABASE_URL")
+if not database_url:
+    sys.exit(1)
+
+with psycopg.connect(database_url) as conn, conn.cursor() as cur:
+    cur.execute("SELECT 1")
+    if cur.fetchone() != (1,):
+        sys.exit(1)
+PY
+else
+  echo "SKIP: postgres reachable via DATABASE_URL (DATABASE_URL unset)"
+fi
+
 echo
 echo "=== Summary ==="
 echo "Passed: $pass"
@@ -79,4 +99,4 @@ if [[ -f pyproject.toml ]]; then
 else
   echo "Application stack: not scaffolded yet (see prd/phase-0-product-scaffolding.md)."
 fi
-echo "Active phase: Phase 1 - Dataset and exercise catalog (implementation still requires an approved plan)."
+echo "Active phase: Phase 2 - SQL execution and grading."
