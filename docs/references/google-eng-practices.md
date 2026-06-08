@@ -73,6 +73,6 @@ For JS application code (e.g. React, if chosen):
 
 | Layer | Role |
 |-------|------|
-| [.cursor/rules/engineering.mdc](../../.cursor/rules/engineering.mdc) | Always-on **authoring** principles (subset of Google—no reviewer checklist) |
+| [.cursor/rules/engineering.mdc](../../.cursor/rules/engineering.mdc) | Always-on **writing and reviewing** principles (subset of Google—no reviewer checklist) |
 | [sql-gym-pre-review-reviewer](../../.cursor/skills/sql-gym-pre-review-reviewer/SKILL.md) | Agent **review** pass using the checklist below |
 | [sql-gym-pre-review](../../.cursor/skills/sql-gym-pre-review/SKILL.md) | Orchestrator and PR handoff |

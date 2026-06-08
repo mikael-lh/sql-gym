@@ -34,6 +34,8 @@ README_WORKFLOW_POINTERS = (
 WORKFLOW_GATE_TEXT = (
     "No product features",
     "No application code",
+    "Engineering standards",
+    "engineering.mdc",
     "sql-gym-pre-review",
 )
 
