@@ -35,7 +35,10 @@ CORE_LOOP = [
 PLACEHOLDERS = [
     {
         "title": "Accounts and durable progress",
-        "description": "Learner attempts stay in the browser session only; no sign-in or saved history.",
+        "description": (
+            "Learner attempts stay in the browser session only; "
+            "no sign-in or saved history."
+        ),
     },
     {
         "title": "AI grading and explanations",
@@ -43,7 +46,10 @@ PLACEHOLDERS = [
     },
     {
         "title": "Timed-mode scoring",
-        "description": "Timed exercises are labeled in the catalog but interview timers are not active.",
+        "description": (
+            "Timed exercises are labeled in the catalog but "
+            "interview timers are not active."
+        ),
     },
     {
         "title": "Standalone catalog route",
