@@ -109,13 +109,14 @@ Placeholder behavior:
 
 ## Cursor setup
 
-Install these Cursor marketplace plugins once (details in [WORKFLOW](docs/WORKFLOW.md#tools-and-plugins)):
+Install these Cursor integrations once (details in [WORKFLOW § Stack](docs/WORKFLOW.md#stack)):
 
 - **Linear** (MCP) — backlog and issue status
+- **GitHub** (MCP) — PRs, CI, authorized merges on cloud agents
 - **Superpowers** — implementation and code review during builds
 - **cursor-team-kit** (optional) — `deslop` pass on changed code
 
-Specs, implementation plans, PRD alignment, and PRD updates use repo-local skills in [.cursor/skills](.cursor/skills). Connect Linear in Cursor settings if Linear-backed issue lookup fails.
+Specs, implementation plans, PRD alignment, and PRD updates use repo skills in [.cursor/skills](.cursor/skills). Connect Linear and GitHub in Cursor settings if MCP lookups fail.
 
 ## How we work
 
@@ -167,4 +168,4 @@ sql-gym-pre-review for TIM-42 — run the full pre-review loop and mark the PR r
 - **No application code** until there is an approved plan from local `implement-from-prd`.
 - **Your merge review** is still the final gate on product and architecture after pre-review passes.
 
-Deeper process detail, plugin roles, optional split-session pre-review, and engineering standards: [docs/WORKFLOW.md](docs/WORKFLOW.md).
+Deeper process detail, stack roles, optional split-session pre-review, and engineering standards: [docs/WORKFLOW.md](docs/WORKFLOW.md) ([end-to-end flow](docs/WORKFLOW.md#end-to-end-flow)).

@@ -40,5 +40,5 @@ Tell the **user** to run **`sql-gym-pre-review`** when implementation is complet
 
 ## References
 
-- [docs/WORKFLOW.md](../../../docs/WORKFLOW.md) — step 4
+- [docs/WORKFLOW.md § End-to-end flow](../../../docs/WORKFLOW.md#end-to-end-flow)
 - Do not expand scope beyond the issue / PRD section without **user** approval

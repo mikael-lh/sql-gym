@@ -34,6 +34,7 @@ Do not merge PRs unless the **user** explicitly authorized autonomous merge for 
 Stable ops for agents (local and Cloud). Current phase, stack, and dev commands: [prd/README.md](prd/README.md), [README.md](README.md), and `./scripts/validate-env.sh`.
 
 - **Linear MCP** for backlog (`TIM-` issues, [sql-gym project](https://linear.app/times-api/project/sql-gym-ce6a8985c99e)). If lookup fails, ask the **user** to fix MCP auth in Cursor settings.
+- **GitHub MCP** for PRs, comments, and authorized merges. Do not use `gh` write commands on cloud agents.
 - **No committed secrets.** When the app exists, document vars in `.env.example`. On Cloud VMs, ask the **user** to add secrets in Cloud settings—do not assume a local `.env`.
 
 # Playbook

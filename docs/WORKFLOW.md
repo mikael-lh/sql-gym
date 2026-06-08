@@ -1,52 +1,27 @@
 # Development workflow
 
-sql-gym uses **repo-local PRD skills + `prd/` + Linear + GitHub**. Product scope lives in **`prd/`**; this document is **how** the **user** and **agents** work together.
+sql-gym uses **repo skills + `prd/` + Linear + GitHub**. Product scope lives in **`prd/`**; this document is **how** the **user** and **agents** work together.
 
 **Terms:** **user** = developer; **agent** = Cursor agent (local or cloud).
 
-Hard gates and the PR handoff checklist are **always applied** via [.cursor/rules/workflow.mdc](../.cursor/rules/workflow.mdc). This file is the full playbook.
+**Gates and PR handoff checklist:** [.cursor/rules/workflow.mdc](../.cursor/rules/workflow.mdc) (always applied). This doc expands on that playbook; it does not restate the gates.
 
-## Quick reference (agents)
+Human quick start: [README.md § How we work](../README.md#how-we-work).
 
-Same as `workflow.mdc` — use when the agent opened this doc mid-task.
+## Stack
 
-**Gates**
+| Layer | What | Install / auth |
+|-------|------|----------------|
+| **Specs** | `prd/` directory | Committed in repo — authoritative product and phase requirements |
+| **Repo skills** | [.cursor/skills/](../.cursor/skills/) | Committed — invoke by skill name (see [Skills catalog](#skills-catalog)) |
+| **Backlog** | [Linear MCP](https://linear.app/times-api/project/sql-gym-ce6a8985c99e) | **User:** Cursor marketplace + MCP auth in settings |
+| **Delivery** | **GitHub MCP** | PRs, comments, CI status; **authorized** merges via `merge_pull_request` (not `gh` writes on cloud agents) |
+| **Implementation** | [Superpowers](https://cursor.com/marketplace) plugin | **User:** marketplace — plan execution, TDD, code review, branch/PR finish |
+| **Style pass** | cursor-team-kit `deslop` | **User:** optional marketplace plugin |
 
-- No product work without active phase in [prd/README.md](../prd/README.md) + relevant `prd/` doc.
-- Product specs: repo-local PRD skills + `prd/` only (not Superpowers `brainstorming`).
-- Application code: approved local `implement-from-prd` plan first.
-- Stay within the Linear issue / PRD section unless the **user** expands scope.
-
-**Before PR is ready for user review**
-
-- local `check-prd-alignment` -> note gaps in PR
-- Superpowers `code-reviewer` + cursor-team-kit `deslop` (or N/A docs-only)
-- Tests/lint, or state CI not configured yet
-- PR description: summary, risks, test plan, deviations
-
-Details: [Pre-review before user review](#pre-review-before-user-review).
-
-## Tools and plugins
-
-The **user** installs marketplace plugins from the [Cursor marketplace](https://cursor.com/marketplace) as needed. Repo-local skills are committed under `.cursor/skills/` and do not require marketplace installation.
-
-| Step | Tool | Role |
-|------|------|------|
-| 1–2, 5–6 | **Repo-local PRD skills** | Product specs, implementation planning, PRD alignment, post-ship updates |
-| 3 | **Linear** (MCP / marketplace) | Epics, issues, status—link `prd/`, not full PRD copy |
-| 4+ (implementation) | **Superpowers** | TDD, technical plan execution, code review, branch/PR finish |
+Repo skills own product specs, planning, alignment, and sql-gym delivery orchestration. Superpowers owns implementation mechanics only — not product discovery.
 
 Do not install overlapping planners (e.g. Compound Engineering or pstack) unless the **user** replaces this stack intentionally.
-
-## Tool roles
-
-| Tool | Owns |
-|------|------|
-| **Repo-local PRD skills** | Deterministic PRD workflows that read and write `prd/` |
-| **`prd/`** (in repo) | Authoritative committed specs the user and agents read |
-| **Linear** | Backlog, cycles, issue status, priorities |
-| **GitHub** | Code, branches, PRs, CI |
-| **Superpowers** | Implementation workflows only (not product discovery) |
 
 ## End-to-end flow
 
@@ -66,7 +41,7 @@ write-prd
   -> user approves and merges PRD reality update, or autonomous phase runner merges when explicitly authorized for update-prd PRs
 ```
 
-Each step has an owner and an outcome. Skills named below are repo-local skills in [.cursor/skills/](../.cursor/skills/).
+Each step has an owner and an outcome. Skills named below are repo skills in [.cursor/skills/](../.cursor/skills/).
 
 | Step | Owner | What happens | Outcome |
 |------|-------|--------------|---------|
@@ -81,28 +56,44 @@ Each step has an owner and an outcome. Skills named below are repo-local skills 
 
 For approved phase plans that should run without per-ticket prompts, use **`sql-gym-run-phase`**.
 
----
-
 Phases and detailed scope live in [prd/00-product-vision.md](../prd/00-product-vision.md) and [prd/README.md](../prd/README.md).
 
-## Linear conventions
+## Skills catalog
 
-- **Project:** [sql-gym](https://linear.app/times-api/project/sql-gym-ce6a8985c99e) (separate from the Times API product backlog; issues use prefix `TIM-`)
-- **Epic:** one parent issue per phase (e.g. `Phase 0 – Data & grading`)
-- **Issue title:** `Phase N | Short title`
-- **Issue body template:**
+Prefer invoking these skills by name over following this doc step by step. All live in [.cursor/skills/](../.cursor/skills/).
 
-  ```markdown
-  **PRD:** prd/phase-N-….md § "<section>"
-  **Acceptance criteria**
-  - [ ] …
-  **Out of scope**
-  - …
-  ```
+| Phase | Skill | When / outcome |
+|-------|-------|----------------|
+| Spec | **write-prd** | Write or revise a product, phase, or feature PRD under `prd/` |
+| Plan | **implement-from-prd** | Plan implementation from a local PRD; stops for user approval |
+| Align | **check-prd-alignment** | Compare a branch or PR diff against a linked `prd/` section (pre-review) |
+| Build | **sql-gym-implement-issue** | After plan approval — one `TIM-NN`: verify PRD/plan, implement, open draft PR |
+| Build | **sql-gym-run-phase** | Autonomously run approved phase child issues in sequence |
+| Review | **sql-gym-pre-review** | Orchestrate reviewer ↔ fixer loop, then ready for user review |
+| Review | **sql-gym-pre-review-reviewer** | Independent review pass — findings only, no commits |
+| Review | **sql-gym-pre-review-fix** | Apply blocking reviewer findings, tests, deslop |
+| Reality | **update-prd** | Record what shipped, deviations, and deferred work in `prd/` |
+
+### Superpowers plugin (marketplace)
+
+Implementation only — do not use for product scope. Use after an approved plan from **implement-from-prd**.
+
+| Intent | Skill |
+|--------|--------|
+| Execute an approved technical plan | `executing-plans` |
+| Test-driven implementation | TDD skills (when stack has tests) |
+| Review code vs plan and standards | `code-reviewer` |
+| Merge / PR / branch cleanup | `finishing-a-development-branch` |
+
+**Not used here:** `brainstorming` (use **write-prd** for product work).
+
+The **user** installs marketplace plugins: `/add-plugin superpowers`, `/add-plugin cursor-team-kit` (optional).
 
 ## Pre-review before user review
 
 **Agents** (especially cloud) run automated checks **before** the **user** reviews or before an explicitly authorized autonomous merge. The **user** owns product and architecture judgment through PRD/plan approval; **agents** handle hygiene and spec alignment.
+
+Full gate checklist: [.cursor/rules/workflow.mdc](../.cursor/rules/workflow.mdc#before-pr-is-ready-for-user-review-or-authorized-autonomous-merge).
 
 ### Two roles (do not self-review)
 
@@ -132,92 +123,46 @@ Post each reviewer pass under **`## Pre-review findings (pass N)`** on the PR.
 
 **Escalate** to the **user** (leave boxes unchecked, keep draft) when a product/architecture call is needed, independent review is not possible, plugins cannot run, or agents are stuck after several cycles.
 
-The **user** installs plugins: `/add-plugin superpowers`, `/add-plugin cursor-team-kit`.
+## Linear conventions
 
----
+- **Project:** [sql-gym](https://linear.app/times-api/project/sql-gym-ce6a8985c99e) (separate from the Times API product backlog; issues use prefix `TIM-`)
+- **Epic:** one parent issue per phase (e.g. `Phase 0 – Data & grading`)
+- **Issue title:** `Phase N | Short title`
+- **Issue body template:**
+
+  ```markdown
+  **PRD:** prd/phase-N-….md § "<section>"
+  **Acceptance criteria**
+  - [ ] …
+  **Out of scope**
+  - …
+  ```
 
 ## GitHub conventions
 
 - **Default branch:** `main`
 - **Branch naming:** `cursor/<short-desc>-<suffix>` — the cloud agent template supplies the suffix for the active session (e.g. `cursor/tim-42-parser-7a6a`). Do not use `feature/…` or other conventions.
 - **PRs:** use [.github/pull_request_template.md](../.github/pull_request_template.md) (includes agent pre-review checklist)
+- **Merges:** user merges by default; autonomous agents merge only when explicitly authorized for that run and PR type, via GitHub MCP (not `gh` writes)
 - **Done:** merged PR + Linear issue closed + PRD updated if scope changed
 
-## Repo-local PRD skills
+## Engineering standards
 
-Product/requirements only--not code style. These skills live in [.cursor/skills/](../.cursor/skills/) and do not require ChatPRD cloud access.
+Always-on agent guidance: [.cursor/rules/engineering.mdc](../.cursor/rules/engineering.mdc) and [google-eng-practices.md](references/google-eng-practices.md).
 
-| Intent | Skill |
-|--------|--------|
-| Write or expand specs | `write-prd` (save under `prd/`) |
-| Plan implementation from a PRD | `implement-from-prd` |
-| Pre-merge requirement check | `check-prd-alignment` |
-| Record what shipped vs spec | `update-prd` |
+- **CI** (add when stack is chosen): automated format, lint, and tests on every PR; add as first pre-review checkbox when enabled
+- **User PR review:** architecture and design judgment after agent pre-review passes
 
-## Superpowers plugin
+Optional later: enable **Cursor Bugbot** on the repo for automated PR review once there is substantial code — it catches bugs and issues, not product scope.
 
-Implementation only—do not use for product scope (see [Process rules](#process-rules-agents)).
+Do **not** use repo PRD skills for engineering style; they are for requirements and alignment only.
 
-| Intent | Skill |
-|--------|--------|
-| Execute an approved technical plan | `executing-plans` |
-| Test-driven implementation | TDD skills (when stack has tests) |
-| Review code vs plan and standards | `code-reviewer` |
-| Merge / PR / branch cleanup | `finishing-a-development-branch` |
+## Example prompts (agent-oriented)
 
-**Not used here:** `brainstorming` (use local `write-prd` for product work).
-
-## Engineering standards (code quality)
-
-| Mechanism | Role |
-|-----------|------|
-| [.cursor/rules/engineering.mdc](../.cursor/rules/engineering.mdc) | Always-on **agent** guidance: minimal scope, simplicity, DRY, documentation, [Google eng-practices](references/google-eng-practices.md) (adapted) |
-| **CI** (add when stack is chosen) | Automated format, lint, and tests on every PR; add as first pre-review checkbox when enabled |
-| **User PR review** | Architecture and design judgment (after agent pre-review passes) |
-
-Optional later: enable **Cursor Bugbot** on the repo for automated PR review once there is substantial code—it catches bugs and issues, not product scope.
-
-Do **not** use PRD skills for engineering style; they are for requirements and alignment only.
-
-## Process rules (agents)
-
-Enforced in [.cursor/rules/workflow.mdc](../.cursor/rules/workflow.mdc). Also:
-
-- Do not mark phases complete without updating `prd/`.
-- **Implementation:** Superpowers (`executing-plans`, TDD skills, `finishing-a-development-branch`) only after an approved plan from local `implement-from-prd`.
-
-## Repo skills (invoke by name)
-
-Thin wrappers around the flow below. Prefer these over “follow WORKFLOW step by step.”
-
-| Skill | When |
-|-------|------|
-| **write-prd** | Write or revise a local product, phase, or feature PRD |
-| **implement-from-prd** | Plan implementation from a local PRD; stops for approval |
-| **check-prd-alignment** | Compare a branch or PR diff against a local PRD |
-| **update-prd** | Record what shipped, deviations, and future work in `prd/` |
-| **sql-gym-implement-issue** | After phase plan approval — verify one `TIM-NN` against PRD/plan, code, and open draft PR |
-| **sql-gym-run-phase** | Autonomously run approved phase child issues in sequence |
-| **sql-gym-pre-review-reviewer** | Independent review pass — findings only, no commits |
-| **sql-gym-pre-review-fix** | Apply blocking reviewer findings + tests/deslop |
-| **sql-gym-pre-review** | Orchestrate reviewer ↔ fixer loop, then ready for user review |
-
-Chain: **write-prd** → (user approves and merges) → **implement-from-prd** → (user approves and merges + Linear issues exist) → **sql-gym-implement-issue** → **sql-gym-pre-review** (`pre-review-reviewer` ↔ `pre-review-fix` until no blocking) → merge → **update-prd** → merge.
-
-Skills live in [.cursor/skills/](../.cursor/skills/).
-
-## Example prompts (user → agent)
-
-```text
-Requirements pass: run write-prd; save under prd/; update prd/README.md active phase when the user approves.
-```
+Common user prompts live in [README.md § Prompts](../README.md#prompts). Use these when splitting work across sessions or authorizing autonomous runs:
 
 ```text
 implement-from-prd for prd/phase-0-product-scaffolding.md; produce the plan only and stop for approval.
-```
-
-```text
-Plan approved — sql-gym-implement-issue for TIM-42
 ```
 
 ```text
