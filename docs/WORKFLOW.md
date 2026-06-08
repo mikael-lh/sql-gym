@@ -97,7 +97,7 @@ The **user** installs marketplace plugins: `/add-plugin superpowers`, `/add-plug
 
 **Optional split across sessions:** [sql-gym-pre-review-reviewer](../.cursor/skills/sql-gym-pre-review-reviewer/SKILL.md) (findings only) and [sql-gym-pre-review-fix](../.cursor/skills/sql-gym-pre-review-fix/SKILL.md) (blocking fixes on the branch).
 
-Gate (no handoff while blocking findings remain): [.cursor/rules/workflow.mdc](../.cursor/rules/workflow.mdc#before-pr-is-ready-for-user-review-or-authorized-autonomous-merge). PR checkboxes: [.github/pull_request_template.md](../.github/pull_request_template.md). Procedure, fallbacks, and escalation: the skills above — not repeated here.
+Gate (no handoff while blocking findings remain): [.cursor/rules/workflow.mdc](../.cursor/rules/workflow.mdc#workflow-gates). PR checkboxes: [.github/pull_request_template.md](../.github/pull_request_template.md). Procedure, fallbacks, and escalation: the skills above — not repeated here.
 
 ## Linear conventions
 
