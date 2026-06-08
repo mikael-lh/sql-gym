@@ -4,7 +4,7 @@ A lightweight gym for SQL: practice on curated datasets, run queries, and level 
 
 ## Status
 
-**Phase 1 active** — dataset and exercise catalog ([prd/phase-1-dataset-exercise-catalog.md](prd/phase-1-dataset-exercise-catalog.md)). Phase 0 scaffold is complete. New product scope requires a PRD update or new phase PRD plus an approved implementation plan.
+**Phase 1 complete** — dataset and exercise catalog ([prd/phase-1-dataset-exercise-catalog.md](prd/phase-1-dataset-exercise-catalog.md)). Phase 0 scaffold is complete. New product scope requires a new phase PRD plus an approved implementation plan.
 
 | | |
 |--|--|
