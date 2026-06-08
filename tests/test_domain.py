@@ -35,7 +35,7 @@ def test_times_catalog_dataset_is_production_ready() -> None:
     assert dataset.id == "times-archive"
     assert dataset.is_demo is False
     assert dataset.provenance.source_name == "times-api"
-    assert "Production-ready catalog exercises" in dataset.provenance.note
+    assert "Production-ready catalog data" in dataset.provenance.note
 
 
 def test_exercise_metadata_supports_catalog_fields() -> None:
@@ -102,6 +102,7 @@ def test_times_archive_catalog_has_fifty_exercises() -> None:
 
     assert len(exercises) == 50
     assert len({exercise.id for exercise in exercises}) == 50
+    assert len({exercise.prompt for exercise in exercises}) == 50
 
 
 def test_times_archive_catalog_entries_include_required_metadata() -> None:

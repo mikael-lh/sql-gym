@@ -11,26 +11,15 @@ _EXERCISES_PATH = Path(__file__).resolve().parent / "data" / "times_exercises.js
 
 
 def _parse_exercise(entry: dict[str, Any]) -> Exercise:
-    expected_result = entry.get("expected_result", {})
-    return Exercise(
-        id=entry["id"],
-        dataset_id=entry["dataset_id"],
-        title=entry["title"],
-        prompt=entry["prompt"],
-        difficulty=entry["difficulty"],
-        mode=entry["mode"],
-        target_dialect=entry["target_dialect"],
-        concept_tags=tuple(entry["concept_tags"]),
-        estimated_time_minutes=entry["estimated_time_minutes"],
-        learning_objectives=tuple(entry["learning_objectives"]),
-        hint=entry["hint"],
-        sample_sql=entry["sample_sql"],
-        availability_status=entry.get("availability_status", "available"),
-        expected_result=ExpectedResultSpec(
-            description=expected_result.get("description"),
-            column_names=tuple(expected_result.get("column_names", ())),
-        ),
+    payload = dict(entry)
+    expected_result = payload.pop("expected_result", {})
+    payload["concept_tags"] = tuple(payload["concept_tags"])
+    payload["learning_objectives"] = tuple(payload["learning_objectives"])
+    payload["expected_result"] = ExpectedResultSpec(
+        description=expected_result.get("description"),
+        column_names=tuple(expected_result.get("column_names", ())),
     )
+    return Exercise.model_validate(payload)
 
 
 @lru_cache(maxsize=1)

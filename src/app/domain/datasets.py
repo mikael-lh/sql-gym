@@ -44,10 +44,10 @@ TIMES_ARCHIVE_CATALOG_DATASET = Dataset(
         source_name="times-api",
         source_url="https://github.com/mikael-lh/times-api",
         schema_reference="times-api/schema/archive_articles.json",
-        fixture_path="src/app/catalog/data/times_exercises.json",
+        fixture_path="src/app/fixtures/times/archive_articles_demo.json",
         note=(
-            "Production-ready catalog exercises aligned to the times-api archive schema. "
-            "Article rows remain in src/app/fixtures/times/archive_articles_demo.json."
+            "Production-ready catalog data aligned to the times-api archive schema. "
+            "Exercise definitions live in src/app/catalog/data/times_exercises.json."
         ),
     ),
     is_demo=False,
