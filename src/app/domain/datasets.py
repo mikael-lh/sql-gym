@@ -46,7 +46,8 @@ TIMES_ARCHIVE_CATALOG_DATASET = Dataset(
         schema_reference="times-api/schema/archive_articles.json",
         fixture_path="src/app/fixtures/times/archive_articles_demo.json",
         note=(
-            "Production-ready catalog data aligned to the times-api archive schema. "
+            "Production Times Archive rows load into PostgreSQL via Docker Compose and "
+            "scripts/import-times-from-times-api.sh (see docs/times-data-setup.md). "
             "Exercise definitions live in src/app/catalog/data/times_exercises.json."
         ),
     ),
