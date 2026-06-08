@@ -4,7 +4,7 @@ sql-gym uses **repo skills + `prd/` + Linear + GitHub**. Product scope lives in 
 
 **Terms:** **user** = developer; **agent** = Cursor agent (local or cloud).
 
-**Gates and PR handoff checklist:** [.cursor/rules/workflow.mdc](../.cursor/rules/workflow.mdc) (always applied). This doc expands on that playbook; it does not restate the gates.
+**Gates:** [.cursor/rules/workflow.mdc](../.cursor/rules/workflow.mdc) (always applied). This doc expands on that playbook; it does not restate the gates.
 
 Human quick start: [README.md § How we work](../README.md#how-we-work).
 
@@ -91,37 +91,13 @@ The **user** installs marketplace plugins: `/add-plugin superpowers`, `/add-plug
 
 ## Pre-review before user review
 
-**Agents** (especially cloud) run automated checks **before** the **user** reviews or before an explicitly authorized autonomous merge. The **user** owns product and architecture judgment through PRD/plan approval; **agents** handle hygiene and spec alignment.
+**Agents** (especially cloud) run hygiene checks **before** the **user** reviews or before an explicitly authorized autonomous merge. The **user** owns product and architecture judgment; **agents** handle spec alignment and code quality.
 
-Full gate checklist: [.cursor/rules/workflow.mdc](../.cursor/rules/workflow.mdc#before-pr-is-ready-for-user-review-or-authorized-autonomous-merge).
+**Default:** invoke [**sql-gym-pre-review**](../.cursor/skills/sql-gym-pre-review/SKILL.md) — it orchestrates reviewer ↔ fixer until there are no blocking findings, then checks PR boxes and marks ready for handoff.
 
-### Two roles (do not self-review)
+**Optional split across sessions:** [sql-gym-pre-review-reviewer](../.cursor/skills/sql-gym-pre-review-reviewer/SKILL.md) (findings only) and [sql-gym-pre-review-fix](../.cursor/skills/sql-gym-pre-review-fix/SKILL.md) (blocking fixes on the branch).
 
-| Role | Skill | May commit? |
-|------|-------|-------------|
-| **Reviewer** | **sql-gym-pre-review-reviewer** | **No** — findings only |
-| **Fixer** | **sql-gym-pre-review-fix** | **Yes** — blocking fixes, tests, deslop |
-
-The **implementer** agent must **not** run the judgment review alone. Use a **new agent/chat**, **Cloud Agent handoff**, or a **readonly Task** subagent (`code-reviewer` / `explore`) for the reviewer pass.
-
-**Iterate until pass:** Reviewer → (if blocking) fixer on same branch → reviewer again → … until the reviewer reports **no blocking items**. Then run final tests/lint, check PR boxes, and mark ready for **user** review or authorized autonomous merge. Non-blocking items may stay as **`Nit:`** per [google-eng-practices.md](references/google-eng-practices.md).
-
-Orchestration: **sql-gym-pre-review** (full loop).
-
-| Step | Tool | Who runs it |
-|------|------|-------------|
-| Spec alignment | local `check-prd-alignment` | **Reviewer** agent |
-| Code vs plan | Superpowers `code-reviewer` | **Reviewer** agent |
-| Code review | [google-eng-practices.md](references/google-eng-practices.md) checklist | **Reviewer** agent; `Nit:` for optional |
-| Apply fixes | Branch edits | **Fixer** agent |
-| Slop / style pass | cursor-team-kit `deslop` | **Fixer** agent (or N/A docs-only) |
-| Verification | tests / lint | **Fixer** agent — must be green before re-review |
-
-Post each reviewer pass under **`## Pre-review findings (pass N)`** on the PR.
-
-**PR description must include:** summary, risks, test plan (or “CI not configured — ran …”), alignment notes, PRD deviations, and any remaining **`Nit:`** items.
-
-**Escalate** to the **user** (leave boxes unchecked, keep draft) when a product/architecture call is needed, independent review is not possible, plugins cannot run, or agents are stuck after several cycles.
+Gate (no handoff while blocking findings remain): [.cursor/rules/workflow.mdc](../.cursor/rules/workflow.mdc#before-pr-is-ready-for-user-review-or-authorized-autonomous-merge). PR checkboxes: [.github/pull_request_template.md](../.github/pull_request_template.md). Procedure, fallbacks, and escalation: the skills above — not repeated here.
 
 ## Linear conventions
 

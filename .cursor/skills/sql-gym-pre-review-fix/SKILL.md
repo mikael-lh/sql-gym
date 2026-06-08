@@ -34,6 +34,7 @@ Do **not** merge.
 
 ## References
 
+- [sql-gym-pre-review](../sql-gym-pre-review/SKILL.md) — orchestrator and handoff
 - [sql-gym-pre-review-reviewer](../sql-gym-pre-review-reviewer/SKILL.md)
 - [sql-gym-implement-issue](../sql-gym-implement-issue/SKILL.md) — same coding standards
 - [.cursor/rules/engineering.mdc](../../../.cursor/rules/engineering.mdc)

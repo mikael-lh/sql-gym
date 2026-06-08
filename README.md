@@ -137,7 +137,7 @@ Specs live in **`prd/`** in this repo. Work is tracked in **Linear**, shipped vi
 
 After **`sql-gym-implement-issue`** opens a draft PR, run **`sql-gym-pre-review`** in Cursor. That skill **orchestrates the full pass**: independent review (via a readonly subagent or a new chat if needed), fixes on the branch, re-review until there are no blocking findings, then tests/lint, PR checklist, and “ready for your review.”
 
-You do **not** need to invoke `sql-gym-pre-review-reviewer` or `sql-gym-pre-review-fix` yourself unless you choose to split work across separate chats (optional; see [WORKFLOW](docs/WORKFLOW.md#pre-review-before-user-review)).
+You do **not** need to invoke `sql-gym-pre-review-reviewer` or `sql-gym-pre-review-fix` yourself unless you choose to split work across separate chats (optional; see [pre-review skills](.cursor/skills/sql-gym-pre-review-reviewer/SKILL.md) and [fix skill](.cursor/skills/sql-gym-pre-review-fix/SKILL.md)).
 
 If pre-review stalls (product decision, plugins unavailable, stuck after several fix rounds), it should leave the PR in draft with checklist boxes unchecked—resolve the blocker and run **`sql-gym-pre-review`** again.
 

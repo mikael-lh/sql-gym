@@ -61,7 +61,21 @@ Leave boxes **unchecked** and PR **draft**.
 
 Do not merge from this skill. The **user** or an explicitly authorized orchestration skill performs final merge.
 
+## Handoff checklist
+
+Check **Agent pre-review** boxes on the PR only after a reviewer pass reports no blocking items and verification is green. Boxes match [.github/pull_request_template.md](../../../.github/pull_request_template.md):
+
+- local `check-prd-alignment` vs linked `prd/` section
+- Superpowers `code-reviewer` vs approved plan + [engineering.mdc](../../../.cursor/rules/engineering.mdc) (or N/A docs-only)
+- [google-eng-practices](../../../docs/references/google-eng-practices.md) review (blocking fixed; `Nit:` optional)
+- cursor-team-kit `deslop` (or N/A docs-only)
+- Tests/lint green, or state **CI not configured yet** and note what ran (e.g. `./scripts/validate-env.sh`)
+
+PR description must include: summary, risks, test plan, PRD deviations, and any remaining **`Nit:`** items.
+
 ## References
 
-- [docs/WORKFLOW.md](../../../docs/WORKFLOW.md#pre-review-before-user-review)
-- [.cursor/rules/workflow.mdc](../../../.cursor/rules/workflow.mdc)
+- [sql-gym-pre-review-reviewer](../sql-gym-pre-review-reviewer/SKILL.md)
+- [sql-gym-pre-review-fix](../sql-gym-pre-review-fix/SKILL.md)
+- [.github/pull_request_template.md](../../../.github/pull_request_template.md)
+- [.cursor/rules/workflow.mdc](../../../.cursor/rules/workflow.mdc) — gate only
