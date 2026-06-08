@@ -1,10 +1,11 @@
 from typing import Literal
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 
 Difficulty = Literal["Beginner", "Intermediate", "Advanced"]
 PracticeMode = Literal["Untimed", "Timed"]
 SqlDialect = Literal["PostgreSQL"]
+AvailabilityStatus = Literal["available", "placeholder", "coming_soon"]
 
 
 class SelectionOption(BaseModel):
@@ -12,6 +13,15 @@ class SelectionOption(BaseModel):
 
     label: str
     description: str
+
+
+class ExpectedResultSpec(BaseModel):
+    """Reserved for future exact-result grading; not evaluated in Phase 1."""
+
+    model_config = ConfigDict(frozen=True)
+
+    description: str | None = None
+    column_names: tuple[str, ...] = ()
 
 
 class Exercise(BaseModel):
@@ -24,7 +34,13 @@ class Exercise(BaseModel):
     difficulty: Difficulty
     mode: PracticeMode
     target_dialect: SqlDialect
+    concept_tags: tuple[str, ...]
+    estimated_time_minutes: int = Field(gt=0)
+    learning_objectives: tuple[str, ...]
+    hint: str
     sample_sql: str
+    availability_status: AvailabilityStatus = "placeholder"
+    expected_result: ExpectedResultSpec = Field(default_factory=ExpectedResultSpec)
     is_placeholder: bool = True
 
 
@@ -62,9 +78,17 @@ TIMES_ARCHIVE_PLACEHOLDER_EXERCISE = Exercise(
     difficulty="Beginner",
     mode="Untimed",
     target_dialect="PostgreSQL",
+    concept_tags=("aggregation", "group-by"),
+    estimated_time_minutes=10,
+    learning_objectives=("Group rows by a categorical column.", "Count rows per group."),
+    hint="Try grouping by section_name and counting rows.",
     sample_sql="""-- PostgreSQL target dialect
 SELECT section_name, COUNT(*) AS article_count
 FROM times_archive_demo
 GROUP BY section_name
 ORDER BY article_count DESC;""",
+    expected_result=ExpectedResultSpec(
+        description="One row per section with article counts.",
+        column_names=("section_name", "article_count"),
+    ),
 )
