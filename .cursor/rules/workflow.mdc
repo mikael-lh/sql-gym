@@ -12,9 +12,9 @@ alwaysApply: true
 - **Scope:** implement only the active Linear issue / PRD section unless the **user** expands it.
 - **Linear issues:** link `prd/…` + acceptance criteria; do not paste the full PRD.
 
-# Before PR is ready for user review
+# Before PR is ready for user review or authorized autonomous merge
 
-Run **`sql-gym-pre-review`**: **reviewer** agent (no commits) and **fixer** agent (commits) must not be the same role as blind self-review—the implementer does not approve its own judgment pass. Use **sql-gym-pre-review-reviewer** in a **new** agent/chat or readonly Task, then **sql-gym-pre-review-fix**, and repeat until the reviewer reports no blocking items. Do **not** check PR boxes or ask for **user** review while blocking reviewer findings remain.
+Run **`sql-gym-pre-review`**: **reviewer** agent (no commits) and **fixer** agent (commits) must not be the same role as blind self-review—the implementer does not approve its own judgment pass. Use **sql-gym-pre-review-reviewer** in a **new** agent/chat or readonly Task, then **sql-gym-pre-review-fix**, and repeat until the reviewer reports no blocking items. Do **not** check PR boxes, ask for **user** review, or merge while blocking reviewer findings remain.
 
 Checklist (all must pass before handoff):
 
@@ -26,6 +26,8 @@ Checklist (all must pass before handoff):
 - [ ] PR: summary, risks, test plan, PRD deviations (if any)
 
 Escalate to the **user** for product/architecture decisions or if stuck—do not mark boxes done to bypass a failed check.
+
+Do not merge PRs unless the **user** explicitly authorized autonomous merge for that run and PR type. When authorized, use GitHub MCP merge tools, not `gh` write commands.
 
 # Agent environment
 

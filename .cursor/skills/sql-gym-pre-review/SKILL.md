@@ -1,11 +1,11 @@
 ---
 name: sql-gym-pre-review
-description: Orchestrate agent pre-review — independent reviewer, fixer loop until pass, then checklist and handoff to user. Use after sql-gym-implement-issue.
+description: Use after sql-gym-implement-issue when a PR needs independent pre-review before handoff or authorized autonomous merge.
 ---
 
 # sql-gym: pre-review (orchestrator)
 
-Run before marking a PR ready for **user** review. Does **not** replace **user** judgment on product/architecture.
+Run before marking a PR ready for **user** review or authorized autonomous merge. Does **not** replace **user** judgment on product/architecture.
 
 **Two roles:** a **reviewer** agent (no writes) and a **fixer** agent (commits on the branch). The agent that **implemented** the PR must **not** perform the judgment review alone.
 
@@ -17,7 +17,7 @@ implement-issue → draft PR
   → if blocking: pre-review-fix       [implementer agent]
   → pre-review-reviewer (pass 2+)     [independent again]
   → repeat until reviewer: no blocking
-  → final verification (tests/lint/deslop) + check PR boxes + ready for user
+  → final verification (tests/lint/deslop) + check PR boxes + ready for handoff or authorized merge
 ```
 
 | Skill | Role | Writes branch? |
@@ -35,7 +35,7 @@ If the **user** invoked **`sql-gym-pre-review`** in the implementer session:
 1. Run a review pass per **sql-gym-pre-review-reviewer** via a **Task** subagent (**readonly**) or follow that skill’s steps yourself in reviewer mode—do not self-approve in the implementer voice.
 2. Post each pass under **`## Pre-review findings (pass N)`** on the PR (blocking list, `Nit:` list, fix required yes/no).
 3. If blocking findings exist, run **sql-gym-pre-review-fix** (fixer hat) on the branch, then run another review pass before treating fixes as done.
-4. After a pass reports **no blocking items**, run tests/lint/deslop if not already green, update the PR description, check **Agent pre-review** boxes, mark ready for **user** review.
+4. After a pass reports **no blocking items**, run tests/lint/deslop if not already green, update the PR description, check **Agent pre-review** boxes, and mark ready for **user** review or authorized autonomous merge.
 
 Do **not** check boxes or ask for **user** review while blocking reviewer findings remain.
 
@@ -59,7 +59,7 @@ Leave boxes **unchecked** and PR **draft**.
 
 ## Stop
 
-Do not merge. The **user** performs final review and merge.
+Do not merge from this skill. The **user** or an explicitly authorized orchestration skill performs final merge.
 
 ## References
 
