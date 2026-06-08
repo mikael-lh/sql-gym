@@ -2,7 +2,7 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict
 
-AttemptStatus = Literal["not_started", "draft", "submitted"]
+AttemptStatus = Literal["not_started", "draft", "submitted", "graded"]
 
 
 class Attempt(BaseModel):
