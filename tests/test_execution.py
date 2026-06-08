@@ -1,0 +1,113 @@
+import os
+from unittest.mock import MagicMock, patch
+
+import pytest
+from psycopg import errors as pg_errors
+
+from app.execution import ExecutionError, QueryResult, execute_query, validate_select_only
+
+
+def _column(name: str) -> MagicMock:
+    column = MagicMock()
+    column.name = name
+    return column
+
+
+def test_validate_select_only_rejects_empty_sql() -> None:
+    error = validate_select_only("   ")
+    assert error is not None
+    assert error.code == "empty_sql"
+
+
+def test_validate_select_only_rejects_multiple_statements() -> None:
+    error = validate_select_only("SELECT 1; SELECT 2;")
+    assert error is not None
+    assert error.code == "multiple_statements"
+
+
+def test_validate_select_only_rejects_dml() -> None:
+    error = validate_select_only("DELETE FROM times_archive")
+    assert error is not None
+    assert error.code in {"forbidden_statement", "not_select"}
+
+
+def test_validate_select_only_allows_select() -> None:
+    assert validate_select_only("SELECT headline_main FROM times_archive") is None
+
+
+def test_validate_select_only_allows_cte_select() -> None:
+    sql = "WITH c AS (SELECT 1 AS n) SELECT n FROM c"
+    assert validate_select_only(sql) is None
+
+
+@patch("app.execution.execute.get_database_url", return_value=None)
+def test_execute_query_without_database_url(_mock_url: MagicMock) -> None:
+    result = execute_query("SELECT 1")
+    assert isinstance(result, ExecutionError)
+    assert result.code == "database_unavailable"
+
+
+@patch("app.execution.execute.psycopg.connect")
+@patch("app.execution.execute.get_database_url", return_value="postgresql://example")
+def test_execute_query_returns_query_result(_mock_url: MagicMock, mock_connect: MagicMock) -> None:
+    cursor = MagicMock()
+    cursor.description = [_column("n")]
+    cursor.fetchmany.return_value = [(1,), (2,)]
+    connection = MagicMock()
+    connection.cursor.return_value.__enter__.return_value = cursor
+    mock_connect.return_value.__enter__.return_value = connection
+
+    result = execute_query("SELECT 1 AS n")
+    assert isinstance(result, QueryResult)
+    assert result.columns == ("n",)
+    assert result.rows == ((1,), (2,))
+    assert result.row_count == 2
+    assert result.truncated is False
+
+
+@patch("app.execution.execute.psycopg.connect")
+@patch("app.execution.execute.get_database_url", return_value="postgresql://example")
+def test_execute_query_marks_truncated_results(
+    _mock_url: MagicMock,
+    mock_connect: MagicMock,
+) -> None:
+    cursor = MagicMock()
+    cursor.description = [_column("n")]
+    cursor.fetchmany.return_value = [(index,) for index in range(501)]
+    connection = MagicMock()
+    connection.cursor.return_value.__enter__.return_value = cursor
+    mock_connect.return_value.__enter__.return_value = connection
+
+    result = execute_query("SELECT generate_series(1, 1000) AS n")
+    assert isinstance(result, QueryResult)
+    assert result.row_count == 500
+    assert result.truncated is True
+
+
+@patch("app.execution.execute.psycopg.connect")
+@patch("app.execution.execute.get_database_url", return_value="postgresql://example")
+def test_execute_query_timeout(_mock_url: MagicMock, mock_connect: MagicMock) -> None:
+    connection = MagicMock()
+    connection.cursor.return_value.__enter__.return_value.cursor_execute = None
+    connection.cursor.return_value.__enter__.return_value.execute.side_effect = (
+        pg_errors.QueryCanceled("timeout")
+    )
+    mock_connect.return_value.__enter__.return_value = connection
+
+    result = execute_query("SELECT pg_sleep(10)")
+    assert isinstance(result, ExecutionError)
+    assert result.code == "timeout"
+
+
+@pytest.mark.integration
+def test_execute_query_integration_select() -> None:
+    database_url = os.environ.get("DATABASE_URL")
+    if not database_url:
+        pytest.skip("DATABASE_URL not set")
+
+    with patch("app.execution.execute.get_database_url", return_value=database_url):
+        result = execute_query("SELECT COUNT(*) AS article_count FROM times_archive")
+
+    assert isinstance(result, QueryResult)
+    assert result.columns == ("article_count",)
+    assert result.row_count == 1
