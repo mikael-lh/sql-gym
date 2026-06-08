@@ -65,7 +65,7 @@ Do not merge from this skill. The **user** or an explicitly authorized orchestra
 
 Check **Agent pre-review** boxes on the PR only after a reviewer pass reports no blocking items and verification is green. Boxes match [.github/pull_request_template.md](../../../.github/pull_request_template.md):
 
-- local `check-prd-alignment` vs linked `prd/` section
+- `check-prd-alignment` vs linked `prd/` section
 - Superpowers `code-reviewer` vs approved plan + [engineering.mdc](../../../.cursor/rules/engineering.mdc) (or N/A docs-only)
 - [google-eng-practices](../../../docs/references/google-eng-practices.md) review (blocking fixed; `Nit:` optional)
 - cursor-team-kit `deslop` (or N/A docs-only)

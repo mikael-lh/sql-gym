@@ -4,12 +4,13 @@ A lightweight gym for SQL: practice on curated datasets, run queries, and level 
 
 ## Status
 
-**Phase 0 scaffold complete.** Product vision and the completed Phase 0 PRD are in `prd/`; new product scope requires a PRD update or new phase PRD plus an approved implementation plan.
+**Phase 1 active** — dataset and exercise catalog ([prd/phase-1-dataset-exercise-catalog.md](prd/phase-1-dataset-exercise-catalog.md)). Phase 0 scaffold is complete. New product scope requires a PRD update or new phase PRD plus an approved implementation plan.
 
 | | |
 |--|--|
 | Full workflow reference | [docs/WORKFLOW.md](docs/WORKFLOW.md) |
 | Product specs | [prd/README.md](prd/README.md) |
+| Phase 1 implementation plan | [docs/phase-1-implementation-plan.md](docs/phase-1-implementation-plan.md) |
 | Phase 0 implementation plan | [docs/phase-0-implementation-plan.md](docs/phase-0-implementation-plan.md) |
 | Linear project | [sql-gym](https://linear.app/times-api/project/sql-gym-ce6a8985c99e) (`TIM-` issues) |
 
@@ -126,12 +127,12 @@ Specs live in **`prd/`** in this repo. Work is tracked in **Linear**, shipped vi
 
 | Step | Your job | In Cursor |
 |------|----------|-----------|
-| **Requirements** | Approve specs; set the active phase in [prd/README.md](prd/README.md) | local `write-prd` -> commit under `prd/` |
+| **Requirements** | Approve specs; set the active phase in [prd/README.md](prd/README.md) | `write-prd` → commit under `prd/` |
 | **Backlog** | Create Linear issues (`TIM-NN`) with a `prd/` link and acceptance criteria | — |
-| **Plan** | Review and approve the phase implementation plan | local `implement-from-prd` plus engineering-principles check |
+| **Plan** | Review and approve the phase implementation plan | `implement-from-prd` plus engineering-principles check |
 | **Build** | Confirm the plan is approved | `sql-gym-implement-issue` for one `TIM-NN`, or `sql-gym-run-phase` for approved autonomous phase execution |
 | **Pre-review** | Wait for the loop to finish; then review the PR yourself | **`sql-gym-pre-review`** for `TIM-NN` (see below) |
-| **Ship** | Merge, close the Linear issue; assess `update-prd` after merged implementation | local `update-prd` when PRD reality changed |
+| **Ship** | Merge, close the Linear issue; assess `update-prd` after merged implementation | `update-prd` when PRD reality changed |
 
 ### Pre-review (one command)
 
@@ -165,7 +166,7 @@ sql-gym-pre-review for TIM-42 — run the full pre-review loop and mark the PR r
 ## Project rules
 
 - **No product work** until [prd/README.md](prd/README.md) names an active phase and the matching `prd/` doc exists.
-- **No application code** until there is an approved plan from local `implement-from-prd`.
+- **No application code** until there is an approved plan from `implement-from-prd`.
 - **Your merge review** is still the final gate on product and architecture after pre-review passes.
 
 Deeper process detail, stack roles, optional split-session pre-review, and engineering standards: [docs/WORKFLOW.md](docs/WORKFLOW.md) ([end-to-end flow](docs/WORKFLOW.md#end-to-end-flow)).

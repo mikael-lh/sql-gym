@@ -5,7 +5,7 @@ description: Implement a Linear issue after a phase PRD and implementation plan 
 
 # sql-gym: implement issue
 
-Coding only. Requires an active phase PRD and an **approved phase implementation plan** from local `implement-from-prd`.
+Coding only. Requires an active phase PRD and an **approved phase implementation plan** from `implement-from-prd`.
 
 ## Inputs
 
@@ -23,7 +23,7 @@ If there is no approved phase implementation plan, stop and run local **`impleme
 3. Read the linked `prd/` section and the matching approved implementation plan milestone for this issue.
 4. Compare the Linear issue, PRD section, and implementation plan milestone:
    - If they conflict or the issue expands scope beyond the approved plan, stop and ask the **user** to update the issue, PRD, or plan.
-   - If the issue is not covered by the approved plan, stop and ask the **user** to run local `implement-from-prd` for the new scope.
+   - If the issue is not covered by the approved plan, stop and ask the **user** to run `implement-from-prd` for the new scope.
 5. Create a branch using the `cursor/<short-desc>-<suffix>` convention (the cloud agent template supplies the suffix for the active session, e.g. `cursor/tim-42-parser-7a6a`).
 6. Implement **only** the acceptance criteria for this Linear issue and its approved plan milestone. Follow [.cursor/rules/engineering.mdc](../../../.cursor/rules/engineering.mdc).
 7. Optional: Superpowers **`executing-plans`** for step order; TDD skills when tests exist.

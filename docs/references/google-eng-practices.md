@@ -57,7 +57,7 @@ Repo tooling (`pyproject.toml`, Ruff, ESLint, SQLFluff, etc.) **overrides** thes
 
 ### HTML & CSS (web UI)
 
-A **browser UI** (editor, results, progress) is the likely shape for sql-gym, but not confirmed until `prd/00-product-vision.md` and phase PRDs—Phase 0 could still be CLI-only. When adding or changing frontend markup or styles:
+sql-gym ships a server-rendered web UI (templates and static assets). When adding or changing frontend markup or styles:
 
 - [Google HTML/CSS Style Guide](https://google.github.io/styleguide/htmlcssguide.html)
 

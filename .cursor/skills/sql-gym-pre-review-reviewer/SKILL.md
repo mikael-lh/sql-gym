@@ -23,7 +23,7 @@ Ask if missing:
 
 - PR URL or branch name
 - Linear issue id (`TIM-NN`) and linked `prd/` section
-- Approved phase implementation plan (from local `implement-from-prd`)
+- Approved phase implementation plan (from `implement-from-prd`)
 - Pre-review pass number (default 1)
 
 ## Steps
