@@ -2,7 +2,7 @@
 
 ## Status
 
-Draft for user approval. Do not write application code outside the scoped Linear issue being implemented.
+**Complete** — implemented via TIM-31–TIM-36 (2026-06-08).
 
 ## Source
 
