@@ -1,11 +1,11 @@
 ---
-description: Code quality — simplicity, DRY, minimal scope, Google eng-practices (authoring)
+description: Code quality — simplicity, DRY, minimal scope, Google eng-practices (writing and reviewing)
 alwaysApply: true
 ---
 
 # Engineering standards
 
-Apply when **writing** code in this repo. Authoring principles below are adapted from [google/eng-practices](https://github.com/google/eng-practices) ([repo summary](docs/references/google-eng-practices.md)). For the full **review** checklist, use that doc in **sql-gym-pre-review-reviewer** (orchestrated by **sql-gym-pre-review**)—not here.
+Apply when **writing and reviewing** code in this repo. Principles below are adapted from [google/eng-practices](https://github.com/google/eng-practices) ([repo summary](docs/references/google-eng-practices.md)).
 
 ## Writing changes
 
@@ -25,9 +25,7 @@ Apply when **writing** code in this repo. Authoring principles below are adapted
 - **Comments:** Explain *why*, not *what*. If the code needs a long *what* comment, simplify the code. Remove obsolete TODOs.
 - **Documentation:** Update READMEs or module docs when setup, behavior, or usage changes.
 
-## When reviewing
-
-Use [docs/references/google-eng-practices.md](docs/references/google-eng-practices.md) and **sql-gym-pre-review**—do not duplicate the reviewer checklist in this rule.
+## Style guides
 
 **Python:** [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html); Ruff/format config overrides when present.
 

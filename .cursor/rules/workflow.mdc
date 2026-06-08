@@ -10,6 +10,7 @@ alwaysApply: true
 - **No invented requirements** — repo skills + `prd/` only (not Superpowers `brainstorming`; do not call ChatPRD MCP unless the **user** asks).
 - **No application code** until `implement-from-prd` is run and the **user** approves the plan.
 - **Scope:** implement only the active Linear issue / PRD section unless the **user** expands it.
+- **Engineering standards:** follow [engineering.mdc](engineering.mdc) when writing or reviewing application code.
 - **Linear issues:** link `prd/…` + acceptance criteria; do not paste the full PRD.
 - Before **user** review or authorized autonomous merge, run **`sql-gym-pre-review`** — it orchestrates an independent reviewer (no commits) and fixer; the implementer must not self-approve. Procedure: [.cursor/skills/sql-gym-pre-review/SKILL.md](.cursor/skills/sql-gym-pre-review/SKILL.md); checkboxes: [.github/pull_request_template.md](.github/pull_request_template.md) Agent pre-review section.
 - Do **not** check PR boxes, ask for **user** review, or merge while blocking reviewer findings remain.
