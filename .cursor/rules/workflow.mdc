@@ -16,14 +16,7 @@ alwaysApply: true
 
 Run **`sql-gym-pre-review`**: **reviewer** agent (no commits) and **fixer** agent (commits) must not be the same role as blind self-review—the implementer does not approve its own judgment pass. Use **sql-gym-pre-review-reviewer** in a **new** agent/chat or readonly Task, then **sql-gym-pre-review-fix**, and repeat until the reviewer reports no blocking items. Do **not** check PR boxes, ask for **user** review, or merge while blocking reviewer findings remain.
 
-Checklist (all must pass before handoff):
-
-- [ ] local `check-prd-alignment` vs linked `prd/` section (no unapproved blocking gaps)
-- [ ] Superpowers `code-reviewer` vs approved plan + [engineering.mdc](engineering.mdc) (blocking feedback addressed)
-- [ ] [google-eng-practices](docs/references/google-eng-practices.md) review (blocking items fixed; `Nit:` optional)
-- [ ] cursor-team-kit `deslop` on changed code (or N/A — docs-only)
-- [ ] Tests/lint green, or state **CI not configured yet** and run `./scripts/validate-env.sh` (or stack lint/test when they exist); note what ran in the PR
-- [ ] PR: summary, risks, test plan, PRD deviations (if any)
+Procedure and escalation: **sql-gym-pre-review** skill (and reviewer/fixer sub-skills). Checkboxes: [.github/pull_request_template.md](.github/pull_request_template.md) Agent pre-review section.
 
 Escalate to the **user** for product/architecture decisions or if stuck—do not mark boxes done to bypass a failed check.
 
@@ -34,6 +27,7 @@ Do not merge PRs unless the **user** explicitly authorized autonomous merge for 
 Stable ops for agents (local and Cloud). Current phase, stack, and dev commands: [prd/README.md](prd/README.md), [README.md](README.md), and `./scripts/validate-env.sh`.
 
 - **Linear MCP** for backlog (`TIM-` issues, [sql-gym project](https://linear.app/times-api/project/sql-gym-ce6a8985c99e)). If lookup fails, ask the **user** to fix MCP auth in Cursor settings.
+- **GitHub MCP** for PRs, comments, and authorized merges. Do not use `gh` write commands on cloud agents.
 - **No committed secrets.** When the app exists, document vars in `.env.example`. On Cloud VMs, ask the **user** to add secrets in Cloud settings—do not assume a local `.env`.
 
 # Playbook

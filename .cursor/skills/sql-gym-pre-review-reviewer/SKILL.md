@@ -49,5 +49,6 @@ Do **not** merge.
 
 ## References
 
-- [sql-gym-pre-review](../sql-gym-pre-review/SKILL.md) — full loop
-- [docs/WORKFLOW.md](../../../docs/WORKFLOW.md#pre-review-before-user-review)
+- [sql-gym-pre-review](../sql-gym-pre-review/SKILL.md) — orchestrator and handoff
+- [sql-gym-pre-review-fix](../sql-gym-pre-review-fix/SKILL.md) — blocking fixes
+- [.cursor/rules/workflow.mdc](../../../.cursor/rules/workflow.mdc) — gate only

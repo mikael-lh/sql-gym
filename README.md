@@ -109,13 +109,14 @@ Placeholder behavior:
 
 ## Cursor setup
 
-Install these Cursor marketplace plugins once (details in [WORKFLOW](docs/WORKFLOW.md#tools-and-plugins)):
+Install these Cursor integrations once (details in [WORKFLOW § Stack](docs/WORKFLOW.md#stack)):
 
 - **Linear** (MCP) — backlog and issue status
+- **GitHub** (MCP) — PRs, CI, authorized merges on cloud agents
 - **Superpowers** — implementation and code review during builds
 - **cursor-team-kit** (optional) — `deslop` pass on changed code
 
-Specs, implementation plans, PRD alignment, and PRD updates use repo-local skills in [.cursor/skills](.cursor/skills). Connect Linear in Cursor settings if Linear-backed issue lookup fails.
+Specs, implementation plans, PRD alignment, and PRD updates use repo skills in [.cursor/skills](.cursor/skills). Connect Linear and GitHub in Cursor settings if MCP lookups fail.
 
 ## How we work
 
@@ -136,7 +137,7 @@ Specs live in **`prd/`** in this repo. Work is tracked in **Linear**, shipped vi
 
 After **`sql-gym-implement-issue`** opens a draft PR, run **`sql-gym-pre-review`** in Cursor. That skill **orchestrates the full pass**: independent review (via a readonly subagent or a new chat if needed), fixes on the branch, re-review until there are no blocking findings, then tests/lint, PR checklist, and “ready for your review.”
 
-You do **not** need to invoke `sql-gym-pre-review-reviewer` or `sql-gym-pre-review-fix` yourself unless you choose to split work across separate chats (optional; see [WORKFLOW](docs/WORKFLOW.md#pre-review-before-user-review)).
+You do **not** need to invoke `sql-gym-pre-review-reviewer` or `sql-gym-pre-review-fix` yourself unless you choose to split work across separate chats (optional; see [pre-review skills](.cursor/skills/sql-gym-pre-review-reviewer/SKILL.md) and [fix skill](.cursor/skills/sql-gym-pre-review-fix/SKILL.md)).
 
 If pre-review stalls (product decision, plugins unavailable, stuck after several fix rounds), it should leave the PR in draft with checklist boxes unchecked—resolve the blocker and run **`sql-gym-pre-review`** again.
 
@@ -167,4 +168,4 @@ sql-gym-pre-review for TIM-42 — run the full pre-review loop and mark the PR r
 - **No application code** until there is an approved plan from local `implement-from-prd`.
 - **Your merge review** is still the final gate on product and architecture after pre-review passes.
 
-Deeper process detail, plugin roles, optional split-session pre-review, and engineering standards: [docs/WORKFLOW.md](docs/WORKFLOW.md).
+Deeper process detail, stack roles, optional split-session pre-review, and engineering standards: [docs/WORKFLOW.md](docs/WORKFLOW.md) ([end-to-end flow](docs/WORKFLOW.md#end-to-end-flow)).
