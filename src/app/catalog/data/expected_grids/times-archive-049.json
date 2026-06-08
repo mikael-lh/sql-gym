@@ -1,0 +1,2509 @@
+{
+  "columns": [
+    "news_desk",
+    "article_count",
+    "desk_rank"
+  ],
+  "rows": [
+    [
+      "None",
+      8106010,
+      1
+    ],
+    [
+      "Financial Desk",
+      386971,
+      2
+    ],
+    [
+      "Metropolitan Desk",
+      282506,
+      3
+    ],
+    [
+      "Sports Desk",
+      231512,
+      4
+    ],
+    [
+      "",
+      229983,
+      5
+    ],
+    [
+      "National Desk",
+      200377,
+      6
+    ],
+    [
+      "Foreign Desk",
+      174957,
+      7
+    ],
+    [
+      "Editorial Desk",
+      169399,
+      8
+    ],
+    [
+      "Business",
+      151650,
+      9
+    ],
+    [
+      "Business/Financial Desk",
+      143820,
+      10
+    ],
+    [
+      "Classified",
+      124081,
+      11
+    ],
+    [
+      "Foreign",
+      90289,
+      12
+    ],
+    [
+      "Culture",
+      85321,
+      13
+    ],
+    [
+      "National",
+      85283,
+      14
+    ],
+    [
+      "Metro",
+      79038,
+      15
+    ],
+    [
+      "Sports",
+      78915,
+      16
+    ],
+    [
+      "Cultural Desk",
+      68445,
+      17
+    ],
+    [
+      "Society Desk",
+      59351,
+      18
+    ],
+    [
+      "Book Review Desk",
+      51045,
+      19
+    ],
+    [
+      "OpEd",
+      41789,
+      20
+    ],
+    [
+      "Arts and Leisure Desk",
+      38540,
+      21
+    ],
+    [
+      "The Arts/Cultural Desk",
+      35317,
+      22
+    ],
+    [
+      "New Jersey Weekly Desk",
+      35299,
+      23
+    ],
+    [
+      "Magazine Desk",
+      34102,
+      24
+    ],
+    [
+      "Week in Review Desk",
+      32976,
+      25
+    ],
+    [
+      "Long Island Weekly Desk",
+      31386,
+      26
+    ],
+    [
+      "Weekend",
+      31076,
+      27
+    ],
+    [
+      "Travel Desk",
+      30477,
+      28
+    ],
+    [
+      "Weekend Desk",
+      29830,
+      29
+    ],
+    [
+      "Obituary",
+      29054,
+      30
+    ],
+    [
+      "Westchester Weekly Desk",
+      27245,
+      31
+    ],
+    [
+      "Style Desk",
+      26192,
+      32
+    ],
+    [
+      "Connecticut Weekly Desk",
+      26114,
+      33
+    ],
+    [
+      "Editorial",
+      25616,
+      34
+    ],
+    [
+      "Real Estate Desk",
+      25057,
+      35
+    ],
+    [
+      "Letters",
+      23348,
+      36
+    ],
+    [
+      "Science",
+      22284,
+      37
+    ],
+    [
+      "The City Weekly Desk",
+      21538,
+      38
+    ],
+    [
+      "Styles",
+      20757,
+      39
+    ],
+    [
+      "BookReview",
+      20378,
+      40
+    ],
+    [
+      "Society",
+      18831,
+      41
+    ],
+    [
+      "Science Desk",
+      17485,
+      42
+    ],
+    [
+      "Travel",
+      17036,
+      43
+    ],
+    [
+      "Money and Business/Financial Desk",
+      16905,
+      44
+    ],
+    [
+      "Magazine",
+      15979,
+      45
+    ],
+    [
+      "Home Desk",
+      14529,
+      46
+    ],
+    [
+      "TStyle",
+      13444,
+      47
+    ],
+    [
+      "Dining",
+      13330,
+      48
+    ],
+    [
+      "Living Desk",
+      13048,
+      49
+    ],
+    [
+      "Movies, Performing Arts/Weekend Desk",
+      13023,
+      50
+    ],
+    [
+      "Arts&Leisure",
+      12447,
+      51
+    ],
+    [
+      "Summary",
+      10996,
+      52
+    ],
+    [
+      "SundayBusiness",
+      10786,
+      53
+    ],
+    [
+      "RealEstate",
+      10616,
+      54
+    ],
+    [
+      "Leisure/Weekend Desk",
+      10451,
+      55
+    ],
+    [
+      "Washington",
+      8697,
+      56
+    ],
+    [
+      "Circuits",
+      8541,
+      57
+    ],
+    [
+      "ContinuousNews",
+      8117,
+      58
+    ],
+    [
+      "Fashion & Style",
+      7695,
+      59
+    ],
+    [
+      "House & Home/Style Desk",
+      7533,
+      60
+    ],
+    [
+      "Dining In, Dining Out/Style Desk",
+      7420,
+      61
+    ],
+    [
+      "Arts & Leisure Desk",
+      6723,
+      62
+    ],
+    [
+      "Politics",
+      6435,
+      63
+    ],
+    [
+      "Automobiles",
+      6077,
+      64
+    ],
+    [
+      "U.S.",
+      5817,
+      65
+    ],
+    [
+      "Arts",
+      5622,
+      66
+    ],
+    [
+      "Regionals",
+      5549,
+      67
+    ],
+    [
+      "Home",
+      5246,
+      68
+    ],
+    [
+      "Opinion",
+      5085,
+      69
+    ],
+    [
+      "Media",
+      4958,
+      70
+    ],
+    [
+      "Escapes",
+      4439,
+      71
+    ],
+    [
+      "NYTNow",
+      4411,
+      72
+    ],
+    [
+      "World",
+      3996,
+      73
+    ],
+    [
+      "Arts & Ideas/Cultural Desk",
+      3835,
+      74
+    ],
+    [
+      "New York",
+      3679,
+      75
+    ],
+    [
+      "Real Estate",
+      3624,
+      76
+    ],
+    [
+      "Health & Fitness",
+      3522,
+      77
+    ],
+    [
+      "New York Region",
+      3494,
+      78
+    ],
+    [
+      "Express",
+      3346,
+      79
+    ],
+    [
+      "News",
+      3315,
+      80
+    ],
+    [
+      "Learning",
+      3161,
+      81
+    ],
+    [
+      "AMUSEMENTS",
+      3090,
+      82
+    ],
+    [
+      "Obits",
+      2935,
+      83
+    ],
+    [
+      "Weschester Weekly Desk",
+      2931,
+      84
+    ],
+    [
+      "Styles of The Times",
+      2869,
+      85
+    ],
+    [
+      "WeekInReview",
+      2694,
+      86
+    ],
+    [
+      "Corrections",
+      2677,
+      87
+    ],
+    [
+      "Upshot",
+      2587,
+      88
+    ],
+    [
+      "International",
+      2446,
+      89
+    ],
+    [
+      "CityWeekly",
+      2437,
+      90
+    ],
+    [
+      "Business Day",
+      2322,
+      91
+    ],
+    [
+      "T Magazine",
+      2268,
+      92
+    ],
+    [
+      "Metropolitan",
+      2267,
+      93
+    ],
+    [
+      "Well",
+      2099,
+      94
+    ],
+    [
+      "SpecialSections",
+      2093,
+      95
+    ],
+    [
+      "International / Middle East",
+      1994,
+      96
+    ],
+    [
+      "Television",
+      1986,
+      97
+    ],
+    [
+      "Blogs",
+      1950,
+      98
+    ],
+    [
+      "Books",
+      1707,
+      99
+    ],
+    [
+      "0",
+      1703,
+      100
+    ],
+    [
+      "Games",
+      1627,
+      101
+    ],
+    [
+      "Insider",
+      1602,
+      102
+    ],
+    [
+      "Home & Garden",
+      1589,
+      103
+    ],
+    [
+      "International / Europe",
+      1552,
+      104
+    ],
+    [
+      "Books / First Chapters",
+      1512,
+      105
+    ],
+    [
+      "Food",
+      1407,
+      106
+    ],
+    [
+      "Education Life Supplement",
+      1385,
+      107
+    ],
+    [
+      "Amusements",
+      1384,
+      108
+    ],
+    [
+      "Technology",
+      1367,
+      109
+    ],
+    [
+      "Dining, Dining Out/Cultural Desk",
+      1324,
+      110
+    ],
+    [
+      "Great Homes & Destinations",
+      1080,
+      111
+    ],
+    [
+      "International / Asia Pacific",
+      1069,
+      112
+    ],
+    [
+      "Week In Review Desk",
+      1067,
+      113
+    ],
+    [
+      "Metropolitan Desk;",
+      1058,
+      114
+    ],
+    [
+      "Movies",
+      1036,
+      115
+    ],
+    [
+      "Thursday Styles",
+      1017,
+      116
+    ],
+    [
+      "Podcasts",
+      1013,
+      117
+    ],
+    [
+      "Health",
+      940,
+      118
+    ],
+    [
+      "Climate",
+      896,
+      119
+    ],
+    [
+      "EdLife",
+      893,
+      120
+    ],
+    [
+      "Dining & Wine",
+      884,
+      121
+    ],
+    [
+      "Sophisticated Traveler Magazine",
+      883,
+      122
+    ],
+    [
+      "Theater",
+      878,
+      123
+    ],
+    [
+      "Style",
+      868,
+      124
+    ],
+    [
+      "Health&Fitness",
+      836,
+      125
+    ],
+    [
+      "Classifieds",
+      804,
+      126
+    ],
+    [
+      "Business / World Business",
+      801,
+      127
+    ],
+    [
+      "NYT Now",
+      766,
+      128
+    ],
+    [
+      "amusements",
+      723,
+      129
+    ],
+    [
+      "The Upshot",
+      656,
+      130
+    ],
+    [
+      "National Desk;",
+      654,
+      131
+    ],
+    [
+      "Business / Media & Advertising",
+      631,
+      132
+    ],
+    [
+      "NewsDesk",
+      581,
+      133
+    ],
+    [
+      "Smarter Living",
+      555,
+      134
+    ],
+    [
+      "Play",
+      553,
+      135
+    ],
+    [
+      "Week in Review",
+      546,
+      136
+    ],
+    [
+      "Watching",
+      515,
+      137
+    ],
+    [
+      "Washington / Times on the Trail",
+      501,
+      138
+    ],
+    [
+      "Arts / Music",
+      500,
+      139
+    ],
+    [
+      "Amusements, Hotels and Restaurants",
+      482,
+      140
+    ],
+    [
+      "Home Design Magazine",
+      469,
+      141
+    ],
+    [
+      "Survey of Education Desk",
+      466,
+      142
+    ],
+    [
+      "Fashions of The Times Magazine",
+      466,
+      142
+    ],
+    [
+      "Job Market",
+      458,
+      144
+    ],
+    [
+      "Sports / Baseball",
+      455,
+      145
+    ],
+    [
+      "Education",
+      437,
+      146
+    ],
+    [
+      "WEB",
+      424,
+      147
+    ],
+    [
+      "Books / Sunday Book Review",
+      422,
+      148
+    ],
+    [
+      "Obituaries",
+      417,
+      149
+    ],
+    [
+      "Washington / Campaign 2004",
+      414,
+      150
+    ],
+    [
+      "LongIsland",
+      403,
+      151
+    ],
+    [
+      "Classified Desk",
+      387,
+      152
+    ],
+    [
+      "The City Weekly/Queens",
+      379,
+      153
+    ],
+    [
+      "National / Portraits of Grief",
+      375,
+      154
+    ],
+    [
+      "T: Travel Magazine",
+      373,
+      155
+    ],
+    [
+      "NAT",
+      351,
+      156
+    ],
+    [
+      "Men's Fashions of The Times Magazine",
+      350,
+      157
+    ],
+    [
+      "T: Women's Fashion Magazine",
+      349,
+      158
+    ],
+    [
+      "Style Desk;",
+      348,
+      159
+    ],
+    [
+      "TDesign",
+      343,
+      160
+    ],
+    [
+      "Cars",
+      341,
+      161
+    ],
+    [
+      "Personal Investing Supplement Desk",
+      340,
+      162
+    ],
+    [
+      "AMUSEMENTS HOTELS AND RESTAURANTS",
+      339,
+      163
+    ],
+    [
+      "Giving",
+      332,
+      164
+    ],
+    [
+      "Financial Desk;",
+      331,
+      165
+    ],
+    [
+      "International Special / International Special",
+      331,
+      165
+    ],
+    [
+      "Arts / Art & Design",
+      318,
+      167
+    ],
+    [
+      "Metropolitian Desk",
+      302,
+      168
+    ],
+    [
+      "T: Men's Fashion Magazine",
+      299,
+      169
+    ],
+    [
+      "Workplace",
+      291,
+      170
+    ],
+    [
+      "Investigative",
+      284,
+      171
+    ],
+    [
+      "NewJersey",
+      283,
+      172
+    ],
+    [
+      "Education Life",
+      279,
+      173
+    ],
+    [
+      "Photo",
+      273,
+      174
+    ],
+    [
+      "International / Africa",
+      268,
+      175
+    ],
+    [
+      "Connecticut",
+      266,
+      176
+    ],
+    [
+      "Survey of Education",
+      261,
+      177
+    ],
+    [
+      "Technology / Circuits",
+      258,
+      178
+    ],
+    [
+      "E-Commerce",
+      253,
+      179
+    ],
+    [
+      "The Weekend",
+      253,
+      179
+    ],
+    [
+      "food fashions family furnishings",
+      250,
+      181
+    ],
+    [
+      "International / Americas",
+      245,
+      182
+    ],
+    [
+      "Business / Your Money",
+      244,
+      183
+    ],
+    [
+      "Arts / Dance",
+      244,
+      183
+    ],
+    [
+      "Other Sports / Other Sports",
+      240,
+      185
+    ],
+    [
+      "Westchester",
+      236,
+      186
+    ],
+    [
+      "Sports / Pro Basketball",
+      227,
+      187
+    ],
+    [
+      "Books / Best-Seller Lists",
+      226,
+      188
+    ],
+    [
+      "Museums",
+      220,
+      189
+    ],
+    [
+      "Sports / Pro Football",
+      207,
+      190
+    ],
+    [
+      "Week In Review",
+      206,
+      191
+    ],
+    [
+      "T: Living Magazine",
+      203,
+      192
+    ],
+    [
+      "Business World Magazine",
+      196,
+      193
+    ],
+    [
+      "College",
+      196,
+      193
+    ],
+    [
+      "Readers' Opinions",
+      194,
+      195
+    ],
+    [
+      "Women's Health",
+      188,
+      196
+    ],
+    [
+      "International / International Special",
+      186,
+      197
+    ],
+    [
+      "The Learning Network",
+      177,
+      198
+    ],
+    [
+      "T: Design Magazine",
+      176,
+      199
+    ],
+    [
+      "Technology / Pogues Posts",
+      174,
+      200
+    ],
+    [
+      "Science Desk;",
+      172,
+      201
+    ],
+    [
+      "Careers Supplement Desk",
+      159,
+      202
+    ],
+    [
+      "TLiving",
+      157,
+      203
+    ],
+    [
+      "Outlook",
+      155,
+      204
+    ],
+    [
+      "New York/Region Opinions / New York/Region Opinions",
+      154,
+      205
+    ],
+    [
+      "Retirement",
+      153,
+      206
+    ],
+    [
+      "FOR",
+      152,
+      207
+    ],
+    [
+      "Universal",
+      142,
+      208
+    ],
+    [
+      "Weekend DeskWeekend Desk",
+      141,
+      209
+    ],
+    [
+      "Classifed",
+      141,
+      209
+    ],
+    [
+      "Sports / Tennis",
+      141,
+      209
+    ],
+    [
+      "Style and Entertaining Magazine",
+      136,
+      212
+    ],
+    [
+      "Sunday Review",
+      136,
+      212
+    ],
+    [
+      "A Nation Challenged",
+      135,
+      214
+    ],
+    [
+      "Small Business",
+      132,
+      215
+    ],
+    [
+      "Sports / Hockey",
+      132,
+      215
+    ],
+    [
+      "Desk",
+      130,
+      217
+    ],
+    [
+      "Sports / Olympics",
+      125,
+      218
+    ],
+    [
+      "Arts / Theater",
+      125,
+      218
+    ],
+    [
+      "TCulture",
+      122,
+      220
+    ],
+    [
+      "Sports / College Football",
+      122,
+      220
+    ],
+    [
+      "THoliday",
+      119,
+      222
+    ],
+    [
+      "NODESK",
+      119,
+      222
+    ],
+    [
+      "Sports / Soccer",
+      118,
+      224
+    ],
+    [
+      "Sports / Other Sports",
+      115,
+      225
+    ],
+    [
+      "National / National Special",
+      114,
+      226
+    ],
+    [
+      "Carreers Supplement",
+      114,
+      226
+    ],
+    [
+      "CUL",
+      103,
+      228
+    ],
+    [
+      "Dealbook",
+      101,
+      229
+    ],
+    [
+      "Arts & Leisure",
+      99,
+      230
+    ],
+    [
+      "Sports / Golf",
+      97,
+      231
+    ],
+    [
+      "Olympics",
+      94,
+      232
+    ],
+    [
+      "Home Desk;",
+      94,
+      232
+    ],
+    [
+      "Briefing",
+      93,
+      234
+    ],
+    [
+      "Fashion & Style / Weddings & Celebrations",
+      91,
+      235
+    ],
+    [
+      "NWS",
+      90,
+      236
+    ],
+    [
+      "National Economic",
+      90,
+      236
+    ],
+    [
+      "Multimedia/Photos",
+      89,
+      238
+    ],
+    [
+      "Sports / College Basketball",
+      84,
+      239
+    ],
+    [
+      "Other Sports",
+      82,
+      240
+    ],
+    [
+      "Your Money",
+      82,
+      240
+    ],
+    [
+      "Home Entertaining Magazine",
+      81,
+      242
+    ],
+    [
+      "Automobiles / Automobiles Special",
+      80,
+      243
+    ],
+    [
+      "Summer Times Supplement",
+      79,
+      244
+    ],
+    [
+      "Washington / Washington Special",
+      78,
+      245
+    ],
+    [
+      "AMUSEMENT",
+      78,
+      245
+    ],
+    [
+      "Admin",
+      77,
+      247
+    ],
+    [
+      "E-Business",
+      76,
+      248
+    ],
+    [
+      "Times Insider",
+      75,
+      249
+    ],
+    [
+      "TTravel",
+      74,
+      250
+    ],
+    [
+      "The Marathon",
+      72,
+      251
+    ],
+    [
+      "Sports / Sports Special",
+      72,
+      251
+    ],
+    [
+      "RADIO AMUSEMENTS",
+      72,
+      251
+    ],
+    [
+      "Politics / Campaigns",
+      72,
+      251
+    ],
+    [
+      "World of New York Magazine",
+      72,
+      251
+    ],
+    [
+      "Vacation",
+      71,
+      256
+    ],
+    [
+      "Entertaining Magazine",
+      70,
+      257
+    ],
+    [
+      "The Good Health Magazine",
+      69,
+      258
+    ],
+    [
+      "Sports DeskSports Desk",
+      68,
+      259
+    ],
+    [
+      "T: Beauty",
+      68,
+      259
+    ],
+    [
+      "Automobile Show Desk",
+      66,
+      261
+    ],
+    [
+      "BooksReview",
+      66,
+      261
+    ],
+    [
+      "Op-Ed at 20 Supplement",
+      66,
+      261
+    ],
+    [
+      "The Millennium",
+      64,
+      264
+    ],
+    [
+      "The Living Section",
+      64,
+      264
+    ],
+    [
+      "Automobile Show",
+      63,
+      266
+    ],
+    [
+      "Crosswords & Games",
+      62,
+      267
+    ],
+    [
+      "Men & Health",
+      60,
+      268
+    ],
+    [
+      "TWomensFashion",
+      59,
+      269
+    ],
+    [
+      "Business/Financial Desk;",
+      59,
+      269
+    ],
+    [
+      "Arts / Television",
+      58,
+      271
+    ],
+    [
+      "Dining & Wine / Cooking",
+      58,
+      271
+    ],
+    [
+      "Financial Planning Guide: Your Taxes",
+      57,
+      273
+    ],
+    [
+      "Gender",
+      57,
+      273
+    ],
+    [
+      "The Home Section",
+      56,
+      275
+    ],
+    [
+      "The New Season Magazine",
+      55,
+      276
+    ],
+    [
+      "Parenting",
+      55,
+      276
+    ],
+    [
+      "Outlook 2000",
+      54,
+      278
+    ],
+    [
+      "Spring Times Supplement",
+      54,
+      278
+    ],
+    [
+      "International / After the War",
+      54,
+      278
+    ],
+    [
+      "Amusements, Radio",
+      53,
+      281
+    ],
+    [
+      "Key",
+      51,
+      282
+    ],
+    [
+      "A Nation at War / A Nation at War",
+      51,
+      282
+    ],
+    [
+      "SPORTS",
+      50,
+      284
+    ],
+    [
+      "StateByState",
+      50,
+      284
+    ],
+    [
+      "Business/World Business",
+      50,
+      284
+    ],
+    [
+      "RADIO",
+      50,
+      284
+    ],
+    [
+      "Video",
+      49,
+      288
+    ],
+    [
+      "Metropolitan desk",
+      48,
+      289
+    ],
+    [
+      "BIZ",
+      47,
+      290
+    ],
+    [
+      "Business\\Financial Desk",
+      47,
+      290
+    ],
+    [
+      "Working",
+      46,
+      292
+    ],
+    [
+      "Jobs",
+      46,
+      292
+    ],
+    [
+      "Business/FinancialDesk",
+      46,
+      292
+    ],
+    [
+      "BKS",
+      45,
+      295
+    ],
+    [
+      "SCI",
+      44,
+      296
+    ],
+    [
+      "Radio",
+      44,
+      296
+    ],
+    [
+      "Home DeskHome Desk",
+      44,
+      296
+    ],
+    [
+      "FOOD FASHIONS FAMILY FURNISHINGS",
+      44,
+      296
+    ],
+    [
+      "Fashion",
+      43,
+      300
+    ],
+    [
+      "classified",
+      43,
+      300
+    ],
+    [
+      "Science / Space & Cosmos",
+      42,
+      302
+    ],
+    [
+      "Business Desk",
+      42,
+      302
+    ],
+    [
+      "Opinion / N.Y. Region Opinions",
+      42,
+      302
+    ],
+    [
+      "Then & Now",
+      41,
+      305
+    ],
+    [
+      "TMensFashion",
+      41,
+      305
+    ],
+    [
+      "Business/Media & Advertising",
+      41,
+      305
+    ],
+    [
+      "Living DeskLiving Desk",
+      40,
+      308
+    ],
+    [
+      "Business/Financial desk",
+      40,
+      308
+    ],
+    [
+      "Commercial Real Estate Report",
+      38,
+      310
+    ],
+    [
+      "AMUSEMENTS RADIO",
+      37,
+      311
+    ],
+    [
+      "Style / T: Style Magazine",
+      37,
+      311
+    ],
+    [
+      "Travel - Accent on The Sun",
+      36,
+      313
+    ],
+    [
+      "New York Region / The City",
+      36,
+      313
+    ],
+    [
+      "Classsified",
+      36,
+      313
+    ],
+    [
+      "Retail",
+      35,
+      316
+    ],
+    [
+      "BOOKS",
+      35,
+      316
+    ],
+    [
+      "MAG",
+      35,
+      316
+    ],
+    [
+      "Classfied",
+      34,
+      319
+    ],
+    [
+      "Theater / Theater Reviews",
+      34,
+      319
+    ],
+    [
+      "Science / Science Special",
+      33,
+      321
+    ],
+    [
+      "Movies / Red Carpet",
+      33,
+      321
+    ],
+    [
+      "The Natural World",
+      33,
+      321
+    ],
+    [
+      "SPT",
+      32,
+      324
+    ],
+    [
+      "ALS",
+      31,
+      325
+    ],
+    [
+      "New York Region / New York/Region Special",
+      31,
+      325
+    ],
+    [
+      "New York Region / Metro Campaigns",
+      31,
+      325
+    ],
+    [
+      "Books/First Chapters",
+      30,
+      328
+    ],
+    [
+      "Holiday Times Supplement",
+      30,
+      328
+    ],
+    [
+      "Nesting",
+      30,
+      328
+    ],
+    [
+      "Amusements, Books",
+      30,
+      328
+    ],
+    [
+      "Men's Health",
+      29,
+      332
+    ],
+    [
+      "HOTELS AND RESTAURANTS",
+      29,
+      332
+    ],
+    [
+      "Page 6, Column 4",
+      28,
+      334
+    ],
+    [
+      "The City / The City",
+      28,
+      334
+    ],
+    [
+      "International/Europe",
+      28,
+      334
+    ],
+    [
+      "Health and Fitness",
+      27,
+      337
+    ],
+    [
+      "AMUSEMENTS BOOKS",
+      26,
+      338
+    ],
+    [
+      "Science Times",
+      26,
+      338
+    ],
+    [
+      "STL",
+      26,
+      338
+    ],
+    [
+      "International/Asia Pacific",
+      26,
+      338
+    ],
+    [
+      "Careers Supplement",
+      26,
+      338
+    ],
+    [
+      "Money & Business/Financial Desk",
+      26,
+      338
+    ],
+    [
+      "Family/Style",
+      26,
+      338
+    ],
+    [
+      "Reader Center",
+      26,
+      338
+    ],
+    [
+      "Special Section",
+      25,
+      346
+    ],
+    [
+      "Washington / Election 2004",
+      25,
+      346
+    ],
+    [
+      "MET",
+      25,
+      346
+    ],
+    [
+      "Boston 2004",
+      25,
+      346
+    ],
+    [
+      "Arts and Liesure Desk",
+      24,
+      350
+    ],
+    [
+      "Favorites",
+      24,
+      350
+    ],
+    [
+      "Education Desk",
+      24,
+      350
+    ],
+    [
+      "SundayReview",
+      24,
+      350
+    ],
+    [
+      "Page 4, Column 1",
+      24,
+      350
+    ],
+    [
+      "The City",
+      24,
+      350
+    ],
+    [
+      "Entrepreneurs",
+      23,
+      356
+    ],
+    [
+      "Personal Investing",
+      23,
+      356
+    ],
+    [
+      "New York Today",
+      23,
+      356
+    ],
+    [
+      "Winter Times Supplement",
+      23,
+      356
+    ],
+    [
+      "RADIO HOTELS AND RESTAURANTS",
+      22,
+      360
+    ],
+    [
+      "Arts / Arts Extra",
+      22,
+      360
+    ],
+    [
+      "Play Magazine",
+      22,
+      360
+    ],
+    [
+      "Week In Review DeskWeek In Review Desk",
+      22,
+      360
+    ],
+    [
+      "^@",
+      22,
+      360
+    ],
+    [
+      "NYTI",
+      21,
+      365
+    ],
+    [
+      "Living Desk;",
+      21,
+      365
+    ],
+    [
+      "Autumn Times Supplement",
+      21,
+      365
+    ],
+    [
+      "Good Health Magazine",
+      21,
+      365
+    ],
+    [
+      "Summer Movies",
+      21,
+      365
+    ],
+    [
+      "SPORTS AMUSEMENTS",
+      21,
+      365
+    ],
+    [
+      "Money and Business/Financial DeskMoney and Bus",
+      21,
+      365
+    ],
+    [
+      "Fashion & Style / Sunday Styles",
+      21,
+      365
+    ],
+    [
+      "Travel / Escapes",
+      21,
+      365
+    ],
+    [
+      "Cultural Desk - SummerTimes Supplement",
+      21,
+      365
+    ],
+    [
+      "New York, New York Magazine",
+      20,
+      375
+    ],
+    [
+      "Business / Business Special",
+      20,
+      375
+    ],
+    [
+      "Sports/Baseball",
+      20,
+      375
+    ],
+    [
+      "Books/Sunday Book Review",
+      19,
+      378
+    ],
+    [
+      "Generations",
+      19,
+      378
+    ],
+    [
+      "Westchester Opinion",
+      19,
+      378
+    ],
+    [
+      "Business Travel",
+      19,
+      378
+    ],
+    [
+      "New Jersey Weekly",
+      19,
+      378
+    ],
+    [
+      "AMUSEMENTS-RADIO",
+      19,
+      378
+    ],
+    [
+      "Business/Your Money",
+      19,
+      378
+    ],
+    [
+      "Adventure Sports",
+      19,
+      378
+    ],
+    [
+      "Dining In, Dining Out/Cultural Desk",
+      19,
+      378
+    ],
+    [
+      "Movies / Movies Special",
+      18,
+      387
+    ],
+    [
+      "Summer Survey of Education",
+      18,
+      387
+    ],
+    [
+      "Dining In/Dining Out",
+      18,
+      387
+    ],
+    [
+      "Wireless Living",
+      17,
+      390
+    ],
+    [
+      "Weekin Review Desk",
+      17,
+      390
+    ],
+    [
+      "Dining In/Dining Out/Living Desk",
+      17,
+      390
+    ],
+    [
+      "Your Taxes Supplement",
+      16,
+      393
+    ],
+    [
+      "International/Middle East",
+      16,
+      393
+    ],
+    [
+      "Financial",
+      16,
+      393
+    ],
+    [
+      "Financial Planning Guide: Personal Investing",
+      16,
+      393
+    ],
+    [
+      "CND",
+      16,
+      393
+    ],
+    [
+      "The Business of Green",
+      15,
+      398
+    ],
+    [
+      "Editors Picks",
+      15,
+      398
+    ],
+    [
+      "House & Home\\Style Desk",
+      15,
+      398
+    ],
+    [
+      "Sports/Tennis",
+      14,
+      401
+    ],
+    [
+      "Teens",
+      14,
+      401
+    ],
+    [
+      "Business & Finance",
+      14,
+      401
+    ],
+    [
+      "Travel / T Style Magazine: Travel",
+      14,
+      401
+    ],
+    [
+      "Voter Guide 2004",
+      14,
+      401
+    ],
+    [
+      "Metroplitan Desk",
+      14,
+      401
+    ],
+    [
+      "Guides",
+      14,
+      401
+    ],
+    [
+      "Styles of the Times",
+      13,
+      408
+    ],
+    [
+      "Sports/College Football",
+      13,
+      408
+    ],
+    [
+      "The Arts\\Cultural Desk",
+      13,
+      408
+    ],
+    [
+      "Education / Education Life",
+      13,
+      408
+    ],
+    [
+      "sports",
+      12,
+      412
+    ],
+    [
+      "SOCIAL NEWS AMUSEMENTS",
+      12,
+      412
+    ],
+    [
+      "Flight",
+      12,
+      412
+    ],
+    [
+      "ART AMUSEMENTS",
+      12,
+      412
+    ],
+    [
+      "Thursday Styles Desk",
+      12,
+      412
+    ],
+    [
+      "Residential Real Estate Report",
+      12,
+      412
+    ],
+    [
+      "Real Estate / Real Estate Luxury & Vacation",
+      11,
+      418
+    ],
+    [
+      "Internationa / International Special",
+      11,
+      418
+    ],
+    [
+      "Fashion & Style/Weddings & Celebrations",
+      11,
+      418
+    ],
+    [
+      "NYTimes.com Digital",
+      11,
+      418
+    ],
+    [
+      "Opinion TimesSelect",
+      11,
+      418
+    ],
+    [
+      "amusements books",
+      11,
+      418
+    ],
+    [
+      "Art & Ideas/Cultural Desk",
+      11,
+      418
+    ],
+    [
+      "Arts/Music",
+      10,
+      425
+    ],
+    [
+      "Lost and Found, Radio",
+      10,
+      425
+    ],
+    [
+      "AUT",
+      10,
+      425
+    ],
+    [
+      "RADIO BOOKS AMUSEMENTS",
+      10,
+      425
+    ],
+    [
+      "Hotels and Restaurants",
+      10,
+      425
+    ],
+    [
+      "Men's Fashions of The TimesMagazine",
+      10,
+      425
+    ],
+    [
+      "books",
+      10,
+      425
+    ],
+    [
+      "Variables.metaSubSection",
+      9,
+      432
+    ],
+    [
+      "nationchallenged",
+      9,
+      432
+    ],
+    [
+      "Arts Almanac Supplement",
+      9,
+      432
+    ],
+    [
+      "TheCity Weekly Desk",
+      9,
+      432
+    ],
+    [
+      "Drama, Music",
+      9,
+      432
+    ],
+    [
+      "BOOKS RADIO-AMUSEMENTS",
+      9,
+      432
+    ],
+    [
+      "Sports/Golf",
+      9,
+      432
+    ],
+    [
+      "Business/Financial",
+      9,
+      432
+    ],
+    [
+      "TravelDesk",
+      8,
+      440
+    ],
+    [
+      "amusement",
+      8,
+      440
+    ],
+    [
+      "Westchester Weekly",
+      8,
+      440
+    ],
+    [
+      "National / Threats and Responses",
+      8,
+      440
+    ],
+    [
+      "Lost and Found, Amusements",
+      8,
+      440
+    ],
+    [
+      "The Year in Pictures",
+      7,
+      445
+    ],
+    [
+      "Metro Desk",
+      7,
+      445
+    ],
+    [
+      "BOOKS AMUSEMENTS",
+      7,
+      445
+    ],
+    [
+      "BOOKS RADIO AMUSEMENTS",
+      7,
+      445
+    ],
+    [
+      "Fashion & Style / Thursday Styles",
+      7,
+      445
+    ],
+    [
+      "Sports / Winter Olympics 2006",
+      7,
+      445
+    ],
+    [
+      "Booming",
+      7,
+      445
+    ],
+    [
+      "Theater / Theater",
+      7,
+      445
+    ],
+    [
+      "Education Life Supple",
+      7,
+      445
+    ],
+    [
+      "Sports DEsk",
+      7,
+      445
+    ],
+    [
+      "Money andBusiness/Financial Desk",
+      7,
+      445
+    ],
+    [
+      "Moneyand Business/Financial Desk",
+      7,
+      445
+    ],
+    [
+      "Amusements, Resorts",
+      7,
+      445
+    ],
+    [
+      "amusements hotels and restaurants",
+      7,
+      445
+    ],
+    [
+      "Sports/Pro Football",
+      7,
+      445
+    ],
+    [
+      "Portraits of Grief",
+      7,
+      445
+    ],
+    [
+      "AMUSEMENTS BUSINESS",
+      7,
+      445
+    ],
+    [
+      "Radio, Hotels and Restaurants",
+      7,
+      445
+    ],
+    [
+      "Radio, Resorts",
+      7,
+      445
+    ],
+    [
+      "Opinion / Opinion Special",
+      7,
+      445
+    ],
+    [
+      "DRAMA MUSIC SOCIETY HOTELS AND RESTAURANTS SCREEN ART RADIO SHOPPERS COLUMNS THE DANCE",
+      7,
+      445
+    ],
+    [
+      "EDT",
+      7,
+      445
+    ],
+    [
+      "BOOKS ART AMUSEMENTS",
+      6,
+      467
+    ],
+    [
+      "/",
+      6,
+      467
+    ],
+    [
+      "2005: The Year In Pictures",
+      6,
+      467
+    ],
+    [
+      "AMUSEMENTS ART",
+      6,
+      467
+    ],
+    [
+      "AMUSEMENTS HOTEL AND RESTAURANTS",
+      6,
+      467
+    ],
+    [
+      "AMUSEMENTS HOTELS AND RESTUARANTS",
+      6,
+      467
+    ],
+    [
+      "AMUSEMENTS RADIO AMUSEMENTS",
+      6,
+      467
+    ],
+    [
+      "ARTS AND LEISURE",
+      6,
+      467
+    ],
+    [
+      "Arts/Art & Design",
+      6,
+      467
+    ],
+    [
+      "Arts/Theater",
+      6,
+      467
+    ],
+    [
+      "Automobile",
+      6,
+      467
+    ],
+    [
+      "BOOKS-AMUSEMENTS",
+      6,
+      467
+    ],
+    [
+      "College / College Specials",
+      6,
+      467
+    ],
+    [
+      "Editorials/Op-Ed",
+      6,
+      467
+    ],
+    [
+      "Financial Desk Financial Desk",
+      6,
+      467
+    ],
+    [
+      "Foreign Desk u",
+      6,
+      467
+    ],
+    [
+      "Hotels and Restaurants, Resorts",
+      6,
+      467
+    ],
+    [
+      "International Home",
+      6,
+      467
+    ],
+    [
+      "International/Americas",
+      6,
+      467
+    ],
+    [
+      "LOST AND FOUND AMUSEMENTS",
+      6,
+      467
+    ],
+    [
+      "Lost and Found, Hotels and Restaurants",
+      6,
+      467
+    ],
+    [
+      "Magazine / Magazine Special",
+      6,
+      467
+    ],
+    [
+      "Movies / Oscars 2004",
+      6,
+      467
+    ],
+    [
+      "National / Class",
+      6,
+      467
+    ],
+    [
+      "Neediest",
+      6,
+      467
+    ],
+    [
+      "New Jersey Pages",
+      6,
+      467
+    ],
+    [
+      "Other Sports/Other Sports",
+      6,
+      467
+    ],
+    [
+      "RADIO AMUSEMENT",
+      6,
+      467
+    ],
+    [
+      "Resorts",
+      6,
+      467
+    ],
+    [
+      "Resorts, Hotels & Restaurants",
+      6,
+      467
+    ],
+    [
+      "SPORTS AUTOMOBILES",
+      6,
+      467
+    ],
+    [
+      "Science / Environment",
+      6,
+      467
+    ],
+    [
+      "Social News",
+      6,
+      467
+    ],
+    [
+      "Sport Desk",
+      6,
+      467
+    ]
+  ]
+}

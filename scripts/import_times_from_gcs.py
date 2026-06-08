@@ -99,6 +99,7 @@ def _iter_ndjson_rows(
     if not ndjson_blobs:
         raise RuntimeError(f"No .ndjson objects found under gs://{bucket_name}/{prefix}")
 
+    skipped_lines = 0
     for blob in ndjson_blobs:
         print(f"Downloading gs://{bucket_name}/{blob.name}", flush=True)
         for line_number, line in enumerate(blob.download_as_text().splitlines(), start=1):
@@ -108,9 +109,13 @@ def _iter_ndjson_rows(
             try:
                 yield json.loads(stripped)
             except json.JSONDecodeError as exc:
-                raise RuntimeError(
-                    f"Invalid JSON in {blob.name} line {line_number}: {exc}"
-                ) from exc
+                skipped_lines += 1
+                print(
+                    f"WARN: skipping invalid JSON in {blob.name} line {line_number}: {exc}",
+                    flush=True,
+                )
+    if skipped_lines:
+        print(f"WARN: skipped {skipped_lines} malformed NDJSON line(s).", flush=True)
 
 
 def _resolve_credentials_path() -> str | None:

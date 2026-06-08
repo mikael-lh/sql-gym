@@ -71,7 +71,18 @@ psql "$DATABASE_ADMIN_URL" -c "SELECT COUNT(*) FROM times_archive;"
 
 - Downloads all `*.ndjson` objects under the configured prefix.
 - `TRUNCATE times_archive` then reload (idempotent full refresh).
+- Skips malformed NDJSON lines with a warning (continues import).
 - Batch inserts via `psycopg`; JSON array/object columns stored as `JSONB`.
+
+## Expected result grids
+
+After import, regenerate grading grids:
+
+```bash
+./scripts/generate-expected-results.sh
+```
+
+Writes `src/app/catalog/data/expected_grids/<exercise_id>.json` from each exercise's `reference_sql` (max 500 rows).
 
 First import may take several minutes depending on network speed (full 1920–2019 archive).
 
