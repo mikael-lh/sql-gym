@@ -1,0 +1,332 @@
+{
+  "columns": [
+    "section_name",
+    "avg_snippet_length"
+  ],
+  "rows": [
+    [
+      "",
+      105
+    ],
+    [
+      "Admin",
+      97
+    ],
+    [
+      "Archives",
+      42
+    ],
+    [
+      "Arts",
+      89
+    ],
+    [
+      "Automobiles",
+      135
+    ],
+    [
+      "Blogs",
+      143
+    ],
+    [
+      "Books",
+      87
+    ],
+    [
+      "Booming",
+      121
+    ],
+    [
+      "Briefing",
+      46
+    ],
+    [
+      "Business Day",
+      63
+    ],
+    [
+      "Climate",
+      143
+    ],
+    [
+      "College",
+      83
+    ],
+    [
+      "Corrections",
+      88
+    ],
+    [
+      "Critic's Choice",
+      64
+    ],
+    [
+      "Crosswords & Games",
+      76
+    ],
+    [
+      "Editors Picks",
+      0
+    ],
+    [
+      "Education",
+      130
+    ],
+    [
+      "Fashion & Style",
+      106
+    ],
+    [
+      "Feeds",
+      116
+    ],
+    [
+      "Food",
+      110
+    ],
+    [
+      "Giving",
+      181
+    ],
+    [
+      "Global Home",
+      32
+    ],
+    [
+      "Great Homes & Destinations",
+      108
+    ],
+    [
+      "Guides",
+      179
+    ],
+    [
+      "Health",
+      141
+    ],
+    [
+      "Home & Garden",
+      52
+    ],
+    [
+      "Homepage",
+      110
+    ],
+    [
+      "International Home",
+      148
+    ],
+    [
+      "Job Market",
+      137
+    ],
+    [
+      "Lens",
+      144
+    ],
+    [
+      "Magazine",
+      85
+    ],
+    [
+      "Movies",
+      97
+    ],
+    [
+      "Multimedia/Photos",
+      111
+    ],
+    [
+      "NYT Now",
+      58
+    ],
+    [
+      "Neediest Cases",
+      141
+    ],
+    [
+      "New York",
+      102
+    ],
+    [
+      "Obituaries",
+      23
+    ],
+    [
+      "Open",
+      154
+    ],
+    [
+      "Opinion",
+      94
+    ],
+    [
+      "Parenting",
+      83
+    ],
+    [
+      "Podcasts",
+      132
+    ],
+    [
+      "Public Editor",
+      123
+    ],
+    [
+      "Reader Center",
+      135
+    ],
+    [
+      "Real Estate",
+      94
+    ],
+    [
+      "Science",
+      102
+    ],
+    [
+      "Slideshows",
+      141
+    ],
+    [
+      "Smarter Living",
+      101
+    ],
+    [
+      "Sports",
+      76
+    ],
+    [
+      "Style",
+      45
+    ],
+    [
+      "Sunday Review",
+      99
+    ],
+    [
+      "T Brand",
+      109
+    ],
+    [
+      "T Magazine",
+      108
+    ],
+    [
+      "Technology",
+      135
+    ],
+    [
+      "The Learning Network",
+      102
+    ],
+    [
+      "The Upshot",
+      121
+    ],
+    [
+      "The Weekly",
+      106
+    ],
+    [
+      "Theater",
+      93
+    ],
+    [
+      "Times Insider",
+      125
+    ],
+    [
+      "Times Topics",
+      82
+    ],
+    [
+      "Today’s Paper",
+      50
+    ],
+    [
+      "Topics",
+      66
+    ],
+    [
+      "Travel",
+      96
+    ],
+    [
+      "U.S.",
+      99
+    ],
+    [
+      "Universal",
+      120
+    ],
+    [
+      "UrbanEye",
+      242
+    ],
+    [
+      "Video",
+      187
+    ],
+    [
+      "Washington",
+      140
+    ],
+    [
+      "Watching",
+      113
+    ],
+    [
+      "Week in Review",
+      65
+    ],
+    [
+      "Well",
+      112
+    ],
+    [
+      "World",
+      97
+    ],
+    [
+      "Your Money",
+      123
+    ],
+    [
+      "en Español",
+      102
+    ],
+    [
+      "membercenter",
+      81
+    ],
+    [
+      "nationchallenged",
+      87
+    ],
+    [
+      "none",
+      130
+    ],
+    [
+      "nytfrontpage",
+      126
+    ],
+    [
+      "readersopinions",
+      129
+    ],
+    [
+      "timesselect",
+      136
+    ],
+    [
+      "timestalks",
+      126
+    ],
+    [
+      "xword",
+      0
+    ]
+  ]
+}

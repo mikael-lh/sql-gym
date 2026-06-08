@@ -1,0 +1,16 @@
+{
+  "columns": [
+    "document_type"
+  ],
+  "rows": [
+    [
+      "article"
+    ],
+    [
+      "audio"
+    ],
+    [
+      "multimedia"
+    ]
+  ]
+}

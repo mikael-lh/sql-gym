@@ -115,6 +115,8 @@ def test_times_archive_catalog_entries_include_required_metadata() -> None:
         assert exercise.learning_objectives
         assert exercise.hint
         assert exercise.sample_sql
+        assert exercise.expected_result.reference_sql
+        assert exercise.expected_result.expected_grid is not None
         assert exercise.availability_status in {"available", "placeholder", "coming_soon"}
         assert exercise.hint != exercise.sample_sql
 

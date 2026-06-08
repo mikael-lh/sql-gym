@@ -1,0 +1,2008 @@
+{
+  "columns": [
+    "news_desk",
+    "latest_pub_date"
+  ],
+  "rows": [
+    [
+      "OpEd",
+      "2019-12-31"
+    ],
+    [
+      "Games",
+      "2019-12-31"
+    ],
+    [
+      "Culture",
+      "2019-12-31"
+    ],
+    [
+      "Magazine",
+      "2019-12-31"
+    ],
+    [
+      "Politics",
+      "2019-12-31"
+    ],
+    [
+      "National",
+      "2019-12-31"
+    ],
+    [
+      "Arts&Leisure",
+      "2019-12-31"
+    ],
+    [
+      "Smarter Living",
+      "2019-12-31"
+    ],
+    [
+      "Dining",
+      "2019-12-31"
+    ],
+    [
+      "Metro",
+      "2019-12-31"
+    ],
+    [
+      "NYTNow",
+      "2019-12-31"
+    ],
+    [
+      "Summary",
+      "2019-12-31"
+    ],
+    [
+      "",
+      "2019-12-31"
+    ],
+    [
+      "Sports",
+      "2019-12-31"
+    ],
+    [
+      "Well",
+      "2019-12-31"
+    ],
+    [
+      "Express",
+      "2019-12-31"
+    ],
+    [
+      "Foreign",
+      "2019-12-31"
+    ],
+    [
+      "Upshot",
+      "2019-12-31"
+    ],
+    [
+      "Opinion",
+      "2019-12-31"
+    ],
+    [
+      "Climate",
+      "2019-12-31"
+    ],
+    [
+      "Travel",
+      "2019-12-31"
+    ],
+    [
+      "Podcasts",
+      "2019-12-31"
+    ],
+    [
+      "Washington",
+      "2019-12-31"
+    ],
+    [
+      "Letters",
+      "2019-12-31"
+    ],
+    [
+      "Food",
+      "2019-12-31"
+    ],
+    [
+      "Real Estate",
+      "2019-12-31"
+    ],
+    [
+      "BookReview",
+      "2019-12-31"
+    ],
+    [
+      "Styles",
+      "2019-12-31"
+    ],
+    [
+      "Business",
+      "2019-12-31"
+    ],
+    [
+      "Weekend",
+      "2019-12-31"
+    ],
+    [
+      "Corrections",
+      "2019-12-31"
+    ],
+    [
+      "Obits",
+      "2019-12-31"
+    ],
+    [
+      "RealEstate",
+      "2019-12-31"
+    ],
+    [
+      "TStyle",
+      "2019-12-30"
+    ],
+    [
+      "Science",
+      "2019-12-30"
+    ],
+    [
+      "U.S.",
+      "2019-12-30"
+    ],
+    [
+      "Books",
+      "2019-12-30"
+    ],
+    [
+      "Editorial",
+      "2019-12-30"
+    ],
+    [
+      "Society",
+      "2019-12-29"
+    ],
+    [
+      "Metropolitan",
+      "2019-12-29"
+    ],
+    [
+      "The Upshot",
+      "2019-12-29"
+    ],
+    [
+      "SundayBusiness",
+      "2019-12-29"
+    ],
+    [
+      "Style",
+      "2019-12-28"
+    ],
+    [
+      "Briefing",
+      "2019-12-27"
+    ],
+    [
+      "Universal",
+      "2019-12-27"
+    ],
+    [
+      "NewsDesk",
+      "2019-12-26"
+    ],
+    [
+      "World",
+      "2019-12-25"
+    ],
+    [
+      "Parenting",
+      "2019-12-25"
+    ],
+    [
+      "Insider",
+      "2019-12-24"
+    ],
+    [
+      "Reader Center",
+      "2019-12-24"
+    ],
+    [
+      "T Magazine",
+      "2019-12-23"
+    ],
+    [
+      "SpecialSections",
+      "2019-12-23"
+    ],
+    [
+      "Investigative",
+      "2019-12-22"
+    ],
+    [
+      "Fashion & Style",
+      "2019-12-21"
+    ],
+    [
+      "Learning",
+      "2019-12-20"
+    ],
+    [
+      "NYTI",
+      "2019-12-19"
+    ],
+    [
+      "New York",
+      "2019-12-18"
+    ],
+    [
+      "Arts",
+      "2019-12-18"
+    ],
+    [
+      "Obituaries",
+      "2019-12-17"
+    ],
+    [
+      "Technology",
+      "2019-12-16"
+    ],
+    [
+      "Business Day",
+      "2019-12-16"
+    ],
+    [
+      "Video",
+      "2019-12-13"
+    ],
+    [
+      "Gender",
+      "2019-12-10"
+    ],
+    [
+      "The Learning Network",
+      "2019-12-10"
+    ],
+    [
+      "Neediest",
+      "2019-12-03"
+    ],
+    [
+      "Multimedia/Photos",
+      "2019-12-02"
+    ],
+    [
+      "Photo",
+      "2019-11-20"
+    ],
+    [
+      "Graphics",
+      "2019-11-16"
+    ],
+    [
+      "Watching",
+      "2019-10-17"
+    ],
+    [
+      "Movies",
+      "2019-10-04"
+    ],
+    [
+      "Your Money",
+      "2019-10-03"
+    ],
+    [
+      "Health",
+      "2019-10-01"
+    ],
+    [
+      "Admin",
+      "2019-09-19"
+    ],
+    [
+      "en Español",
+      "2019-09-11"
+    ],
+    [
+      "Test",
+      "2019-08-06"
+    ],
+    [
+      "SundayReview",
+      "2019-07-04"
+    ],
+    [
+      "Times Insider",
+      "2019-06-26"
+    ],
+    [
+      "Theater",
+      "2019-06-09"
+    ],
+    [
+      "Guides",
+      "2019-04-17"
+    ],
+    [
+      "Sunday Review",
+      "2018-12-20"
+    ],
+    [
+      "Crosswords & Games",
+      "2018-11-05"
+    ],
+    [
+      "Job Market",
+      "2018-10-23"
+    ],
+    [
+      "None",
+      "2018-08-28"
+    ],
+    [
+      "Automobiles",
+      "2018-06-01"
+    ],
+    [
+      "Homepage",
+      "2018-03-25"
+    ],
+    [
+      "Blogs",
+      "2018-01-29"
+    ],
+    [
+      "Education",
+      "2017-11-03"
+    ],
+    [
+      "EdLife",
+      "2017-11-03"
+    ],
+    [
+      "Slideshows",
+      "2017-09-06"
+    ],
+    [
+      "International Home",
+      "2017-08-20"
+    ],
+    [
+      "Home",
+      "2017-06-03"
+    ],
+    [
+      "NYT Now",
+      "2017-01-24"
+    ],
+    [
+      "Dealbook",
+      "2016-05-11"
+    ],
+    [
+      "NODESK",
+      "2016-05-02"
+    ],
+    [
+      "Media",
+      "2016-04-20"
+    ],
+    [
+      "WEB",
+      "2016-02-22"
+    ],
+    [
+      "Circuits",
+      "2016-01-13"
+    ],
+    [
+      "TDesign",
+      "2015-08-17"
+    ],
+    [
+      "TCulture",
+      "2015-07-14"
+    ],
+    [
+      "TLiving",
+      "2015-07-05"
+    ],
+    [
+      "Fashion",
+      "2015-05-15"
+    ],
+    [
+      "TTravel",
+      "2015-05-14"
+    ],
+    [
+      "Home & Garden",
+      "2015-03-04"
+    ],
+    [
+      "Great Homes & Destinations",
+      "2015-01-29"
+    ],
+    [
+      "Museums",
+      "2014-11-20"
+    ],
+    [
+      "membercenter",
+      "2014-11-17"
+    ],
+    [
+      "StateByState",
+      "2014-11-06"
+    ],
+    [
+      "Feeds",
+      "2014-03-11"
+    ],
+    [
+      "Energy",
+      "2014-02-05"
+    ],
+    [
+      "Booming",
+      "2014-01-06"
+    ],
+    [
+      "Giving",
+      "2013-11-07"
+    ],
+    [
+      "Jobs",
+      "2013-09-19"
+    ],
+    [
+      "Global Home",
+      "2013-04-10"
+    ],
+    [
+      "ContinuousNews",
+      "2013-03-19"
+    ],
+    [
+      "Week in Review",
+      "2013-03-15"
+    ],
+    [
+      "Environment",
+      "2013-01-07"
+    ],
+    [
+      "IHT Edit",
+      "2012-12-21"
+    ],
+    [
+      "IHT Finance",
+      "2012-11-25"
+    ],
+    [
+      "TMensFashion",
+      "2012-09-05"
+    ],
+    [
+      "NAT",
+      "2012-01-14"
+    ],
+    [
+      "nytfrontpage",
+      "2011-09-11"
+    ],
+    [
+      "Connecticut",
+      "2011-07-08"
+    ],
+    [
+      "WeekInReview",
+      "2011-06-18"
+    ],
+    [
+      "0",
+      "2011-01-21"
+    ],
+    [
+      "Regionals",
+      "2010-12-21"
+    ],
+    [
+      "Escapes",
+      "2009-07-09"
+    ],
+    [
+      "LongIsland",
+      "2009-05-19"
+    ],
+    [
+      "CityWeekly",
+      "2009-05-16"
+    ],
+    [
+      "NewJersey",
+      "2009-03-13"
+    ],
+    [
+      "TWomensFashion",
+      "2009-03-11"
+    ],
+    [
+      "TBeauty",
+      "2009-03-04"
+    ],
+    [
+      "Westchester",
+      "2008-12-18"
+    ],
+    [
+      "Play",
+      "2008-11-20"
+    ],
+    [
+      "ELEC",
+      "2008-11-07"
+    ],
+    [
+      "Key",
+      "2008-10-03"
+    ],
+    [
+      "OurTimes",
+      "2007-04-29"
+    ],
+    [
+      "BooksReview",
+      "2007-01-28"
+    ],
+    [
+      "Metropolitan Desk",
+      "2006-12-31"
+    ],
+    [
+      "New Jersey Weekly Desk",
+      "2006-12-31"
+    ],
+    [
+      "Sports Desk",
+      "2006-12-31"
+    ],
+    [
+      "Arts and Leisure Desk",
+      "2006-12-31"
+    ],
+    [
+      "Foreign Desk",
+      "2006-12-31"
+    ],
+    [
+      "Real Estate Desk",
+      "2006-12-31"
+    ],
+    [
+      "National Desk",
+      "2006-12-31"
+    ],
+    [
+      "Classified",
+      "2006-12-31"
+    ],
+    [
+      "Society Desk",
+      "2006-12-31"
+    ],
+    [
+      "Week in Review Desk",
+      "2006-12-31"
+    ],
+    [
+      "Travel Desk",
+      "2006-12-31"
+    ],
+    [
+      "Long Island Weekly Desk",
+      "2006-12-31"
+    ],
+    [
+      "Editorial Desk",
+      "2006-12-31"
+    ],
+    [
+      "Connecticut Weekly Desk",
+      "2006-12-31"
+    ],
+    [
+      "The City Weekly Desk",
+      "2006-12-31"
+    ],
+    [
+      "Money and Business/Financial Desk",
+      "2006-12-31"
+    ],
+    [
+      "Book Review Desk",
+      "2006-12-31"
+    ],
+    [
+      "Style Desk",
+      "2006-12-31"
+    ],
+    [
+      "Westchester Weekly Desk",
+      "2006-12-31"
+    ],
+    [
+      "Business/Financial Desk",
+      "2006-12-30"
+    ],
+    [
+      "The Arts/Cultural Desk",
+      "2006-12-30"
+    ],
+    [
+      "Movies, Performing Arts/Weekend Desk",
+      "2006-12-29"
+    ],
+    [
+      "Leisure/Weekend Desk",
+      "2006-12-29"
+    ],
+    [
+      "Thursday Styles",
+      "2006-12-28"
+    ],
+    [
+      "House & Home/Style Desk",
+      "2006-12-28"
+    ],
+    [
+      "Dining, Dining Out/Cultural Desk",
+      "2006-12-27"
+    ],
+    [
+      "Health&Fitness",
+      "2006-12-26"
+    ],
+    [
+      "Science Desk",
+      "2006-12-26"
+    ],
+    [
+      "FOR",
+      "2006-12-04"
+    ],
+    [
+      "THoliday",
+      "2006-12-03"
+    ],
+    [
+      "CUL",
+      "2006-12-01"
+    ],
+    [
+      "SPT",
+      "2006-11-30"
+    ],
+    [
+      "AUT",
+      "2006-11-30"
+    ],
+    [
+      "ALS",
+      "2006-11-26"
+    ],
+    [
+      "DIN",
+      "2006-11-26"
+    ],
+    [
+      "STL",
+      "2006-11-25"
+    ],
+    [
+      "MET",
+      "2006-11-21"
+    ],
+    [
+      "T: Travel Magazine",
+      "2006-11-19"
+    ],
+    [
+      "Small Business",
+      "2006-11-15"
+    ],
+    [
+      "CND",
+      "2006-11-07"
+    ],
+    [
+      "T: Living Magazine",
+      "2006-11-05"
+    ],
+    [
+      "Education Life Supplement",
+      "2006-11-05"
+    ],
+    [
+      "SCI",
+      "2006-11-02"
+    ],
+    [
+      "Times Topics",
+      "2006-10-30"
+    ],
+    [
+      "MAG",
+      "2006-10-29"
+    ],
+    [
+      "Cars",
+      "2006-10-25"
+    ],
+    [
+      "Retirement",
+      "2006-10-24"
+    ],
+    [
+      "T: Beauty",
+      "2006-10-22"
+    ],
+    [
+      "BIZ",
+      "2006-10-04"
+    ],
+    [
+      "NWS",
+      "2006-09-20"
+    ],
+    [
+      "Business Travel",
+      "2006-09-18"
+    ],
+    [
+      "T: Men's Fashion Magazine",
+      "2006-09-17"
+    ],
+    [
+      "BKS",
+      "2006-09-03"
+    ],
+    [
+      "T: Women's Fashion Magazine",
+      "2006-08-27"
+    ],
+    [
+      "Play Magazine",
+      "2006-08-20"
+    ],
+    [
+      "NWR",
+      "2006-06-25"
+    ],
+    [
+      "CIR",
+      "2006-06-15"
+    ],
+    [
+      "TRA",
+      "2006-05-17"
+    ],
+    [
+      "The Business of Green",
+      "2006-05-17"
+    ],
+    [
+      "International / Middle East",
+      "2006-04-30"
+    ],
+    [
+      "International / Asia Pacific",
+      "2006-04-30"
+    ],
+    [
+      "International / Africa",
+      "2006-04-30"
+    ],
+    [
+      "Sports / Pro Football",
+      "2006-04-30"
+    ],
+    [
+      "Sports / Other Sports",
+      "2006-04-30"
+    ],
+    [
+      "Arts / Music",
+      "2006-04-30"
+    ],
+    [
+      "New York Region",
+      "2006-04-30"
+    ],
+    [
+      "Business / Your Money",
+      "2006-04-30"
+    ],
+    [
+      "International / Europe",
+      "2006-04-30"
+    ],
+    [
+      "Books / Sunday Book Review",
+      "2006-04-30"
+    ],
+    [
+      "Books / First Chapters",
+      "2006-04-30"
+    ],
+    [
+      "Books / Best-Seller Lists",
+      "2006-04-30"
+    ],
+    [
+      "Sports / College Football",
+      "2006-04-30"
+    ],
+    [
+      "Television",
+      "2006-04-30"
+    ],
+    [
+      "Sports / Baseball",
+      "2006-04-30"
+    ],
+    [
+      "New York/Region Opinions / New York/Region Opinions",
+      "2006-04-30"
+    ],
+    [
+      "International",
+      "2006-04-29"
+    ],
+    [
+      "Technology / Pogues Posts",
+      "2006-04-28"
+    ],
+    [
+      "Arts / Television",
+      "2006-04-28"
+    ],
+    [
+      "Business / World Business",
+      "2006-04-28"
+    ],
+    [
+      "Science / Space & Cosmos",
+      "2006-04-28"
+    ],
+    [
+      "Business / Media & Advertising",
+      "2006-04-28"
+    ],
+    [
+      "Arts / Art & Design",
+      "2006-04-28"
+    ],
+    [
+      "Sports / Soccer",
+      "2006-04-26"
+    ],
+    [
+      "Dining & Wine",
+      "2006-04-26"
+    ],
+    [
+      "timesselect",
+      "2006-04-26"
+    ],
+    [
+      "International / Americas",
+      "2006-04-26"
+    ],
+    [
+      "Sports / Hockey",
+      "2006-04-24"
+    ],
+    [
+      "New York Region / The City",
+      "2006-04-23"
+    ],
+    [
+      "Education / Education Life",
+      "2006-04-23"
+    ],
+    [
+      "Arts / Arts Extra",
+      "2006-04-22"
+    ],
+    [
+      "Sports / Winter Olympics 2006",
+      "2006-04-17"
+    ],
+    [
+      "International / International Special",
+      "2006-04-16"
+    ],
+    [
+      "Fashion & Style / Thursday Styles",
+      "2006-04-13"
+    ],
+    [
+      "Automobiles / Automobiles Special",
+      "2006-04-13"
+    ],
+    [
+      "Sports / Golf",
+      "2006-04-07"
+    ],
+    [
+      "Technology / Technology",
+      "2006-04-04"
+    ],
+    [
+      "T: Design Magazine",
+      "2006-04-02"
+    ],
+    [
+      "Sports / Pro Basketball",
+      "2006-04-02"
+    ],
+    [
+      "Sports / Tennis",
+      "2006-04-02"
+    ],
+    [
+      "Style / T: Style Magazine",
+      "2006-04-02"
+    ],
+    [
+      "Technology / Circuits",
+      "2006-03-29"
+    ],
+    [
+      "Arts / Arts Special",
+      "2006-03-29"
+    ],
+    [
+      "Fashion & Style / Sunday Styles",
+      "2006-03-26"
+    ],
+    [
+      "Sports / College Basketball",
+      "2006-03-25"
+    ],
+    [
+      "Business / Business Special",
+      "2006-03-23"
+    ],
+    [
+      "Sports / Olympics",
+      "2006-03-19"
+    ],
+    [
+      "College",
+      "2006-03-19"
+    ],
+    [
+      "Travel / T Style Magazine: Travel",
+      "2006-03-19"
+    ],
+    [
+      "Theater / Theater Reviews",
+      "2006-03-18"
+    ],
+    [
+      "Arts / Dance",
+      "2006-03-11"
+    ],
+    [
+      "National / Threats and Responses",
+      "2006-03-09"
+    ],
+    [
+      "Movies / Red Carpet",
+      "2006-02-28"
+    ],
+    [
+      "Washington / Washington Special",
+      "2006-02-27"
+    ],
+    [
+      "Travel / Escapes",
+      "2006-02-24"
+    ],
+    [
+      "Business / Your Taxes",
+      "2006-02-11"
+    ],
+    [
+      "National / National Special",
+      "2006-02-10"
+    ],
+    [
+      "Theater / News & Features",
+      "2006-02-08"
+    ],
+    [
+      "Sports / Play Magazine",
+      "2006-02-05"
+    ],
+    [
+      "New York Region / New York/Region Special",
+      "2006-01-28"
+    ],
+    [
+      "New York Region / Metro Campaigns",
+      "2006-01-12"
+    ],
+    [
+      "Sports / Sports Special",
+      "2006-01-10"
+    ],
+    [
+      "Fashion & Style / Weddings & Celebrations",
+      "2006-01-01"
+    ],
+    [
+      "Sports / More Sports",
+      "2005-12-29"
+    ],
+    [
+      "2005: The Year In Pictures",
+      "2005-12-28"
+    ],
+    [
+      "Science / Science Special",
+      "2005-12-20"
+    ],
+    [
+      "Opinion TimesSelect",
+      "2005-12-08"
+    ],
+    [
+      "Times Talks",
+      "2005-12-07"
+    ],
+    [
+      "Science / Environment",
+      "2005-12-05"
+    ],
+    [
+      "Movies / Movies Special",
+      "2005-11-06"
+    ],
+    [
+      "Crosswords & Games / ",
+      "2005-10-25"
+    ],
+    [
+      "Readers' Opinions",
+      "2005-10-12"
+    ],
+    [
+      "T Magazine / Art & Design",
+      "2005-10-09"
+    ],
+    [
+      "Technology / Technology Special",
+      "2005-10-05"
+    ],
+    [
+      " / ",
+      "2005-09-26"
+    ],
+    [
+      "Magazine Desk",
+      "2005-09-04"
+    ],
+    [
+      "National / U.S.",
+      "2005-08-30"
+    ],
+    [
+      "Health & Fitness",
+      "2005-08-02"
+    ],
+    [
+      "Dining In, Dining Out/Style Desk",
+      "2005-07-27"
+    ],
+    [
+      "Sunday Business",
+      "2005-07-17"
+    ],
+    [
+      "Dining In, Dining Out/Cultural Desk",
+      "2005-07-13"
+    ],
+    [
+      "New Jerey Weekly Desk",
+      "2005-07-10"
+    ],
+    [
+      "Men & Health",
+      "2005-06-20"
+    ],
+    [
+      "Arts & Leisure Desk",
+      "2005-06-19"
+    ],
+    [
+      "Business Financial Desk",
+      "2005-06-18"
+    ],
+    [
+      "National / Class",
+      "2005-06-12"
+    ],
+    [
+      "Thursday Styles Desk",
+      "2005-06-09"
+    ],
+    [
+      "timestalks",
+      "2005-06-05"
+    ],
+    [
+      "Women's Health",
+      "2005-06-05"
+    ],
+    [
+      "Automoblies",
+      "2005-05-30"
+    ],
+    [
+      "Business / Mutual Funds",
+      "2005-05-23"
+    ],
+    [
+      "Theater / Theater",
+      "2005-05-22"
+    ],
+    [
+      "College / Students",
+      "2005-05-19"
+    ],
+    [
+      "National Deskl",
+      "2005-05-02"
+    ],
+    [
+      "The Arts/Cultrual Desk",
+      "2005-04-18"
+    ],
+    [
+      "Metropolitan Dsk",
+      "2005-04-05"
+    ],
+    [
+      "New York/Region Opinions / New York/ Region Opinions",
+      "2005-04-03"
+    ],
+    [
+      "EDT",
+      "2005-03-22"
+    ],
+    [
+      "Opinion / N.Y. Region Opinions",
+      "2005-03-20"
+    ],
+    [
+      "Sports Deskk",
+      "2005-02-07"
+    ],
+    [
+      "Metropolitan Deskreign Desk",
+      "2005-01-31"
+    ],
+    [
+      "Business/Finanical Desk",
+      "2005-01-17"
+    ],
+    [
+      "Outlook",
+      "2005-01-03"
+    ],
+    [
+      "Week In Review Desk",
+      "2005-01-02"
+    ],
+    [
+      "Dining & Wine / Dining & Wine",
+      "2004-12-22"
+    ],
+    [
+      "Arts & Ideas/Cultural Desk",
+      "2004-12-18"
+    ],
+    [
+      "Televison Desk",
+      "2004-12-12"
+    ],
+    [
+      "Retail",
+      "2004-12-07"
+    ],
+    [
+      "Sport Desk",
+      "2004-12-05"
+    ],
+    [
+      "Metropoliatn Desk",
+      "2004-12-01"
+    ],
+    [
+      "Metropoltian Desk",
+      "2004-11-21"
+    ],
+    [
+      "Arts and Leisure",
+      "2004-11-14"
+    ],
+    [
+      "Washington / Times on the Trail",
+      "2004-11-05"
+    ],
+    [
+      "Washington / Election 2004",
+      "2004-11-04"
+    ],
+    [
+      "Washington / Campaign 2004",
+      "2004-11-01"
+    ],
+    [
+      "National desk",
+      "2004-10-29"
+    ],
+    [
+      "SPG",
+      "2004-10-27"
+    ],
+    [
+      "Voter Guide 2004",
+      "2004-10-26"
+    ],
+    [
+      "ESC",
+      "2004-10-08"
+    ],
+    [
+      "Metropolitan desk",
+      "2004-10-08"
+    ],
+    [
+      "Washington / On the Trail Columns",
+      "2004-09-28"
+    ],
+    [
+      "Cultural Desk",
+      "2004-09-25"
+    ],
+    [
+      "Editoral Desk",
+      "2004-09-24"
+    ],
+    [
+      "Sophisticated Traveler Magazine",
+      "2004-09-12"
+    ],
+    [
+      "News",
+      "2004-08-31"
+    ],
+    [
+      "Fashions of The Times Magazine",
+      "2004-08-29"
+    ],
+    [
+      "The Art/Cultural Desk",
+      "2004-08-22"
+    ],
+    [
+      "Washington / Races To Watch",
+      "2004-08-19"
+    ],
+    [
+      "REA",
+      "2004-08-08"
+    ],
+    [
+      "Editorial desk",
+      "2004-08-06"
+    ],
+    [
+      "Boston 2004",
+      "2004-07-25"
+    ],
+    [
+      "Olympics / Olympics",
+      "2004-07-17"
+    ],
+    [
+      "City Weekly Desk",
+      "2004-07-11"
+    ],
+    [
+      "Opinion / Opinion Special",
+      "2004-07-11"
+    ],
+    [
+      "SundayBusinessSundayBusiness",
+      "2004-07-04"
+    ],
+    [
+      "Foreign desk",
+      "2004-06-18"
+    ],
+    [
+      "Science / Science Special Report",
+      "2004-05-23"
+    ],
+    [
+      "Science Special Report / Science Special Report",
+      "2004-05-20"
+    ],
+    [
+      "Other Sports / Other Sports",
+      "2004-05-19"
+    ],
+    [
+      "Sports / Othersports",
+      "2004-05-19"
+    ],
+    [
+      "The City / The City",
+      "2004-05-16"
+    ],
+    [
+      "College / College Specials",
+      "2004-05-12"
+    ],
+    [
+      "Wireless Living",
+      "2004-05-04"
+    ],
+    [
+      "Dining & Wine / Cooking",
+      "2004-04-26"
+    ],
+    [
+      "Education Life",
+      "2004-04-25"
+    ],
+    [
+      "Home Design Magazine",
+      "2004-04-18"
+    ],
+    [
+      "Arts / Theater",
+      "2004-04-18"
+    ],
+    [
+      "Magazine / Magazine Special",
+      "2004-04-18"
+    ],
+    [
+      "Business/Financial DeskBusiness/Financial Desk",
+      "2004-03-31"
+    ],
+    [
+      "Style and Entertaining Magazine",
+      "2004-03-28"
+    ],
+    [
+      "Men's Fashions of The Times Magazine",
+      "2004-03-14"
+    ],
+    [
+      "Movies / Oscars 2004",
+      "2004-03-02"
+    ],
+    [
+      "Classified Desk",
+      "2004-02-19"
+    ],
+    [
+      "/",
+      "2004-01-21"
+    ],
+    [
+      "Politics / Campaigns",
+      "2004-01-20"
+    ],
+    [
+      "Health / Health Care Policy",
+      "2003-12-30"
+    ],
+    [
+      "The Year In Pictures",
+      "2003-12-29"
+    ],
+    [
+      "Money and Business/Financial",
+      "2003-12-21"
+    ],
+    [
+      "Internationa / International Special",
+      "2003-12-17"
+    ],
+    [
+      "A Nation Challenged",
+      "2003-12-16"
+    ],
+    [
+      "Flight",
+      "2003-12-09"
+    ],
+    [
+      "Crossword & Games /",
+      "2003-11-17"
+    ],
+    [
+      "Travel / Sophisticated Traveler",
+      "2003-11-16"
+    ],
+    [
+      "The Marathon",
+      "2003-11-03"
+    ],
+    [
+      "Working",
+      "2003-10-28"
+    ],
+    [
+      "National / California Recall",
+      "2003-10-08"
+    ],
+    [
+      "Money & Business/Financial Desk",
+      "2003-09-28"
+    ],
+    [
+      "Weekend Desk",
+      "2003-08-29"
+    ],
+    [
+      "International Style",
+      "2003-08-28"
+    ],
+    [
+      "College / Faculty",
+      "2003-08-24"
+    ],
+    [
+      "Week In Review",
+      "2003-08-24"
+    ],
+    [
+      "Real Estate / Luxury & Vacation",
+      "2003-08-15"
+    ],
+    [
+      "Health / Mental Health & Behavior",
+      "2003-07-29"
+    ],
+    [
+      "SBN",
+      "2003-07-06"
+    ],
+    [
+      "Member Center / Site Help",
+      "2003-06-23"
+    ],
+    [
+      "Business/Financial",
+      "2003-06-16"
+    ],
+    [
+      "NYTimes.com Digital",
+      "2003-06-11"
+    ],
+    [
+      "/ Help",
+      "2003-05-28"
+    ],
+    [
+      "Money and Business/Financial DeskMoney and Bus",
+      "2003-05-18"
+    ],
+    [
+      "Crosswords & Games / Crosswords/Games",
+      "2003-05-18"
+    ],
+    [
+      "Science / Life Science",
+      "2003-05-14"
+    ],
+    [
+      "International / After the War",
+      "2003-05-09"
+    ],
+    [
+      "Real Estate / Real Estate Luxury & Vacation",
+      "2003-04-25"
+    ],
+    [
+      "Crossword & Games",
+      "2003-04-24"
+    ],
+    [
+      "Editorials/Op-Ed",
+      "2003-04-22"
+    ],
+    [
+      "A Nation at War / A Nation at War",
+      "2003-04-21"
+    ],
+    [
+      "After the War / After the War",
+      "2003-04-21"
+    ],
+    [
+      "Art & Ideas/Cultural Desk",
+      "2003-04-19"
+    ],
+    [
+      "Science / Space",
+      "2003-04-17"
+    ],
+    [
+      "Premium Crosswords",
+      "2003-04-14"
+    ],
+    [
+      "International Special / International Special",
+      "2003-04-13"
+    ],
+    [
+      "Critic's Choice",
+      "2003-04-01"
+    ],
+    [
+      "Autmobiles",
+      "2003-03-30"
+    ],
+    [
+      "Fashion & Styles / On the Street",
+      "2003-03-18"
+    ],
+    [
+      "Standoff With Iraq / Standoff With Iraq",
+      "2003-03-10"
+    ],
+    [
+      "National / Portraits of Grief",
+      "2003-03-09"
+    ],
+    [
+      "About NYTDigital",
+      "2003-02-26"
+    ],
+    [
+      "Movies / Special: Oscars",
+      "2003-02-11"
+    ],
+    [
+      "New York Region / New York Region Special",
+      "2002-12-27"
+    ],
+    [
+      "National Edition - Final",
+      "2002-12-22"
+    ],
+    [
+      "Sports DeskSports Desk",
+      "2002-12-04"
+    ],
+    [
+      "National - Bulldog",
+      "2002-12-02"
+    ],
+    [
+      "Travel / Sunday Travel",
+      "2002-12-01"
+    ],
+    [
+      "Crossword & Games / Crossword/Games",
+      "2002-11-26"
+    ],
+    [
+      "New York Today",
+      "2002-11-18"
+    ],
+    [
+      "Education Life SupplementEducation Life Supple",
+      "2002-11-10"
+    ],
+    [
+      "Health / Anatomy",
+      "2002-10-08"
+    ],
+    [
+      "Health / Genetics",
+      "2002-10-07"
+    ],
+    [
+      "Multimedia",
+      "2002-10-07"
+    ],
+    [
+      "Business/World Business",
+      "2002-10-01"
+    ],
+    [
+      "Business/Media & Advertising",
+      "2002-10-01"
+    ],
+    [
+      "International/Africa",
+      "2002-10-01"
+    ],
+    [
+      "International/Asia Pacific",
+      "2002-10-01"
+    ],
+    [
+      "Sports/Soccer",
+      "2002-09-30"
+    ],
+    [
+      "Sports/Baseball",
+      "2002-09-30"
+    ],
+    [
+      "Sports/College Football",
+      "2002-09-30"
+    ],
+    [
+      "Other Sports/Other Sports",
+      "2002-09-30"
+    ],
+    [
+      "House & Home/Style",
+      "2002-09-29"
+    ],
+    [
+      "Business/Your Money",
+      "2002-09-29"
+    ],
+    [
+      "Fashion & Style/Weddings & Celebrations",
+      "2002-09-29"
+    ],
+    [
+      "Books/Sunday Book Review",
+      "2002-09-29"
+    ],
+    [
+      "Books/First Chapters",
+      "2002-09-29"
+    ],
+    [
+      "Arts/Art & Design",
+      "2002-09-27"
+    ],
+    [
+      "International/Europe",
+      "2002-09-27"
+    ],
+    [
+      "Real Estate/Real Estate Luxury & Vacation",
+      "2002-09-27"
+    ],
+    [
+      "Arts/Music",
+      "2002-09-26"
+    ],
+    [
+      "Arts/Dance",
+      "2002-09-26"
+    ],
+    [
+      "Sports/Golf",
+      "2002-09-26"
+    ],
+    [
+      "Technology/Circuits",
+      "2002-09-26"
+    ],
+    [
+      "International/Americas",
+      "2002-09-25"
+    ],
+    [
+      "Arts/Television",
+      "2002-09-24"
+    ],
+    [
+      "Health / Psychology",
+      "2002-09-24"
+    ],
+    [
+      "Men's Health",
+      "2002-09-23"
+    ],
+    [
+      "Sports/Hockey",
+      "2002-09-22"
+    ],
+    [
+      "Arts/Theater",
+      "2002-09-22"
+    ],
+    [
+      "Sports/Tennis",
+      "2002-09-22"
+    ],
+    [
+      "International/Middle East",
+      "2002-09-22"
+    ],
+    [
+      "Sports/Pro Football",
+      "2002-09-21"
+    ],
+    [
+      "Crossword & Games/Crossword/Games",
+      "2002-09-12"
+    ],
+    [
+      "nationchallenged",
+      "2002-09-11"
+    ],
+    [
+      "Business/Financial Dek",
+      "2002-09-10"
+    ],
+    [
+      "Arts Special/Arts Special",
+      "2002-09-08"
+    ],
+    [
+      "Fashion & Style/Weddings",
+      "2002-09-08"
+    ],
+    [
+      "New York Region/Metro Campaigns",
+      "2002-09-03"
+    ],
+    [
+      "Sports DEsk",
+      "2002-09-03"
+    ],
+    [
+      "International Special",
+      "2002-08-26"
+    ],
+    [
+      "Other Sports",
+      "2002-08-18"
+    ],
+    [
+      "Variables.metaSubSection",
+      "2002-08-14"
+    ],
+    [
+      "Favorites",
+      "2002-07-16"
+    ],
+    [
+      "Summer Movies",
+      "2002-05-12"
+    ],
+    [
+      "Vacation",
+      "2002-05-07"
+    ],
+    [
+      "Arts Special",
+      "2002-04-24"
+    ],
+    [
+      "Portraits of Grief",
+      "2002-04-14"
+    ],
+    [
+      "Week in review desk",
+      "2002-04-14"
+    ],
+    [
+      "Business Desk",
+      "2002-04-03"
+    ],
+    [
+      "Editors Picks",
+      "2002-03-31"
+    ],
+    [
+      "Olympics",
+      "2002-02-24"
+    ],
+    [
+      "Crossword/Games",
+      "2002-02-19"
+    ],
+    [
+      "Fashion & Styles",
+      "2002-02-15"
+    ],
+    [
+      "Nesting",
+      "2002-02-15"
+    ],
+    [
+      "Business/Finacial Desk",
+      "2002-02-09"
+    ],
+    [
+      "Job Market Desk",
+      "2002-01-27"
+    ],
+    [
+      "The Year in Pictures",
+      "2001-12-31"
+    ],
+    [
+      "The City",
+      "2001-12-30"
+    ],
+    [
+      "Workplace",
+      "2001-12-26"
+    ],
+    [
+      "One Hundred Fiftieth Anniversary",
+      "2001-11-14"
+    ],
+    [
+      "Special Section",
+      "2001-11-14"
+    ],
+    [
+      "E-Business",
+      "2001-11-05"
+    ],
+    [
+      "Style and Entertaining Magaziner",
+      "2001-11-04"
+    ],
+    [
+      "Home Page",
+      "2001-10-20"
+    ],
+    [
+      "Natioanl Desk",
+      "2001-10-15"
+    ],
+    [
+      "Books / Chapters",
+      "2001-09-30"
+    ],
+    [
+      "Sophisticated Traveler MagazineSophisticated T",
+      "2001-09-16"
+    ],
+    [
+      "Art and Leisure Desk",
+      "2001-08-05"
+    ],
+    [
+      "NYT Front Page",
+      "2001-07-12"
+    ],
+    [
+      "sports",
+      "2001-07-09"
+    ],
+    [
+      "pageoneplus",
+      "2001-07-09"
+    ],
+    [
+      "opinion",
+      "2001-07-09"
+    ],
+    [
+      "books",
+      "2001-07-08"
+    ],
+    [
+      "movies",
+      "2001-07-08"
+    ],
+    [
+      "nyregion",
+      "2001-07-08"
+    ],
+    [
+      "international",
+      "2001-07-03"
+    ],
+    [
+      "science",
+      "2001-07-03"
+    ],
+    [
+      "automobiles",
+      "2001-07-02"
+    ],
+    [
+      "realestate",
+      "2001-07-01"
+    ],
+    [
+      "travel",
+      "2001-07-01"
+    ],
+    [
+      "technology",
+      "2001-06-29"
+    ],
+    [
+      "national",
+      "2001-06-29"
+    ],
+    [
+      "garden",
+      "2001-06-28"
+    ],
+    [
+      "business",
+      "2001-06-27"
+    ],
+    [
+      "politics",
+      "2001-06-26"
+    ],
+    [
+      "House & Home\\Style Desk",
+      "2001-05-24"
+    ],
+    [
+      "Business\\Financial Desk",
+      "2001-05-24"
+    ],
+    [
+      "The Arts\\Cultural Desk",
+      "2001-05-24"
+    ],
+    [
+      "jobs",
+      "2001-05-07"
+    ],
+    [
+      "health",
+      "2001-05-03"
+    ],
+    [
+      "education",
+      "2001-04-08"
+    ],
+    [
+      "Classfied",
+      "2001-03-06"
+    ],
+    [
+      "National Dsek",
+      "2001-01-06"
+    ],
+    [
+      "Automobies",
+      "2000-12-17"
+    ],
+    [
+      "E-Commerce",
+      "2000-12-13"
+    ],
+    [
+      "work",
+      "2000-12-06"
+    ],
+    [
+      "The City Weekly",
+      "2000-12-03"
+    ],
+    [
+      "Televison",
+      "2000-11-19"
+    ]
+  ]
+}

@@ -15,13 +15,20 @@ class SelectionOption(BaseModel):
     description: str
 
 
-class ExpectedResultSpec(BaseModel):
-    """Reserved for future exact-result grading; not evaluated in Phase 1."""
+class ExpectedGrid(BaseModel):
+    model_config = ConfigDict(frozen=True)
 
+    columns: tuple[str, ...]
+    rows: tuple[tuple[object, ...], ...]
+
+
+class ExpectedResultSpec(BaseModel):
     model_config = ConfigDict(frozen=True)
 
     description: str | None = None
     column_names: tuple[str, ...] = ()
+    reference_sql: str | None = None
+    expected_grid: ExpectedGrid | None = None
 
 
 class Exercise(BaseModel):

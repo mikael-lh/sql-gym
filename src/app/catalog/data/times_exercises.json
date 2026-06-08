@@ -24,7 +24,8 @@
         "headline_main",
         "pub_date"
       ]
-    }
+    },
+    "reference_sql": "SELECT headline_main, pub_date FROM times_archive WHERE section_name = 'Arts' ORDER BY pub_date DESC LIMIT 500;"
   },
   {
     "id": "times-archive-002",
@@ -51,7 +52,8 @@
         "headline_main",
         "news_desk"
       ]
-    }
+    },
+    "reference_sql": "SELECT headline_main, news_desk FROM times_archive WHERE news_desk = 'Business' ORDER BY 1 LIMIT 500;"
   },
   {
     "id": "times-archive-003",
@@ -78,7 +80,8 @@
         "section_name",
         "article_count"
       ]
-    }
+    },
+    "reference_sql": "SELECT section_name, COUNT(*) AS article_count FROM times_archive GROUP BY section_name ORDER BY article_count DESC LIMIT 500;"
   },
   {
     "id": "times-archive-004",
@@ -105,7 +108,8 @@
         "headline_main",
         "pub_date"
       ]
-    }
+    },
+    "reference_sql": "SELECT headline_main, pub_date FROM times_archive ORDER BY pub_date DESC LIMIT 10;"
   },
   {
     "id": "times-archive-005",
@@ -132,7 +136,8 @@
         "headline_main",
         "word_count"
       ]
-    }
+    },
+    "reference_sql": "SELECT headline_main, word_count FROM times_archive WHERE word_count > 1000 ORDER BY word_count DESC LIMIT 500;"
   },
   {
     "id": "times-archive-006",
@@ -158,7 +163,8 @@
       "column_names": [
         "section_name"
       ]
-    }
+    },
+    "reference_sql": "SELECT DISTINCT section_name FROM times_archive ORDER BY section_name LIMIT 500;"
   },
   {
     "id": "times-archive-007",
@@ -185,7 +191,8 @@
         "headline_main",
         "type_of_material"
       ]
-    }
+    },
+    "reference_sql": "SELECT headline_main, type_of_material FROM times_archive WHERE type_of_material = 'News' ORDER BY 1 LIMIT 500;"
   },
   {
     "id": "times-archive-008",
@@ -212,7 +219,8 @@
         "headline_main",
         "word_count"
       ]
-    }
+    },
+    "reference_sql": "SELECT headline_main, word_count FROM times_archive ORDER BY word_count ASC LIMIT 5;"
   },
   {
     "id": "times-archive-009",
@@ -239,7 +247,8 @@
         "news_desk",
         "avg_word_count"
       ]
-    }
+    },
+    "reference_sql": "SELECT news_desk, ROUND(AVG(word_count)) AS avg_word_count FROM times_archive GROUP BY news_desk ORDER BY 1 LIMIT 500;"
   },
   {
     "id": "times-archive-010",
@@ -266,7 +275,8 @@
         "headline_main",
         "snippet"
       ]
-    }
+    },
+    "reference_sql": "SELECT headline_main, snippet FROM times_archive WHERE section_name = 'Sports' AND snippet ILIKE '%championship%' ORDER BY 1 LIMIT 500;"
   },
   {
     "id": "times-archive-011",
@@ -292,7 +302,8 @@
       "column_names": [
         "january_articles"
       ]
-    }
+    },
+    "reference_sql": "SELECT COUNT(*) AS january_articles FROM times_archive WHERE pub_date >= DATE '1920-01-01' AND pub_date < DATE '1920-02-01';"
   },
   {
     "id": "times-archive-012",
@@ -319,7 +330,8 @@
         "news_desk",
         "article_count"
       ]
-    }
+    },
+    "reference_sql": "SELECT news_desk, COUNT(*) AS article_count FROM times_archive GROUP BY news_desk HAVING COUNT(*) > 20 ORDER BY 1 LIMIT 500;"
   },
   {
     "id": "times-archive-013",
@@ -345,7 +357,8 @@
       "column_names": [
         "headline_main"
       ]
-    }
+    },
+    "reference_sql": "SELECT headline_main FROM times_archive WHERE headline_main ILIKE '%climate%' ORDER BY 1 LIMIT 500;"
   },
   {
     "id": "times-archive-014",
@@ -372,7 +385,8 @@
         "headline_main",
         "pub_date"
       ]
-    }
+    },
+    "reference_sql": "SELECT headline_main, pub_date FROM times_archive WHERE pub_date BETWEEN DATE '1920-01-01' AND DATE '1920-03-31' ORDER BY pub_date LIMIT 500;"
   },
   {
     "id": "times-archive-015",
@@ -399,7 +413,8 @@
         "section_name",
         "article_count"
       ]
-    }
+    },
+    "reference_sql": "WITH section_counts AS (SELECT section_name, COUNT(*) AS article_count FROM times_archive GROUP BY section_name) SELECT section_name, article_count FROM section_counts ORDER BY article_count DESC LIMIT 500;"
   },
   {
     "id": "times-archive-016",
@@ -426,7 +441,8 @@
         "headline_main",
         "word_count"
       ]
-    }
+    },
+    "reference_sql": "SELECT headline_main, word_count FROM times_archive WHERE word_count > (SELECT AVG(word_count) FROM times_archive) ORDER BY 1 LIMIT 500;"
   },
   {
     "id": "times-archive-017",
@@ -453,7 +469,8 @@
         "type_of_material",
         "article_count"
       ]
-    }
+    },
+    "reference_sql": "SELECT type_of_material, COUNT(*) AS article_count FROM times_archive GROUP BY type_of_material ORDER BY article_count DESC LIMIT 500;"
   },
   {
     "id": "times-archive-018",
@@ -481,7 +498,8 @@
         "section_name",
         "news_desk"
       ]
-    }
+    },
+    "reference_sql": "SELECT headline_main, section_name, news_desk FROM times_archive WHERE section_name = 'Opinion' AND news_desk = 'Opinion' ORDER BY 1 LIMIT 500;"
   },
   {
     "id": "times-archive-019",
@@ -509,7 +527,8 @@
         "headline_main",
         "word_rank"
       ]
-    }
+    },
+    "reference_sql": "SELECT section_name, headline_main, word_count, RANK() OVER (PARTITION BY section_name ORDER BY word_count DESC) AS word_rank FROM times_archive LIMIT 500;"
   },
   {
     "id": "times-archive-020",
@@ -536,7 +555,8 @@
         "pub_date",
         "running_total"
       ]
-    }
+    },
+    "reference_sql": "SELECT pub_date, COUNT(*) OVER (ORDER BY pub_date) AS running_total FROM times_archive LIMIT 500;"
   },
   {
     "id": "times-archive-021",
@@ -563,7 +583,8 @@
         "section_name",
         "pct_of_total"
       ]
-    }
+    },
+    "reference_sql": "SELECT section_name, ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS pct_of_total FROM times_archive GROUP BY section_name ORDER BY 1 LIMIT 500;"
   },
   {
     "id": "times-archive-022",
@@ -591,7 +612,8 @@
         "headline_main",
         "word_count"
       ]
-    }
+    },
+    "reference_sql": "SELECT news_desk, headline_main, word_count FROM (SELECT news_desk, headline_main, word_count, ROW_NUMBER() OVER (PARTITION BY news_desk ORDER BY word_count DESC) AS rn FROM times_archive) ranked WHERE rn <= 3 LIMIT 500;"
   },
   {
     "id": "times-archive-023",
@@ -617,7 +639,8 @@
       "column_names": [
         "headline_main"
       ]
-    }
+    },
+    "reference_sql": "SELECT headline_main FROM times_archive WHERE section_name = 'Technology' ORDER BY headline_main LIMIT 500;"
   },
   {
     "id": "times-archive-024",
@@ -643,7 +666,8 @@
       "column_names": [
         "total_articles"
       ]
-    }
+    },
+    "reference_sql": "SELECT COUNT(*) AS total_articles FROM times_archive;"
   },
   {
     "id": "times-archive-025",
@@ -670,7 +694,8 @@
         "headline_main",
         "pub_date"
       ]
-    }
+    },
+    "reference_sql": "SELECT headline_main, pub_date FROM times_archive ORDER BY pub_date ASC LIMIT 5;"
   },
   {
     "id": "times-archive-026",
@@ -697,7 +722,8 @@
         "headline_main",
         "byline_original"
       ]
-    }
+    },
+    "reference_sql": "SELECT headline_main, byline_original FROM times_archive WHERE byline_original ILIKE '%Smith%' ORDER BY 1 LIMIT 500;"
   },
   {
     "id": "times-archive-027",
@@ -723,7 +749,8 @@
       "column_names": [
         "weekend_articles"
       ]
-    }
+    },
+    "reference_sql": "SELECT COUNT(*) AS weekend_articles FROM times_archive WHERE EXTRACT(DOW FROM pub_date) IN (0, 6);"
   },
   {
     "id": "times-archive-028",
@@ -750,7 +777,8 @@
         "news_desk",
         "latest_pub_date"
       ]
-    }
+    },
+    "reference_sql": "WITH desk_latest AS (SELECT news_desk, MAX(pub_date) AS latest_pub_date FROM times_archive GROUP BY news_desk) SELECT * FROM desk_latest ORDER BY latest_pub_date DESC LIMIT 500;"
   },
   {
     "id": "times-archive-029",
@@ -777,7 +805,8 @@
         "headline_main",
         "word_quartile"
       ]
-    }
+    },
+    "reference_sql": "SELECT headline_main, word_count, NTILE(4) OVER (ORDER BY word_count) AS word_quartile FROM times_archive LIMIT 500;"
   },
   {
     "id": "times-archive-030",
@@ -804,7 +833,8 @@
         "section_name",
         "avg_words"
       ]
-    }
+    },
+    "reference_sql": "SELECT section_name, AVG(word_count) AS avg_words FROM times_archive GROUP BY section_name HAVING AVG(word_count) > (SELECT PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY word_count) FROM times_archive) LIMIT 500;"
   },
   {
     "id": "times-archive-031",
@@ -831,7 +861,8 @@
         "headline_main",
         "type_of_material"
       ]
-    }
+    },
+    "reference_sql": "SELECT headline_main, type_of_material FROM times_archive WHERE section_name = 'Health' AND type_of_material = 'Review' ORDER BY 1 LIMIT 500;"
   },
   {
     "id": "times-archive-032",
@@ -858,7 +889,8 @@
         "section_name",
         "max_word_count"
       ]
-    }
+    },
+    "reference_sql": "SELECT section_name, MAX(word_count) AS max_word_count FROM times_archive GROUP BY section_name ORDER BY 1 LIMIT 500;"
   },
   {
     "id": "times-archive-033",
@@ -884,7 +916,8 @@
       "column_names": [
         "document_type"
       ]
-    }
+    },
+    "reference_sql": "SELECT DISTINCT document_type FROM times_archive ORDER BY document_type LIMIT 500;"
   },
   {
     "id": "times-archive-034",
@@ -910,7 +943,8 @@
       "column_names": [
         "headline_main"
       ]
-    }
+    },
+    "reference_sql": "SELECT headline_main FROM times_archive WHERE section_name = 'World' AND type_of_material = 'An Analysis; News Analysis' ORDER BY headline_main LIMIT 500;"
   },
   {
     "id": "times-archive-035",
@@ -937,7 +971,8 @@
         "month",
         "article_count"
       ]
-    }
+    },
+    "reference_sql": "SELECT DATE_TRUNC('month', pub_date) AS month, COUNT(*) AS article_count FROM times_archive GROUP BY month ORDER BY month LIMIT 500;"
   },
   {
     "id": "times-archive-036",
@@ -964,7 +999,8 @@
         "headline_main",
         "abstract"
       ]
-    }
+    },
+    "reference_sql": "SELECT headline_main, abstract FROM times_archive WHERE abstract ILIKE '%economy%' ORDER BY 1 LIMIT 500;"
   },
   {
     "id": "times-archive-037",
@@ -991,7 +1027,8 @@
         "headline_main",
         "previous_pub_date"
       ]
-    }
+    },
+    "reference_sql": "SELECT section_name, headline_main, pub_date, LAG(pub_date) OVER (PARTITION BY section_name ORDER BY pub_date) AS previous_pub_date FROM times_archive LIMIT 500;"
   },
   {
     "id": "times-archive-038",
@@ -1018,7 +1055,8 @@
         "section_name",
         "month_over_month_change"
       ]
-    }
+    },
+    "reference_sql": "WITH monthly AS (SELECT section_name, DATE_TRUNC('month', pub_date) AS month, COUNT(*) AS article_count FROM times_archive GROUP BY section_name, DATE_TRUNC('month', pub_date)) SELECT section_name, month, article_count, article_count - LAG(article_count) OVER (PARTITION BY section_name ORDER BY month) AS month_over_month_change FROM monthly LIMIT 500;"
   },
   {
     "id": "times-archive-039",
@@ -1045,7 +1083,8 @@
         "news_desk",
         "headline_main"
       ]
-    }
+    },
+    "reference_sql": "SELECT news_desk, headline_main FROM times_archive ORDER BY news_desk, headline_main LIMIT 500;"
   },
   {
     "id": "times-archive-040",
@@ -1072,7 +1111,8 @@
         "headline_main",
         "multimedia_count_by_type"
       ]
-    }
+    },
+    "reference_sql": "SELECT headline_main, multimedia_count_by_type FROM times_archive WHERE (multimedia_count_by_type->>'image')::int > 0 ORDER BY 1 LIMIT 500;"
   },
   {
     "id": "times-archive-041",
@@ -1099,7 +1139,8 @@
         "news_desk",
         "median_word_count"
       ]
-    }
+    },
+    "reference_sql": "SELECT news_desk, PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY word_count) AS median_word_count FROM times_archive GROUP BY news_desk LIMIT 500;"
   },
   {
     "id": "times-archive-042",
@@ -1126,7 +1167,8 @@
         "headline_main",
         "web_url"
       ]
-    }
+    },
+    "reference_sql": "SELECT headline_main, web_url FROM times_archive WHERE article_id = (SELECT article_id FROM times_archive ORDER BY article_id LIMIT 1);"
   },
   {
     "id": "times-archive-043",
@@ -1154,7 +1196,8 @@
         "news_desk",
         "word_count"
       ]
-    }
+    },
+    "reference_sql": "SELECT headline_main, news_desk, word_count FROM (SELECT headline_main, news_desk, word_count, ROW_NUMBER() OVER (PARTITION BY news_desk ORDER BY word_count DESC, headline_main) AS rn FROM times_archive) ranked WHERE rn = 1 ORDER BY news_desk LIMIT 500;"
   },
   {
     "id": "times-archive-044",
@@ -1181,7 +1224,8 @@
         "pub_date",
         "rolling_seven_day_count"
       ]
-    }
+    },
+    "reference_sql": "SELECT pub_date, COUNT(*) OVER (ORDER BY pub_date RANGE BETWEEN INTERVAL '6 days' PRECEDING AND CURRENT ROW) AS rolling_seven_day_count FROM times_archive LIMIT 500;"
   },
   {
     "id": "times-archive-045",
@@ -1208,7 +1252,8 @@
         "section_name",
         "avg_snippet_length"
       ]
-    }
+    },
+    "reference_sql": "SELECT section_name, ROUND(AVG(LENGTH(snippet))) AS avg_snippet_length FROM times_archive GROUP BY section_name ORDER BY 1 LIMIT 500;"
   },
   {
     "id": "times-archive-046",
@@ -1235,7 +1280,8 @@
         "headline_main",
         "word_count"
       ]
-    }
+    },
+    "reference_sql": "SELECT headline_main, word_count FROM times_archive WHERE word_count < 400 ORDER BY 1 LIMIT 500;"
   },
   {
     "id": "times-archive-047",
@@ -1262,7 +1308,8 @@
         "headline_main",
         "headline_length_bucket"
       ]
-    }
+    },
+    "reference_sql": "SELECT headline_main, CASE WHEN LENGTH(headline_main) < 40 THEN 'short' WHEN LENGTH(headline_main) < 80 THEN 'medium' ELSE 'long' END AS headline_length_bucket FROM times_archive ORDER BY 1 LIMIT 500;"
   },
   {
     "id": "times-archive-048",
@@ -1289,7 +1336,8 @@
         "quarter",
         "article_count"
       ]
-    }
+    },
+    "reference_sql": "SELECT DATE_TRUNC('quarter', pub_date) AS quarter, COUNT(*) AS article_count FROM times_archive GROUP BY quarter ORDER BY quarter LIMIT 500;"
   },
   {
     "id": "times-archive-049",
@@ -1316,7 +1364,8 @@
         "news_desk",
         "desk_rank"
       ]
-    }
+    },
+    "reference_sql": "WITH desk_totals AS (SELECT news_desk, COUNT(*) AS article_count FROM times_archive GROUP BY news_desk), ranked AS (SELECT news_desk, article_count, RANK() OVER (ORDER BY article_count DESC) AS desk_rank FROM desk_totals) SELECT * FROM ranked LIMIT 500;"
   },
   {
     "id": "times-archive-050",
@@ -1343,6 +1392,7 @@
         "headline_main",
         "length_rank"
       ]
-    }
+    },
+    "reference_sql": "SELECT headline_main, word_count, DENSE_RANK() OVER (ORDER BY word_count DESC) AS length_rank FROM times_archive LIMIT 500;"
   }
 ]
