@@ -5,11 +5,11 @@
   <p class="eyebrow">{{ status_label }}</p>
   <h1 id="practice-title">Browse the practice catalog</h1>
   <p class="lede">
-    Choose a dataset and filter exercises by difficulty or mode. SQL execution, grading, and
-    durable progress remain placeholders in Phase 1.
+    Choose a dataset and filter exercises by difficulty or mode. Open an exercise preview to run
+    PostgreSQL and receive strict grid-match grading.
   </p>
   <p class="notice">
-    No SQL is executed, no answers are graded, and no progress is persisted.
+    Attempts are session-only. AI grading, accounts, and durable progress are not available yet.
   </p>
 </section>
 
@@ -126,14 +126,14 @@
 <section class="panel" aria-labelledby="editor-title">
   <div>
     <p class="eyebrow">PostgreSQL target dialect</p>
-    <h2 id="editor-title">SQL editor placeholder</h2>
+    <h2 id="editor-title">Run SQL on exercise previews</h2>
   </div>
-  <p class="placeholder-note">Sample SQL stays hidden until exercise preview work lands. Queries do not run yet.</p>
-  <textarea class="sql-placeholder" aria-label="SQL editor placeholder" disabled>-- SQL editor placeholder
--- No SQL is executed in Phase 1.</textarea>
+  <p class="placeholder-note">
+    Open an exercise to use the CodeMirror editor, run queries, and submit for grading.
+  </p>
 </section>
 
-<section class="practice-grid" aria-label="Feedback and progress placeholders">
+<section class="practice-grid" aria-label="Deferred capabilities">
   {% for area in placeholder_areas %}
   <article class="placeholder-card">
     <span class="badge">Future work</span>
@@ -141,18 +141,5 @@
     <p>{{ area.description }}</p>
   </article>
   {% endfor %}
-</section>
-
-<section class="panel" aria-labelledby="progress-title">
-  <p class="eyebrow">Demo-only progress</p>
-  <h2 id="progress-title">Progress tracking placeholder</h2>
-  <div class="metric-grid">
-    {% for item in progress %}
-    <div class="metric-card">
-      <span>{{ item.label }}</span>
-      <strong>{{ item.value }}</strong>
-    </div>
-    {% endfor %}
-  </div>
 </section>
 {% endblock %}

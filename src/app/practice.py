@@ -1,6 +1,8 @@
 from dataclasses import dataclass
 from typing import cast
 
+from starlette.requests import Request
+
 from app.catalog import TIMES_ARCHIVE_CATALOG
 from app.domain.attempts import DEMO_ATTEMPT
 from app.domain.datasets import Dataset
@@ -13,19 +15,16 @@ from app.domain.exercises import (
 )
 from app.domain.grading import GRADING_PLACEHOLDER
 from app.domain.progress import DEMO_PROGRESS
+from app.practice_session import get_attempt_state
 
 PLACEHOLDER_AREAS = (
     {
-        "title": "SQL editor",
-        "description": "A disabled PostgreSQL-targeted editor placeholder; queries do not run yet.",
-    },
-    {
-        "title": "Grading feedback",
-        "description": GRADING_PLACEHOLDER.summary,
-    },
-    {
         "title": "Progress tracking",
-        "description": "Static demo-only progress; no accounts or persistence are active.",
+        "description": "Session-only practice; no accounts or durable progress are saved.",
+    },
+    {
+        "title": "AI grading",
+        "description": "AI explanations and partial credit remain future work.",
     },
 )
 
@@ -101,15 +100,22 @@ def lookup_exercise(dataset_id: str, exercise_id: str) -> Exercise | None:
     return None
 
 
-def get_exercise_preview_context(dataset_id: str, exercise_id: str) -> dict[str, object] | None:
+def get_exercise_preview_context(
+    request: Request,
+    dataset_id: str,
+    exercise_id: str,
+) -> dict[str, object] | None:
     dataset = lookup_dataset(dataset_id)
     exercise = lookup_exercise(dataset_id, exercise_id)
     if dataset is None or exercise is None:
         return None
 
+    attempt_state = get_attempt_state(request, exercise.id)
+    sql = attempt_state["sql"] or f"-- Write PostgreSQL for: {exercise.title}\n"
+
     return {
         "page_title": f"{exercise.title} - Practice - SQL Gym",
-        "status_label": "Exercise preview",
+        "status_label": "Exercise practice",
         "dataset": _dataset_summary(dataset),
         "exercise": {
             "id": exercise.id,
@@ -125,8 +131,12 @@ def get_exercise_preview_context(dataset_id: str, exercise_id: str) -> dict[str,
             "hint": exercise.hint,
             "sample_sql": exercise.sample_sql,
         },
+        "sql": sql,
+        "query_result": attempt_state["query_result"],
+        "execution_error": attempt_state["execution_error"],
+        "grading": attempt_state["grading"],
+        "attempt_status": attempt_state["status"],
         "placeholder_areas": PLACEHOLDER_AREAS,
-        "progress": DEMO_PROGRESS.metrics,
     }
 
 
@@ -186,4 +196,5 @@ def get_practice_context(
         "progress": DEMO_PROGRESS.metrics,
         "attempt": DEMO_ATTEMPT,
         "grading": GRADING_PLACEHOLDER,
+        "execution_available": True,
     }

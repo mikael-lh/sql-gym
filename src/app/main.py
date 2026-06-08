@@ -1,12 +1,21 @@
+import os
 from pathlib import Path
 
 import uvicorn
-from fastapi import FastAPI, Request
-from fastapi.responses import HTMLResponse
+from fastapi import FastAPI, Form, HTTPException, Request
+from fastapi.responses import HTMLResponse, RedirectResponse, Response
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from starlette.middleware.sessions import SessionMiddleware
 
-from app.practice import get_exercise_preview_context, get_not_found_context, get_practice_context
+from app.execution import execute_query
+from app.practice import (
+    get_exercise_preview_context,
+    get_not_found_context,
+    get_practice_context,
+    lookup_exercise,
+)
+from app.practice_session import store_run_result, store_submit_result
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 TEMPLATES_DIR = PROJECT_ROOT / "templates"
@@ -58,11 +67,16 @@ PLACEHOLDERS = [
 ]
 
 
+def _session_secret() -> str:
+    return os.environ.get("SESSION_SECRET", "dev-only-session-secret-change-me")
+
+
 def create_app() -> FastAPI:
     app = FastAPI(
         title="SQL Gym",
         summary="A lightweight gym for practicing SQL on curated datasets.",
     )
+    app.add_middleware(SessionMiddleware, secret_key=_session_secret())
     app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
     @app.get("/health", tags=["system"])
@@ -100,13 +114,16 @@ def create_app() -> FastAPI:
             | {"request": request},
         )
 
+    def _exercise_path(dataset_id: str, exercise_id: str) -> str:
+        return f"/practice/{dataset_id}/{exercise_id}"
+
     @app.get("/practice/{dataset_id}/{exercise_id}", response_class=HTMLResponse, tags=["pages"])
     def practice_exercise(
         request: Request,
         dataset_id: str,
         exercise_id: str,
     ) -> HTMLResponse:
-        context = get_exercise_preview_context(dataset_id, exercise_id)
+        context = get_exercise_preview_context(request, dataset_id, exercise_id)
         if context is None:
             return templates.TemplateResponse(
                 request,
@@ -118,6 +135,48 @@ def create_app() -> FastAPI:
             request,
             "practice_exercise.html",
             context | {"request": request},
+        )
+
+    @app.post(
+        "/practice/{dataset_id}/{exercise_id}/run",
+        tags=["pages"],
+    )
+    def practice_run_sql(
+        request: Request,
+        dataset_id: str,
+        exercise_id: str,
+        sql: str = Form(...),
+    ) -> Response:
+        exercise = lookup_exercise(dataset_id, exercise_id)
+        if exercise is None:
+            raise HTTPException(status_code=404)
+
+        outcome = execute_query(sql)
+        store_run_result(request, exercise.id, sql, outcome)
+        return RedirectResponse(
+            url=_exercise_path(dataset_id, exercise_id),
+            status_code=303,
+        )
+
+    @app.post(
+        "/practice/{dataset_id}/{exercise_id}/submit",
+        tags=["pages"],
+    )
+    def practice_submit_sql(
+        request: Request,
+        dataset_id: str,
+        exercise_id: str,
+        sql: str = Form(...),
+    ) -> Response:
+        exercise = lookup_exercise(dataset_id, exercise_id)
+        if exercise is None:
+            raise HTTPException(status_code=404)
+
+        outcome = execute_query(sql)
+        store_submit_result(request, exercise, sql, outcome)
+        return RedirectResponse(
+            url=_exercise_path(dataset_id, exercise_id),
+            status_code=303,
         )
 
     return app
