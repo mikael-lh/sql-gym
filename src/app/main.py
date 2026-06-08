@@ -87,11 +87,17 @@ def create_app() -> FastAPI:
         )
 
     @app.get("/practice", response_class=HTMLResponse, tags=["pages"])
-    def practice(request: Request) -> HTMLResponse:
+    def practice(
+        request: Request,
+        dataset: str | None = None,
+        difficulty: str | None = None,
+        mode: str | None = None,
+    ) -> HTMLResponse:
         return templates.TemplateResponse(
             request,
             "practice.html",
-            get_practice_context() | {"request": request},
+            get_practice_context(dataset_id=dataset, difficulty=difficulty, mode=mode)
+            | {"request": request},
         )
 
     return app

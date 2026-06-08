@@ -51,22 +51,45 @@ def test_home_page_presents_core_loop_and_placeholders() -> None:
     assert "disabled" in response.text
 
 
-def test_practice_page_renders_placeholder_flow() -> None:
+def test_practice_page_renders_catalog_backed_flow() -> None:
     response = asyncio.run(get("/practice"))
 
     assert response.status_code == 200
-    assert "Times Archive demo" in response.text
+    assert "Browse the practice catalog" in response.text
+    assert "Times Archive" in response.text
+    assert "Production catalog" in response.text
     assert "times-api/schema/archive_articles.json" in response.text
-    assert "not final production Times data" in response.text
+    assert "Showing 50 of 50 catalog exercises" in response.text
     assert "Beginner" in response.text
     assert "Timed" in response.text
-    assert "PostgreSQL target dialect" in response.text
+    assert "PostgreSQL" in response.text
     assert "SQL editor placeholder" in response.text
     assert "Grading feedback" in response.text
     assert "Progress tracking placeholder" in response.text
     assert "Demo-only progress" in response.text
     assert "No SQL is executed" in response.text
     assert "disabled" in response.text
+    assert "Show hint" in response.text
+    assert "SELECT section_name" not in response.text
+
+
+def test_practice_page_filters_exercises_inline() -> None:
+    all_exercises = asyncio.run(get("/practice"))
+    filtered = asyncio.run(get("/practice?difficulty=Beginner&mode=Untimed"))
+
+    assert filtered.status_code == 200
+    assert "No exercises match the current filters" not in filtered.text
+    assert filtered.text.index("Showing ") < filtered.text.index(" of 50 catalog exercises")
+    assert "Beginner" in filtered.text
+    assert filtered.text.count("exercise-card") < all_exercises.text.count("exercise-card")
+
+
+def test_practice_page_shows_empty_state_for_no_matches() -> None:
+    response = asyncio.run(get("/practice?dataset=missing-dataset"))
+
+    assert response.status_code == 200
+    assert "No exercises match the current filters" in response.text
+    assert "Showing 0 of 50 catalog exercises" in response.text
 
 
 def test_times_demo_fixture_records_provenance() -> None:

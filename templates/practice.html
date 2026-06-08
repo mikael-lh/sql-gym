@@ -3,20 +3,67 @@
 {% block content %}
 <section class="hero" aria-labelledby="practice-title">
   <p class="eyebrow">{{ status_label }}</p>
-  <h1 id="practice-title">Practice setup preview</h1>
+  <h1 id="practice-title">Browse the practice catalog</h1>
   <p class="lede">
-    Selectors, editor, grading, and progress are visible here as Phase 0 placeholders only.
+    Choose a dataset and filter exercises by difficulty or mode. SQL execution, grading, and
+    durable progress remain placeholders in Phase 1.
   </p>
   <p class="notice">
     No SQL is executed, no answers are graded, and no progress is persisted.
   </p>
 </section>
 
-<section class="practice-grid" aria-label="Practice placeholder controls">
-  <article class="panel">
-    <p class="eyebrow">Dataset</p>
+<section class="panel" aria-labelledby="catalog-filters-title">
+  <p class="eyebrow">Filters</p>
+  <h2 id="catalog-filters-title">Browse catalog exercises</h2>
+  <form class="filter-form" method="get" action="/practice">
+    <label>
+      Dataset
+      <select name="dataset">
+        <option value="">All datasets</option>
+        {% for dataset in datasets %}
+        <option value="{{ dataset.id }}" {% if filters.dataset_id == dataset.id %}selected{% endif %}>
+          {{ dataset.name }}
+        </option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>
+      Difficulty
+      <select name="difficulty">
+        <option value="">All difficulties</option>
+        {% for difficulty in difficulties %}
+        <option value="{{ difficulty.label }}" {% if filters.difficulty == difficulty.label %}selected{% endif %}>
+          {{ difficulty.label }}
+        </option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>
+      Mode
+      <select name="mode">
+        <option value="">All modes</option>
+        {% for mode in modes %}
+        <option value="{{ mode.label }}" {% if filters.mode == mode.label %}selected{% endif %}>
+          {{ mode.label }}
+        </option>
+        {% endfor %}
+      </select>
+    </label>
+    <button type="submit">Apply filters</button>
+    <a class="filter-reset" href="/practice">Clear filters</a>
+  </form>
+  <p class="catalog-count">
+    Showing {{ exercise_count }} of {{ total_exercise_count }} catalog exercises.
+  </p>
+</section>
+
+<section class="practice-grid" aria-label="Catalog datasets">
+  {% for dataset in datasets %}
+  <article class="panel catalog-card">
+    <p class="eyebrow">{{ dataset.status_label }}</p>
     <h2>{{ dataset.name }}</h2>
-    <p>{{ dataset.note }}</p>
+    <p>{{ dataset.description }}</p>
     <dl class="metadata-list">
       <div>
         <dt>Source</dt>
@@ -31,34 +78,48 @@
         <dd>{{ dataset.fixture_path }}</dd>
       </div>
     </dl>
-    <button class="disabled-action" type="button" disabled>Dataset locked - demo only</button>
+    <p class="dataset-note">{{ dataset.note }}</p>
   </article>
+  {% endfor %}
+</section>
 
-  <article class="panel">
-    <p class="eyebrow">Difficulty</p>
-    <h2>Select a path</h2>
-    <div class="option-stack">
-      {% for difficulty in difficulties %}
-      <button class="option-button" type="button" disabled>
-        <strong>{{ difficulty.label }}</strong>
-        <span>{{ difficulty.description }}</span>
-      </button>
-      {% endfor %}
-    </div>
-  </article>
-
-  <article class="panel">
-    <p class="eyebrow">Mode</p>
-    <h2>Timed or untimed</h2>
-    <div class="option-stack">
-      {% for mode in modes %}
-      <button class="option-button" type="button" disabled>
-        <strong>{{ mode.label }}</strong>
-        <span>{{ mode.description }}</span>
-      </button>
-      {% endfor %}
-    </div>
-  </article>
+<section class="panel" aria-labelledby="exercise-list-title">
+  <p class="eyebrow">Exercises</p>
+  <h2 id="exercise-list-title">Catalog-backed practice options</h2>
+  {% if exercises %}
+  <div class="exercise-groups">
+    {% for difficulty, items in grouped_exercises.items() %}
+    <section class="exercise-group" aria-label="{{ difficulty }} exercises">
+      <h3>{{ difficulty }}</h3>
+      <div class="exercise-grid">
+        {% for exercise in items %}
+        <article class="exercise-card">
+          <h4>{{ exercise.title }}</h4>
+          <p>{{ exercise.prompt }}</p>
+          <ul class="exercise-meta">
+            <li><strong>Mode:</strong> {{ exercise.mode }}</li>
+            <li><strong>Dialect:</strong> {{ exercise.target_dialect }}</li>
+            <li><strong>Time:</strong> {{ exercise.estimated_time_minutes }} min</li>
+            <li><strong>Status:</strong> {{ exercise.availability_status }}</li>
+          </ul>
+          <p class="exercise-tags">
+            {% for tag in exercise.concept_tags %}
+            <span class="tag">{{ tag }}</span>
+            {% endfor %}
+          </p>
+          <details class="hint-details">
+            <summary>Show hint</summary>
+            <p>{{ exercise.hint }}</p>
+          </details>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="empty-state">No exercises match the current filters. Try clearing filters or choosing another combination.</p>
+  {% endif %}
 </section>
 
 <section class="panel" aria-labelledby="editor-title">
@@ -66,7 +127,9 @@
     <p class="eyebrow">PostgreSQL target dialect</p>
     <h2 id="editor-title">SQL editor placeholder</h2>
   </div>
-  <textarea class="sql-placeholder" aria-label="SQL editor placeholder" disabled>{{ sample_sql }}</textarea>
+  <p class="placeholder-note">Sample SQL stays hidden until exercise preview work lands. Queries do not run yet.</p>
+  <textarea class="sql-placeholder" aria-label="SQL editor placeholder" disabled>-- SQL editor placeholder
+-- No SQL is executed in Phase 1.</textarea>
 </section>
 
 <section class="practice-grid" aria-label="Feedback and progress placeholders">
