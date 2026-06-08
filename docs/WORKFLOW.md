@@ -64,15 +64,15 @@ Prefer invoking these skills by name over following this doc step by step. All l
 
 | Phase | Skill | When / outcome |
 |-------|-------|----------------|
-| Spec | **write-prd** | Write or revise a product, phase, or feature PRD under `prd/` |
-| Plan | **implement-from-prd** | Plan implementation from a local PRD; stops for user approval |
-| Align | **check-prd-alignment** | Compare a branch or PR diff against a linked `prd/` section (pre-review) |
-| Build | **sql-gym-implement-issue** | After plan approval — one `TIM-NN`: verify PRD/plan, implement, open draft PR |
-| Build | **sql-gym-run-phase** | Autonomously run approved phase child issues in sequence |
-| Review | **sql-gym-pre-review** | Orchestrate reviewer ↔ fixer loop, then ready for user review |
-| Review | **sql-gym-pre-review-reviewer** | Independent review pass — findings only, no commits |
-| Review | **sql-gym-pre-review-fix** | Apply blocking reviewer findings, tests, deslop |
-| Reality | **update-prd** | Record what shipped, deviations, and deferred work in `prd/` |
+| Spec | [**write-prd**](../.cursor/skills/write-prd/SKILL.md) | Write or revise a product, phase, or feature PRD under `prd/` |
+| Plan | [**implement-from-prd**](../.cursor/skills/implement-from-prd/SKILL.md) | Plan implementation from a local PRD; stops for user approval |
+| Align | [**check-prd-alignment**](../.cursor/skills/check-prd-alignment/SKILL.md) | Compare a branch or PR diff against a linked `prd/` section (pre-review) |
+| Build | [**sql-gym-implement-issue**](../.cursor/skills/sql-gym-implement-issue/SKILL.md) | After plan approval — one `TIM-NN`: verify PRD/plan, implement, open draft PR |
+| Build | [**sql-gym-run-phase**](../.cursor/skills/sql-gym-run-phase/SKILL.md) | Autonomously run approved phase child issues in sequence |
+| Review | [**sql-gym-pre-review**](../.cursor/skills/sql-gym-pre-review/SKILL.md) | Orchestrate reviewer ↔ fixer loop, then ready for user review |
+| Review | [**sql-gym-pre-review-reviewer**](../.cursor/skills/sql-gym-pre-review-reviewer/SKILL.md) | Independent review pass — findings only, no commits |
+| Review | [**sql-gym-pre-review-fix**](../.cursor/skills/sql-gym-pre-review-fix/SKILL.md) | Apply blocking reviewer findings, tests, deslop |
+| Reality | [**update-prd**](../.cursor/skills/update-prd/SKILL.md) | Record what shipped, deviations, and deferred work in `prd/` |
 
 ### Superpowers plugin (marketplace)
 
