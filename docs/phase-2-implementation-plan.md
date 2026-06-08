@@ -13,7 +13,7 @@ Draft for user approval. Do not write application code outside the scoped Linear
 ## Planning decisions
 
 - **Postgres via Docker Compose:** `docker-compose.yml` at repo root; practice DB on port `5432` (document overrides).
-- **times-api import:** `scripts/import-times-from-times-api.sh` downloads a **pinned** export from [`times-api`](https://github.com/mikael-lh/times-api) (commit hash documented in `docs/times-data-setup.md`) and loads rows into Postgres. Pin is updated deliberately when the archive export changes.
+- **times-api import (locked):** `scripts/import-times-from-times-api.sh` downloads slim NDJSON from the **private** `times-api` GCS bucket using **GCP credentials** on the machine running import (no public fallback artifact). Canonical path: `gs://ny-archive-bucket/nyt-ingest/archive_slim/YYYY/MM.ndjson` (schema: [`times-api/schema/archive_articles.json`](https://github.com/mikael-lh/times-api/blob/main/schema/archive_articles.json)). Import scope: full archive (1920–2019 per `times-api` defaults). Pin (bucket contents snapshot / `times-api` commit) documented in `docs/times-data-setup.md`; updated deliberately when the archive export changes.
 - **Learner table name:** `times_archive` (matches existing exercise `sample_sql` and prompts).
 - **Execution driver:** `psycopg` (v3) with a small sync execution module; keep routes server-rendered (HTML forms), not a separate JSON API.
 - **Safety:** `sql_gym_readonly` DB role; `statement_timeout` (e.g. 5s); `max_rows` cap (e.g. 500); **SELECT-only** statements rejected at app layer before execution; no DDL/DML for learners.
@@ -37,21 +37,23 @@ Draft for user approval. Do not write application code outside the scoped Linear
 - `docker/postgres/init/` — schema for `times_archive`, readonly role, app role grants.
 - `scripts/import-times-from-times-api.sh` — download pinned export, load into DB.
 - `docs/times-data-setup.md` — setup, pin, import, troubleshooting.
-- `.env.example` — `DATABASE_URL`, `SESSION_SECRET`, optional admin URL for import.
+- `.env.example` — `DATABASE_URL`, `SESSION_SECRET`, `GCS_BUCKET`, `GCS_PREFIX`, optional admin URL for import; document `GOOGLE_APPLICATION_CREDENTIALS` (not committed).
 - `src/app/domain/datasets.py` — provenance note points at Docker/import path.
 - `tests/test_times_import.py` — row-count/column checks (skip if no `DATABASE_URL`).
 
 **Implementation notes:**
 
 - Map `times-api` archive schema (`schema/archive_articles.json`) to Postgres types; JSON columns for `keywords`, `byline_person`, `multimedia_count_by_type`.
+- Importer uses `gsutil` or the Google Cloud Storage client with Application Default Credentials (`gcloud auth application-default login` or `GOOGLE_APPLICATION_CREDENTIALS` pointing at a read-only service account with `storage.objectViewer` on `ny-archive-bucket` / `nyt-ingest/`).
+- Download all `archive_slim/**/*.ndjson` objects under the pinned prefix; no HTTP/GitHub release fallback.
 - Importer is idempotent (`TRUNCATE` + reload or upsert).
-- Confirm export artifact path in `times-api` during this milestone (spike subtask); document pin in `docs/times-data-setup.md`.
+- Document credential setup, bucket vars, and content pin in `docs/times-data-setup.md`. Cloud Agents need GCP creds in Cloud settings to run import.
 
 **Acceptance criteria covered:** R1 (all), partial R6 (integration test hook).
 
 **Checks:** `docker compose up -d`, import script, optional `uv run pytest tests/test_times_import.py`, `uv run ruff check .`, `uv run mypy .`.
 
-**Risks:** Export file location/size in `times-api`; large imports slow first-time setup.
+**Risks:** Contributors without GCP bucket access cannot import (by design); large multi-file GCS download slow on first setup.
 
 ---
 
@@ -221,7 +223,7 @@ Draft for user approval. Do not write application code outside the scoped Linear
 
 ## Blocked / resolve during TIM-31
 
-- **times-api export pin:** confirm exact file URL/path in `times-api` repository (required before import script is final).
+- **Content pin:** record which GCS object generation / `times-api` commit the import was validated against (bucket path is fixed; pin tracks when slim files were last refreshed).
 
 ## Approval
 
