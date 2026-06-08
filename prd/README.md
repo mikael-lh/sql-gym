@@ -14,8 +14,7 @@ Specs are added here via the `write-prd` repo skill. Do not treat informal chat 
 
 ## Linear
 
-- **Project:** [sql-gym](https://linear.app/times-api/project/sql-gym-ce6a8985c99e) (issue prefix `TIM-`)
-- **Requirements epic:** [TIM-16](https://linear.app/times-api/issue/TIM-16/requirements-or-product-vision-write-prd)
+[sql-gym project](https://linear.app/times-api/project/sql-gym-ce6a8985c99e) (`TIM-` issues). Issue templates and conventions: [docs/WORKFLOW.md § Linear](../docs/WORKFLOW.md#linear-conventions).
 
 ## PRD workflow
 

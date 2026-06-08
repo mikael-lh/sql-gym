@@ -59,7 +59,7 @@ Leave boxes **unchecked** and PR **draft**.
 
 ## Stop
 
-Do not merge from this skill. The **user** or an explicitly authorized orchestration skill performs final merge.
+Do not merge (per [workflow.mdc](../../rules/workflow.mdc) gates). The **user** or an explicitly authorized orchestration skill performs final merge.
 
 ## Handoff checklist
 

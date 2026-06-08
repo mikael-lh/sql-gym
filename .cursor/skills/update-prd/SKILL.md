@@ -11,7 +11,7 @@ The user has finished implementation or merged a change and wants the PRD to ref
 
 ## Source of truth
 
-Update local markdown under `prd/`. Do not call ChatPRD MCP tools.
+Committed markdown under `prd/` (per [workflow.mdc](../../rules/workflow.mdc) gates).
 
 ## Workflow
 

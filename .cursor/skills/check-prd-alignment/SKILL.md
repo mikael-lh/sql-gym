@@ -11,7 +11,7 @@ The user wants to verify that implementation changes match the relevant product 
 
 ## Source of truth
 
-Use local PRD files under `prd/`. Do not call ChatPRD MCP tools.
+Committed markdown under `prd/` (per [workflow.mdc](../../rules/workflow.mdc) gates).
 
 ## Workflow
 
