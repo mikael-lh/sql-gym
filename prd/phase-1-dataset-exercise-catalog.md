@@ -2,7 +2,7 @@
 
 ## Status
 
-Draft for approval. Do not mark Phase 1 active, create implementation issues, or write application code until the user approves this PRD and a scoped implementation plan.
+Active. The user approved this PRD. Do not create implementation issues or write application code until there is a scoped implementation plan from local `implement-from-prd` and the user approves that plan.
 
 ## Source context
 
