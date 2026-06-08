@@ -1,0 +1,24 @@
+{
+  "name": "workspace",
+  "version": "1.0.0",
+  "description": "A lightweight gym for SQL: practice on curated datasets, run queries, and level up by concept and difficulty.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikael-lh/sql-gym.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mikael-lh/sql-gym/issues"
+  },
+  "homepage": "https://github.com/mikael-lh/sql-gym#readme"
+}

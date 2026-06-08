@@ -332,3 +332,92 @@ h3 {
   padding: 1rem;
   white-space: pre-wrap;
 }
+
+.sql-hidden-input {
+  display: none;
+}
+
+.sql-editor-host {
+  border: 1px solid #cbd5e1;
+  border-radius: 0.75rem;
+  min-height: 14rem;
+  overflow: hidden;
+}
+
+.sql-editor-host .cm-editor {
+  min-height: 14rem;
+}
+
+.editor-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.editor-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.editor-actions button {
+  background: #fff;
+  border: 1px solid #cbd5e1;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 0.65rem 1.1rem;
+}
+
+.editor-actions .button-primary {
+  background: #2f6fed;
+  border-color: #2f6fed;
+  color: #fff;
+}
+
+.result-table-wrap {
+  overflow-x: auto;
+}
+
+.result-table {
+  border-collapse: collapse;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.9rem;
+  width: 100%;
+}
+
+.result-table th,
+.result-table td {
+  border: 1px solid #e2e8f0;
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.result-table th {
+  background: #f8fafc;
+}
+
+.null-cell {
+  color: #64748b;
+  font-style: italic;
+}
+
+.feedback {
+  border-radius: 0.75rem;
+  font-weight: 700;
+  margin: 0;
+  padding: 0.85rem 1rem;
+}
+
+.feedback-pass {
+  background: #ecfdf3;
+  border: 1px solid #86efac;
+  color: #166534;
+}
+
+.feedback-fail,
+.feedback-error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+}
