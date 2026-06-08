@@ -35,7 +35,8 @@ def test_times_catalog_dataset_is_production_ready() -> None:
     assert dataset.id == "times-archive"
     assert dataset.is_demo is False
     assert dataset.provenance.source_name == "times-api"
-    assert "Production-ready catalog data" in dataset.provenance.note
+    assert "docs/times-data-setup.md" in dataset.provenance.note
+    assert "import-times-from-times-api.sh" in dataset.provenance.note
 
 
 def test_exercise_metadata_supports_catalog_fields() -> None:
