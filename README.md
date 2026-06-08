@@ -63,6 +63,26 @@ For TIM-21 and future scaffold PRs, reviewers and agents should run these checks
 
 `./scripts/validate-env.sh` wraps the build, lint, static check, and test commands above, then verifies the PRD/workflow files that future agents rely on.
 
+## Phase 1 behavior status
+
+Working behavior:
+
+- Catalog domain models and validation for datasets and exercises.
+- Production-ready Times Archive catalog dataset with 50 structured exercise entries.
+- `/practice` catalog browsing with dataset, difficulty, and mode filters.
+- `/practice/{dataset_id}/{exercise_id}` exercise preview pages linked from the practice flow.
+- User-friendly 404 responses for unknown exercise preview routes.
+- Inline empty states when practice filters return no exercises.
+- Hints and sample SQL disclosure patterns that keep illustrative SQL hidden by default.
+
+Placeholder behavior:
+
+- SQL is not executed.
+- Grading is not implemented.
+- Authentication, user accounts, durable progress storage, and AI feedback are not implemented.
+- Timed-mode scoring behavior is not active even when exercises are labeled Timed.
+- Article row data still uses the small schema-aligned demo fixture while catalog exercises are production-ready metadata.
+
 ## Phase 0 behavior status
 
 Working behavior:
@@ -72,16 +92,11 @@ Working behavior:
 - `/health` returns a basic status response.
 - Static stylesheet serving under `/static/`.
 - Pydantic domain models for dataset, exercise, attempt, grading, and progress concepts.
-- Tiny Times Archive demo fixture and static demo progress values.
 - Baseline validation with `uv build`, ruff, mypy, pytest, and `./scripts/validate-env.sh`.
 
-Placeholder behavior:
+Historical placeholder behavior (superseded on `/practice` by Phase 1 catalog browsing):
 
-- Times demo fixture data is sample-only; it is not the final production Times dataset.
-- Dataset, difficulty, timed or untimed mode, SQL editor, grading feedback, and progress controls are visible placeholders.
-- SQL is not executed.
-- Grading is not implemented.
-- Authentication, user accounts, durable progress storage, and AI feedback are not implemented.
+- Single Times Archive demo dataset and one placeholder exercise on the practice shell before Phase 1 catalog work landed.
 
 ## Remaining follow-up decisions
 
