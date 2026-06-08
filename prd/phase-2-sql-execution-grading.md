@@ -22,7 +22,7 @@ Current implementation context:
 
 ## Resolved product decisions (planning, 2026-06-08)
 
-- **Times article data:** load a Times export from [`times-api`](https://github.com/mikael-lh/times-api) into the practice database (replace demo-row-only fixture for query execution).
+- **Times article data:** load slim NDJSON from the private `times-api` GCS bucket (`gs://ny-archive-bucket/nyt-ingest/archive_slim/`) into the practice database using **GCP credentials** at import time (no public fallback artifact).
 - **Execution database:** PostgreSQL, provisioned locally via **Docker Compose** checked into this repo.
 - **Grading model (Phase 2):** **strict grid match** only — same columns (names and order), same rows (values and order); no partial credit.
 - **Attempt persistence:** **session-only** for Phase 2 (no accounts, no durable attempt history).
@@ -84,7 +84,7 @@ Acceptance criteria:
 
 - The repo includes Docker Compose configuration to start PostgreSQL for local development and agent environments.
 - Database connection settings are documented in `.env.example` (no committed secrets).
-- A documented import path loads Times article data from `times-api` into a schema aligned with `times-api/schema/archive_articles.json` (or the current canonical archive schema in that repo).
+- A documented import path downloads slim NDJSON from `gs://ny-archive-bucket/nyt-ingest/archive_slim/` (requires GCP read access) and loads rows into a schema aligned with `times-api/schema/archive_articles.json`.
 - `TIMES_ARCHIVE_CATALOG_DATASET` provenance and docs reference the Docker-backed data path rather than the two-row demo JSON as the execution source of truth.
 - Import/setup steps are documented in README or a linked dev doc (e.g. `docs/times-data-setup.md`).
 - Tests or validation scripts verify the imported row count is above the Phase 1 demo size and that required columns exist for catalog exercises.
@@ -181,14 +181,22 @@ Phase 2 is successful when a reviewer can:
 - Land on an updated home page that routes them to `/practice` with accurate capability copy.
 - Run documented validation commands successfully.
 
+## Resolved (planning lock-in)
+
+| Topic | Decision |
+|-------|----------|
+| Import source | Private GCS slim NDJSON: `gs://ny-archive-bucket/nyt-ingest/archive_slim/YYYY/MM.ndjson` |
+| Import access | GCP credentials required (`GOOGLE_APPLICATION_CREDENTIALS` or ADC); no public fallback artifact |
+| Import scope | Full archive (1920–2019 per `times-api` defaults) |
+| Postgres table | `times_archive` |
+| Expected results | `reference_sql` per exercise; grids generated via `scripts/generate-expected-results.sh` against imported data |
+| CodeMirror | Vendored under `static/vendor/codemirror/` |
+| Session | Starlette `SessionMiddleware` (signed cookie); session-only attempt state |
+| validate-env | Postgres checks optional when `DATABASE_URL` unset |
+
 ## Open questions
 
-- **times-api export pin:** which commit, archive file, or export command is canonical for Phase 2 imports?
-- **Table naming:** confirm learner-facing table name(s) in Postgres (e.g. `times_archive`) match exercise prompts and sample SQL.
-- **Expected-result authoring:** how expected-result grids for all 50 exercises are produced and verified (reference queries, exported grids, or generated from times-api data).
-- **CodeMirror delivery:** CDN vs vendored static assets (implementation plan should pick one for offline/agent use).
-- **Session mechanism:** Starlette session middleware vs signed cookie payload (implementation plan decides).
-- **Optional validate-env:** whether `./scripts/validate-env.sh` requires Docker Postgres or treats DB checks as optional when `DATABASE_URL` is unset.
+- **Content pin:** which GCS snapshot / `times-api` commit to record in `docs/times-data-setup.md` when validating the import script (resolved during TIM-31).
 
 ## Approval
 
