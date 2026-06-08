@@ -27,7 +27,7 @@ From [The Standard of Code Review](https://github.com/google/eng-practices/blob/
 
 ## Reviewer checklist (what to look for)
 
-From [What to look for in a code review](https://github.com/google/eng-practices/blob/master/review/reviewer/looking-for.md). Agents use this in **sql-gym-pre-review** after product alignment.
+From [What to look for in a code review](https://github.com/google/eng-practices/blob/master/review/reviewer/looking-for.md). **sql-gym-pre-review-reviewer** uses this table after product alignment (orchestrated by **sql-gym-pre-review**).
 
 | Area | Check |
 |------|--------|
@@ -73,6 +73,6 @@ For JS application code (e.g. React, if chosen):
 
 | Layer | Role |
 |-------|------|
-| [.cursor/rules/engineering.mdc](../../.cursor/rules/engineering.mdc) | Always-on **writing and reviewing** principles (subset of Google—no reviewer checklist) |
-| [sql-gym-pre-review-reviewer](../../.cursor/skills/sql-gym-pre-review-reviewer/SKILL.md) | Agent **review** pass using the checklist below |
-| [sql-gym-pre-review](../../.cursor/skills/sql-gym-pre-review/SKILL.md) | Orchestrator and PR handoff |
+| [.cursor/rules/engineering.mdc](../../.cursor/rules/engineering.mdc) | Always-on principles (subset of Google — not the [reviewer checklist](#reviewer-checklist-what-to-look-for)) |
+| [sql-gym-pre-review-reviewer](../../.cursor/skills/sql-gym-pre-review-reviewer/SKILL.md) | Independent review pass using the [reviewer checklist](#reviewer-checklist-what-to-look-for) |
+| [sql-gym-pre-review](../../.cursor/skills/sql-gym-pre-review/SKILL.md) | Orchestrates reviewer ↔ fixer and PR handoff |
