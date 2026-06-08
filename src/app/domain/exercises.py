@@ -41,7 +41,6 @@ class Exercise(BaseModel):
     sample_sql: str
     availability_status: AvailabilityStatus = "placeholder"
     expected_result: ExpectedResultSpec = Field(default_factory=ExpectedResultSpec)
-    is_placeholder: bool = True
 
 
 DIFFICULTY_OPTIONS: tuple[SelectionOption, ...] = (

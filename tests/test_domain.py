@@ -42,7 +42,6 @@ def test_exercise_metadata_supports_catalog_fields() -> None:
 
     assert exercise.dataset_id == TIMES_ARCHIVE_DEMO_DATASET.id
     assert exercise.target_dialect == "PostgreSQL"
-    assert exercise.is_placeholder is True
     assert exercise.availability_status == "placeholder"
     assert exercise.concept_tags == ("aggregation", "group-by")
     assert exercise.estimated_time_minutes == 10
