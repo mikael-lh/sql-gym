@@ -2,7 +2,7 @@
 
 ## Status
 
-Draft for review. The user approved the direction in planning (2026-06-08). Do not create implementation issues or write application code until this PRD is approved and a scoped implementation plan from local `implement-from-prd` is approved.
+**Complete** (merged 2026-06-08). Implemented via [TIM-30](https://linear.app/times-api/issue/TIM-30/phase-2-or-sql-execution-and-grading) child issues TIM-31–TIM-36 and [`docs/phase-2-implementation-plan.md`](../docs/phase-2-implementation-plan.md).
 
 ## Source context
 
@@ -194,14 +194,29 @@ Phase 2 is successful when a reviewer can:
 | Session | Starlette `SessionMiddleware` (signed cookie); session-only attempt state |
 | validate-env | Postgres checks optional when `DATABASE_URL` unset |
 
+## What was actually built
+
+- Docker Compose PostgreSQL, GCS import (`scripts/import-times-from-times-api.sh`), and `times_archive` table.
+- CodeMirror 6 editor with run-only and submit-grade POST flows; session-only attempt state.
+- Strict grid-match grading for all 50 exercises with committed expected grids.
+- SELECT-only execution layer (`psycopg`) with timeout and 500-row cap.
+- Updated home page, README, `validate-env.sh` optional Postgres ping, and [manual test plan](../docs/phase-2-manual-test-plan.md).
+
+## Approved deviations
+
+| Topic | PRD / plan | Shipped |
+|-------|------------|---------|
+| `reference_sql` vs prompts | Sample SQL hints | Some `reference_sql` values adjusted for archive date ranges (1920 vs 2024), 500-row caps, and performant grading queries (e.g. exercise 043 window rewrite). |
+| NDJSON import | Full reload | Malformed NDJSON lines skipped with warning (55 lines in validated import). |
+| Content pin | GCS snapshot + `times-api` commit | GCS validation date recorded; `times-api` commit SHA not pinned. |
+| CI Postgres | Out of scope | Unchanged — local/agent Docker setup documented. |
+
+## Future work
+
+- Align exercise prompts/sample SQL with `reference_sql` where they still mention 2024 dates or outdated filters.
+- Accounts, durable progress, AI grading, timed scoring, automated Times refresh.
+- CI Postgres for integration tests (if separately approved).
+
 ## Open questions
 
-- **Content pin:** which GCS snapshot / `times-api` commit to record in `docs/times-data-setup.md` when validating the import script (resolved during TIM-31).
-
-## Approval
-
-Pending user review of this draft PRD. After approval:
-
-1. Update `prd/README.md` to name Phase 2 as the active phase.
-2. Run `implement-from-prd` for a scoped implementation plan and Linear issues.
-3. Implement only after the plan is approved.
+- **Content pin:** GCS validation recorded in `docs/times-data-setup.md` (2026-06-08). Add `times-api` commit SHA when the slim export is next refreshed.
