@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero" aria-labelledby="exercise-title">
+  <p class="eyebrow">{{ status_label }}</p>
+  <h1 id="exercise-title">{{ exercise.title }}</h1>
+  <p class="lede">{{ exercise.prompt }}</p>
+  <p class="notice">
+    No SQL is executed, no answers are graded, and no progress is persisted.
+  </p>
+  <a class="primary-link" href="/practice">Back to practice catalog</a>
+</section>
+
+<section class="panel" aria-labelledby="exercise-metadata-title">
+  <p class="eyebrow">{{ dataset.name }}</p>
+  <h2 id="exercise-metadata-title">Exercise metadata</h2>
+  <ul class="exercise-meta">
+    <li><strong>Difficulty:</strong> {{ exercise.difficulty }}</li>
+    <li><strong>Mode:</strong> {{ exercise.mode }}</li>
+    <li><strong>Dialect:</strong> {{ exercise.target_dialect }}</li>
+    <li><strong>Estimated time:</strong> {{ exercise.estimated_time_minutes }} min</li>
+    <li><strong>Status:</strong> {{ exercise.availability_status }}</li>
+  </ul>
+  <p class="exercise-tags">
+    {% for tag in exercise.concept_tags %}
+    <span class="tag">{{ tag }}</span>
+    {% endfor %}
+  </p>
+</section>
+
+<section class="panel" aria-labelledby="objectives-title">
+  <p class="eyebrow">Learning objectives</p>
+  <h2 id="objectives-title">What to practice</h2>
+  <ul class="objective-list">
+    {% for objective in exercise.learning_objectives %}
+    <li>{{ objective }}</li>
+    {% endfor %}
+  </ul>
+</section>
+
+<section class="panel" aria-labelledby="hint-title">
+  <p class="eyebrow">Hint</p>
+  <h2 id="hint-title">Get unstuck</h2>
+  <p>{{ exercise.hint }}</p>
+  <details class="hint-details">
+    <summary>Show sample SQL (illustrative only)</summary>
+    <pre class="sample-sql">{{ exercise.sample_sql }}</pre>
+    <p class="placeholder-note">Sample SQL is illustrative content only. It is not executed or graded.</p>
+  </details>
+</section>
+
+<section class="panel" aria-labelledby="editor-title">
+  <p class="eyebrow">PostgreSQL target dialect</p>
+  <h2 id="editor-title">SQL editor placeholder</h2>
+  <textarea class="sql-placeholder" aria-label="SQL editor placeholder" disabled>-- SQL editor placeholder
+-- No SQL is executed in Phase 1.</textarea>
+</section>
+
+<section class="practice-grid" aria-label="Feedback and progress placeholders">
+  {% for area in placeholder_areas %}
+  <article class="placeholder-card">
+    <span class="badge">Future work</span>
+    <h3>{{ area.title }}</h3>
+    <p>{{ area.description }}</p>
+  </article>
+  {% endfor %}
+</section>
+
+<section class="panel" aria-labelledby="progress-title">
+  <p class="eyebrow">Demo-only progress</p>
+  <h2 id="progress-title">Progress tracking placeholder</h2>
+  <div class="metric-grid">
+    {% for item in progress %}
+    <div class="metric-card">
+      <span>{{ item.label }}</span>
+      <strong>{{ item.value }}</strong>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

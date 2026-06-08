@@ -315,3 +315,20 @@ h3 {
   cursor: pointer;
   font-weight: 700;
 }
+
+.objective-list {
+  line-height: 1.6;
+  margin: 1rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.sample-sql {
+  background: #172033;
+  border-radius: 0.75rem;
+  color: #e5edf7;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  line-height: 1.5;
+  overflow-x: auto;
+  padding: 1rem;
+  white-space: pre-wrap;
+}

@@ -6,7 +6,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
-from app.practice import get_practice_context
+from app.practice import get_exercise_preview_context, get_not_found_context, get_practice_context
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 TEMPLATES_DIR = PROJECT_ROOT / "templates"
@@ -98,6 +98,26 @@ def create_app() -> FastAPI:
             "practice.html",
             get_practice_context(dataset_id=dataset, difficulty=difficulty, mode=mode)
             | {"request": request},
+        )
+
+    @app.get("/practice/{dataset_id}/{exercise_id}", response_class=HTMLResponse, tags=["pages"])
+    def practice_exercise(
+        request: Request,
+        dataset_id: str,
+        exercise_id: str,
+    ) -> HTMLResponse:
+        context = get_exercise_preview_context(dataset_id, exercise_id)
+        if context is None:
+            return templates.TemplateResponse(
+                request,
+                "404.html",
+                get_not_found_context("exercise") | {"request": request},
+                status_code=404,
+            )
+        return templates.TemplateResponse(
+            request,
+            "practice_exercise.html",
+            context | {"request": request},
         )
 
     return app
