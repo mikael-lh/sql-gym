@@ -65,6 +65,7 @@ def _exercise_summary(exercise: Exercise) -> dict[str, object]:
         "estimated_time_minutes": exercise.estimated_time_minutes,
         "availability_status": exercise.availability_status,
         "hint": exercise.hint,
+        "preview_url": f"/practice/{exercise.dataset_id}/{exercise.id}",
     }
 
 
@@ -84,6 +85,58 @@ def _filter_exercises(
     if filters.mode:
         filtered = tuple(exercise for exercise in filtered if exercise.mode == filters.mode)
     return filtered
+
+
+def lookup_dataset(dataset_id: str) -> Dataset | None:
+    for dataset in TIMES_ARCHIVE_CATALOG.datasets:
+        if dataset.id == dataset_id:
+            return dataset
+    return None
+
+
+def lookup_exercise(dataset_id: str, exercise_id: str) -> Exercise | None:
+    for exercise in TIMES_ARCHIVE_CATALOG.exercises:
+        if exercise.dataset_id == dataset_id and exercise.id == exercise_id:
+            return exercise
+    return None
+
+
+def get_exercise_preview_context(dataset_id: str, exercise_id: str) -> dict[str, object] | None:
+    dataset = lookup_dataset(dataset_id)
+    exercise = lookup_exercise(dataset_id, exercise_id)
+    if dataset is None or exercise is None:
+        return None
+
+    return {
+        "page_title": f"{exercise.title} - Practice - SQL Gym",
+        "status_label": "Exercise preview",
+        "dataset": _dataset_summary(dataset),
+        "exercise": {
+            "id": exercise.id,
+            "title": exercise.title,
+            "prompt": exercise.prompt,
+            "difficulty": exercise.difficulty,
+            "mode": exercise.mode,
+            "target_dialect": exercise.target_dialect,
+            "concept_tags": exercise.concept_tags,
+            "estimated_time_minutes": exercise.estimated_time_minutes,
+            "learning_objectives": exercise.learning_objectives,
+            "availability_status": exercise.availability_status,
+            "hint": exercise.hint,
+            "sample_sql": exercise.sample_sql,
+        },
+        "placeholder_areas": PLACEHOLDER_AREAS,
+        "progress": DEMO_PROGRESS.metrics,
+    }
+
+
+def get_not_found_context(resource_label: str) -> dict[str, object]:
+    return {
+        "page_title": "Not found - SQL Gym",
+        "status_label": "Not found",
+        "resource_label": resource_label,
+        "message": f"We could not find that {resource_label} in the practice catalog.",
+    }
 
 
 def get_practice_context(

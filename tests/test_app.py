@@ -84,6 +84,51 @@ def test_practice_page_filters_exercises_inline() -> None:
     assert filtered.text.count("exercise-card") < all_exercises.text.count("exercise-card")
 
 
+def test_practice_exercise_preview_renders_metadata_and_hidden_sample_sql() -> None:
+    response = asyncio.run(get("/practice/times-archive/times-archive-001"))
+
+    assert response.status_code == 200
+    assert "Exercise preview" in response.text
+    assert "Arts section headlines" in response.text
+    assert "Learning objectives" in response.text
+    assert "Show sample SQL" in response.text
+    assert "No SQL is executed" in response.text
+    assert "SQL editor placeholder" in response.text
+
+
+def test_practice_exercise_preview_hides_sample_sql_by_default() -> None:
+    response = asyncio.run(get("/practice/times-archive/times-archive-019"))
+
+    assert response.status_code == 200
+    assert "Show sample SQL (illustrative only)" in response.text
+    assert '<pre class="sample-sql">' in response.text
+    assert "RANK() OVER" in response.text
+
+
+def test_practice_exercise_unknown_route_returns_friendly_404() -> None:
+    response = asyncio.run(get("/practice/times-archive/missing-exercise"))
+
+    assert response.status_code == 404
+    assert "Page not found" in response.text
+    assert "could not find that exercise" in response.text
+    assert "Return to practice catalog" in response.text
+
+
+def test_practice_exercise_unknown_dataset_returns_friendly_404() -> None:
+    response = asyncio.run(get("/practice/missing-dataset/times-archive-001"))
+
+    assert response.status_code == 404
+    assert response.status_code == 404
+    assert "could not find that exercise" in response.text
+
+
+def test_practice_page_links_to_exercise_preview() -> None:
+    response = asyncio.run(get("/practice"))
+
+    assert response.status_code == 200
+    assert 'href="/practice/times-archive/times-archive-001"' in response.text
+
+
 def test_practice_page_shows_empty_state_for_no_matches() -> None:
     response = asyncio.run(get("/practice?dataset=missing-dataset"))
 

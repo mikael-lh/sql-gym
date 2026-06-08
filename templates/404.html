@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero" aria-labelledby="not-found-title">
+  <p class="eyebrow">{{ status_label }}</p>
+  <h1 id="not-found-title">Page not found</h1>
+  <p class="lede">{{ message }}</p>
+  <a class="primary-link" href="/practice">Return to practice catalog</a>
+</section>
+{% endblock %}
