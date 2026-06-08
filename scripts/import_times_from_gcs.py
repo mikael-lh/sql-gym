@@ -95,12 +95,11 @@ def _iter_ndjson_rows(
 ) -> Iterator[dict[str, Any]]:
     bucket = client.bucket(bucket_name)
     blobs = sorted(client.list_blobs(bucket, prefix=prefix), key=lambda blob: blob.name)
-    if not blobs:
-        raise RuntimeError(f"No objects found under gs://{bucket_name}/{prefix}")
+    ndjson_blobs = [blob for blob in blobs if blob.name.endswith(".ndjson")]
+    if not ndjson_blobs:
+        raise RuntimeError(f"No .ndjson objects found under gs://{bucket_name}/{prefix}")
 
-    for blob in blobs:
-        if not blob.name.endswith(".ndjson"):
-            continue
+    for blob in ndjson_blobs:
         print(f"Downloading gs://{bucket_name}/{blob.name}", flush=True)
         for line_number, line in enumerate(blob.download_as_text().splitlines(), start=1):
             stripped = line.strip()
@@ -164,6 +163,9 @@ def main() -> int:
                     rows_loaded += len(batch)
 
             conn.commit()
+
+        if rows_loaded == 0:
+            raise RuntimeError("Import finished with zero rows loaded.")
 
         print(f"Import complete: {rows_loaded} rows in times_archive.", flush=True)
         return 0
