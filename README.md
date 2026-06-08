@@ -4,14 +4,11 @@ A lightweight gym for SQL: practice on curated datasets, run queries, and level 
 
 ## Status
 
-**Phase 1 active** — dataset and exercise catalog ([prd/phase-1-dataset-exercise-catalog.md](prd/phase-1-dataset-exercise-catalog.md)). Phase 0 scaffold is complete. New product scope requires a PRD update or new phase PRD plus an approved implementation plan.
+Active phase, PRD index, and implementation plans: [prd/README.md](prd/README.md). New product scope requires a PRD update or new phase PRD plus an approved implementation plan.
 
 | | |
 |--|--|
 | Full workflow reference | [docs/WORKFLOW.md](docs/WORKFLOW.md) |
-| Product specs | [prd/README.md](prd/README.md) |
-| Phase 1 implementation plan | [docs/phase-1-implementation-plan.md](docs/phase-1-implementation-plan.md) |
-| Phase 0 implementation plan | [docs/phase-0-implementation-plan.md](docs/phase-0-implementation-plan.md) |
 | Linear project | [sql-gym](https://linear.app/times-api/project/sql-gym-ce6a8985c99e) (`TIM-` issues) |
 
 ## Setup
@@ -93,33 +90,13 @@ Placeholder behavior:
 
 ## Cursor setup
 
-Install these Cursor integrations once (details in [WORKFLOW § Stack](docs/WORKFLOW.md#stack)):
-
-- **Linear** (MCP) — backlog and issue status
-- **GitHub** (MCP) — PRs, CI, authorized merges on cloud agents
-- **Superpowers** — implementation and code review during builds
-- **cursor-team-kit** (optional) — `deslop` pass on changed code
-
-Specs, implementation plans, PRD alignment, and PRD updates use repo skills in [.cursor/skills](.cursor/skills). Connect Linear and GitHub in Cursor settings if MCP lookups fail.
+Install integrations once — see [WORKFLOW § Stack](docs/WORKFLOW.md#stack). Use **repo** skills in [.cursor/skills](.cursor/skills), not same-named marketplace ChatPRD skills. Connect Linear and GitHub in Cursor settings if MCP lookups fail.
 
 ## How we work
 
-Specs live in **`prd/`**. Work is tracked in **Linear**, shipped via **GitHub PRs**, and built with **Cursor** repo skills (prompts below). You own product calls, plan sign-off, and merge by default; agents merge only when you explicitly authorize autonomous GitHub MCP merges. Agent gates: [.cursor/rules/workflow.mdc](.cursor/rules/workflow.mdc). Full playbook: [docs/WORKFLOW.md](docs/WORKFLOW.md) ([end-to-end flow](docs/WORKFLOW.md#end-to-end-flow)).
+Specs live in **`prd/`**; work is tracked in **Linear** and shipped via **GitHub PRs** using repo skills. You own product calls, plan sign-off, and merge by default; agents merge only when you explicitly authorize autonomous GitHub MCP merges.
 
-### Workflow
-
-| Step | Your job | In Cursor |
-|------|----------|-----------|
-| **Requirements** | Approve specs; set the active phase in [prd/README.md](prd/README.md) | `write-prd` → commit under `prd/` |
-| **Backlog** | Create Linear issues (`TIM-NN`) with a `prd/` link and acceptance criteria | — |
-| **Plan** | Review and approve the phase implementation plan | `implement-from-prd` plus engineering-principles check |
-| **Build** | Confirm the plan is approved | `sql-gym-implement-issue` for one `TIM-NN`, or `sql-gym-run-phase` for approved autonomous phase execution |
-| **Pre-review** | Wait for the loop to finish; then review the PR yourself | **`sql-gym-pre-review`** for `TIM-NN` |
-| **Ship** | Merge, close the Linear issue; assess `update-prd` after merged implementation | `update-prd` when PRD reality changed |
-
-### Pre-review
-
-After **`sql-gym-implement-issue`** opens a draft PR, run **`sql-gym-pre-review`** — it orchestrates independent review, fixes, and handoff. Procedure: [sql-gym-pre-review skill](.cursor/skills/sql-gym-pre-review/SKILL.md). PR template: [.github/pull_request_template.md](.github/pull_request_template.md).
+Agent gates: [.cursor/rules/workflow.mdc](.cursor/rules/workflow.mdc). Canonical flow and skill catalog: [docs/WORKFLOW.md § End-to-end flow](docs/WORKFLOW.md#end-to-end-flow).
 
 ### Prompts
 
@@ -137,4 +114,20 @@ sql-gym-run-phase for Phase 1 — autonomous implementation and GitHub MCP squas
 
 ```text
 sql-gym-pre-review for TIM-42 — run the full pre-review loop and mark the PR ready for my review when blocking checks pass
+```
+
+```text
+implement-from-prd for prd/phase-0-product-scaffolding.md; produce the plan only and stop for approval.
+```
+
+```text
+sql-gym-pre-review-reviewer for PR TIM-42 (new agent — review only, no commits)
+```
+
+```text
+Blocking findings attached — sql-gym-pre-review-fix for TIM-42
+```
+
+```text
+Reviewer pass clean — sql-gym-pre-review for TIM-42 (final boxes + ready for my review)
 ```

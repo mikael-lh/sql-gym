@@ -5,6 +5,8 @@ description: Independent agent pre-review (read-only) — alignment and code rev
 
 # sql-gym: pre-review reviewer
 
+**Inherits:** workflow gates ([workflow.mdc](../../rules/workflow.mdc)); handoff owned by [sql-gym-pre-review](../sql-gym-pre-review/SKILL.md).
+
 **Review only.** Produce findings; do **not** edit the branch, commit, push, check PR boxes, or mark the PR ready for **user** review.
 
 ## Independence (required)
@@ -45,10 +47,6 @@ Return findings to **`sql-gym-pre-review`** (preferred) or hand off to **`sql-gy
 
 If **no blocking items**, report that to the caller; full checklist and handoff are handled by **`sql-gym-pre-review`**.
 
-Do **not** merge (per [workflow.mdc](../../rules/workflow.mdc) gates).
-
 ## References
 
-- [sql-gym-pre-review](../sql-gym-pre-review/SKILL.md) — orchestrator and handoff
 - [sql-gym-pre-review-fix](../sql-gym-pre-review-fix/SKILL.md) — blocking fixes
-- [.cursor/rules/workflow.mdc](../../../.cursor/rules/workflow.mdc) — gate only

@@ -5,6 +5,8 @@ description: Use after sql-gym-implement-issue when a PR needs independent pre-r
 
 # sql-gym: pre-review (orchestrator)
 
+**Inherits:** workflow gates ([workflow.mdc](../../rules/workflow.mdc)).
+
 Run before marking a PR ready for **user** review or authorized autonomous merge. Does **not** replace **user** judgment on product/architecture.
 
 **Two roles:** a **reviewer** agent (no writes) and a **fixer** agent (commits on the branch). The agent that **implemented** the PR must **not** perform the judgment review alone.
@@ -57,10 +59,6 @@ When a plugin is unavailable but a manual fallback was used, document which tool
 
 Leave boxes **unchecked** and PR **draft**.
 
-## Stop
-
-Do not merge (per [workflow.mdc](../../rules/workflow.mdc) gates). The **user** or an explicitly authorized orchestration skill performs final merge.
-
 ## Handoff checklist
 
 Check **Agent pre-review** boxes on the PR only after a reviewer pass reports no blocking items and verification is green. Boxes match [.github/pull_request_template.md](../../../.github/pull_request_template.md):
@@ -78,4 +76,3 @@ PR description must include: summary, risks, test plan, PRD deviations, and any 
 - [sql-gym-pre-review-reviewer](../sql-gym-pre-review-reviewer/SKILL.md)
 - [sql-gym-pre-review-fix](../sql-gym-pre-review-fix/SKILL.md)
 - [.github/pull_request_template.md](../../../.github/pull_request_template.md)
-- [.cursor/rules/workflow.mdc](../../../.cursor/rules/workflow.mdc) — gate only

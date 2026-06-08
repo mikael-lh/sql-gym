@@ -9,10 +9,6 @@ description: Generate a scoped implementation plan from a local PRD. Use before 
 
 The user wants to plan implementation for an approved local PRD or a specific PRD section.
 
-## Source of truth
-
-Committed markdown under `prd/` (per [workflow.mdc](../../rules/workflow.mdc) gates).
-
 ## Workflow
 
 1. Identify the PRD scope.

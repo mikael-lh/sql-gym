@@ -13,7 +13,7 @@ Human quick start: [README.md § How we work](../README.md#how-we-work).
 | Layer | What | Install / auth |
 |-------|------|----------------|
 | **Specs** | `prd/` directory | Committed in repo — authoritative product and phase requirements |
-| **Repo skills** | [.cursor/skills/](../.cursor/skills/) | Committed — invoke by skill name (see [Skills catalog](#skills-catalog)) |
+| **Repo skills** | [.cursor/skills/](../.cursor/skills/) | Committed — invoke by skill name (see [Skills catalog](#skills-catalog)). Use these, not same-named marketplace ChatPRD skills. |
 | **Backlog** | [Linear MCP](https://linear.app/times-api/project/sql-gym-ce6a8985c99e) | **User:** Cursor marketplace + MCP auth in settings |
 | **Delivery** | **GitHub MCP** | PRs, comments, CI status; **authorized** merges via `merge_pull_request` (not `gh` writes on cloud agents) |
 | **Implementation** | [Superpowers](https://cursor.com/marketplace) plugin | **User:** marketplace — plan execution, TDD, code review, branch/PR finish |
@@ -60,19 +60,19 @@ Phases and detailed scope live in [prd/00-product-vision.md](../prd/00-product-v
 
 ## Skills catalog
 
-Prefer invoking these skills by name over following this doc step by step. All live in [.cursor/skills/](../.cursor/skills/).
+Prefer invoking these skills by name over following this doc step by step. Step order and outcomes: [End-to-end flow](#end-to-end-flow). All live in [.cursor/skills/](../.cursor/skills/).
 
-| Phase | Skill | When / outcome |
-|-------|-------|----------------|
-| Spec | [**write-prd**](../.cursor/skills/write-prd/SKILL.md) | Write or revise a product, phase, or feature PRD under `prd/` |
-| Plan | [**implement-from-prd**](../.cursor/skills/implement-from-prd/SKILL.md) | Plan implementation from a local PRD; stops for user approval |
-| Align | [**check-prd-alignment**](../.cursor/skills/check-prd-alignment/SKILL.md) | Compare a branch or PR diff against a linked `prd/` section (pre-review) |
-| Build | [**sql-gym-implement-issue**](../.cursor/skills/sql-gym-implement-issue/SKILL.md) | After plan approval — one `TIM-NN`: verify PRD/plan, implement, open draft PR |
-| Build | [**sql-gym-run-phase**](../.cursor/skills/sql-gym-run-phase/SKILL.md) | Autonomously run approved phase child issues in sequence |
-| Review | [**sql-gym-pre-review**](../.cursor/skills/sql-gym-pre-review/SKILL.md) | Orchestrate reviewer ↔ fixer loop, then ready for user review |
-| Review | [**sql-gym-pre-review-reviewer**](../.cursor/skills/sql-gym-pre-review-reviewer/SKILL.md) | Independent review pass — findings only, no commits |
-| Review | [**sql-gym-pre-review-fix**](../.cursor/skills/sql-gym-pre-review-fix/SKILL.md) | Apply blocking reviewer findings, tests, deslop |
-| Reality | [**update-prd**](../.cursor/skills/update-prd/SKILL.md) | Record what shipped, deviations, and deferred work in `prd/` |
+| Phase | Skill |
+|-------|-------|
+| Spec | [**write-prd**](../.cursor/skills/write-prd/SKILL.md) |
+| Plan | [**implement-from-prd**](../.cursor/skills/implement-from-prd/SKILL.md) |
+| Align | [**check-prd-alignment**](../.cursor/skills/check-prd-alignment/SKILL.md) |
+| Build | [**sql-gym-implement-issue**](../.cursor/skills/sql-gym-implement-issue/SKILL.md) |
+| Build | [**sql-gym-run-phase**](../.cursor/skills/sql-gym-run-phase/SKILL.md) |
+| Review | [**sql-gym-pre-review**](../.cursor/skills/sql-gym-pre-review/SKILL.md) |
+| Review | [**sql-gym-pre-review-reviewer**](../.cursor/skills/sql-gym-pre-review-reviewer/SKILL.md) |
+| Review | [**sql-gym-pre-review-fix**](../.cursor/skills/sql-gym-pre-review-fix/SKILL.md) |
+| Reality | [**update-prd**](../.cursor/skills/update-prd/SKILL.md) |
 
 ### Superpowers plugin (marketplace)
 
@@ -88,10 +88,6 @@ Implementation only — do not use for product scope. Use after an approved plan
 **Not used here:** `brainstorming` (use **write-prd** for product work).
 
 The **user** installs marketplace plugins: `/add-plugin superpowers`, `/add-plugin cursor-team-kit` (optional).
-
-## Pre-review before user review
-
-Run [**sql-gym-pre-review**](../.cursor/skills/sql-gym-pre-review/SKILL.md) before **user** review or authorized autonomous merge — it orchestrates independent review, fixes, and handoff. Optional split-session skills: [reviewer](../.cursor/skills/sql-gym-pre-review-reviewer/SKILL.md), [fix](../.cursor/skills/sql-gym-pre-review-fix/SKILL.md). Gates: [.cursor/rules/workflow.mdc](../.cursor/rules/workflow.mdc#workflow-gates). PR checkboxes: [.github/pull_request_template.md](../.github/pull_request_template.md).
 
 ## Linear conventions
 
@@ -127,25 +123,9 @@ Optional later: enable **Cursor Bugbot** on the repo for automated PR review onc
 
 Do **not** use repo PRD skills for engineering style; they are for requirements and alignment only.
 
-## Example prompts (agent-oriented)
+## Prompts
 
-Common user prompts live in [README.md § Prompts](../README.md#prompts). Use these when splitting work across sessions or authorizing autonomous runs:
-
-```text
-implement-from-prd for prd/phase-0-product-scaffolding.md; produce the plan only and stop for approval.
-```
-
-```text
-sql-gym-pre-review-reviewer for PR TIM-42 (new agent — review only, no commits)
-```
-
-```text
-Blocking findings attached — sql-gym-pre-review-fix for TIM-42
-```
-
-```text
-Reviewer pass clean — sql-gym-pre-review for TIM-42 (final boxes + ready for my review)
-```
+Copy-paste prompts: [README.md § Prompts](../README.md#prompts).
 
 ## Secrets
 

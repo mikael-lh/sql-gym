@@ -9,10 +9,6 @@ description: Compare current changes against a local PRD to find coverage gaps, 
 
 The user wants to verify that implementation changes match the relevant product requirements before review or merge.
 
-## Source of truth
-
-Committed markdown under `prd/` (per [workflow.mdc](../../rules/workflow.mdc) gates).
-
 ## Workflow
 
 1. Identify the comparison target.

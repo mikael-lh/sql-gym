@@ -9,10 +9,6 @@ description: Update a local PRD to reflect what was actually built, including de
 
 The user has finished implementation or merged a change and wants the PRD to reflect reality.
 
-## Source of truth
-
-Committed markdown under `prd/` (per [workflow.mdc](../../rules/workflow.mdc) gates).
-
 ## Workflow
 
 1. Identify the PRD to update.
