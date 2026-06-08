@@ -33,3 +33,19 @@ TIMES_ARCHIVE_DEMO_DATASET = Dataset(
         note="Schema-aligned demo rows only; not final production Times data.",
     ),
 )
+
+TIMES_ARCHIVE_CATALOG_DATASET = Dataset(
+    id="times-archive",
+    name="Times Archive",
+    description=(
+        "Production-ready Times article catalog for SQL practice on curated archive rows."
+    ),
+    provenance=DatasetProvenance(
+        source_name="times-api",
+        source_url="https://github.com/mikael-lh/times-api",
+        schema_reference="times-api/schema/archive_articles.json",
+        fixture_path="src/app/fixtures/times/archive_articles_demo.json",
+        note="Production-ready catalog data aligned to the times-api archive schema.",
+    ),
+    is_demo=False,
+)
