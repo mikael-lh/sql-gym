@@ -156,6 +156,7 @@ Plan approved — sql-gym-implement-issue for TIM-42
 sql-gym-pre-review for TIM-42 — run the full pre-review loop and mark the PR ready for my review when blocking checks pass
 ```
 
+
 ## Project rules
 
 - **No product work** until [prd/README.md](prd/README.md) names an active phase and the matching `prd/` doc exists.
