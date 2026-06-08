@@ -32,6 +32,7 @@ Escalate to the **user** for product/architecture decisions or if stuck—do not
 Stable ops for agents (local and Cloud). Current phase, stack, and dev commands: [prd/README.md](prd/README.md), [README.md](README.md), and `./scripts/validate-env.sh`.
 
 - **Linear MCP** for backlog (`TIM-` issues, [sql-gym project](https://linear.app/times-api/project/sql-gym-ce6a8985c99e)). If lookup fails, ask the **user** to fix MCP auth in Cursor settings.
+- **GitHub PRs (Cloud Agents):** create/update with Cursor `ManagePullRequest`; inspect, mark ready, and merge with `gh`. Do not use `gh pr create` on Cloud VMs—it fails with `Resource not accessible by integration`. See [docs/github-pr-operations-for-agents.md](docs/github-pr-operations-for-agents.md).
 - **No committed secrets.** When the app exists, document vars in `.env.example`. On Cloud VMs, ask the **user** to add secrets in Cloud settings—do not assume a local `.env`.
 
 # Playbook
