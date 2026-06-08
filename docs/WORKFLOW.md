@@ -94,7 +94,7 @@ Each step has an owner and an outcome. Skills named below are repo-local skills 
 
 **When:** Picking up a Linear issue (or an approved task without Linear).
 
-**What happens:** The **agent** branches, implements against acceptance criteria, and opens a PR using [.github/pull_request_template.md](../.github/pull_request_template.md). The **agent** follows [.cursor/rules/engineering.mdc](../.cursor/rules/engineering.mdc) while coding. After a logical chunk, the **agent** runs Superpowers **code-reviewer** against the approved plan.
+**What happens:** The **agent** runs **sql-gym-implement-issue** for one `TIM-NN` issue. Before coding, that skill reads the Linear issue, linked `prd/` section, and matching approved implementation plan milestone; if they conflict or the issue expands scope, the agent stops for user correction. Then the agent branches, implements against that issue's acceptance criteria, and opens a PR using [.github/pull_request_template.md](../.github/pull_request_template.md). The **agent** follows [.cursor/rules/engineering.mdc](../.cursor/rules/engineering.mdc) while coding. After a logical chunk, the **agent** runs Superpowers **code-reviewer** against the approved plan.
 
 **Outcome:** Reviewable diff on GitHub, linked to Linear when applicable (`TIM-NN:` in title). The **agent** completes [pre-review](#pre-review-before-user-review) before marking the PR ready for **user** review.
 
@@ -233,13 +233,12 @@ Thin wrappers around the flow below. Prefer these over “follow WORKFLOW step b
 | **implement-from-prd** | Plan implementation from a local PRD; stops for approval |
 | **check-prd-alignment** | Compare a branch or PR diff against a local PRD |
 | **update-prd** | Record what shipped, deviations, and future work in `prd/` |
-| **sql-gym-start-issue** | Picking up `TIM-NN` — plan only; stops for user approval |
-| **sql-gym-implement-issue** | After plan approved — code + draft PR |
+| **sql-gym-implement-issue** | After phase plan approval — verify one `TIM-NN` against PRD/plan, code, and open draft PR |
 | **sql-gym-pre-review-reviewer** | Independent review pass — findings only, no commits |
 | **sql-gym-pre-review-fix** | Apply blocking reviewer findings + tests/deslop |
 | **sql-gym-pre-review** | Orchestrate reviewer ↔ fixer loop, then ready for user review |
 
-Chain: **start-issue** → (user approves) → **implement-issue** → **pre-review-reviewer** ↔ **pre-review-fix** (until no blocking) → **pre-review** final handoff → (user reviews and merges).
+Chain: **implement-from-prd** → (user approves phase plan + Linear issues exist) → **sql-gym-implement-issue** → **pre-review-reviewer** ↔ **pre-review-fix** (until no blocking) → **pre-review** final handoff → (user reviews and merges).
 
 Skills live in [.cursor/skills/](../.cursor/skills/).
 
@@ -251,10 +250,6 @@ Requirements pass: run write-prd; save under prd/; update prd/README.md active p
 
 ```text
 implement-from-prd for prd/phase-0-product-scaffolding.md; produce the plan only and stop for approval.
-```
-
-```text
-sql-gym-start-issue for TIM-42
 ```
 
 ```text

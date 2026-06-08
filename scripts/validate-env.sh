@@ -41,7 +41,6 @@ for skill in \
   implement-from-prd \
   check-prd-alignment \
   update-prd \
-  sql-gym-start-issue \
   sql-gym-implement-issue \
   sql-gym-pre-review \
   sql-gym-pre-review-reviewer \
