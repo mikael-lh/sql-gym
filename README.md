@@ -127,8 +127,8 @@ Specs live in **`prd/`** in this repo. Work is tracked in **Linear**, shipped vi
 |------|----------|-----------|
 | **Requirements** | Approve specs; set the active phase in [prd/README.md](prd/README.md) | local `write-prd` -> commit under `prd/` |
 | **Backlog** | Create Linear issues (`TIM-NN`) with a `prd/` link and acceptance criteria | — |
-| **Plan** | Review and approve the implementation plan | `sql-gym-start-issue` for `TIM-NN` plus engineering-principles check |
-| **Build** | Confirm the plan is approved | `sql-gym-implement-issue` → branch + draft PR |
+| **Plan** | Review and approve the phase implementation plan | local `implement-from-prd` plus engineering-principles check |
+| **Build** | Confirm the plan is approved | `sql-gym-implement-issue` for `TIM-NN` → issue/PRD/plan check + branch + draft PR |
 | **Pre-review** | Wait for the loop to finish; then review the PR yourself | **`sql-gym-pre-review`** for `TIM-NN` (see below) |
 | **Ship** | Merge, close the Linear issue; update `prd/` if scope changed | local `update-prd` when useful |
 
@@ -149,10 +149,6 @@ Run write-prd; save under prd/; update prd/README.md active phase when I approve
 ```
 
 ```text
-sql-gym-start-issue for TIM-42
-```
-
-```text
 Plan approved — sql-gym-implement-issue for TIM-42
 ```
 
@@ -163,7 +159,7 @@ sql-gym-pre-review for TIM-42 — run the full pre-review loop and mark the PR r
 ## Project rules
 
 - **No product work** until [prd/README.md](prd/README.md) names an active phase and the matching `prd/` doc exists.
-- **No application code** until there is an approved plan (`sql-gym-start-issue` / local `implement-from-prd`).
+- **No application code** until there is an approved plan from local `implement-from-prd`.
 - **Your merge review** is still the final gate on product and architecture after pre-review passes.
 
 Deeper process detail, plugin roles, optional split-session pre-review, and engineering standards: [docs/WORKFLOW.md](docs/WORKFLOW.md).
