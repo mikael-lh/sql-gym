@@ -1,0 +1,1354 @@
+[
+  {
+    "id": "times-archive-001",
+    "dataset_id": "times-archive",
+    "title": "Filter articles by section (1)",
+    "prompt": "Return articles published in the Business section.",
+    "difficulty": "Beginner",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "filtering"
+    ],
+    "estimated_time_minutes": 9,
+    "learning_objectives": [
+      "Practice filtering on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on filtering against times_archive. WHERE section_name = '{section}'.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- WHERE section_name = '{section}'\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 1.",
+      "column_names": [
+        "section_name",
+        "headline_main",
+        "pub_date"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-002",
+    "dataset_id": "times-archive",
+    "title": "Sort articles by publication date (2)",
+    "prompt": "List articles ordered by most recent publication date.",
+    "difficulty": "Beginner",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "sorting"
+    ],
+    "estimated_time_minutes": 10,
+    "learning_objectives": [
+      "Practice sorting on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on sorting against times_archive. ORDER BY pub_date DESC.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- ORDER BY pub_date DESC\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 2.",
+      "column_names": [
+        "headline_main",
+        "pub_date",
+        "section_name"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-003",
+    "dataset_id": "times-archive",
+    "title": "Count articles by section (3)",
+    "prompt": "How many articles appear in each section?",
+    "difficulty": "Beginner",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "aggregation"
+    ],
+    "estimated_time_minutes": 11,
+    "learning_objectives": [
+      "Practice aggregation on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on aggregation against times_archive. GROUP BY section_name.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- GROUP BY section_name\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 3.",
+      "column_names": [
+        "section_name",
+        "article_count"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-004",
+    "dataset_id": "times-archive",
+    "title": "Average word count by desk (4)",
+    "prompt": "What is the average word count for each news desk?",
+    "difficulty": "Beginner",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "aggregation"
+    ],
+    "estimated_time_minutes": 12,
+    "learning_objectives": [
+      "Practice aggregation on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on aggregation against times_archive. GROUP BY news_desk.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- GROUP BY news_desk\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 4.",
+      "column_names": [
+        "news_desk",
+        "avg_word_count"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-005",
+    "dataset_id": "times-archive",
+    "title": "Articles above word-count threshold (5)",
+    "prompt": "Find articles with word counts above 685.",
+    "difficulty": "Beginner",
+    "mode": "Timed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "filtering"
+    ],
+    "estimated_time_minutes": 13,
+    "learning_objectives": [
+      "Practice filtering on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on filtering against times_archive. WHERE word_count > {n}.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- WHERE word_count > {n}\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 5.",
+      "column_names": [
+        "headline_main",
+        "word_count"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-006",
+    "dataset_id": "times-archive",
+    "title": "List distinct sections (6)",
+    "prompt": "Which section names appear in the archive?",
+    "difficulty": "Beginner",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "distinct"
+    ],
+    "estimated_time_minutes": 14,
+    "learning_objectives": [
+      "Practice distinct on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on distinct against times_archive. SELECT DISTINCT section_name.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- SELECT DISTINCT section_name\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 6.",
+      "column_names": [
+        "section_name"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-007",
+    "dataset_id": "times-archive",
+    "title": "Articles by material type (7)",
+    "prompt": "Return articles where type_of_material is 'Review'.",
+    "difficulty": "Beginner",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "filtering"
+    ],
+    "estimated_time_minutes": 15,
+    "learning_objectives": [
+      "Practice filtering on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on filtering against times_archive. WHERE type_of_material = '{mat}'.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- WHERE type_of_material = '{mat}'\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 7.",
+      "column_names": [
+        "headline_main",
+        "type_of_material"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-008",
+    "dataset_id": "times-archive",
+    "title": "Longest articles first (8)",
+    "prompt": "Show the longest articles by word count.",
+    "difficulty": "Beginner",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "sorting"
+    ],
+    "estimated_time_minutes": 16,
+    "learning_objectives": [
+      "Practice sorting on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on sorting against times_archive. ORDER BY word_count DESC.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- ORDER BY word_count DESC\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 8.",
+      "column_names": [
+        "headline_main",
+        "word_count"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-009",
+    "dataset_id": "times-archive",
+    "title": "Articles per month (9)",
+    "prompt": "Count articles published in each calendar month.",
+    "difficulty": "Intermediate",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "aggregation"
+    ],
+    "estimated_time_minutes": 17,
+    "learning_objectives": [
+      "Practice aggregation on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on aggregation against times_archive. DATE_TRUNC('month', pub_date).",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- DATE_TRUNC('month', pub_date)\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 9.",
+      "column_names": [
+        "month",
+        "article_count"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-010",
+    "dataset_id": "times-archive",
+    "title": "Desk totals with HAVING (10)",
+    "prompt": "Which news desks have more than 870 articles?",
+    "difficulty": "Intermediate",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "aggregation"
+    ],
+    "estimated_time_minutes": 18,
+    "learning_objectives": [
+      "Practice aggregation on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on aggregation against times_archive. HAVING COUNT(*) > {n}.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- HAVING COUNT(*) > {n}\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 10.",
+      "column_names": [
+        "news_desk",
+        "article_count"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-011",
+    "dataset_id": "times-archive",
+    "title": "Articles in date range (11)",
+    "prompt": "Find articles published between two dates.",
+    "difficulty": "Intermediate",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "dates"
+    ],
+    "estimated_time_minutes": 19,
+    "learning_objectives": [
+      "Practice dates on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on dates against times_archive. BETWEEN.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- BETWEEN\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 11.",
+      "column_names": [
+        "headline_main",
+        "pub_date"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-012",
+    "dataset_id": "times-archive",
+    "title": "Headlines containing keyword (12)",
+    "prompt": "Find headlines containing a keyword.",
+    "difficulty": "Intermediate",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "strings"
+    ],
+    "estimated_time_minutes": 8,
+    "learning_objectives": [
+      "Practice strings on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on strings against times_archive. ILIKE.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- ILIKE\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 12.",
+      "column_names": [
+        "headline_main"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-013",
+    "dataset_id": "times-archive",
+    "title": "Top sections via CTE (13)",
+    "prompt": "Use a CTE to find sections with the most articles.",
+    "difficulty": "Intermediate",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "cte"
+    ],
+    "estimated_time_minutes": 9,
+    "learning_objectives": [
+      "Practice cte on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on cte against times_archive. WITH section_counts AS.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- WITH section_counts AS\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 13.",
+      "column_names": [
+        "section_name",
+        "article_count"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-014",
+    "dataset_id": "times-archive",
+    "title": "Above-average word count (14)",
+    "prompt": "Articles with word count above the archive average.",
+    "difficulty": "Intermediate",
+    "mode": "Timed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "subquery"
+    ],
+    "estimated_time_minutes": 10,
+    "learning_objectives": [
+      "Practice subquery on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on subquery against times_archive. subquery average.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- subquery average\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 14.",
+      "column_names": [
+        "headline_main",
+        "word_count"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-015",
+    "dataset_id": "times-archive",
+    "title": "Join-ready author lookup (15)",
+    "prompt": "Prepare a query shape for joining author metadata.",
+    "difficulty": "Intermediate",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "joins"
+    ],
+    "estimated_time_minutes": 11,
+    "learning_objectives": [
+      "Practice joins on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on joins against times_archive. byline.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- byline\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 15.",
+      "column_names": [
+        "headline_main",
+        "byline_original"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-016",
+    "dataset_id": "times-archive",
+    "title": "Rank articles within section (16)",
+    "prompt": "Rank articles by word count within each section.",
+    "difficulty": "Advanced",
+    "mode": "Timed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "window"
+    ],
+    "estimated_time_minutes": 12,
+    "learning_objectives": [
+      "Practice window on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on window against times_archive. RANK() OVER.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- RANK() OVER\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 16.",
+      "column_names": [
+        "section_name",
+        "headline_main",
+        "word_rank"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-017",
+    "dataset_id": "times-archive",
+    "title": "Running total by date (17)",
+    "prompt": "Compute a running count of articles by publication date.",
+    "difficulty": "Advanced",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "window"
+    ],
+    "estimated_time_minutes": 13,
+    "learning_objectives": [
+      "Practice window on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on window against times_archive. SUM() OVER.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- SUM() OVER\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 17.",
+      "column_names": [
+        "pub_date",
+        "running_total"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-018",
+    "dataset_id": "times-archive",
+    "title": "Percent of total by section (18)",
+    "prompt": "What percentage of articles does each section represent?",
+    "difficulty": "Advanced",
+    "mode": "Timed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "aggregation"
+    ],
+    "estimated_time_minutes": 14,
+    "learning_objectives": [
+      "Practice aggregation on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on aggregation against times_archive. percentage.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- percentage\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 18.",
+      "column_names": [
+        "section_name",
+        "pct_of_total"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-019",
+    "dataset_id": "times-archive",
+    "title": "Filter articles by section (19)",
+    "prompt": "Return articles published in the World section.",
+    "difficulty": "Beginner",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "filtering"
+    ],
+    "estimated_time_minutes": 15,
+    "learning_objectives": [
+      "Practice filtering on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on filtering against times_archive. WHERE section_name = '{section}'.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- WHERE section_name = '{section}'\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 19.",
+      "column_names": [
+        "section_name",
+        "headline_main",
+        "pub_date"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-020",
+    "dataset_id": "times-archive",
+    "title": "Sort articles by publication date (20)",
+    "prompt": "List articles ordered by most recent publication date.",
+    "difficulty": "Beginner",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "sorting"
+    ],
+    "estimated_time_minutes": 16,
+    "learning_objectives": [
+      "Practice sorting on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on sorting against times_archive. ORDER BY pub_date DESC.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- ORDER BY pub_date DESC\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 20.",
+      "column_names": [
+        "headline_main",
+        "pub_date",
+        "section_name"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-021",
+    "dataset_id": "times-archive",
+    "title": "Count articles by section (21)",
+    "prompt": "How many articles appear in each section?",
+    "difficulty": "Beginner",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "aggregation"
+    ],
+    "estimated_time_minutes": 17,
+    "learning_objectives": [
+      "Practice aggregation on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on aggregation against times_archive. GROUP BY section_name.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- GROUP BY section_name\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 21.",
+      "column_names": [
+        "section_name",
+        "article_count"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-022",
+    "dataset_id": "times-archive",
+    "title": "Average word count by desk (22)",
+    "prompt": "What is the average word count for each news desk?",
+    "difficulty": "Beginner",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "aggregation"
+    ],
+    "estimated_time_minutes": 18,
+    "learning_objectives": [
+      "Practice aggregation on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on aggregation against times_archive. GROUP BY news_desk.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- GROUP BY news_desk\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 22.",
+      "column_names": [
+        "news_desk",
+        "avg_word_count"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-023",
+    "dataset_id": "times-archive",
+    "title": "Articles above word-count threshold (23)",
+    "prompt": "Find articles with word counts above 1351.",
+    "difficulty": "Beginner",
+    "mode": "Timed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "filtering"
+    ],
+    "estimated_time_minutes": 19,
+    "learning_objectives": [
+      "Practice filtering on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on filtering against times_archive. WHERE word_count > {n}.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- WHERE word_count > {n}\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 23.",
+      "column_names": [
+        "headline_main",
+        "word_count"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-024",
+    "dataset_id": "times-archive",
+    "title": "List distinct sections (24)",
+    "prompt": "Which section names appear in the archive?",
+    "difficulty": "Beginner",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "distinct"
+    ],
+    "estimated_time_minutes": 8,
+    "learning_objectives": [
+      "Practice distinct on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on distinct against times_archive. SELECT DISTINCT section_name.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- SELECT DISTINCT section_name\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 24.",
+      "column_names": [
+        "section_name"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-025",
+    "dataset_id": "times-archive",
+    "title": "Articles by material type (25)",
+    "prompt": "Return articles where type_of_material is 'Analysis'.",
+    "difficulty": "Beginner",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "filtering"
+    ],
+    "estimated_time_minutes": 9,
+    "learning_objectives": [
+      "Practice filtering on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on filtering against times_archive. WHERE type_of_material = '{mat}'.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- WHERE type_of_material = '{mat}'\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 25.",
+      "column_names": [
+        "headline_main",
+        "type_of_material"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-026",
+    "dataset_id": "times-archive",
+    "title": "Longest articles first (26)",
+    "prompt": "Show the longest articles by word count.",
+    "difficulty": "Beginner",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "sorting"
+    ],
+    "estimated_time_minutes": 10,
+    "learning_objectives": [
+      "Practice sorting on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on sorting against times_archive. ORDER BY word_count DESC.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- ORDER BY word_count DESC\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 26.",
+      "column_names": [
+        "headline_main",
+        "word_count"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-027",
+    "dataset_id": "times-archive",
+    "title": "Articles per month (27)",
+    "prompt": "Count articles published in each calendar month.",
+    "difficulty": "Intermediate",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "aggregation"
+    ],
+    "estimated_time_minutes": 11,
+    "learning_objectives": [
+      "Practice aggregation on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on aggregation against times_archive. DATE_TRUNC('month', pub_date).",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- DATE_TRUNC('month', pub_date)\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 27.",
+      "column_names": [
+        "month",
+        "article_count"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-028",
+    "dataset_id": "times-archive",
+    "title": "Desk totals with HAVING (28)",
+    "prompt": "Which news desks have more than 1536 articles?",
+    "difficulty": "Intermediate",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "aggregation"
+    ],
+    "estimated_time_minutes": 12,
+    "learning_objectives": [
+      "Practice aggregation on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on aggregation against times_archive. HAVING COUNT(*) > {n}.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- HAVING COUNT(*) > {n}\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 28.",
+      "column_names": [
+        "news_desk",
+        "article_count"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-029",
+    "dataset_id": "times-archive",
+    "title": "Articles in date range (29)",
+    "prompt": "Find articles published between two dates.",
+    "difficulty": "Intermediate",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "dates"
+    ],
+    "estimated_time_minutes": 13,
+    "learning_objectives": [
+      "Practice dates on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on dates against times_archive. BETWEEN.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- BETWEEN\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 29.",
+      "column_names": [
+        "headline_main",
+        "pub_date"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-030",
+    "dataset_id": "times-archive",
+    "title": "Headlines containing keyword (30)",
+    "prompt": "Find headlines containing a keyword.",
+    "difficulty": "Intermediate",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "strings"
+    ],
+    "estimated_time_minutes": 14,
+    "learning_objectives": [
+      "Practice strings on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on strings against times_archive. ILIKE.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- ILIKE\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 30.",
+      "column_names": [
+        "headline_main"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-031",
+    "dataset_id": "times-archive",
+    "title": "Top sections via CTE (31)",
+    "prompt": "Use a CTE to find sections with the most articles.",
+    "difficulty": "Intermediate",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "cte"
+    ],
+    "estimated_time_minutes": 15,
+    "learning_objectives": [
+      "Practice cte on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on cte against times_archive. WITH section_counts AS.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- WITH section_counts AS\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 31.",
+      "column_names": [
+        "section_name",
+        "article_count"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-032",
+    "dataset_id": "times-archive",
+    "title": "Above-average word count (32)",
+    "prompt": "Articles with word count above the archive average.",
+    "difficulty": "Intermediate",
+    "mode": "Timed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "subquery"
+    ],
+    "estimated_time_minutes": 16,
+    "learning_objectives": [
+      "Practice subquery on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on subquery against times_archive. subquery average.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- subquery average\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 32.",
+      "column_names": [
+        "headline_main",
+        "word_count"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-033",
+    "dataset_id": "times-archive",
+    "title": "Join-ready author lookup (33)",
+    "prompt": "Prepare a query shape for joining author metadata.",
+    "difficulty": "Intermediate",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "joins"
+    ],
+    "estimated_time_minutes": 17,
+    "learning_objectives": [
+      "Practice joins on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on joins against times_archive. byline.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- byline\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 33.",
+      "column_names": [
+        "headline_main",
+        "byline_original"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-034",
+    "dataset_id": "times-archive",
+    "title": "Rank articles within section (34)",
+    "prompt": "Rank articles by word count within each section.",
+    "difficulty": "Advanced",
+    "mode": "Timed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "window"
+    ],
+    "estimated_time_minutes": 18,
+    "learning_objectives": [
+      "Practice window on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on window against times_archive. RANK() OVER.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- RANK() OVER\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 34.",
+      "column_names": [
+        "section_name",
+        "headline_main",
+        "word_rank"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-035",
+    "dataset_id": "times-archive",
+    "title": "Running total by date (35)",
+    "prompt": "Compute a running count of articles by publication date.",
+    "difficulty": "Advanced",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "window"
+    ],
+    "estimated_time_minutes": 19,
+    "learning_objectives": [
+      "Practice window on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on window against times_archive. SUM() OVER.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- SUM() OVER\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 35.",
+      "column_names": [
+        "pub_date",
+        "running_total"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-036",
+    "dataset_id": "times-archive",
+    "title": "Percent of total by section (36)",
+    "prompt": "What percentage of articles does each section represent?",
+    "difficulty": "Advanced",
+    "mode": "Timed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "aggregation"
+    ],
+    "estimated_time_minutes": 8,
+    "learning_objectives": [
+      "Practice aggregation on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on aggregation against times_archive. percentage.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- percentage\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 36.",
+      "column_names": [
+        "section_name",
+        "pct_of_total"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-037",
+    "dataset_id": "times-archive",
+    "title": "Filter articles by section (37)",
+    "prompt": "Return articles published in the Opinion section.",
+    "difficulty": "Beginner",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "filtering"
+    ],
+    "estimated_time_minutes": 9,
+    "learning_objectives": [
+      "Practice filtering on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on filtering against times_archive. WHERE section_name = '{section}'.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- WHERE section_name = '{section}'\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 37.",
+      "column_names": [
+        "section_name",
+        "headline_main",
+        "pub_date"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-038",
+    "dataset_id": "times-archive",
+    "title": "Sort articles by publication date (38)",
+    "prompt": "List articles ordered by most recent publication date.",
+    "difficulty": "Beginner",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "sorting"
+    ],
+    "estimated_time_minutes": 10,
+    "learning_objectives": [
+      "Practice sorting on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on sorting against times_archive. ORDER BY pub_date DESC.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- ORDER BY pub_date DESC\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 38.",
+      "column_names": [
+        "headline_main",
+        "pub_date",
+        "section_name"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-039",
+    "dataset_id": "times-archive",
+    "title": "Count articles by section (39)",
+    "prompt": "How many articles appear in each section?",
+    "difficulty": "Beginner",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "aggregation"
+    ],
+    "estimated_time_minutes": 11,
+    "learning_objectives": [
+      "Practice aggregation on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on aggregation against times_archive. GROUP BY section_name.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- GROUP BY section_name\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 39.",
+      "column_names": [
+        "section_name",
+        "article_count"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-040",
+    "dataset_id": "times-archive",
+    "title": "Average word count by desk (40)",
+    "prompt": "What is the average word count for each news desk?",
+    "difficulty": "Beginner",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "aggregation"
+    ],
+    "estimated_time_minutes": 12,
+    "learning_objectives": [
+      "Practice aggregation on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on aggregation against times_archive. GROUP BY news_desk.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- GROUP BY news_desk\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 40.",
+      "column_names": [
+        "news_desk",
+        "avg_word_count"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-041",
+    "dataset_id": "times-archive",
+    "title": "Articles above word-count threshold (41)",
+    "prompt": "Find articles with word counts above 517.",
+    "difficulty": "Beginner",
+    "mode": "Timed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "filtering"
+    ],
+    "estimated_time_minutes": 13,
+    "learning_objectives": [
+      "Practice filtering on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on filtering against times_archive. WHERE word_count > {n}.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- WHERE word_count > {n}\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 41.",
+      "column_names": [
+        "headline_main",
+        "word_count"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-042",
+    "dataset_id": "times-archive",
+    "title": "List distinct sections (42)",
+    "prompt": "Which section names appear in the archive?",
+    "difficulty": "Beginner",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "distinct"
+    ],
+    "estimated_time_minutes": 14,
+    "learning_objectives": [
+      "Practice distinct on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on distinct against times_archive. SELECT DISTINCT section_name.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- SELECT DISTINCT section_name\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 42.",
+      "column_names": [
+        "section_name"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-043",
+    "dataset_id": "times-archive",
+    "title": "Articles by material type (43)",
+    "prompt": "Return articles where type_of_material is 'Review'.",
+    "difficulty": "Beginner",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "filtering"
+    ],
+    "estimated_time_minutes": 15,
+    "learning_objectives": [
+      "Practice filtering on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on filtering against times_archive. WHERE type_of_material = '{mat}'.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- WHERE type_of_material = '{mat}'\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 43.",
+      "column_names": [
+        "headline_main",
+        "type_of_material"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-044",
+    "dataset_id": "times-archive",
+    "title": "Longest articles first (44)",
+    "prompt": "Show the longest articles by word count.",
+    "difficulty": "Beginner",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "sorting"
+    ],
+    "estimated_time_minutes": 16,
+    "learning_objectives": [
+      "Practice sorting on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on sorting against times_archive. ORDER BY word_count DESC.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- ORDER BY word_count DESC\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 44.",
+      "column_names": [
+        "headline_main",
+        "word_count"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-045",
+    "dataset_id": "times-archive",
+    "title": "Articles per month (45)",
+    "prompt": "Count articles published in each calendar month.",
+    "difficulty": "Intermediate",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "aggregation"
+    ],
+    "estimated_time_minutes": 17,
+    "learning_objectives": [
+      "Practice aggregation on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on aggregation against times_archive. DATE_TRUNC('month', pub_date).",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- DATE_TRUNC('month', pub_date)\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 45.",
+      "column_names": [
+        "month",
+        "article_count"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-046",
+    "dataset_id": "times-archive",
+    "title": "Desk totals with HAVING (46)",
+    "prompt": "Which news desks have more than 702 articles?",
+    "difficulty": "Intermediate",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "aggregation"
+    ],
+    "estimated_time_minutes": 18,
+    "learning_objectives": [
+      "Practice aggregation on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on aggregation against times_archive. HAVING COUNT(*) > {n}.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- HAVING COUNT(*) > {n}\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 46.",
+      "column_names": [
+        "news_desk",
+        "article_count"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-047",
+    "dataset_id": "times-archive",
+    "title": "Articles in date range (47)",
+    "prompt": "Find articles published between two dates.",
+    "difficulty": "Intermediate",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "dates"
+    ],
+    "estimated_time_minutes": 19,
+    "learning_objectives": [
+      "Practice dates on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on dates against times_archive. BETWEEN.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- BETWEEN\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 47.",
+      "column_names": [
+        "headline_main",
+        "pub_date"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-048",
+    "dataset_id": "times-archive",
+    "title": "Headlines containing keyword (48)",
+    "prompt": "Find headlines containing a keyword.",
+    "difficulty": "Intermediate",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "strings"
+    ],
+    "estimated_time_minutes": 8,
+    "learning_objectives": [
+      "Practice strings on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on strings against times_archive. ILIKE.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- ILIKE\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 48.",
+      "column_names": [
+        "headline_main"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-049",
+    "dataset_id": "times-archive",
+    "title": "Top sections via CTE (49)",
+    "prompt": "Use a CTE to find sections with the most articles.",
+    "difficulty": "Intermediate",
+    "mode": "Untimed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "cte"
+    ],
+    "estimated_time_minutes": 9,
+    "learning_objectives": [
+      "Practice cte on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on cte against times_archive. WITH section_counts AS.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- WITH section_counts AS\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 49.",
+      "column_names": [
+        "section_name",
+        "article_count"
+      ]
+    }
+  },
+  {
+    "id": "times-archive-050",
+    "dataset_id": "times-archive",
+    "title": "Above-average word count (50)",
+    "prompt": "Articles with word count above the archive average.",
+    "difficulty": "Intermediate",
+    "mode": "Timed",
+    "target_dialect": "PostgreSQL",
+    "concept_tags": [
+      "subquery"
+    ],
+    "estimated_time_minutes": 10,
+    "learning_objectives": [
+      "Practice subquery on Times archive columns.",
+      "Write readable PostgreSQL for catalog prompts."
+    ],
+    "hint": "Focus on subquery against times_archive. subquery average.",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT *\nFROM times_archive\n-- subquery average\nLIMIT 10;",
+    "availability_status": "available",
+    "expected_result": {
+      "description": "Result columns reserved for future grading on exercise 50.",
+      "column_names": [
+        "headline_main",
+        "word_count"
+      ]
+    }
+  }
+]
