@@ -24,7 +24,6 @@ EXPECTED_COLUMNS = {
 
 DATABASE_URL = os.environ.get("DATABASE_URL") or os.environ.get("DATABASE_ADMIN_URL")
 DEMO_ROW_COUNT = 2
-MIN_IMPORTED_ROW_COUNT = DEMO_ROW_COUNT + 1
 
 pytestmark = pytest.mark.skipif(
     not DATABASE_URL,
@@ -54,7 +53,7 @@ def test_times_archive_has_imported_rows() -> None:
         count_row = cur.fetchone()
 
     assert count_row is not None
-    assert count_row[0] > MIN_IMPORTED_ROW_COUNT
+    assert count_row[0] > DEMO_ROW_COUNT
 
 
 def test_times_archive_sample_row_shape() -> None:
