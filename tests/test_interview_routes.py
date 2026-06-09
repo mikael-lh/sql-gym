@@ -184,3 +184,93 @@ def test_interview_next_advances_to_second_question(mock_execute: MagicMock) -> 
     assert response.status_code == 200
     assert "Question 2 of 3" in response.text
     assert "times-archive-002" in str(response.url)
+
+
+@patch("app.main.execute_query")
+def test_interview_end_early_shows_summary(mock_execute: MagicMock) -> None:
+    from app.execution.models import QueryResult
+
+    rows = tuple(tuple(row) for row in EXPECTED_GRID["rows"])
+    mock_execute.return_value = QueryResult(
+        columns=tuple(EXPECTED_GRID["columns"]),
+        rows=rows,
+        row_count=len(rows),
+        truncated=False,
+    )
+
+    async def _flow() -> httpx.Response:
+        transport = httpx.ASGITransport(app=app)
+        async with httpx.AsyncClient(
+            transport=transport,
+            base_url="http://testserver",
+            follow_redirects=True,
+        ) as client:
+            await client.post(
+                "/practice/interview/start",
+                data={"queue_length": "3", "difficulty": ""},
+            )
+            await client.post(
+                "/practice/interview/times-archive/times-archive-001/submit",
+                data={
+                    "sql": "SELECT headline_main, pub_date FROM times_archive LIMIT 1",
+                },
+            )
+            return await client.post("/practice/interview/end")
+
+    response = asyncio.run(_flow())
+    assert response.status_code == 200
+    assert "Interview session summary" in response.text
+    assert "1 of 3 passed" in response.text
+
+
+def test_interview_abandon_clears_session_and_returns_to_practice() -> None:
+    async def _flow() -> tuple[httpx.Response, httpx.Response]:
+        transport = httpx.ASGITransport(app=app)
+        async with httpx.AsyncClient(
+            transport=transport,
+            base_url="http://testserver",
+            follow_redirects=False,
+        ) as client:
+            await client.post(
+                "/practice/interview/start",
+                data={"queue_length": "3", "difficulty": ""},
+            )
+            abandon = await client.post("/practice/interview/abandon")
+            practice = await client.get("/practice", follow_redirects=True)
+            return abandon, practice
+
+    abandon_response, practice_response = asyncio.run(_flow())
+    assert abandon_response.status_code == 303
+    assert abandon_response.headers["location"] == "/practice"
+    assert practice_response.status_code == 200
+    assert "Start interview session" in practice_response.text
+
+
+@patch("app.main.execute_query")
+def test_resume_banner_shown_on_practice(mock_execute: MagicMock) -> None:
+    from app.execution.models import QueryResult
+
+    rows = tuple(tuple(row) for row in EXPECTED_GRID["rows"])
+    mock_execute.return_value = QueryResult(
+        columns=tuple(EXPECTED_GRID["columns"]),
+        rows=rows,
+        row_count=len(rows),
+        truncated=False,
+    )
+
+    async def _flow() -> httpx.Response:
+        transport = httpx.ASGITransport(app=app)
+        async with httpx.AsyncClient(
+            transport=transport,
+            base_url="http://testserver",
+            follow_redirects=True,
+        ) as client:
+            await client.post(
+                "/practice/interview/start",
+                data={"queue_length": "3", "difficulty": ""},
+            )
+            return await client.get("/practice")
+
+    response = asyncio.run(_flow())
+    assert response.status_code == 200
+    assert "Resume interview" in response.text

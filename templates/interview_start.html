@@ -13,6 +13,11 @@
   <p class="notice">You already have an interview session in progress. Starting a new session replaces it.</p>
   {% endif %}
   <a class="primary-link" href="/practice">Back to practice catalog</a>
+  {% if has_active_session %}
+  <form method="post" action="/practice/interview/abandon" class="inline-form">
+    <button type="submit" class="button-secondary">Abandon active session</button>
+  </form>
+  {% endif %}
 </section>
 
 <section class="panel" aria-labelledby="interview-config-title">

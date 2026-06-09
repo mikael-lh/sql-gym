@@ -13,11 +13,14 @@
     session until you close the browser. AI grading and accounts are not available yet.
   </p>
   <p class="progress-summary">{{ passed_count }} of {{ total_exercise_count }} exercises passed.</p>
-  {% if continue_url %}
+  {% if resume_interview_url %}
+  <a class="primary-link" href="{{ resume_interview_url }}">{{ resume_interview_label }}</a>
+  {% elif continue_url %}
   <a class="primary-link" href="{{ continue_url }}">{{ continue_label }}</a>
   {% else %}
   <p class="placeholder-note">{{ continue_label }}</p>
   {% endif %}
+  <a class="secondary-link" href="/practice/interview/start">Start interview session</a>
 </section>
 
 <section class="panel" aria-labelledby="progress-actions-title">

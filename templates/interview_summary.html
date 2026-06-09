@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero" aria-labelledby="summary-title">
+  <p class="eyebrow">{{ status_label }}</p>
+  <h1 id="summary-title">Interview session summary</h1>
+  {% if ended_early %}
+  <p class="lede">You ended this session early. Here is how you did on the questions you completed.</p>
+  {% else %}
+  <p class="lede">You finished the interview queue. Review your results below.</p>
+  {% endif %}
+  <p class="progress-summary">
+    {{ passed_count }} of {{ queue_length }} passed — total time {{ total_elapsed_label }}
+  </p>
+  <a class="primary-link" href="/practice/interview/start">Start new session</a>
+  <a class="secondary-link" href="/practice">Practice catalog</a>
+</section>
+
+<section class="panel" aria-labelledby="outcomes-title">
+  <p class="eyebrow">Outcomes</p>
+  <h2 id="outcomes-title">Question results</h2>
+  {% if items %}
+  <div class="result-table-wrap">
+    <table class="result-table">
+      <thead>
+        <tr>
+          <th scope="col">Exercise</th>
+          <th scope="col">Result</th>
+          <th scope="col">Elapsed</th>
+          <th scope="col">Review</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in items %}
+        <tr>
+          <td>{{ item.title }}</td>
+          <td>
+            {% if item.passed is none %}
+            Not submitted
+            {% elif item.passed %}
+            Passed
+            {% else %}
+            Not yet correct
+            {% endif %}
+          </td>
+          <td>{{ item.elapsed_label or "—" }}</td>
+          <td>
+            {% if item.dataset_id %}
+            <a href="/practice/{{ item.dataset_id }}/{{ item.exercise_id }}">Open exercise</a>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <p class="placeholder-note">No exercises were recorded in this session.</p>
+  {% endif %}
+</section>
+{% endblock %}
