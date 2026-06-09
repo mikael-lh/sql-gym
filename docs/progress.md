@@ -39,8 +39,10 @@ Not written on `POST …/run` or ordinary page views.
 
 | Store | Holds | Lifetime |
 |-------|--------|----------|
-| Session cookie | Draft SQL, last run, last grade | Browser session |
+| Session cookie | Draft SQL, last run, last grade; interview queue (Phase 4) | Browser session |
 | Progress cookie | Pass/attempt badges, best timed elapsed | 60 days |
+
+Interview session shape, preview row cap, and route guards: [session-state.md](session-state.md).
 
 ## Privacy
 

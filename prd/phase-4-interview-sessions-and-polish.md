@@ -2,7 +2,7 @@
 
 ## Status
 
-**Approved** (merged 2026-06-09 via [#81](https://github.com/mikael-lh/sql-gym/pull/81)). Scope: **B + D** — multi-exercise interview sessions (timed and untimed) plus catalog/reliability polish. Implementation plan: [`docs/phase-4-implementation-plan.md`](../docs/phase-4-implementation-plan.md). Do not write application code until the plan is approved.
+**Complete** (shipped 2026-06-09 via epic [TIM-43](https://linear.app/times-api/issue/TIM-43/phase-4-or-interview-sessions-and-reliability-polish), PRs [#83](https://github.com/mikael-lh/sql-gym/pull/83)–[#89](https://github.com/mikael-lh/sql-gym/pull/89)). Scope: **B + D** — multi-exercise interview sessions (timed and untimed) plus catalog/reliability polish.
 
 ## Source context
 
@@ -221,10 +221,44 @@ Phase 4 is successful when a reviewer can:
 | Full grids in session | Replaced with capped preview + metadata |
 | Interview queues deferred | Implemented as session-scoped queue |
 
+## What was actually built
+
+- `app/interview/` — queue builder, session domain, view helpers.
+- Interview routes: start, exercise run/submit, next, end, abandon, summary.
+- Session preview cap (`SESSION_PREVIEW_ROW_LIMIT = 25`) in `practice_session.py`.
+- Catalog copy fixes for `times-archive-011` and `times-archive-014` (1920 dates).
+- Docs: [session-state.md](../docs/session-state.md), [phase-4-manual-test-plan.md](../docs/phase-4-manual-test-plan.md).
+
+## Approved deviations
+
+| Topic | PRD / plan | Shipped |
+|-------|------------|---------|
+| Truncated result copy | Distinct execution vs session preview messaging | Reuses existing “500 rows” template when session-capped; acceptable for MVP |
+| Content audit log | No separate audit doc | Summarized in PR #88 description only |
+| Optional year guard script | Deferred unless trivial | Deferred; spot tests in `test_catalog_content.py` |
+
+### Linear issue ID mapping
+
+| Order | Plan milestone | Linear issue | PR |
+|------:|----------------|--------------|-----|
+| 1 | TIM-44 | **TIM-44** | [#83](https://github.com/mikael-lh/sql-gym/pull/83) |
+| 2 | TIM-45 | **TIM-49** | [#84](https://github.com/mikael-lh/sql-gym/pull/84) |
+| 3 | TIM-46 | **TIM-50** | [#85](https://github.com/mikael-lh/sql-gym/pull/85) |
+| 4 | TIM-47 | **TIM-46** | [#86](https://github.com/mikael-lh/sql-gym/pull/86) |
+| 5 | TIM-48 | **TIM-47** | [#87](https://github.com/mikael-lh/sql-gym/pull/87) |
+| 6 | TIM-49 | **TIM-48** | [#88](https://github.com/mikael-lh/sql-gym/pull/88) |
+| 7 | TIM-50 | **TIM-45** | [#89](https://github.com/mikael-lh/sql-gym/pull/89) |
+
+Full detail: [`docs/phase-4-implementation-plan.md`](../docs/phase-4-implementation-plan.md#linear-issue-mapping).
+
+## Future work
+
+- Accounts and cross-device sync.
+- AI grading and explanations.
+- Whole-session master clock; randomized or adaptive queues.
+- Scripted catalog year guard (`scripts/check_catalog_copy.py`).
+- Distinct template copy for session preview vs execution truncation.
+
 ## Open questions
 
-- **Content audit tooling:** Manual audit vs scripted diff — resolve in implementation plan (manual pass required; script optional as regression guard).
-
-## Approval
-
-PRD approved and merged (2026-06-09). Implementation plan drafted in `docs/phase-4-implementation-plan.md`. Activate Phase 4 implementation when the plan is approved.
+- None blocking post-ship.
