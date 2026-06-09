@@ -49,6 +49,43 @@ def test_interview_start_page_renders() -> None:
     assert "Update eligible count" not in response.text
 
 
+@patch("app.main.execute_query")
+def test_interview_start_works_after_bloated_practice_session(mock_execute: MagicMock) -> None:
+    from app.execution.models import QueryResult
+
+    rows = tuple(tuple(f"value-{index}-{col}" for col in range(30)) for index in range(25))
+    mock_execute.return_value = QueryResult(
+        columns=tuple(f"col-{col}" for col in range(30)),
+        rows=rows,
+        row_count=25,
+        truncated=False,
+    )
+
+    async def _flow() -> tuple[int, bool]:
+        transport = httpx.ASGITransport(app=app)
+        async with httpx.AsyncClient(
+            transport=transport,
+            base_url="http://testserver",
+            follow_redirects=False,
+        ) as client:
+            for index in range(12):
+                await client.post(
+                    "/practice/times-archive/times-archive-014/run",
+                    data={"sql": f"SELECT {index}"},
+                )
+            start = await client.post(
+                "/practice/interview/start",
+                data={"queue_length": "5", "difficulty": ""},
+            )
+            page = await client.get(start.headers["location"], follow_redirects=True)
+            cookie_len = len(start.headers.get("set-cookie", ""))
+            return cookie_len, "Question 1 of 5" in page.text
+
+    cookie_len, reached_exercise = asyncio.run(_flow())
+    assert reached_exercise
+    assert cookie_len < 4096
+
+
 def test_interview_start_post_creates_session_and_redirects() -> None:
     response = asyncio.run(
         _post(

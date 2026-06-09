@@ -34,7 +34,7 @@ from app.practice import (
     get_practice_context,
     lookup_exercise,
 )
-from app.practice_session import store_run_result, store_submit_result
+from app.practice_session import slim_practice_attempts, store_run_result, store_submit_result
 from app.progress import attach_progress_cookie, clear_progress_cookie, load_progress
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -180,6 +180,7 @@ def create_app() -> FastAPI:
         )
         if session is None:
             return RedirectResponse(url="/practice/interview/start", status_code=303)
+        slim_practice_attempts(request)
         save_interview_session(request, session)
         first_url = current_exercise_url(session)
         if first_url is None:

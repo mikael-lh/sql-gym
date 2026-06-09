@@ -52,6 +52,30 @@ def _serialize_grading(result: GradingResult) -> dict[str, Any]:
     }
 
 
+def _attempt_sql_draft(attempt: dict[str, Any]) -> dict[str, Any]:
+    sql = attempt.get("sql")
+    status = attempt.get("status")
+    return {
+        "sql": sql if isinstance(sql, str) else "",
+        "status": status if isinstance(status, str) else "not_started",
+        "query_result": None,
+        "execution_error": None,
+        "grading": None,
+    }
+
+
+def slim_practice_attempts(request: Request, *, keep_exercise_id: str | None = None) -> None:
+    """Drop heavy run/grade payloads from other exercises to keep the session cookie small."""
+    attempts = _attempts(request)
+    for exercise_id in list(attempts):
+        if exercise_id == keep_exercise_id:
+            continue
+        attempt = attempts.get(exercise_id)
+        if isinstance(attempt, dict):
+            attempts[exercise_id] = _attempt_sql_draft(attempt)
+    request.session[SESSION_KEY] = attempts
+
+
 def get_attempt_state(request: Request, exercise_id: str) -> dict[str, Any]:
     attempt = _attempts(request).get(exercise_id, {})
     return {
@@ -69,6 +93,7 @@ def store_run_result(
     sql: str,
     outcome: QueryResult | ExecutionError,
 ) -> None:
+    slim_practice_attempts(request, keep_exercise_id=exercise_id)
     attempts = _attempts(request)
     payload: dict[str, Any] = {
         "sql": sql,
@@ -102,6 +127,7 @@ def store_submit_result(
 
     grading_outcome = grade(outcome, expected_grid)
     grading = grading_result_from_outcome(exercise.id, grading_outcome)
+    slim_practice_attempts(request, keep_exercise_id=exercise.id)
     attempts = _attempts(request)
     attempts[exercise.id] = {
         "sql": sql,
