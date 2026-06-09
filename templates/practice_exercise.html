@@ -6,8 +6,12 @@
   <h1 id="exercise-title">{{ exercise.title }}</h1>
   <p class="lede">{{ exercise.prompt }}</p>
   <p class="notice">
-    Run and submit SQL against the Times Archive practice database. Attempts are saved in this
-    browser session only; no accounts, AI grading, or durable progress.
+    Run and submit SQL against the Times Archive practice database. Draft SQL stays in this browser
+    session; pass/attempt progress is saved in a cookie for 60 days on this device.
+  </p>
+  <p class="progress-summary">
+    Progress: <span class="progress-badge progress-badge-{{ progress_status }}">{{ progress_label }}</span>
+    {% if best_elapsed %} — best time {{ best_elapsed }}{% endif %}
   </p>
   <a class="primary-link" href="/practice">Back to practice catalog</a>
 </section>

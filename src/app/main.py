@@ -12,6 +12,7 @@ from app.domain.progress import ProgressStore
 from app.execution import execute_query
 from app.practice import (
     get_exercise_preview_context,
+    get_home_context,
     get_not_found_context,
     get_practice_context,
     lookup_exercise,
@@ -36,22 +37,15 @@ CORE_LOOP = [
 
 PLACEHOLDERS = [
     {
-        "title": "Accounts and durable progress",
+        "title": "Accounts and cross-device sync",
         "description": (
-            "Learner attempts stay in the browser session only; "
-            "no sign-in or saved history."
+            "Progress is saved in a browser cookie for 60 days on this device. "
+            "Sign-in and sync across devices are not available."
         ),
     },
     {
         "title": "AI grading and explanations",
         "description": "Strict grid-match grading is live; AI feedback and partial credit are not.",
-    },
-    {
-        "title": "Timed-mode scoring",
-        "description": (
-            "Timed exercises are labeled in the catalog but "
-            "interview timers are not active."
-        ),
     },
     {
         "title": "Standalone catalog route",
@@ -89,13 +83,15 @@ def create_app() -> FastAPI:
             "index.html",
             {
                 "page_title": "SQL Gym",
-                "status_label": "Phase 2 practice",
+                "status_label": "Phase 3 practice",
                 "positioning": (
                     "Browse 50 Times Archive SQL exercises, run PostgreSQL against imported "
-                    "article data, and get strict pass/fail grading on exercise previews."
+                    "article data, track progress in your browser, and practice timed interview "
+                    "exercises with strict pass/fail grading."
                 ),
                 "core_loop": CORE_LOOP,
                 "placeholders": PLACEHOLDERS,
+                **get_home_context(request),
             },
         )
 
@@ -109,8 +105,12 @@ def create_app() -> FastAPI:
         return templates.TemplateResponse(
             request,
             "practice.html",
-            get_practice_context(dataset_id=dataset, difficulty=difficulty, mode=mode)
-            | {"request": request},
+            get_practice_context(
+                request,
+                dataset_id=dataset,
+                difficulty=difficulty,
+                mode=mode,
+            ),
         )
 
     def _exercise_path(dataset_id: str, exercise_id: str) -> str:

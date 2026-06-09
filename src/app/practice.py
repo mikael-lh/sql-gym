@@ -14,19 +14,27 @@ from app.domain.exercises import (
     PracticeMode,
 )
 from app.domain.grading import GRADING_PLACEHOLDER
-from app.domain.progress import DEMO_PROGRESS
+from app.domain.progress import ExerciseProgressStatus, ProgressStore, build_progress_summary
 from app.practice_session import get_attempt_state
+from app.progress import (
+    continue_exercise_url,
+    find_continue_exercise,
+    format_elapsed_seconds,
+    load_progress,
+)
 
 PLACEHOLDER_AREAS = (
-    {
-        "title": "Progress tracking",
-        "description": "Session-only practice; no accounts or durable progress are saved.",
-    },
     {
         "title": "AI grading",
         "description": "AI explanations and partial credit remain future work.",
     },
 )
+
+_PROGRESS_LABELS: dict[ExerciseProgressStatus, str] = {
+    "not_started": "Not started",
+    "attempted": "Attempted",
+    "passed": "Passed",
+}
 
 
 @dataclass(frozen=True)
@@ -34,6 +42,10 @@ class PracticeFilters:
     dataset_id: str | None = None
     difficulty: Difficulty | None = None
     mode: PracticeMode | None = None
+
+
+def _progress_label(status: ExerciseProgressStatus) -> str:
+    return _PROGRESS_LABELS[status]
 
 
 def _dataset_summary(dataset: Dataset) -> dict[str, object]:
@@ -51,7 +63,14 @@ def _dataset_summary(dataset: Dataset) -> dict[str, object]:
     }
 
 
-def _exercise_summary(exercise: Exercise) -> dict[str, object]:
+def _exercise_summary(exercise: Exercise, store: ProgressStore) -> dict[str, object]:
+    status = store.get_status(exercise.id)
+    record = store.exercises.get(exercise.id)
+    best_time = (
+        format_elapsed_seconds(record.elapsed_seconds)
+        if record is not None and record.elapsed_seconds is not None
+        else None
+    )
     return {
         "id": exercise.id,
         "dataset_id": exercise.dataset_id,
@@ -65,6 +84,9 @@ def _exercise_summary(exercise: Exercise) -> dict[str, object]:
         "availability_status": exercise.availability_status,
         "hint": exercise.hint,
         "preview_url": f"/practice/{exercise.dataset_id}/{exercise.id}",
+        "progress_status": status,
+        "progress_label": _progress_label(status),
+        "best_elapsed": best_time,
     }
 
 
@@ -86,6 +108,21 @@ def _filter_exercises(
     return filtered
 
 
+def _continue_context(store: ProgressStore, difficulty: Difficulty | None) -> dict[str, object]:
+    continue_exercise = find_continue_exercise(store, difficulty=difficulty)
+    continue_url = continue_exercise_url(continue_exercise)
+    if continue_url is None:
+        return {
+            "continue_url": None,
+            "continue_label": "All exercises passed — browse catalog",
+        }
+    assert continue_exercise is not None
+    return {
+        "continue_url": continue_url,
+        "continue_label": f"Continue practicing: {continue_exercise.title}",
+    }
+
+
 def lookup_dataset(dataset_id: str) -> Dataset | None:
     for dataset in TIMES_ARCHIVE_CATALOG.datasets:
         if dataset.id == dataset_id:
@@ -100,6 +137,19 @@ def lookup_exercise(dataset_id: str, exercise_id: str) -> Exercise | None:
     return None
 
 
+def get_home_context(request: Request) -> dict[str, object]:
+    store = load_progress(request)
+    total = len(TIMES_ARCHIVE_CATALOG.exercises)
+    summary = build_progress_summary(store, total)
+    continue_info = _continue_context(store, difficulty=None)
+    return {
+        "progress_summary": summary,
+        "passed_count": store.passed_count(),
+        "total_exercise_count": total,
+        **continue_info,
+    }
+
+
 def get_exercise_preview_context(
     request: Request,
     dataset_id: str,
@@ -110,8 +160,16 @@ def get_exercise_preview_context(
     if dataset is None or exercise is None:
         return None
 
+    store = load_progress(request)
     attempt_state = get_attempt_state(request, exercise.id)
     sql = attempt_state["sql"] or f"-- Write PostgreSQL for: {exercise.title}\n"
+    status = store.get_status(exercise.id)
+    record = store.exercises.get(exercise.id)
+    best_elapsed = (
+        format_elapsed_seconds(record.elapsed_seconds)
+        if record is not None and record.elapsed_seconds is not None
+        else None
+    )
 
     return {
         "page_title": f"{exercise.title} - Practice - SQL Gym",
@@ -136,6 +194,9 @@ def get_exercise_preview_context(
         "execution_error": attempt_state["execution_error"],
         "grading": attempt_state["grading"],
         "attempt_status": attempt_state["status"],
+        "progress_status": status,
+        "progress_label": _progress_label(status),
+        "best_elapsed": best_elapsed,
         "placeholder_areas": PLACEHOLDER_AREAS,
     }
 
@@ -150,11 +211,13 @@ def get_not_found_context(resource_label: str) -> dict[str, object]:
 
 
 def get_practice_context(
+    request: Request,
     dataset_id: str | None = None,
     difficulty: str | None = None,
     mode: str | None = None,
 ) -> dict[str, object]:
     catalog = TIMES_ARCHIVE_CATALOG
+    store = load_progress(request)
     parsed_difficulty = (
         cast(Difficulty, difficulty)
         if difficulty in {"Beginner", "Intermediate", "Advanced"}
@@ -169,13 +232,14 @@ def get_practice_context(
     datasets = [_dataset_summary(dataset) for dataset in catalog.datasets]
     exercises = _filter_exercises(catalog.exercises, filters)
     grouped_exercises: dict[str, list[dict[str, object]]] = {
-        difficulty.label: [] for difficulty in DIFFICULTY_OPTIONS
+        difficulty_option.label: [] for difficulty_option in DIFFICULTY_OPTIONS
     }
     for exercise in exercises:
-        grouped_exercises[exercise.difficulty].append(_exercise_summary(exercise))
+        grouped_exercises[exercise.difficulty].append(_exercise_summary(exercise, store))
     grouped_exercises = {
-        difficulty: items for difficulty, items in grouped_exercises.items() if items
+        difficulty_key: items for difficulty_key, items in grouped_exercises.items() if items
     }
+    summary = build_progress_summary(store, len(catalog.exercises))
 
     return {
         "page_title": "Practice - SQL Gym",
@@ -188,13 +252,15 @@ def get_practice_context(
             "difficulty": filters.difficulty or "",
             "mode": filters.mode or "",
         },
-        "exercises": [_exercise_summary(exercise) for exercise in exercises],
+        "exercises": [_exercise_summary(exercise, store) for exercise in exercises],
         "grouped_exercises": grouped_exercises,
         "exercise_count": len(exercises),
         "total_exercise_count": len(catalog.exercises),
         "placeholder_areas": PLACEHOLDER_AREAS,
-        "progress": DEMO_PROGRESS.metrics,
+        "progress": summary.metrics,
+        "passed_count": store.passed_count(),
         "attempt": DEMO_ATTEMPT,
         "grading": GRADING_PLACEHOLDER,
         "execution_available": True,
+        **_continue_context(store, parsed_difficulty),
     }
