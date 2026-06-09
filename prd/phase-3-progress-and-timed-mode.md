@@ -32,6 +32,9 @@ Current implementation context:
 - **Timeout behavior:** When the countdown reaches zero, auto-submit the current editor SQL for grading (same POST path as manual submit). Empty SQL surfaces the existing empty-query validation message.
 - **Timed outcome:** Pass/fail remains strict grid-match only; elapsed time is recorded for display when the learner passes a timed exercise. No separate “speed score” or partial credit.
 - **Cross-device:** Progress is device/browser specific; clearing cookies resets progress. UI copy must state this honestly.
+- **Cookie lifetime:** `sql_gym_progress` cookie with `max_age=5184000` (60 days). Re-set on each progress write so the expiry window refreshes from that moment.
+- **Continue link:** Next unpassed exercise uses **stable catalog order**. If the learner has a **difficulty filter** active on `/practice`, continue within that difficulty only. Home continue (no filter) uses full catalog order.
+- **Retries after pass:** Learners may re-run and re-submit passed exercises (including timed). `passed` stays sticky; for timed passes, **best** `elapsed_seconds` (lowest) is kept and displayed.
 
 ## Problem
 
@@ -95,6 +98,7 @@ Acceptance criteria:
 
 - Progress is stored separately from session attempt drafts (SQL text, last query result) so session cookies can remain session-scoped while progress survives browser restarts.
 - Cookie payload is signed with the existing app secret (`SESSION_SECRET` or a dedicated `PROGRESS_COOKIE_SECRET` documented in `.env.example`; prefer reusing `SESSION_SECRET` unless size or rotation needs justify a split).
+- Cookie name is `sql_gym_progress`, `max_age=5184000` (60 days), refreshed on each progress write.
 - Cookie is `HttpOnly`, `SameSite=Lax`, and `Secure` in production-like environments when applicable.
 - Cookie carries a versioned schema, e.g. `{ "v": 1, "exercises": { "<exercise_id>": { "status": "passed"|"attempted", "passed_at": "<iso>", "elapsed_seconds": <int|null> } } } }`.
 - Maximum payload size stays practical for a cookie (50 exercises × minimal fields); implementation must not store full query results in the progress cookie.
@@ -123,7 +127,9 @@ Acceptance criteria:
 - Exercise cards on `/practice` show a progress badge or label (`Not started`, `Attempted`, `Passed`).
 - Passed exercises are visually distinct (e.g. checkmark or badge) without hiding them from the catalog.
 - Exercise preview shows current progress status for that exercise.
-- A **Continue practicing** link on home and/or `/practice` opens the next catalog exercise (stable catalog order) that is not `passed`, respecting active filters on `/practice` when used from that page.
+- A **Continue practicing** link on home and/or `/practice` opens the next exercise that is not `passed`, in stable catalog order.
+- On `/practice`, when a **difficulty** filter is active, continue selects the next unpassed exercise **within that difficulty only** (same catalog order, filtered). Other active filters (dataset, mode) do not narrow continue unless difficulty is set.
+- On home (no filter context), continue uses the full catalog in stable order.
 - When all exercises are passed, continue link copy reflects completion (e.g. “All exercises passed — browse catalog”).
 - Aggregate summary shows at least **passed count / total** (50 for Times Archive) on practice and/or home.
 - `DEMO_PROGRESS` placeholder is replaced with real cookie-backed metrics on pages that show progress.
@@ -152,7 +158,7 @@ Acceptance criteria:
 - Timeout submit uses the existing server grading path; no duplicate grading logic.
 - If SQL is empty at timeout, learner sees the same validation/error treatment as manual submit with empty SQL.
 - On pass, `elapsed_seconds` from timer start to successful submit is stored in progress metadata for that exercise.
-- Timed exercise preview displays best/pass elapsed time after a pass (e.g. “Passed in 8:42”).
+- Timed exercise preview displays best elapsed time after a pass (e.g. “Passed in 8:42”); learners may retry timed exercises without losing `passed`, and a faster pass updates the stored best time.
 - Untimed exercises do not show timer UI and do not record `elapsed_seconds`.
 - Tests or documented manual plan cover timeout submit and elapsed time persistence in the progress cookie.
 
@@ -175,8 +181,9 @@ Acceptance criteria:
 | Progress cookie missing or tampered | Treat as empty progress; do not error the page |
 | Progress cookie schema version unknown | Ignore or reset with safe default; document migration approach |
 | Cookie exceeds size limit | Implementer must prevent bloat (no SQL/result storage); PRD acceptance includes staying under typical 4KB budget |
-| Submit pass after prior `attempted` | Upgrade to `passed`; keep best `elapsed_seconds` if timed (lowest time wins) |
-| Submit fail after `passed` | Remain `passed` |
+| Submit pass after prior `attempted` | Upgrade to `passed`; store `elapsed_seconds` if timed |
+| Submit pass after prior `passed` (retry) | Remain `passed`; update `elapsed_seconds` only if new time is lower (best time) |
+| Submit fail after `passed` | Remain `passed`; best time unchanged |
 | Timed exercise opened in two tabs | Undefined race; acceptable to document as “last write wins” for Phase 3 |
 | Timer expires during in-flight submit | Avoid double submit; client guards with a submitting flag |
 | User clears progress | All exercises return to `not_started`; session attempt drafts may remain until session ends |
@@ -202,11 +209,31 @@ Phase 3 is successful when a reviewer can:
 | Timed label in catalog only | Timer + timeout submit for `Timed` exercises |
 | `DEMO_PROGRESS` on practice | Real cookie-backed metrics |
 
+## Progress cookie mechanics
+
+Phase 3 adds a **second cookie** alongside the existing Starlette **session** cookie. They serve different jobs:
+
+| Cookie | Purpose | Lifetime (Phase 3) |
+|--------|---------|-------------------|
+| Session (existing) | Draft SQL, last run result, last grading on the current visit | Browser session (unchanged) |
+| `sql_gym_progress` (new) | Compact map of exercise id → status / pass time / best elapsed time | 60 days, refreshed on each write |
+
+**Read path (most requests):** On every request, the server reads `sql_gym_progress` from `request.cookies`, verifies the signature, and deserializes the payload. Catalog, home, and exercise pages use that data to render badges and counts. No `Set-Cookie` is required on read-only GET responses.
+
+**Write path (progress changes):** When progress changes — successful pass, failed submit marking `attempted`, clear-progress action, or best-time update on timed retry — the handler updates the in-memory progress map and returns a response with a **`Set-Cookie`** header containing the new signed payload. The browser stores it and automatically sends it on all later requests to the app.
+
+Concrete write triggers in Phase 3:
+
+- `POST …/submit` after grading (pass → `passed`, fail → `attempted` if not already passed).
+- `POST` clear-progress endpoint (or equivalent) → empty map, cookie cleared or overwritten.
+- Timed pass retry with a lower `elapsed_seconds` → update best time in cookie.
+
+**Not** written on: `POST …/run` only, ordinary page views, or failed submits when already `passed`.
+
+Implementation note: unlike `SessionMiddleware`, which attaches the session cookie automatically, the progress cookie is set explicitly via `Response.set_cookie()` (or a small helper) in handlers that mutate progress. Signing should use the same secret material as sessions (`SESSION_SECRET`) and the same pattern as Starlette’s signed cookies (e.g. `itsdangerous`), so payloads cannot be forged client-side.
+
 ## Open questions
 
-- **Cookie name and max_age:** Recommend `sql_gym_progress`, `max_age=31536000` (1 year). Confirm with user.
-- **Continue link ordering:** Catalog JSON order vs difficulty then id — recommend stable catalog order unless user prefers difficulty-first.
-- **Timer after pass:** Hide start button and show completion time only, or allow retimed retries that do not clear `passed` — recommend allow retries for practice but keep best time display.
 - **MODE_OPTIONS copy:** Update “reserved for a later milestone” string in `exercises.py` when Phase 3 ships.
 
 ## Approval
