@@ -4,12 +4,15 @@ A lightweight gym for SQL: practice on curated datasets, run queries, and level 
 
 ## Status
 
-**Phase 3 complete** — cookie progress and timed interview mode ([prd/phase-3-progress-and-timed-mode.md](prd/phase-3-progress-and-timed-mode.md)). Phase 2 execution/grading, Phase 1 catalog, and Phase 0 scaffold are complete. New product scope requires a new phase PRD plus an approved implementation plan.
+**Phase 4 complete** — interview sessions, session payload slimming, and catalog copy polish ([prd/phase-4-interview-sessions-and-polish.md](prd/phase-4-interview-sessions-and-polish.md)). Phase 3 cookie progress and per-exercise timed mode, Phase 2 execution/grading, Phase 1 catalog, and Phase 0 scaffold are complete. New product scope requires a new phase PRD plus an approved implementation plan.
 
 | | |
 |--|--|
 | Full workflow reference | [docs/WORKFLOW.md](docs/WORKFLOW.md) |
 | Product specs | [prd/README.md](prd/README.md) |
+| Phase 4 implementation plan | [docs/phase-4-implementation-plan.md](docs/phase-4-implementation-plan.md) |
+| Session state | [docs/session-state.md](docs/session-state.md) |
+| Phase 4 manual test plan | [docs/phase-4-manual-test-plan.md](docs/phase-4-manual-test-plan.md) |
 | Phase 3 implementation plan | [docs/phase-3-implementation-plan.md](docs/phase-3-implementation-plan.md) |
 | Progress cookie | [docs/progress.md](docs/progress.md) |
 | Phase 3 manual test plan | [docs/phase-3-manual-test-plan.md](docs/phase-3-manual-test-plan.md) |
@@ -79,6 +82,22 @@ docker compose up -d
 ```
 
 See [docs/times-data-setup.md](docs/times-data-setup.md) for GCS credentials and troubleshooting.
+
+## Phase 4 behavior status
+
+Working behavior:
+
+- Multi-exercise **interview sessions** (queue lengths 3, 5, 8, or unlimited; optional difficulty filter).
+- Interview routes under `/practice/interview/...` with per-question timer when `Timed`.
+- Session summary, end early, abandon, and **Resume interview** banner on home/practice.
+- Session preview cap (25 rows) so grading UI survives wide result sets.
+- Catalog copy aligned for date exercises `times-archive-011` and `times-archive-014`.
+
+Placeholder behavior:
+
+- Authentication, accounts, and cross-device sync.
+- AI grading, explanations, and partial credit.
+- Whole-session master clock or randomized queues.
 
 ## Phase 3 behavior status
 

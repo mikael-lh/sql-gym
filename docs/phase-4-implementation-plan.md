@@ -2,7 +2,7 @@
 
 ## Status
 
-**Pending approval** — do not write application code until the user approves this plan.
+**Complete** — implemented via [TIM-43](https://linear.app/times-api/issue/TIM-43/phase-4-or-interview-sessions-and-reliability-polish) epic (PRs [#83](https://github.com/mikael-lh/sql-gym/pull/83)–[#89](https://github.com/mikael-lh/sql-gym/pull/89)).
 
 ## Source
 
@@ -258,10 +258,20 @@
 - Summary clears session on view; no “review summary again” without re-running (acceptable for session-scoped MVP).
 - Optional catalog year script deferred.
 
+## Linear issue mapping
+
+Plan milestone labels **TIM-44**–**TIM-50** differ from Linear child issue IDs (same pattern as Phase 3). Use **Linear ID** when linking issues or PRs.
+
+| Order | Plan milestone | Linear issue | PR |
+|------:|----------------|--------------|-----|
+| 1 | TIM-44 (session slimming) | **TIM-44** | [#83](https://github.com/mikael-lh/sql-gym/pull/83) |
+| 2 | TIM-45 (interview domain) | **TIM-49** | [#84](https://github.com/mikael-lh/sql-gym/pull/84) |
+| 3 | TIM-46 (start flow) | **TIM-50** | [#85](https://github.com/mikael-lh/sql-gym/pull/85) |
+| 4 | TIM-47 (exercise routes) | **TIM-46** | [#86](https://github.com/mikael-lh/sql-gym/pull/86) |
+| 5 | TIM-48 (summary/resume) | **TIM-47** | [#87](https://github.com/mikael-lh/sql-gym/pull/87) |
+| 6 | TIM-49 (catalog audit) | **TIM-48** | [#88](https://github.com/mikael-lh/sql-gym/pull/88) |
+| 7 | TIM-50 (docs) | **TIM-45** | [#89](https://github.com/mikael-lh/sql-gym/pull/89) |
+
 ## Approval
 
-Pending user approval of this plan. After approval:
-
-1. Create Linear epic **TIM-43** and child issues **TIM-44**–**TIM-50**.
-2. Update `prd/README.md` to name Phase 4 as the active implementation phase.
-3. Implement one issue at a time via `sql-gym-implement-issue` or authorized `sql-gym-run-phase`.
+Plan approved and implemented 2026-06-09.

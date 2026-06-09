@@ -108,11 +108,11 @@ def create_app() -> FastAPI:
             "index.html",
             {
                 "page_title": "SQL Gym",
-                "status_label": "Phase 3 practice",
+                "status_label": "Phase 4 practice",
                 "positioning": (
                     "Browse 50 Times Archive SQL exercises, run PostgreSQL against imported "
-                    "article data, track progress in your browser, and practice timed interview "
-                    "exercises with strict pass/fail grading."
+                    "article data, track progress in your browser, run multi-question interview "
+                    "sessions, and practice timed exercises with strict pass/fail grading."
                 ),
                 "core_loop": CORE_LOOP,
                 "placeholders": PLACEHOLDERS,

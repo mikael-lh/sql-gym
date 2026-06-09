@@ -31,7 +31,7 @@ def test_home_page_renders_scaffold() -> None:
     assert response.status_code == 200
     assert "SQL Gym" in response.text
     assert "Times Archive SQL exercises" in response.text
-    assert "Phase 3 practice" in response.text
+    assert "Phase 4 practice" in response.text
     assert "Browse catalog" in response.text
     assert "exercises passed" in response.text
 
