@@ -72,7 +72,7 @@ MODE_OPTIONS: tuple[SelectionOption, ...] = (
     ),
     SelectionOption(
         label="Timed",
-        description="Interview-style mode reserved for a later milestone.",
+        description="Interview-style exercises with a per-exercise countdown timer.",
     ),
 )
 
