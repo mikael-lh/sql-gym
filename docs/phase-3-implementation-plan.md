@@ -2,13 +2,25 @@
 
 ## Status
 
-**Complete** — implemented via TIM-42, TIM-41, TIM-38, TIM-39, and TIM-40 (2026-06-09).
+**Complete** — implemented in dependency order via [TIM-42](https://linear.app/times-api/issue/TIM-42), [TIM-41](https://linear.app/times-api/issue/TIM-41), [TIM-38](https://linear.app/times-api/issue/TIM-38), [TIM-39](https://linear.app/times-api/issue/TIM-39), and [TIM-40](https://linear.app/times-api/issue/TIM-40) (2026-06-09).
 
 ## Source
 
 - PRD: `prd/phase-3-progress-and-timed-mode.md` (approved 2026-06-08)
-- Linear epic: `TIM-37` _(proposed; create after plan approval)_
-- Child issues: `TIM-38`, `TIM-39`, `TIM-40`, `TIM-41`, `TIM-42`
+- Linear epic: [TIM-37](https://linear.app/times-api/issue/TIM-37/phase-3-or-progress-and-timed-mode)
+- Child issues (implementation order): TIM-42 → TIM-41 → TIM-38 → TIM-39 → TIM-40
+
+## Linear issue mapping
+
+This plan was drafted with milestone labels `TIM-38`–`TIM-42`. Linear created child issues with different identifiers but the same scope and dependency order. Use the **Linear ID** column when linking issues or PRs.
+
+| Order | Plan milestone | Linear issue | PR | Scope |
+|------:|----------------|--------------|-----|-------|
+| 1 | TIM-38 | **TIM-42** | [#74](https://github.com/mikael-lh/sql-gym/pull/74) | Progress cookie and domain model |
+| 2 | TIM-39 | **TIM-41** | [#75](https://github.com/mikael-lh/sql-gym/pull/75) | Submit wiring and clear progress |
+| 3 | TIM-40 | **TIM-38** | [#76](https://github.com/mikael-lh/sql-gym/pull/76) | Catalog, home UI, and continue navigation |
+| 4 | TIM-41 | **TIM-39** | [#77](https://github.com/mikael-lh/sql-gym/pull/77) | Timed exercise countdown and elapsed time |
+| 5 | TIM-42 | **TIM-40** | [#78](https://github.com/mikael-lh/sql-gym/pull/78) | Docs, manual test plan, and validation |
 
 ## Planning decisions
 
@@ -24,7 +36,9 @@
 
 ## Milestones
 
-### 1. `TIM-38` — Progress cookie and domain model
+### 1. TIM-42 — Progress cookie and domain model
+
+_Plan milestone: TIM-38._
 
 **Goal:** Read/write signed progress cookie and define progress domain types.
 
@@ -49,7 +63,9 @@
 
 ---
 
-### 2. `TIM-39` — Submit wiring and clear progress
+### 2. TIM-41 — Submit wiring and clear progress
+
+_Plan milestone: TIM-39._
 
 **Goal:** Update progress cookie on grade submit; add clear-progress endpoint.
 
@@ -62,7 +78,7 @@
 **Implementation notes:**
 
 - Helper `def _redirect_exercise(...) -> RedirectResponse` centralizes cookie attachment.
-- Optional form field `elapsed_seconds: int | None = Form(default=None)` on submit route (wired fully in TIM-41; accept and ignore invalid values in TIM-39 if needed).
+- Optional form field `elapsed_seconds: int | None = Form(default=None)` on submit route (wired fully in TIM-39; accept and ignore invalid values in TIM-41 if needed).
 - Clear progress: POST only (form on practice page), CSRF not required for MVP (same as run/submit).
 
 **Acceptance criteria covered:** R1 (clear control), R2 (server-side updates, run-only no-op, pass sticky).
@@ -73,7 +89,9 @@
 
 ---
 
-### 3. `TIM-40` — Catalog, home UI, and continue navigation
+### 3. TIM-38 — Catalog, home UI, and continue navigation
+
+_Plan milestone: TIM-40._
 
 **Goal:** Show progress badges, aggregate counts, and continue link.
 
@@ -102,7 +120,9 @@
 
 ---
 
-### 4. `TIM-41` — Timed exercise countdown and elapsed time
+### 4. TIM-39 — Timed exercise countdown and elapsed time
+
+_Plan milestone: TIM-41._
 
 **Goal:** Timer UI, timeout submit, best elapsed time on pass.
 
@@ -122,13 +142,15 @@
 
 **Acceptance criteria covered:** R4 (all), R5 (all).
 
-**Checks:** `uv run pytest`, manual smoke per `docs/phase-3-manual-test-plan.md` (created in TIM-42).
+**Checks:** `uv run pytest`, manual smoke per `docs/phase-3-manual-test-plan.md` (created in TIM-40).
 
 **Risks:** Double submit on timeout — client `submitting` flag required.
 
 ---
 
-### 5. `TIM-42` — Docs, manual test plan, and validation
+### 5. TIM-40 — Docs, manual test plan, and validation
+
+_Plan milestone: TIM-42._
 
 **Goal:** Document Phase 3 behavior and update validation/docs gates.
 
@@ -150,14 +172,14 @@
 
 ## Requirement coverage
 
-| PRD requirement | Milestone(s) |
-|-----------------|--------------|
-| R1. Signed progress cookie | `TIM-38`, `TIM-39`, `TIM-40` (clear) |
-| R2. Progress status model and updates | `TIM-38`, `TIM-39`, `TIM-41` |
-| R3. Progress in catalog and navigation | `TIM-40` |
-| R4. Timed exercise countdown | `TIM-41` |
-| R5. Timeout submit and elapsed time | `TIM-39`, `TIM-41` |
-| R6. Home, docs, and validation | `TIM-40`, `TIM-42` |
+| PRD requirement | Linear issue(s) |
+|-----------------|-----------------|
+| R1. Signed progress cookie | TIM-42, TIM-41, TIM-38 (clear) |
+| R2. Progress status model and updates | TIM-42, TIM-41, TIM-39 |
+| R3. Progress in catalog and navigation | TIM-38 |
+| R4. Timed exercise countdown | TIM-39 |
+| R5. Timeout submit and elapsed time | TIM-41, TIM-39 |
+| R6. Home, docs, and validation | TIM-38, TIM-40 |
 
 ## Out of scope (explicit)
 
@@ -172,7 +194,7 @@
 | Simplicity | Server-rendered forms + small JS timer; no new dependencies. |
 | DRY | Single `ProgressStore.apply_submit_outcome`; reuse submit route for timeout. |
 | Tests | Unit tests for cookie + TestClient integration for submit/clear/UI. |
-| Small CLs | TIM-40 is the largest (templates); still one concern (progress UI). |
+| Small CLs | TIM-38 is the largest (templates); still one concern (progress UI). |
 
 **Non-blocking trade-offs:**
 
@@ -181,8 +203,4 @@
 
 ## Approval
 
-Pending user approval of this plan. After approval:
-
-1. Update `prd/README.md` to name Phase 3 as the active phase.
-2. Create Linear epic `TIM-37` and child issues `TIM-38`–`TIM-42`.
-3. Implement one issue at a time via `sql-gym-implement-issue` (or authorized `sql-gym-run-phase`).
+Plan approved 2026-06-08. Implemented 2026-06-09 via Linear epic TIM-37 and child issues TIM-42, TIM-41, TIM-38, TIM-39, TIM-40 (see mapping table above).
