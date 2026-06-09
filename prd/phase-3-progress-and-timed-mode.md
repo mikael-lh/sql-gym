@@ -2,7 +2,7 @@
 
 ## Status
 
-Draft for review (2026-06-08). User approved direction: **progress tracking (A)** and **timed interview mode (C)**, with **no accounts** — frictionless persistence via signed cookies. Do not create implementation issues or write application code until this PRD is approved and a scoped implementation plan from local `implement-from-prd` is approved.
+**Approved** (2026-06-08). Implementation plan: [`docs/phase-3-implementation-plan.md`](../docs/phase-3-implementation-plan.md). Do not write application code until the plan is approved and work is scoped to a Linear issue.
 
 ## Source context
 
@@ -238,8 +238,4 @@ Implementation note: unlike `SessionMiddleware`, which attaches the session cook
 
 ## Approval
 
-Pending user review of this draft PRD. After approval:
-
-1. Update `prd/README.md` to name Phase 3 as the active phase.
-2. Run `implement-from-prd` for a scoped implementation plan and Linear issues.
-3. Implement only after the plan is approved.
+PRD approved and merged (2026-06-08). Implementation plan drafted in `docs/phase-3-implementation-plan.md`. Activate Phase 3 in `prd/README.md` when the plan is approved and implementation begins.
