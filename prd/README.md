@@ -1,6 +1,6 @@
 # Product requirements
 
-**Status: Phase 4 PRD draft — interview sessions and reliability polish (pending approval).**
+**Status: Phase 4 approved — implementation plan pending approval.**
 
 Specs are added here via the `write-prd` repo skill. Do not treat informal chat notes as requirements.
 
@@ -25,7 +25,7 @@ Source of truth: committed markdown in `prd/`. Repo skills and when to use them:
 
 ## Active phase
 
-**Phase 4 (draft)** — [`phase-4-interview-sessions-and-polish.md`](phase-4-interview-sessions-and-polish.md). Interview session queues (3/5/8 timed exercises) plus session payload slimming and catalog copy fixes. **No application code** until this PRD and an implementation plan are approved.
+**Phase 4** — [`phase-4-interview-sessions-and-polish.md`](phase-4-interview-sessions-and-polish.md). Implementation plan: [`docs/phase-4-implementation-plan.md`](../docs/phase-4-implementation-plan.md) (**pending plan approval**). **No application code** until the plan is approved.
 
 Phase 3 shipped via [TIM-37](https://linear.app/times-api/issue/TIM-37/phase-3-or-progress-and-timed-mode) (issues TIM-42, TIM-41, TIM-38, TIM-39, TIM-40).
 

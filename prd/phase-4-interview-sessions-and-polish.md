@@ -2,7 +2,7 @@
 
 ## Status
 
-**Draft for review** (2026-06-09). Scope: **B + D** — multi-exercise timed interview sessions plus catalog/reliability polish. Do not write application code until this PRD is approved and an implementation plan is approved.
+**Approved** (merged 2026-06-09 via [#81](https://github.com/mikael-lh/sql-gym/pull/81)). Scope: **B + D** — multi-exercise timed interview sessions plus catalog/reliability polish. Implementation plan: [`docs/phase-4-implementation-plan.md`](../docs/phase-4-implementation-plan.md). Do not write application code until the plan is approved.
 
 ## Source context
 
@@ -226,8 +226,4 @@ Phase 4 is successful when a reviewer can:
 
 ## Approval
 
-Pending user approval of this PRD. After approval:
-
-1. Run `implement-from-prd` for a scoped implementation plan.
-2. Update `prd/README.md` to name Phase 4 as the active phase when implementation begins.
-3. Create Linear epic and child issues per plan.
+PRD approved and merged (2026-06-09). Implementation plan drafted in `docs/phase-4-implementation-plan.md`. Activate Phase 4 implementation when the plan is approved.
