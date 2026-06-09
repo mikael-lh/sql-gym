@@ -13,6 +13,7 @@ from app.domain.progress import ProgressStore
 from app.execution import execute_query
 from app.interview.session import (
     advance,
+    clear_interview_session,
     create_interview_session,
     current_exercise_url,
     end_session_early,
@@ -23,6 +24,7 @@ from app.interview.session import (
 from app.interview.views import (
     get_interview_exercise_context,
     get_interview_start_context,
+    get_interview_summary_context,
     parse_interview_start_form,
 )
 from app.practice import (
@@ -309,6 +311,32 @@ def create_app() -> FastAPI:
         ended = end_session_early(session)
         save_interview_session(request, ended)
         return RedirectResponse(url="/practice/interview/summary", status_code=303)
+
+    @app.get("/practice/interview/summary", response_class=HTMLResponse, tags=["pages"])
+    def interview_summary(request: Request) -> Response:
+        session = load_interview_session(request)
+        if session is None:
+            return RedirectResponse(url="/practice/interview/start", status_code=303)
+        if session.is_active:
+            resume_url = current_exercise_url(session)
+            return RedirectResponse(
+                url=resume_url or "/practice/interview/start",
+                status_code=303,
+            )
+        context = get_interview_summary_context(request)
+        clear_interview_session(request)
+        if context is None:
+            return RedirectResponse(url="/practice/interview/start", status_code=303)
+        return templates.TemplateResponse(
+            request,
+            "interview_summary.html",
+            context | {"request": request},
+        )
+
+    @app.post("/practice/interview/abandon", tags=["pages"])
+    def interview_abandon(request: Request) -> Response:
+        clear_interview_session(request)
+        return RedirectResponse(url="/practice", status_code=303)
 
     @app.get("/practice/{dataset_id}/{exercise_id}", response_class=HTMLResponse, tags=["pages"])
     def practice_exercise(

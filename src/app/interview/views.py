@@ -136,20 +136,6 @@ def get_interview_summary_context(request: Request) -> dict[str, object] | None:
     }
 
 
-def interview_resume_context(request: Request) -> dict[str, object]:
-    from app.interview.session import current_exercise_url
-
-    session = load_interview_session(request)
-    if session is None or not session.is_active:
-        return {"resume_interview_url": None, "resume_interview_label": None}
-    resume_url = current_exercise_url(session)
-    if resume_url is None:
-        return {"resume_interview_url": None, "resume_interview_label": None}
-    question_number = session.current_index + 1
-    label = f"Resume interview (question {question_number})"
-    return {"resume_interview_url": resume_url, "resume_interview_label": label}
-
-
 def format_best_elapsed(request: Request, exercise_id: str) -> str | None:
     store = load_progress(request)
     record = store.exercises.get(exercise_id)

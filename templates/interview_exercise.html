@@ -15,6 +15,9 @@
     {% if best_elapsed %} — best time {{ best_elapsed }}{% endif %}
   </p>
   <a class="primary-link" href="/practice">Back to practice catalog</a>
+  <form method="post" action="/practice/interview/abandon" class="inline-form">
+    <button type="submit" class="button-secondary">Abandon session</button>
+  </form>
 </section>
 
 <section class="panel" aria-labelledby="exercise-metadata-title">

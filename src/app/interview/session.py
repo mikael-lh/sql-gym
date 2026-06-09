@@ -178,6 +178,20 @@ def end_session_early(session: InterviewSession) -> InterviewSession:
     return session.model_copy(update={"status": "ended_early"})
 
 
+def interview_resume_context(request: Request) -> dict[str, str | None]:
+    session = load_interview_session(request)
+    if session is None or not session.is_active:
+        return {"resume_interview_url": None, "resume_interview_label": None}
+    resume_url = current_exercise_url(session)
+    if resume_url is None:
+        return {"resume_interview_url": None, "resume_interview_label": None}
+    question_number = session.current_index + 1
+    return {
+        "resume_interview_url": resume_url,
+        "resume_interview_label": f"Resume interview (question {question_number})",
+    }
+
+
 def build_summary(session: InterviewSession) -> InterviewSummary:
     items: list[InterviewSummaryItem] = []
     total_elapsed = 0

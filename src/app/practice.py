@@ -15,6 +15,7 @@ from app.domain.exercises import (
 )
 from app.domain.grading import GRADING_PLACEHOLDER
 from app.domain.progress import ExerciseProgressStatus, ProgressStore, build_progress_summary
+from app.interview.session import interview_resume_context
 from app.practice_session import get_attempt_state
 from app.progress import (
     continue_exercise_url,
@@ -147,6 +148,7 @@ def get_home_context(request: Request) -> dict[str, object]:
         "passed_count": store.passed_count(),
         "total_exercise_count": total,
         **continue_info,
+        **interview_resume_context(request),
     }
 
 
@@ -263,4 +265,5 @@ def get_practice_context(
         "grading": GRADING_PLACEHOLDER,
         "execution_available": True,
         **_continue_context(store, parsed_difficulty),
+        **interview_resume_context(request),
     }
