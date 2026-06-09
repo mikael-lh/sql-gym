@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero" aria-labelledby="interview-start-title">
+  <p class="eyebrow">{{ status_label }}</p>
+  <h1 id="interview-start-title">Start an interview session</h1>
+  <p class="lede">
+    Work through a queue of catalog exercises in order. The session includes both timed and untimed
+    questions. Progress on each submit still updates your browser cookie; the interview queue lives
+    in this browser session until you finish, end early, or abandon.
+  </p>
+  {% if has_active_session %}
+  <p class="notice">You already have an interview session in progress. Starting a new session replaces it.</p>
+  {% endif %}
+  <a class="primary-link" href="/practice">Back to practice catalog</a>
+</section>
+
+<section class="panel" aria-labelledby="interview-config-title">
+  <p class="eyebrow">Configuration</p>
+  <h2 id="interview-config-title">Choose your session</h2>
+  <form class="filter-form" method="get" action="/practice/interview/start">
+    <fieldset>
+      <legend>Queue length</legend>
+      {% for option in queue_lengths %}
+      <label class="radio-label">
+        <input
+          type="radio"
+          name="queue_length"
+          value="{{ option.value }}"
+          {% if selected_queue_length == option.value %}checked{% endif %}
+        >
+        {{ option.label }}
+      </label>
+      {% endfor %}
+    </fieldset>
+    <label>
+      Difficulty (optional)
+      <select name="difficulty">
+        <option value="">All difficulties</option>
+        {% for difficulty in difficulties %}
+        <option value="{{ difficulty.label }}" {% if selected_difficulty == difficulty.label %}selected{% endif %}>
+          {{ difficulty.label }}
+        </option>
+        {% endfor %}
+      </select>
+    </label>
+    <button type="submit">Update eligible count</button>
+  </form>
+  <p class="catalog-count">
+    {{ eligible_count }} exercise{% if eligible_count != 1 %}s{% endif %} eligible with this filter.
+  </p>
+  <form method="post" action="/practice/interview/start">
+    <input type="hidden" name="queue_length" value="{{ selected_queue_length }}">
+    <input type="hidden" name="difficulty" value="{{ selected_difficulty }}">
+    <button type="submit" class="button-primary" {% if not can_start %}disabled{% endif %}>
+      Start interview session
+    </button>
+  </form>
+  {% if not can_start %}
+  <p class="placeholder-note">No exercises match this filter. Choose a different difficulty.</p>
+  {% endif %}
+</section>
+{% endblock %}
