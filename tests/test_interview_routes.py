@@ -46,6 +46,7 @@ def test_interview_start_page_renders() -> None:
     assert "Start an interview session" in response.text
     assert "Start interview session" in response.text
     assert "Unlimited" in response.text
+    assert "Update eligible count" not in response.text
 
 
 def test_interview_start_post_creates_session_and_redirects() -> None:
@@ -81,6 +82,7 @@ def test_interview_exercise_page_renders_after_start() -> None:
     response = asyncio.run(_flow())
     assert response.status_code == 200
     assert "Question 1 of 3" in response.text
+    assert "Question 1 of 5" not in response.text
     assert "Interview session" in response.text
 
 

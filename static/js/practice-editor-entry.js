@@ -33,6 +33,13 @@ function initPracticeEditor(hostId, hiddenInputId, initialSql) {
   });
 
   syncHiddenInput(view);
+
+  const form = hiddenInput.closest("form");
+  if (form) {
+    form.addEventListener("submit", () => {
+      syncHiddenInput(view);
+    });
+  }
 }
 
 globalThis.initPracticeEditor = initPracticeEditor;

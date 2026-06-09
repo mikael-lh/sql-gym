@@ -73,6 +73,7 @@
 <section class="panel" aria-labelledby="editor-title">
   <p class="eyebrow">PostgreSQL target dialect</p>
   <h2 id="editor-title">SQL editor</h2>
+  <p class="placeholder-note">Write PostgreSQL for: {{ exercise.title }}</p>
   <form class="editor-form" method="post" action="/practice/interview/{{ dataset.id }}/{{ exercise.id }}/run">
     <textarea name="sql" id="practice-sql-input" class="sql-hidden-input" aria-hidden="true">{{ sql }}</textarea>
     <input type="hidden" name="elapsed_seconds" id="elapsed-seconds-input" value="">

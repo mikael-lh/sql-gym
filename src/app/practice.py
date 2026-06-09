@@ -164,7 +164,7 @@ def get_exercise_preview_context(
 
     store = load_progress(request)
     attempt_state = get_attempt_state(request, exercise.id)
-    sql = attempt_state["sql"] or f"-- Write PostgreSQL for: {exercise.title}\n"
+    sql = attempt_state["sql"]
     status = store.get_status(exercise.id)
     record = store.exercises.get(exercise.id)
     best_elapsed = (
