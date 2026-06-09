@@ -8,10 +8,17 @@
     {{ positioning }}
   </p>
   <p class="notice">
-    Phase 2 supports session-only run and grade on exercise previews. Accounts, AI feedback, and
-    durable progress are still deferred.
+    Progress is saved in a signed browser cookie for 60 days on this device. Draft SQL and last run
+    results stay in your session until you close the browser. Accounts, AI feedback, and cross-device
+    sync are still deferred.
   </p>
-  <a class="primary-link" href="/practice">Start practice</a>
+  <p class="progress-summary">{{ passed_count }} of {{ total_exercise_count }} exercises passed.</p>
+  {% if continue_url %}
+  <a class="primary-link" href="{{ continue_url }}">{{ continue_label }}</a>
+  {% else %}
+  <p class="placeholder-note">{{ continue_label }}</p>
+  {% endif %}
+  <a class="secondary-link" href="/practice">Browse catalog</a>
 </section>
 
 <section class="panel" aria-labelledby="loop-title">

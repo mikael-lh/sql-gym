@@ -9,8 +9,27 @@
     PostgreSQL and receive strict grid-match grading.
   </p>
   <p class="notice">
-    Attempts are session-only. AI grading, accounts, and durable progress are not available yet.
+    Progress is saved in a signed browser cookie for 60 days on this device. Draft SQL stays in your
+    session until you close the browser. AI grading and accounts are not available yet.
   </p>
+  <p class="progress-summary">{{ passed_count }} of {{ total_exercise_count }} exercises passed.</p>
+  {% if continue_url %}
+  <a class="primary-link" href="{{ continue_url }}">{{ continue_label }}</a>
+  {% else %}
+  <p class="placeholder-note">{{ continue_label }}</p>
+  {% endif %}
+</section>
+
+<section class="panel" aria-labelledby="progress-actions-title">
+  <p class="eyebrow">Your progress</p>
+  <h2 id="progress-actions-title">Browser-local progress</h2>
+  <p class="placeholder-note">
+    Clearing progress removes pass/attempt badges on this device. It does not delete your session draft
+    SQL.
+  </p>
+  <form method="post" action="/practice/progress/clear">
+    <button type="submit" class="button-secondary">Clear my progress</button>
+  </form>
 </section>
 
 <section class="panel" aria-labelledby="catalog-filters-title">
@@ -94,9 +113,13 @@
       <div class="exercise-grid">
         {% for exercise in items %}
         <article class="exercise-card">
-          <h4>{{ exercise.title }}</h4>
+          <div class="exercise-card-header">
+            <h4>{{ exercise.title }}</h4>
+            <span class="progress-badge progress-badge-{{ exercise.progress_status }}">{{ exercise.progress_label }}</span>
+          </div>
           <p>{{ exercise.prompt }}</p>
           <ul class="exercise-meta">
+            <li><strong>Progress:</strong> {{ exercise.progress_label }}{% if exercise.best_elapsed %} (best {{ exercise.best_elapsed }}){% endif %}</li>
             <li><strong>Mode:</strong> {{ exercise.mode }}</li>
             <li><strong>Dialect:</strong> {{ exercise.target_dialect }}</li>
             <li><strong>Time:</strong> {{ exercise.estimated_time_minutes }} min</li>

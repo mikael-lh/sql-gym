@@ -31,8 +31,9 @@ def test_home_page_renders_scaffold() -> None:
     assert response.status_code == 200
     assert "SQL Gym" in response.text
     assert "Times Archive SQL exercises" in response.text
-    assert "Phase 2 practice" in response.text
-    assert "Start practice" in response.text
+    assert "Phase 3 practice" in response.text
+    assert "Browse catalog" in response.text
+    assert "exercises passed" in response.text
 
 
 def test_home_page_presents_core_loop_and_deferred_boundaries() -> None:
@@ -52,11 +53,11 @@ def test_home_page_presents_core_loop_and_deferred_boundaries() -> None:
     assert "Still deferred" in response.text
     assert "Future work" in response.text
     for expected_placeholder in [
-        "Accounts and durable progress",
+        "Accounts and cross-device sync",
         "AI grading and explanations",
-        "Timed-mode scoring",
     ]:
         assert expected_placeholder in response.text
+    assert "Timed-mode scoring" not in response.text
 
 
 def test_practice_page_renders_catalog_backed_flow() -> None:
@@ -72,7 +73,9 @@ def test_practice_page_renders_catalog_backed_flow() -> None:
     assert "Timed" in response.text
     assert "PostgreSQL" in response.text
     assert "Run SQL on exercise previews" in response.text
-    assert "session-only" in response.text.lower()
+    assert "browser cookie" in response.text.lower()
+    assert "Clear my progress" in response.text
+    assert "Not started" in response.text
     assert "Show hint" in response.text
     assert "SELECT section_name" not in response.text
 
@@ -96,7 +99,8 @@ def test_practice_exercise_preview_renders_editor_and_session_copy() -> None:
     assert "Arts section headlines" in response.text
     assert "Learning objectives" in response.text
     assert "Show sample SQL" in response.text
-    assert "session only" in response.text.lower()
+    assert "cookie" in response.text.lower()
+    assert "Not started" in response.text
     assert "SQL editor" in response.text
     assert "Run SQL" in response.text
     assert "Submit for grading" in response.text
