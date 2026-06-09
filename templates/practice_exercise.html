@@ -54,11 +54,26 @@
   </details>
 </section>
 
+{% if exercise.mode == "Timed" %}
+<section class="panel" aria-labelledby="timed-title">
+  <p class="eyebrow">Interview mode</p>
+  <h2 id="timed-title">Timed exercise</h2>
+  <p class="placeholder-note">
+    Start the timer when you are ready. When time runs out, your current SQL is submitted for grading.
+    The timer resets if you leave this page.
+  </p>
+  <div id="practice-timer-config" data-duration-seconds="{{ exercise.estimated_time_minutes * 60 }}"></div>
+  <button type="button" id="start-timed-exercise" class="button-secondary">Start timed exercise</button>
+  <p id="timer-display" class="timer-display" hidden aria-live="polite"></p>
+</section>
+{% endif %}
+
 <section class="panel" aria-labelledby="editor-title">
   <p class="eyebrow">PostgreSQL target dialect</p>
   <h2 id="editor-title">SQL editor</h2>
   <form class="editor-form" method="post" action="/practice/{{ dataset.id }}/{{ exercise.id }}/run">
     <textarea name="sql" id="practice-sql-input" class="sql-hidden-input" aria-hidden="true">{{ sql }}</textarea>
+    <input type="hidden" name="elapsed_seconds" id="elapsed-seconds-input" value="">
     <div id="practice-editor-host" class="sql-editor-host" aria-label="SQL editor"></div>
     <div id="practice-editor-config"
       data-host-id="practice-editor-host"
@@ -129,4 +144,7 @@
 {% block scripts %}
 <script src="{{ url_for('static', path='/vendor/codemirror/bundle.js') }}"></script>
 <script src="{{ url_for('static', path='/js/practice-editor.js') }}"></script>
+{% if exercise.mode == "Timed" %}
+<script src="{{ url_for('static', path='/js/practice-timer.js') }}"></script>
+{% endif %}
 {% endblock %}

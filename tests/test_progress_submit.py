@@ -177,6 +177,103 @@ def test_fail_after_pass_keeps_passed(mock_execute: MagicMock) -> None:
     assert store.get_status("times-archive-001") == "passed"
 
 
+@patch("app.main.execute_query")
+def test_timed_pass_stores_elapsed_seconds(mock_execute: MagicMock) -> None:
+    from app.execution.models import QueryResult
+
+    grid = json.loads(
+        Path("src/app/catalog/data/expected_grids/times-archive-005.json").read_text()
+    )
+    mock_execute.return_value = QueryResult(
+        columns=tuple(grid["columns"]),
+        rows=tuple(tuple(row) for row in grid["rows"]),
+        row_count=len(grid["rows"]),
+        truncated=False,
+    )
+
+    async def _flow() -> httpx.Response:
+        transport = httpx.ASGITransport(app=app)
+        async with httpx.AsyncClient(
+            transport=transport,
+            base_url="http://testserver",
+            follow_redirects=False,
+        ) as client:
+            return await client.post(
+                "/practice/times-archive/times-archive-005/submit",
+                data={"sql": "SELECT 1", "elapsed_seconds": "420"},
+            )
+
+    response = asyncio.run(_flow())
+    cookie_value = response.headers.get("set-cookie", "").split(f"{COOKIE_NAME}=")[1].split(";")[0]
+    from starlette.requests import Request
+
+    store = load_progress(
+        Request(
+            {
+                "type": "http",
+                "method": "GET",
+                "path": "/",
+                "headers": [(b"cookie", f"{COOKIE_NAME}={cookie_value}".encode())],
+            }
+        )
+    )
+    record = store.exercises.get("times-archive-005")
+    assert record is not None
+    assert record.elapsed_seconds == 420
+
+
+@patch("app.main.execute_query")
+def test_timed_retry_updates_best_elapsed(mock_execute: MagicMock) -> None:
+    from app.execution.models import QueryResult
+
+    grid = json.loads(
+        Path("src/app/catalog/data/expected_grids/times-archive-005.json").read_text()
+    )
+    pass_result = QueryResult(
+        columns=tuple(grid["columns"]),
+        rows=tuple(tuple(row) for row in grid["rows"]),
+        row_count=len(grid["rows"]),
+        truncated=False,
+    )
+    mock_execute.return_value = pass_result
+
+    async def _flow() -> str:
+        transport = httpx.ASGITransport(app=app)
+        async with httpx.AsyncClient(
+            transport=transport,
+            base_url="http://testserver",
+            follow_redirects=False,
+        ) as client:
+            first = await client.post(
+                "/practice/times-archive/times-archive-005/submit",
+                data={"sql": "pass", "elapsed_seconds": "600"},
+            )
+            cookie = first.headers.get("set-cookie", "")
+            client.cookies.set("sql_gym_progress", cookie.split("=", 1)[1].split(";")[0])
+            second = await client.post(
+                "/practice/times-archive/times-archive-005/submit",
+                data={"sql": "pass", "elapsed_seconds": "300"},
+            )
+            cookie_header = second.headers.get("set-cookie", "")
+            return cookie_header if cookie_header is not None else ""
+
+    set_cookie = asyncio.run(_flow())
+    cookie_value = set_cookie.split(f"{COOKIE_NAME}=")[1].split(";")[0]
+    from starlette.requests import Request
+
+    store = load_progress(
+        Request(
+            {
+                "type": "http",
+                "method": "GET",
+                "path": "/",
+                "headers": [(b"cookie", f"{COOKIE_NAME}={cookie_value}".encode())],
+            }
+        )
+    )
+    assert store.exercises["times-archive-005"].elapsed_seconds == 300
+
+
 def test_clear_progress_wipes_cookie_store() -> None:
     async def _flow() -> httpx.Response:
         transport = httpx.ASGITransport(app=app)

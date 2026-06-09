@@ -222,6 +222,15 @@ def test_practice_run_sql_surfaces_execution_error(mock_execute: MagicMock) -> N
     assert "Only SELECT queries are allowed" in page.text
 
 
+def test_timed_exercise_preview_renders_timer_ui() -> None:
+    response = asyncio.run(get("/practice/times-archive/times-archive-005"))
+
+    assert response.status_code == 200
+    assert "Timed exercise" in response.text
+    assert "Start timed exercise" in response.text
+    assert "practice-timer.js" in response.text
+
+
 def test_codemirror_assets_are_served() -> None:
     bundle = asyncio.run(get("/static/vendor/codemirror/bundle.js"))
     editor = asyncio.run(get("/static/js/practice-editor.js"))
