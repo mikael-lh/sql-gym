@@ -162,11 +162,15 @@ Learner-facing exercise copy must match gradable intent.
 
 Acceptance criteria:
 
-- Audit all 50 exercises for prompt / `sample_sql` vs `reference_sql` mismatches (date literals, filters, column names called out in hints).
-- Fix audited mismatches in `times_exercises.json` without changing expected grids or `reference_sql` unless a grid bug is found (grid bugs are out of scope unless blocking).
-- Minimum fixes include **`times-archive-011`** (January publications) and **`times-archive-014`** (publication window) date copy called out in Phase 2/3 future work.
-- Add a short **content audit note** in docs listing what was changed and the rule: prompts/samples align to archive date range used by `reference_sql`.
-- Tests or lint guard optional: CI check that sample SQL date literals match reference year pattern where prompts mention calendar dates (implementation plan may scope).
+- Audit all 50 exercises for learner-facing copy drift across four fields in `times_exercises.json`:
+  - **`prompt`** — natural-language task text shown as the exercise headline.
+  - **`hint`** — short nudge (must not contradict gradable SQL).
+  - **`sample_sql`** — illustrative SQL in `<details>` (learners often copy-paste).
+  - **`reference_sql`** — canonical answer used to build expected grids (not shown to learners; audit baseline).
+- Fix mismatches where prompt/sample/hint would lead learners to SQL that **cannot pass** strict grading, without changing expected grids or `reference_sql` unless a grid bug is found (grid bugs out of scope unless blocking).
+- Minimum fixes include **`times-archive-011`** and **`times-archive-014`** (date literal drift; see examples in PR discussion).
+- No separate content-audit doc required; summarize catalog copy fixes in the implementation PR description only.
+- Optional scripted guard: flag exercises whose prompt mentions a calendar year that does not appear in `reference_sql` (implementation plan may scope).
 
 ### R7. Home, docs, and validation
 
