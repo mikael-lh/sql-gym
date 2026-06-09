@@ -99,6 +99,44 @@ def test_submit_fail_sets_attempted(mock_execute: MagicMock) -> None:
 
 
 @patch("app.main.execute_query")
+def test_wide_result_submit_still_renders_grading_panel(mock_execute: MagicMock) -> None:
+    from app.execution.models import QueryResult
+
+    grid = json.loads(
+        Path("src/app/catalog/data/expected_grids/times-archive-003.json").read_text()
+    )
+    wide_rows = tuple(tuple(row) for row in grid["rows"])
+    mock_execute.return_value = QueryResult(
+        columns=tuple(grid["columns"]),
+        rows=wide_rows,
+        row_count=len(wide_rows),
+        truncated=False,
+    )
+
+    async def _flow() -> httpx.Response:
+        transport = httpx.ASGITransport(app=app)
+        async with httpx.AsyncClient(
+            transport=transport,
+            base_url="http://testserver",
+            follow_redirects=True,
+        ) as client:
+            return await client.post(
+                "/practice/times-archive/times-archive-003/submit",
+                data={
+                    "sql": (
+                        "SELECT section_name, COUNT(*) AS article_count "
+                        "FROM times_archive GROUP BY 1"
+                    ),
+                },
+            )
+
+    response = asyncio.run(_flow())
+    assert response.status_code == 200
+    assert 'id="grading-title"' in response.text
+    assert "Passed" in response.text
+
+
+@patch("app.main.execute_query")
 def test_run_does_not_set_progress_cookie(mock_execute: MagicMock) -> None:
     from app.execution.models import QueryResult
 

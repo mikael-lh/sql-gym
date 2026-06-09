@@ -10,6 +10,7 @@ from app.execution.models import ExecutionError, QueryResult
 from app.grading import grade
 
 SESSION_KEY = "practice_attempts"
+SESSION_PREVIEW_ROW_LIMIT = 25
 
 
 def _attempts(request: Request) -> dict[str, dict[str, Any]]:
@@ -27,11 +28,13 @@ def get_stored_sql(request: Request, exercise_id: str) -> str:
 
 
 def _serialize_query_result(result: QueryResult) -> dict[str, Any]:
+    preview_rows = [list(row) for row in result.rows[:SESSION_PREVIEW_ROW_LIMIT]]
+    preview_capped = len(result.rows) > SESSION_PREVIEW_ROW_LIMIT
     return {
         "columns": list(result.columns),
-        "rows": [list(row) for row in result.rows],
+        "rows": preview_rows,
         "row_count": result.row_count,
-        "truncated": result.truncated,
+        "truncated": result.truncated or preview_capped,
     }
 
 
