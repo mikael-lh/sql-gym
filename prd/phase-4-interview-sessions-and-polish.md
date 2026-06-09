@@ -2,7 +2,7 @@
 
 ## Status
 
-**Approved** (merged 2026-06-09 via [#81](https://github.com/mikael-lh/sql-gym/pull/81)). Scope: **B + D** — multi-exercise timed interview sessions plus catalog/reliability polish. Implementation plan: [`docs/phase-4-implementation-plan.md`](../docs/phase-4-implementation-plan.md). Do not write application code until the plan is approved.
+**Approved** (merged 2026-06-09 via [#81](https://github.com/mikael-lh/sql-gym/pull/81)). Scope: **B + D** — multi-exercise interview sessions (timed and untimed) plus catalog/reliability polish. Implementation plan: [`docs/phase-4-implementation-plan.md`](../docs/phase-4-implementation-plan.md). Do not write application code until the plan is approved.
 
 ## Source context
 
@@ -25,12 +25,12 @@ Current implementation context:
 
 - **Phase 4 theme:** Ship **interview sessions (B)** and **reliability/catalog polish (D)** together; defer AI grading and accounts.
 - **Identity:** Still no user accounts or server-side learner database.
-- **Interview sessions:** A **browser-session-scoped** queue of **timed** catalog exercises (not a new durable cookie). Per-exercise progress cookie updates remain unchanged on each submit.
-- **Queue length:** Learner chooses **3, 5, 8**, or **Unlimited** when starting a session. Fixed lengths cap the queue; **Unlimited** runs through **all eligible timed exercises** in catalog order within the active filter (16 today when unfiltered). Learner may **end session early** to view summary before the queue is exhausted.
+- **Interview sessions:** A **browser-session-scoped** queue of catalog exercises — **both timed and untimed** (not a new durable cookie). Per-exercise progress cookie updates remain unchanged on each submit.
+- **Queue length:** Learner chooses **3, 5, 8**, or **Unlimited** when starting a session. Fixed lengths cap the queue; **Unlimited** runs through **all eligible exercises** in catalog order within the active filter (50 today when unfiltered). Learner may **end session early** to view summary before the queue is exhausted.
 - **Resume UX:** If a session is in progress, `/practice` and home show a **Resume interview** banner/link to the current question.
-- **URL shape (Option A):** Dedicated interview routes under `/practice/interview/...` (e.g. `/practice/interview/start`, `/practice/interview/{dataset_id}/{exercise_id}`, `/practice/interview/summary`). Casual single-exercise URLs under `/practice/{dataset_id}/{exercise_id}` remain unchanged.
-- **Exercise selection:** Sequential **timed** exercises in stable catalog order, optionally filtered by **difficulty** (same semantics as continue). Skip exercises not in `Timed` mode when building the queue. Start from the first timed exercise in scope that is not already at the front of the filtered timed list (default: first timed exercise in catalog order within filter).
-- **Timer behavior:** Reuse Phase 3 per-exercise timer (explicit start, `estimated_time_minutes`, timeout submit). No whole-session master clock in Phase 4.
+- **URL shape (Option A):** Dedicated interview routes under `/practice/interview/...` (e.g. `/practice/interview/start`, `/practice/interview/{dataset_id}/{exercise_id}`, `/practice/interview/summary`). These are **one dynamic route per pattern** (same as casual practice today) — not a separate static page per exercise. Casual single-exercise URLs under `/practice/{dataset_id}/{exercise_id}` remain unchanged.
+- **Exercise selection:** Sequential exercises in stable catalog order, optionally filtered by **difficulty** (same semantics as continue). **Both `Timed` and `Untimed` modes** are eligible. Queue starts from the first exercise in scope (catalog order within filter).
+- **Timer behavior:** Reuse Phase 3 per-exercise timer **only when `exercise.mode == "Timed"`** (explicit start, `estimated_time_minutes`, timeout submit). Untimed queue items have no timer UI. No whole-session master clock in Phase 4.
 - **Advance rules:** After submit or timeout on an interview exercise, show grading feedback, then learner clicks **Next question** (no forced auto-skip timer). Last exercise shows **View session summary** instead.
 - **Session outcomes:** Session summary shows pass/fail per queued exercise, total elapsed time (sum of per-exercise elapsed when recorded), and links back to catalog. Session does not write a separate durable store; abandoning the tab ends the session.
 - **Single-exercise practice:** Existing `/practice/...` timed and untimed flows remain; interview mode is an additional entry path.
@@ -39,7 +39,7 @@ Current implementation context:
 
 ## Problem
 
-**Interview gap:** Timed mode works one exercise at a time. Interview prep usually means a **sequence** of questions with continuity and a recap — learners must manually pick the next timed card.
+**Interview gap:** Practice works one exercise at a time. Interview prep usually means a **sequence** of questions with continuity and a recap — learners must manually pick the next card.
 
 **Reliability gap:** Session cookies that embed full result grids are fragile. Learners can pass (progress cookie updates) but see no grading panel, which undermines trust in the product.
 
@@ -47,7 +47,7 @@ Current implementation context:
 
 ## Goals
 
-- Offer a **timed interview session** flow: pick queue length (3, 5, 8, or unlimited) and optional difficulty, work through timed exercises in order, and view a **session summary** (on completion or early end).
+- Offer an **interview session** flow: pick queue length (3, 5, 8, or unlimited) and optional difficulty, work through exercises (timed and untimed) in order, and view a **session summary** (on completion or early end).
 - Keep strict grid-match grading and cookie progress behavior from Phases 2–3.
 - Fix session storage so submit feedback is reliable even for wide result sets.
 - Correct audited catalog copy so prompts and samples do not mislead learners relative to gradable SQL.
@@ -70,7 +70,7 @@ Current implementation context:
 
 ### Learner
 
-As a learner preparing for interviews, I want to run **several timed SQL questions in a row** so practice feels like a real interview loop.
+As a learner preparing for interviews, I want to run **several SQL questions in a row** so practice feels like a real interview loop.
 
 As a learner, I want a **summary** after the session showing which questions I passed and how long they took.
 
@@ -92,40 +92,40 @@ As a future implementer, I want interview session state isolated from progress c
 
 ### R1. Interview session entry and configuration
 
-The app must let learners start a timed multi-exercise session from the practice surface.
+The app must let learners start a multi-exercise interview session from the practice surface.
 
 Acceptance criteria:
 
 - `/practice` (and/or home) exposes **Start interview session** (or equivalent) linking to a configuration step.
-- Configuration UI lets the learner pick queue length: **3, 5, 8**, or **Unlimited** (all eligible timed exercises in scope).
-- Optional **difficulty** filter (`Beginner`, `Intermediate`, `Advanced`) applies to which timed exercises are eligible, matching Phase 3 continue filter semantics.
-- Copy states the session is **timed questions only**, runs in **catalog order** within the filter, and ends when the queue is complete, the learner **ends session early**, or they leave and abandon.
+- Configuration UI lets the learner pick queue length: **3, 5, 8**, or **Unlimited** (all eligible exercises in scope).
+- Optional **difficulty** filter (`Beginner`, `Intermediate`, `Advanced`) applies to which exercises are eligible, matching Phase 3 continue filter semantics.
+- Copy states the session includes **timed and untimed** catalog exercises, runs in **catalog order** within the filter, and ends when the queue is complete, the learner **ends session early**, or they leave and abandon.
 - Starting a session creates session state server-side in the **browser session** (not the progress cookie) and redirects to the first queued exercise.
 
 ### R2. Interview session queue and navigation
 
-The server must build and advance a deterministic queue of timed exercises.
+The server must build and advance a deterministic queue of catalog exercises.
 
 Acceptance criteria:
 
-- Queue contains only exercises with `mode == "Timed"` from `TIMES_ARCHIVE_CATALOG` in stable tuple order.
-- When difficulty filter is set, queue draws only from that difficulty; when unset, all timed exercises are eligible.
-- Fixed queue lengths use `min(selected, eligible timed count)`; **Unlimited** queues every eligible timed exercise in order.
+- Queue contains exercises from `TIMES_ARCHIVE_CATALOG` in stable tuple order — **both `Timed` and `Untimed`**.
+- When difficulty filter is set, queue draws only from that difficulty; when unset, all catalog exercises are eligible.
+- Fixed queue lengths use `min(selected, eligible count)`; **Unlimited** queues every eligible exercise in order.
 - Session state tracks: `queue` (exercise ids in order), `current_index`, `started_at`, `queue_mode` (`fixed` | `unlimited`), and per-exercise outcomes (`passed`/`failed`, `elapsed_seconds` when available).
-- Exercise preview in interview context shows **Question X of Y** (fixed) or **Question X** with optional “of N timed exercises” hint (unlimited); interview-mode chrome distinct from casual practice.
+- Exercise preview in interview context shows **Question X of Y** (fixed) or **Question X** with optional “of N exercises” hint (unlimited); interview-mode chrome distinct from casual practice.
 - **End session early** ends the interview and opens the summary for exercises completed so far (available for any queue mode).
 - `/practice` and home show **Resume interview** when session state exists and the queue is not finished.
 - Interview exercises are served at `/practice/interview/{dataset_id}/{exercise_id}`; configuration at `/practice/interview/start`; summary at `/practice/interview/summary`. No standalone catalog route.
 - Leaving mid-session (navigate to catalog/home) preserves session state until the browser session ends; learner can resume current question if session state exists.
 - **Abandon session** control clears interview session state and returns to `/practice`.
 
-### R3. Per-exercise timer and advance within session
+### R3. Per-exercise mode and advance within session
 
-Interview exercises reuse Phase 3 timed behavior with session-aware navigation.
+Interview exercises reuse Phase 3 per-exercise behavior with session-aware navigation.
 
 Acceptance criteria:
 
-- Each queued exercise shows the existing timer UI (explicit start, countdown, timeout submit).
+- Queued exercises with `mode == "Timed"` show the existing timer UI (explicit start, countdown, timeout submit). **Untimed** queue items omit the timer panel.
 - On manual submit or timeout, grading uses the existing submit path; progress cookie updates per Phase 3 rules.
 - After grading renders, UI shows **Next question**, **End session early**, or **View session summary** on the last queued exercise; no auto-advance without learner action.
 - Timeout on a failed/empty query records `failed` for session summary; progress cookie follows Phase 3 attempted rules.
@@ -188,10 +188,11 @@ Acceptance criteria:
 
 | Case | Expected behavior |
 |------|-------------------|
-| Fewer timed exercises than requested fixed queue length | Use all eligible timed exercises; show actual count in UI before start |
-| Unlimited with difficulty filter | Queue includes all timed exercises in that difficulty only |
+| Fewer exercises than requested fixed queue length | Use all eligible exercises; show actual count in UI before start |
+| Unlimited with difficulty filter | Queue includes all exercises in that difficulty only |
 | End session early with zero completes | Summary shows empty state with link back to catalog |
-| No timed exercises for difficulty filter | Configuration shows zero available; start disabled with explanation |
+| No exercises for difficulty filter | Configuration shows zero available; start disabled with explanation |
+| Untimed question in interview queue | No timer UI; manual submit only; no `elapsed_seconds` in session outcome |
 | Session cookie lost mid-interview | Session queue lost; progress cookie retains any passes already written |
 | Large query result on run | Preview capped; row count and truncated flag shown |
 | Large query result on submit | Grading renders; session stores grading + slim preview only |
@@ -204,7 +205,7 @@ Acceptance criteria:
 
 Phase 4 is successful when a reviewer can:
 
-1. Start a 3-question interview on **Beginner** timed exercises and advance through the queue to a summary.
+1. Start a 3-question interview on **Beginner** exercises (mix of timed and untimed) and advance through the queue to a summary.
 2. See grading feedback after submitting a query that returns hundreds of rows.
 3. Confirm progress cookie still updates on interview submits.
 4. Read corrected date copy on `times-archive-011` and `times-archive-014`.
@@ -214,7 +215,7 @@ Phase 4 is successful when a reviewer can:
 
 | Phase 3 behavior | Phase 4 change |
 |------------------|----------------|
-| Per-exercise timed mode | Unchanged for casual `/practice/{id}`; reused inside interview queue |
+| Per-exercise timed mode | Unchanged for casual `/practice/{id}`; timer shown in interview only for `Timed` queue items |
 | Progress cookie | Unchanged; still updated on each submit |
 | Continue link | Unchanged; interview is a separate entry path |
 | Full grids in session | Replaced with capped preview + metadata |

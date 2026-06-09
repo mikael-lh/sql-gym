@@ -30,8 +30,8 @@
   }
   ```
   `requested_length` is `null` when `queue_mode` is `unlimited`. `status` is `active` | `ended_early` | `completed`.
-- **Queue builder:** `build_interview_queue(requested_length: int | None, difficulty: Difficulty | None) -> list[Exercise]` — timed exercises only, stable catalog order, optional difficulty filter. Fixed lengths use `min(requested, eligible)`; unlimited returns all eligible timed exercises (16 unfiltered today).
-- **Routes (Option A):**
+- **Queue builder:** `build_interview_queue(requested_length: int | None, difficulty: Difficulty | None) -> list[Exercise]` — **all catalog exercises** (timed and untimed), stable catalog order, optional difficulty filter. Fixed lengths use `min(requested, eligible)`; unlimited returns all eligible exercises (50 unfiltered today).
+- **Routes (Option A):** One **parameterized handler** per pattern — not a separate route file or template per exercise. `{dataset_id}` and `{exercise_id}` are path variables; the server loads that exercise from the catalog (same model as existing `/practice/{dataset_id}/{exercise_id}`).
   - `GET /practice/interview/start` — configuration form
   - `POST /practice/interview/start` — create session → redirect to first question
   - `GET /practice/interview/{dataset_id}/{exercise_id}` — interview exercise page
@@ -42,7 +42,7 @@
   - `POST /practice/interview/abandon` — clear session → `/practice`
   - `GET /practice/interview/summary` — recap; clears session after render
 - **Guards:** Interview exercise GET/POST handlers verify `exercise_id` matches `queue[current_index]`; otherwise redirect to current question or `/practice/interview/start` if session missing.
-- **Timer:** Reuse `practice-timer.js` and timed exercise template block; all interview exercises are timed catalog entries.
+- **Timer:** Reuse `practice-timer.js` and timed exercise template block **only when `exercise.mode == "Timed"`**. Untimed interview questions omit the timer panel.
 - **Session slimming:** `SESSION_PREVIEW_ROW_LIMIT = 25` in `practice_session.py`; serialize at most 25 rows per stored `query_result`. Grading on submit still re-executes SQL server-side.
 - **Catalog audit:** Agent manually audits all 50 exercises; fixes in `times_exercises.json`; summarize changes in PR description only (no `docs/phase-4-content-audit.md`).
 - **Optional year guard:** Defer scripted `scripts/check_catalog_copy.py` unless trivial; not blocking Phase 4.
@@ -81,14 +81,14 @@
 
 - `src/app/interview/__init__.py`
 - `src/app/interview/session.py` — `InterviewSession`, `InterviewOutcome`, `load_interview_session`, `save_interview_session`, `clear_interview_session`, `record_outcome`, `current_exercise`, `advance`, `build_summary`.
-- `src/app/interview/queue.py` — `build_interview_queue`, `count_eligible_timed`, `QueueLength` enum or constants (`3`, `5`, `8`, `unlimited`).
-- `tests/test_interview_queue.py` — fixed/unlimited lengths, difficulty filter, timed-only, stable order, min when fewer than requested.
+- `src/app/interview/queue.py` — `build_interview_queue`, `count_eligible_exercises`, `QueueLength` enum or constants (`3`, `5`, `8`, `unlimited`).
+- `tests/test_interview_queue.py` — fixed/unlimited lengths, difficulty filter, timed+untimed inclusion, stable order, min when fewer than requested.
 - `tests/test_interview_session.py` — roundtrip session state, outcome recording, advance index.
 
 **Implementation notes:**
 
 - Reuse `Difficulty` from `app.domain.exercises`.
-- `eligible_timed_exercises(difficulty)` iterates `TIMES_ARCHIVE_CATALOG.exercises` like `find_continue_exercise`.
+- `eligible_interview_exercises(difficulty)` iterates `TIMES_ARCHIVE_CATALOG.exercises` like `find_continue_exercise` (no mode filter).
 
 **Acceptance criteria covered:** Partial R2 (queue rules, session state model).
 
@@ -106,8 +106,8 @@
 
 - `src/app/interview/views.py` — `get_interview_start_context(request)`.
 - `src/app/main.py` — `GET/POST /practice/interview/start`.
-- `templates/interview_start.html` — length radio (3/5/8/Unlimited), difficulty select (optional), eligible count preview, disabled start when zero timed exercises.
-- `tests/test_interview_routes.py` _(new)_ — start page renders; POST creates session and redirects to first timed exercise URL.
+- `templates/interview_start.html` — length radio (3/5/8/Unlimited), difficulty select (optional), eligible count preview, disabled start when zero exercises match filter.
+- `tests/test_interview_routes.py` _(new)_ — start page renders; POST creates session and redirects to first queued exercise URL.
 
 **Implementation notes:**
 
@@ -124,13 +124,13 @@
 
 ### 4. TIM-47 — Interview exercise page, run/submit, and advance
 
-**Goal:** Interview exercise experience with timer, grading, and manual advance.
+**Goal:** Interview exercise experience with per-exercise timer (when timed), grading, and manual advance.
 
 **Files to create or modify:**
 
 - `src/app/interview/views.py` — `get_interview_exercise_context(request, dataset_id, exercise_id)`; navigation helpers (`next_url`, `is_last_question`, question labels).
 - `src/app/main.py` — interview GET exercise, POST run, POST submit, POST next, POST end.
-- `templates/interview_exercise.html` — based on `practice_exercise.html` with interview chrome (`Question X of Y`), formactions under `/practice/interview/...`, post-grade actions: **Next question**, **End session early**, **View session summary** (last item).
+- `templates/interview_exercise.html` — based on `practice_exercise.html` with interview chrome (`Question X of Y`), timer block conditional on `Timed`, formactions under `/practice/interview/...`, post-grade actions: **Next question**, **End session early**, **View session summary** (last item).
 - `static/styles.css` — minimal interview badge/panel styles if needed.
 - `tests/test_interview_routes.py` — run/submit on interview path updates progress cookie + session outcome; next advances; wrong exercise id redirects to current.
 
@@ -208,7 +208,7 @@
 - `README.md` — Phase 4 section (interview sessions, session slimming).
 - `docs/session-state.md` _(new)_ — session vs progress cookie, interview session shape, preview row cap.
 - `docs/progress.md` — cross-link session-state doc.
-- `docs/phase-4-manual-test-plan.md` — interview start, 3-question flow, unlimited, end early, abandon, resume, large-result grading, catalog spot-check.
+- `docs/phase-4-manual-test-plan.md` — interview start, 3-question flow (timed + untimed), unlimited, end early, abandon, resume, large-result grading, catalog spot-check.
 - `tests/test_developer_workflow.py` — README Phase 4 assertions.
 - `scripts/validate-env.sh` — active phase banner when implementation completes.
 - `src/app/main.py` — update `PLACEHOLDERS` / home `status_label` if needed.
