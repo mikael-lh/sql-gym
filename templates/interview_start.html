@@ -20,27 +20,15 @@
   {% endif %}
 </section>
 
-<section class="panel" aria-labelledby="interview-config-title">
+<section class="panel interview-start-panel" aria-labelledby="interview-config-title">
   <p class="eyebrow">Configuration</p>
   <h2 id="interview-config-title">Choose your session</h2>
-  <form class="filter-form" method="get" action="/practice/interview/start">
-    <fieldset>
-      <legend>Queue length</legend>
-      {% for option in queue_lengths %}
-      <label class="radio-label">
-        <input
-          type="radio"
-          name="queue_length"
-          value="{{ option.value }}"
-          {% if selected_queue_length == option.value %}checked{% endif %}
-        >
-        {{ option.label }}
-      </label>
-      {% endfor %}
-    </fieldset>
-    <label>
+
+  <form method="get" action="/practice/interview/start" class="interview-difficulty-form">
+    <input type="hidden" name="queue_length" value="{{ selected_queue_length }}">
+    <label for="difficulty-filter">
       Difficulty (optional)
-      <select name="difficulty">
+      <select id="difficulty-filter" name="difficulty" onchange="syncInterviewQueueLengthFilter(this.form); this.form.submit()">
         <option value="">All difficulties</option>
         {% for difficulty in difficulties %}
         <option value="{{ difficulty.label }}" {% if selected_difficulty == difficulty.label %}selected{% endif %}>
@@ -49,15 +37,31 @@
         {% endfor %}
       </select>
     </label>
-    <button type="submit">Update eligible count</button>
   </form>
+
   <p class="catalog-count">
     {{ eligible_count }} exercise{% if eligible_count != 1 %}s{% endif %} eligible with this filter.
   </p>
-  <form method="post" action="/practice/interview/start">
-    <input type="hidden" name="queue_length" value="{{ selected_queue_length }}">
+
+  <form method="post" action="/practice/interview/start" class="interview-start-form">
     <input type="hidden" name="difficulty" value="{{ selected_difficulty }}">
-    <button type="submit" class="button-primary" {% if not can_start %}disabled{% endif %}>
+    <fieldset class="interview-queue-fieldset">
+      <legend>Queue length</legend>
+      <div class="interview-queue-options">
+        {% for option in queue_lengths %}
+        <label class="interview-queue-option">
+          <input
+            type="radio"
+            name="queue_length"
+            value="{{ option.value }}"
+            {% if selected_queue_length == option.value %}checked{% endif %}
+          >
+          <span>{{ option.label }}</span>
+        </label>
+        {% endfor %}
+      </div>
+    </fieldset>
+    <button type="submit" class="button-primary interview-start-button" {% if not can_start %}disabled{% endif %}>
       Start interview session
     </button>
   </form>
@@ -65,4 +69,29 @@
   <p class="placeholder-note">No exercises match this filter. Choose a different difficulty.</p>
   {% endif %}
 </section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  function syncInterviewQueueLengthFilter(filterForm) {
+    const selected = document.querySelector(
+      '.interview-start-form input[name="queue_length"]:checked'
+    );
+    const hidden = filterForm.querySelector('input[name="queue_length"]');
+    if (selected && hidden) {
+      hidden.value = selected.value;
+    }
+  }
+
+  document.querySelectorAll('.interview-start-form input[name="queue_length"]').forEach((radio) => {
+    radio.addEventListener('change', () => {
+      const hidden = document.querySelector(
+        '.interview-difficulty-form input[name="queue_length"]'
+      );
+      if (hidden) {
+        hidden.value = radio.value;
+      }
+    });
+  });
+</script>
 {% endblock %}

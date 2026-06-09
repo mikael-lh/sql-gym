@@ -8,6 +8,7 @@ from psycopg import errors as pg_errors
 
 from app.db.settings import get_database_url
 from app.execution.models import ExecutionError, QueryResult
+from app.execution.sql_sanitize import strip_sql_comments
 
 STATEMENT_TIMEOUT_MS = 5_000
 MAX_ROWS = 500
@@ -32,7 +33,7 @@ def _normalize_cell(value: object) -> object:
 
 
 def validate_select_only(sql: str) -> ExecutionError | None:
-    stripped = sql.strip()
+    stripped = strip_sql_comments(sql)
     if not stripped:
         return ExecutionError(message="Enter a SQL query to run.", code="empty_sql")
     if ";" in stripped.rstrip(";"):
@@ -68,11 +69,12 @@ def execute_query(sql: str) -> QueryResult | ExecutionError:
             code="database_unavailable",
         )
 
+    executable_sql = strip_sql_comments(sql).rstrip(";")
     try:
         with psycopg.connect(database_url) as conn:
             conn.execute(f"SET statement_timeout = {STATEMENT_TIMEOUT_MS}")
             with conn.cursor() as cur:
-                cur.execute(sql.strip().rstrip(";"))
+                cur.execute(executable_sql)
                 if cur.description is None:
                     return ExecutionError(
                         message="The query did not return a result set.",

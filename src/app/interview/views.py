@@ -108,7 +108,7 @@ def get_interview_exercise_context(
             "can_view_summary": has_outcome and is_last,
         },
         "dataset": base_context["dataset"],
-        "sql": attempt_state["sql"] or f"-- Write PostgreSQL for: {exercise.title}\n",
+        "sql": attempt_state["sql"],
         "query_result": attempt_state["query_result"],
         "execution_error": attempt_state["execution_error"],
         "grading": attempt_state["grading"],
