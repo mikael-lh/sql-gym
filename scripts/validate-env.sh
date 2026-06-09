@@ -99,4 +99,4 @@ if [[ -f pyproject.toml ]]; then
 else
   echo "Application stack: not scaffolded yet (see prd/phase-0-product-scaffolding.md)."
 fi
-echo "Active phase: Phase 2 - SQL execution and grading."
+echo "Active phase: Phase 3 complete - progress and timed mode."

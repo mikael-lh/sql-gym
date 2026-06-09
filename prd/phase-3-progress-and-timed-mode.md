@@ -2,7 +2,7 @@
 
 ## Status
 
-**Approved** (2026-06-08). Implementation plan: [`docs/phase-3-implementation-plan.md`](../docs/phase-3-implementation-plan.md). Do not write application code until the plan is approved and work is scoped to a Linear issue.
+**Complete** (merged 2026-06-09). Implemented via [TIM-37](https://linear.app/times-api/issue/TIM-37/phase-3-or-progress-and-timed-mode) child issues TIM-42, TIM-41, TIM-38, TIM-39, and TIM-40 and [`docs/phase-3-implementation-plan.md`](../docs/phase-3-implementation-plan.md).
 
 ## Source context
 
@@ -232,10 +232,29 @@ Concrete write triggers in Phase 3:
 
 Implementation note: unlike `SessionMiddleware`, which attaches the session cookie automatically, the progress cookie is set explicitly via `Response.set_cookie()` (or a small helper) in handlers that mutate progress. Signing should use the same secret material as sessions (`SESSION_SECRET`) and the same pattern as Starlette’s signed cookies (e.g. `itsdangerous`), so payloads cannot be forged client-side.
 
+## What was actually built
+
+- Signed `sql_gym_progress` cookie (60-day lifetime) with `ProgressStore` domain model.
+- Progress updates on submit-grade; `POST /practice/progress/clear`.
+- Catalog/home continue link (difficulty-aware on `/practice`); progress badges; X/50 summary.
+- Timed exercise countdown (`practice-timer.js`) with explicit start and timeout auto-submit.
+- Best elapsed time on timed passes with retry support.
+- Docs: [progress.md](../docs/progress.md), [phase-3-manual-test-plan.md](../docs/phase-3-manual-test-plan.md).
+
+## Approved deviations
+
+| Topic | PRD / plan | Shipped |
+|-------|------------|---------|
+| Linear issue IDs | Plan TIM-38–TIM-42 | Created as TIM-42, TIM-41, TIM-38, TIM-39, TIM-40 (same milestone order) |
+| Timer state | Session-scoped reset on navigate away | As planned; documented in manual test plan |
+
+## Future work
+
+- Accounts and cross-device progress sync.
+- AI grading and explanations.
+- Multi-exercise timed interview sessions.
+- Align exercise prompts/sample SQL with `reference_sql` where still drifted (carried from Phase 2).
+
 ## Open questions
 
-- **MODE_OPTIONS copy:** Update “reserved for a later milestone” string in `exercises.py` when Phase 3 ships.
-
-## Approval
-
-PRD approved and merged (2026-06-08). Implementation plan drafted in `docs/phase-3-implementation-plan.md`. Activate Phase 3 in `prd/README.md` when the plan is approved and implementation begins.
+- None blocking; accounts vs local progress resolved in favor of cookies for Phase 3.

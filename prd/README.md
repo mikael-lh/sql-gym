@@ -1,6 +1,6 @@
 # Product requirements
 
-**Status: Phase 3 active — progress and timed mode (plan pending approval).**
+**Status: Phase 3 complete. No active implementation phase.**
 
 Specs are added here via the `write-prd` repo skill. Do not treat informal chat notes as requirements.
 
@@ -12,7 +12,7 @@ Specs are added here via the `write-prd` repo skill. Do not treat informal chat 
 | 0 | [phase-0-product-scaffolding.md](phase-0-product-scaffolding.md) | [TIM-17](https://linear.app/times-api/issue/TIM-17/phase-0-or-product-scaffolding) | Complete; TIM-18, TIM-19, TIM-20, TIM-21, TIM-22, and TIM-23 merged |
 | 1 | [phase-1-dataset-exercise-catalog.md](phase-1-dataset-exercise-catalog.md) | [TIM-24](https://linear.app/times-api/issue/TIM-24/phase-1-or-dataset-and-exercise-catalog) | Complete; TIM-25, TIM-27, TIM-29, TIM-28, and TIM-26 merged |
 | 2 | [phase-2-sql-execution-grading.md](phase-2-sql-execution-grading.md) | [TIM-30](https://linear.app/times-api/issue/TIM-30/phase-2-or-sql-execution-and-grading) | Complete; TIM-31–TIM-36 merged |
-| 3 | [phase-3-progress-and-timed-mode.md](phase-3-progress-and-timed-mode.md) | TIM-37 (proposed) | Approved PRD; implementation plan draft |
+| 3 | [phase-3-progress-and-timed-mode.md](phase-3-progress-and-timed-mode.md) | [TIM-37](https://linear.app/times-api/issue/TIM-37/phase-3-or-progress-and-timed-mode) | Complete; TIM-42, TIM-41, TIM-38, TIM-39, and TIM-40 merged |
 
 ## Linear
 
@@ -24,8 +24,9 @@ Source of truth: committed markdown in `prd/`. Repo skills and when to use them:
 
 ## Active phase
 
-**Phase 3** — [`phase-3-progress-and-timed-mode.md`](phase-3-progress-and-timed-mode.md). Implementation plan: [`docs/phase-3-implementation-plan.md`](../docs/phase-3-implementation-plan.md) (pending plan approval). Proposed Linear epic `TIM-37`, child issues `TIM-38`–`TIM-42`.
+**No active implementation phase.** Phase 3 shipped via Linear epic [TIM-37](https://linear.app/times-api/issue/TIM-37/phase-3-or-progress-and-timed-mode) (issues TIM-42, TIM-41, TIM-38, TIM-39, TIM-40).
 
 Completed Phase 0 implementation plan: [`docs/phase-0-implementation-plan.md`](../docs/phase-0-implementation-plan.md).
 Completed Phase 1 implementation plan: [`docs/phase-1-implementation-plan.md`](../docs/phase-1-implementation-plan.md).
 Completed Phase 2 implementation plan: [`docs/phase-2-implementation-plan.md`](../docs/phase-2-implementation-plan.md).
+Completed Phase 3 implementation plan: [`docs/phase-3-implementation-plan.md`](../docs/phase-3-implementation-plan.md).
