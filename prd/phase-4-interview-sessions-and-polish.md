@@ -28,6 +28,7 @@ Current implementation context:
 - **Interview sessions:** A **browser-session-scoped** queue of **timed** catalog exercises (not a new durable cookie). Per-exercise progress cookie updates remain unchanged on each submit.
 - **Queue length:** Learner chooses **3, 5, 8**, or **Unlimited** when starting a session. Fixed lengths cap the queue; **Unlimited** runs through **all eligible timed exercises** in catalog order within the active filter (16 today when unfiltered). Learner may **end session early** to view summary before the queue is exhausted.
 - **Resume UX:** If a session is in progress, `/practice` and home show a **Resume interview** banner/link to the current question.
+- **URL shape (Option A):** Dedicated interview routes under `/practice/interview/...` (e.g. `/practice/interview/start`, `/practice/interview/{dataset_id}/{exercise_id}`, `/practice/interview/summary`). Casual single-exercise URLs under `/practice/{dataset_id}/{exercise_id}` remain unchanged.
 - **Exercise selection:** Sequential **timed** exercises in stable catalog order, optionally filtered by **difficulty** (same semantics as continue). Skip exercises not in `Timed` mode when building the queue. Start from the first timed exercise in scope that is not already at the front of the filtered timed list (default: first timed exercise in catalog order within filter).
 - **Timer behavior:** Reuse Phase 3 per-exercise timer (explicit start, `estimated_time_minutes`, timeout submit). No whole-session master clock in Phase 4.
 - **Advance rules:** After submit or timeout on an interview exercise, show grading feedback, then learner clicks **Next question** (no forced auto-skip timer). Last exercise shows **View session summary** instead.
@@ -114,7 +115,7 @@ Acceptance criteria:
 - Exercise preview in interview context shows **Question X of Y** (fixed) or **Question X** with optional “of N timed exercises” hint (unlimited); interview-mode chrome distinct from casual practice.
 - **End session early** ends the interview and opens the summary for exercises completed so far (available for any queue mode).
 - `/practice` and home show **Resume interview** when session state exists and the queue is not finished.
-- Routes remain under `/practice/...` or a dedicated prefix documented in the implementation plan (e.g. `/practice/interview/...`); no standalone catalog route.
+- Interview exercises are served at `/practice/interview/{dataset_id}/{exercise_id}`; configuration at `/practice/interview/start`; summary at `/practice/interview/summary`. No standalone catalog route.
 - Leaving mid-session (navigate to catalog/home) preserves session state until the browser session ends; learner can resume current question if session state exists.
 - **Abandon session** control clears interview session state and returns to `/practice`.
 
@@ -217,8 +218,7 @@ Phase 4 is successful when a reviewer can:
 
 ## Open questions
 
-- **URL shape:** `/practice/interview/start` + `/practice/interview/{exercise_id}` vs query-param mode on existing routes — resolve in implementation plan (see PR discussion).
-- **Content audit tooling:** Manual audit vs scripted diff — resolve in implementation plan (see PR discussion).
+- **Content audit tooling:** Manual audit vs scripted diff — resolve in implementation plan (manual pass required; script optional as regression guard).
 
 ## Approval
 
