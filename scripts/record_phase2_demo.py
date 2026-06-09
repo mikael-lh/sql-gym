@@ -24,7 +24,7 @@ PASS_SQL = (
 FAIL_SQL = "SELECT 1 AS wrong_answer;"
 
 
-def pause(page, ms: int = 2000) -> None:
+def pause(page: Page, ms: int = 2000) -> None:
     page.wait_for_timeout(ms)
 
 
