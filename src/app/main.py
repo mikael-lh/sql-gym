@@ -8,14 +8,20 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from starlette.middleware.sessions import SessionMiddleware
 
+from app.domain.exercises import Exercise
 from app.domain.progress import ProgressStore
 from app.execution import execute_query
 from app.interview.session import (
+    advance,
     create_interview_session,
     current_exercise_url,
+    end_session_early,
+    load_interview_session,
+    record_outcome,
     save_interview_session,
 )
 from app.interview.views import (
+    get_interview_exercise_context,
     get_interview_start_context,
     parse_interview_start_form,
 )
@@ -71,6 +77,14 @@ def _redirect_with_progress(url: str, progress: ProgressStore) -> RedirectRespon
     response = RedirectResponse(url=url, status_code=303)
     attach_progress_cookie(response, progress)
     return response
+
+
+def _parse_elapsed_seconds(exercise: Exercise, elapsed_seconds: int | None) -> int | None:
+    if elapsed_seconds is not None and exercise.mode == "Timed":
+        max_seconds = exercise.estimated_time_minutes * 60
+        if 0 < elapsed_seconds <= max_seconds:
+            return elapsed_seconds
+    return None
 
 
 def create_app() -> FastAPI:
@@ -170,6 +184,132 @@ def create_app() -> FastAPI:
             return RedirectResponse(url="/practice/interview/start", status_code=303)
         return RedirectResponse(url=first_url, status_code=303)
 
+    def _interview_guard_redirect(
+        request: Request,
+        exercise_id: str,
+    ) -> RedirectResponse | None:
+        session = load_interview_session(request)
+        if session is None or not session.is_active:
+            return RedirectResponse(url="/practice/interview/start", status_code=303)
+        current_id = session.current_exercise_id()
+        if current_id != exercise_id:
+            resume_url = current_exercise_url(session)
+            return RedirectResponse(
+                url=resume_url or "/practice/interview/start",
+                status_code=303,
+            )
+        return None
+
+    @app.get(
+        "/practice/interview/{dataset_id}/{exercise_id}",
+        response_class=HTMLResponse,
+        tags=["pages"],
+    )
+    def interview_exercise_get(
+        request: Request,
+        dataset_id: str,
+        exercise_id: str,
+    ) -> Response:
+        guard = _interview_guard_redirect(request, exercise_id)
+        if guard is not None:
+            return guard
+        context = get_interview_exercise_context(request, dataset_id, exercise_id)
+        if context is None:
+            return templates.TemplateResponse(
+                request,
+                "404.html",
+                get_not_found_context("exercise") | {"request": request},
+                status_code=404,
+            )
+        return templates.TemplateResponse(
+            request,
+            "interview_exercise.html",
+            context | {"request": request},
+        )
+
+    @app.post("/practice/interview/{dataset_id}/{exercise_id}/run", tags=["pages"])
+    def interview_run_sql(
+        request: Request,
+        dataset_id: str,
+        exercise_id: str,
+        sql: str = Form(...),
+    ) -> Response:
+        guard = _interview_guard_redirect(request, exercise_id)
+        if guard is not None:
+            return guard
+        exercise = lookup_exercise(dataset_id, exercise_id)
+        if exercise is None:
+            raise HTTPException(status_code=404)
+        outcome = execute_query(sql)
+        store_run_result(request, exercise.id, sql, outcome)
+        return RedirectResponse(
+            url=_interview_exercise_path(dataset_id, exercise_id),
+            status_code=303,
+        )
+
+    @app.post("/practice/interview/{dataset_id}/{exercise_id}/submit", tags=["pages"])
+    def interview_submit_sql(
+        request: Request,
+        dataset_id: str,
+        exercise_id: str,
+        sql: str = Form(...),
+        elapsed_seconds: int | None = Form(default=None),
+    ) -> Response:
+        guard = _interview_guard_redirect(request, exercise_id)
+        if guard is not None:
+            return guard
+        exercise = lookup_exercise(dataset_id, exercise_id)
+        if exercise is None:
+            raise HTTPException(status_code=404)
+        outcome = execute_query(sql)
+        grading = store_submit_result(request, exercise, sql, outcome)
+        redirect_url = _interview_exercise_path(dataset_id, exercise_id)
+        if grading is None:
+            return RedirectResponse(url=redirect_url, status_code=303)
+        elapsed = _parse_elapsed_seconds(exercise, elapsed_seconds)
+        progress = load_progress(request).apply_submit_outcome(
+            exercise.id,
+            passed=grading.passed is True,
+            elapsed_seconds=elapsed,
+        )
+        record_outcome(
+            request,
+            exercise.id,
+            passed=grading.passed is True,
+            elapsed_seconds=elapsed,
+        )
+        return _redirect_with_progress(redirect_url, progress)
+
+    @app.post("/practice/interview/next", tags=["pages"])
+    def interview_next(request: Request) -> Response:
+        session = load_interview_session(request)
+        if session is None or not session.is_active:
+            return RedirectResponse(url="/practice/interview/start", status_code=303)
+        if not session.has_outcome_for_current():
+            resume_url = current_exercise_url(session)
+            return RedirectResponse(
+                url=resume_url or "/practice/interview/start",
+                status_code=303,
+            )
+        advanced = advance(session)
+        save_interview_session(request, advanced)
+        if advanced.status in {"completed", "ended_early"}:
+            return RedirectResponse(url="/practice/interview/summary", status_code=303)
+        next_url = current_exercise_url(advanced)
+        return RedirectResponse(
+            url=next_url or "/practice/interview/summary",
+            status_code=303,
+        )
+
+    @app.post("/practice/interview/end", tags=["pages"])
+    def interview_end(request: Request) -> Response:
+        session = load_interview_session(request)
+        if session is None or not session.is_active:
+            return RedirectResponse(url="/practice/interview/start", status_code=303)
+        ended = end_session_early(session)
+        save_interview_session(request, ended)
+        return RedirectResponse(url="/practice/interview/summary", status_code=303)
+
     @app.get("/practice/{dataset_id}/{exercise_id}", response_class=HTMLResponse, tags=["pages"])
     def practice_exercise(
         request: Request,
@@ -241,13 +381,8 @@ def create_app() -> FastAPI:
                 status_code=303,
             )
 
-        progress = load_progress(request)
-        elapsed: int | None = None
-        if elapsed_seconds is not None and exercise.mode == "Timed":
-            max_seconds = exercise.estimated_time_minutes * 60
-            if 0 < elapsed_seconds <= max_seconds:
-                elapsed = elapsed_seconds
-        progress = progress.apply_submit_outcome(
+        elapsed = _parse_elapsed_seconds(exercise, elapsed_seconds)
+        progress = load_progress(request).apply_submit_outcome(
             exercise.id,
             passed=grading.passed is True,
             elapsed_seconds=elapsed,
