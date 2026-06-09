@@ -245,8 +245,21 @@ Implementation note: unlike `SessionMiddleware`, which attaches the session cook
 
 | Topic | PRD / plan | Shipped |
 |-------|------------|---------|
-| Linear issue IDs | Plan TIM-38–TIM-42 | Created as TIM-42, TIM-41, TIM-38, TIM-39, TIM-40 (same milestone order) |
 | Timer state | Session-scoped reset on navigate away | As planned; documented in manual test plan |
+
+### Linear issue ID mapping
+
+The implementation plan used milestone labels `TIM-38`–`TIM-42`. Linear created child issues with different identifiers under epic [TIM-37](https://linear.app/times-api/issue/TIM-37/phase-3-or-progress-and-timed-mode), but scope and dependency order were unchanged. Use the **Linear ID** when linking issues or PRs.
+
+| Order | Plan milestone | Linear issue | PR |
+|------:|----------------|--------------|-----|
+| 1 | TIM-38 (cookie + domain) | **TIM-42** | [#74](https://github.com/mikael-lh/sql-gym/pull/74) |
+| 2 | TIM-39 (submit + clear) | **TIM-41** | [#75](https://github.com/mikael-lh/sql-gym/pull/75) |
+| 3 | TIM-40 (catalog + home UI) | **TIM-38** | [#76](https://github.com/mikael-lh/sql-gym/pull/76) |
+| 4 | TIM-41 (timed mode) | **TIM-39** | [#77](https://github.com/mikael-lh/sql-gym/pull/77) |
+| 5 | TIM-42 (docs + validation) | **TIM-40** | [#78](https://github.com/mikael-lh/sql-gym/pull/78) |
+
+Full mapping and milestone detail: [`docs/phase-3-implementation-plan.md`](../docs/phase-3-implementation-plan.md#linear-issue-mapping).
 
 ## Future work
 
