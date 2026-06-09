@@ -4,12 +4,15 @@ A lightweight gym for SQL: practice on curated datasets, run queries, and level 
 
 ## Status
 
-**Phase 2 complete** — SQL execution and strict grid-match grading ([prd/phase-2-sql-execution-grading.md](prd/phase-2-sql-execution-grading.md)). Phase 1 catalog and Phase 0 scaffold are complete. New product scope requires a new phase PRD plus an approved implementation plan.
+**Phase 3 complete** — cookie progress and timed interview mode ([prd/phase-3-progress-and-timed-mode.md](prd/phase-3-progress-and-timed-mode.md)). Phase 2 execution/grading, Phase 1 catalog, and Phase 0 scaffold are complete. New product scope requires a new phase PRD plus an approved implementation plan.
 
 | | |
 |--|--|
 | Full workflow reference | [docs/WORKFLOW.md](docs/WORKFLOW.md) |
 | Product specs | [prd/README.md](prd/README.md) |
+| Phase 3 implementation plan | [docs/phase-3-implementation-plan.md](docs/phase-3-implementation-plan.md) |
+| Progress cookie | [docs/progress.md](docs/progress.md) |
+| Phase 3 manual test plan | [docs/phase-3-manual-test-plan.md](docs/phase-3-manual-test-plan.md) |
 | Phase 2 implementation plan | [docs/phase-2-implementation-plan.md](docs/phase-2-implementation-plan.md) |
 | Times data setup | [docs/times-data-setup.md](docs/times-data-setup.md) |
 | Grading rules | [docs/grading.md](docs/grading.md) |
@@ -77,22 +80,36 @@ docker compose up -d
 
 See [docs/times-data-setup.md](docs/times-data-setup.md) for GCS credentials and troubleshooting.
 
+## Phase 3 behavior status
+
+Working behavior:
+
+- Signed `sql_gym_progress` cookie (60-day lifetime) for pass/attempt badges without accounts.
+- Catalog and home **Continue practicing** link (difficulty-aware on `/practice`).
+- **Clear my progress** on the practice catalog.
+- Per-exercise timed countdown on 16 `Timed` catalog exercises with timeout auto-submit.
+- Best elapsed time recorded on timed passes (retries allowed).
+
+Placeholder behavior:
+
+- Authentication, accounts, and cross-device progress sync.
+- AI grading, explanations, and partial credit.
+- Standalone `/catalog` route (catalog remains in `/practice`).
+
 ## Phase 2 behavior status
 
 Working behavior:
 
 - Docker Compose PostgreSQL with imported Times Archive rows (`times_archive` table).
 - CodeMirror SQL editor on exercise preview pages with **Run SQL** and **Submit for grading**.
-- Strict grid-match grading for all 50 catalog exercises (session-only attempts).
+- Strict grid-match grading for all 50 catalog exercises.
 - Learner-facing SELECT-only execution with timeout and row limits.
-- Home and practice copy that distinguish working behavior from deferred features.
+- Session cookie for draft SQL and last run/grade (browser session).
 
-Placeholder behavior:
+Placeholder behavior (superseded in Phase 3 where noted):
 
-- Authentication, accounts, and durable progress storage.
-- AI grading, explanations, and partial credit.
-- Timed-mode scoring and interview timers.
-- Standalone `/catalog` route (catalog remains in `/practice`).
+- Timed-mode scoring — **shipped in Phase 3** for per-exercise timers.
+- Durable progress — **shipped in Phase 3** via browser cookie (not accounts).
 
 ## Phase 1 behavior status
 
@@ -126,7 +143,7 @@ Historical placeholder behavior (superseded on `/practice` by Phase 1 catalog br
 ## Remaining follow-up decisions
 
 - Production Times refresh automation beyond the documented GCS import path.
-- Persistence: learner accounts, attempt history, and cross-session progress.
+- Persistence: learner accounts, cross-device sync, and server-side attempt history (Phase 3 uses browser cookies only).
 - Authentication and personalization.
 - AI provider: explanations, hints, and partial credit beyond strict grid match.
 - Timed-mode scoring behavior.

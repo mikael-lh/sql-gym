@@ -13,13 +13,21 @@ BASELINE_COMMANDS = (
     "./scripts/validate-env.sh",
 )
 
+README_REQUIRED_PHASE3_DOCS = (
+    "## Phase 3 behavior status",
+    "sql_gym_progress",
+    "docs/progress.md",
+    "docs/phase-3-manual-test-plan.md",
+    "Clear my progress",
+    "Timed",
+)
+
 README_REQUIRED_PHASE2_DOCS = (
     "## Phase 2 behavior status",
     "Strict grid-match grading",
     "docs/times-data-setup.md",
     "docs/grading.md",
     "docs/phase-2-manual-test-plan.md",
-    "session-only attempts",
     "docker compose up -d",
 )
 
@@ -60,6 +68,13 @@ def test_readme_documents_baseline_validation_checks() -> None:
     assert "## Baseline validation checks" in readme
     for command in BASELINE_COMMANDS:
         assert command in readme
+
+
+def test_readme_documents_phase_3_behavior_status() -> None:
+    readme = README.read_text()
+
+    for expected_text in README_REQUIRED_PHASE3_DOCS:
+        assert expected_text in readme
 
 
 def test_readme_documents_phase_2_behavior_status() -> None:
