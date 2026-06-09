@@ -1,8 +1,16 @@
 import asyncio
+import json
+from pathlib import Path
+from unittest.mock import MagicMock, patch
 
 import httpx
 
 from app.main import app
+from app.progress.cookie import COOKIE_NAME
+
+EXPECTED_GRID = json.loads(
+    Path("src/app/catalog/data/expected_grids/times-archive-001.json").read_text()
+)
 
 
 async def _get(path: str, *, cookies: dict[str, str] | None = None) -> httpx.Response:
@@ -53,3 +61,126 @@ def test_interview_start_post_creates_session_and_redirects() -> None:
     assert location.startswith("/practice/interview/times-archive/times-archive-")
 
     assert location.endswith("times-archive-001")
+
+
+def test_interview_exercise_page_renders_after_start() -> None:
+    async def _flow() -> httpx.Response:
+        transport = httpx.ASGITransport(app=app)
+        async with httpx.AsyncClient(
+            transport=transport,
+            base_url="http://testserver",
+            follow_redirects=False,
+        ) as client:
+            start = await client.post(
+                "/practice/interview/start",
+                data={"queue_length": "3", "difficulty": ""},
+            )
+            assert start.status_code == 303
+            return await client.get(start.headers["location"], follow_redirects=True)
+
+    response = asyncio.run(_flow())
+    assert response.status_code == 200
+    assert "Question 1 of 3" in response.text
+    assert "Interview session" in response.text
+
+
+def test_interview_wrong_exercise_redirects_to_current() -> None:
+    async def _flow() -> httpx.Response:
+        transport = httpx.ASGITransport(app=app)
+        async with httpx.AsyncClient(
+            transport=transport,
+            base_url="http://testserver",
+            follow_redirects=False,
+        ) as client:
+            start = await client.post(
+                "/practice/interview/start",
+                data={"queue_length": "3", "difficulty": ""},
+            )
+            await client.get(start.headers["location"])
+            return await client.get(
+                "/practice/interview/times-archive/times-archive-099",
+                follow_redirects=False,
+            )
+
+    response = asyncio.run(_flow())
+    assert response.status_code == 303
+    assert response.headers["location"].endswith("times-archive-001")
+
+
+@patch("app.main.execute_query")
+def test_interview_submit_records_outcome_and_shows_grading(mock_execute: MagicMock) -> None:
+    from app.execution.models import QueryResult
+
+    rows = tuple(tuple(row) for row in EXPECTED_GRID["rows"])
+    mock_execute.return_value = QueryResult(
+        columns=tuple(EXPECTED_GRID["columns"]),
+        rows=rows,
+        row_count=len(rows),
+        truncated=False,
+    )
+
+    async def _flow() -> tuple[httpx.Response, httpx.Response]:
+        transport = httpx.ASGITransport(app=app)
+        async with httpx.AsyncClient(
+            transport=transport,
+            base_url="http://testserver",
+            follow_redirects=False,
+        ) as client:
+            start = await client.post(
+                "/practice/interview/start",
+                data={"queue_length": "3", "difficulty": ""},
+            )
+            await client.get(start.headers["location"], follow_redirects=True)
+            submit = await client.post(
+                "/practice/interview/times-archive/times-archive-001/submit",
+                data={
+                    "sql": "SELECT headline_main, pub_date FROM times_archive LIMIT 1",
+                },
+                follow_redirects=False,
+            )
+            page = await client.get(submit.headers["location"], follow_redirects=True)
+            return submit, page
+
+    submit_response, page = asyncio.run(_flow())
+    assert submit_response.status_code == 303
+    assert COOKIE_NAME in submit_response.headers.get("set-cookie", "")
+    assert page.status_code == 200
+    assert 'id="grading-title"' in page.text
+    assert "Next question" in page.text
+
+
+@patch("app.main.execute_query")
+def test_interview_next_advances_to_second_question(mock_execute: MagicMock) -> None:
+    from app.execution.models import QueryResult
+
+    rows = tuple(tuple(row) for row in EXPECTED_GRID["rows"])
+    mock_execute.return_value = QueryResult(
+        columns=tuple(EXPECTED_GRID["columns"]),
+        rows=rows,
+        row_count=len(rows),
+        truncated=False,
+    )
+
+    async def _flow() -> httpx.Response:
+        transport = httpx.ASGITransport(app=app)
+        async with httpx.AsyncClient(
+            transport=transport,
+            base_url="http://testserver",
+            follow_redirects=True,
+        ) as client:
+            await client.post(
+                "/practice/interview/start",
+                data={"queue_length": "3", "difficulty": ""},
+            )
+            await client.post(
+                "/practice/interview/times-archive/times-archive-001/submit",
+                data={
+                    "sql": "SELECT headline_main, pub_date FROM times_archive LIMIT 1",
+                },
+            )
+            return await client.post("/practice/interview/next")
+
+    response = asyncio.run(_flow())
+    assert response.status_code == 200
+    assert "Question 2 of 3" in response.text
+    assert "times-archive-002" in str(response.url)
