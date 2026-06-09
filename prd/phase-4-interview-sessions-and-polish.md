@@ -26,7 +26,8 @@ Current implementation context:
 - **Phase 4 theme:** Ship **interview sessions (B)** and **reliability/catalog polish (D)** together; defer AI grading and accounts.
 - **Identity:** Still no user accounts or server-side learner database.
 - **Interview sessions:** A **browser-session-scoped** queue of **timed** catalog exercises (not a new durable cookie). Per-exercise progress cookie updates remain unchanged on each submit.
-- **Queue length:** Learner chooses **3, 5, or 8** exercises when starting a session.
+- **Queue length:** Learner chooses **3, 5, 8**, or **Unlimited** when starting a session. Fixed lengths cap the queue; **Unlimited** runs through **all eligible timed exercises** in catalog order within the active filter (16 today when unfiltered). Learner may **end session early** to view summary before the queue is exhausted.
+- **Resume UX:** If a session is in progress, `/practice` and home show a **Resume interview** banner/link to the current question.
 - **Exercise selection:** Sequential **timed** exercises in stable catalog order, optionally filtered by **difficulty** (same semantics as continue). Skip exercises not in `Timed` mode when building the queue. Start from the first timed exercise in scope that is not already at the front of the filtered timed list (default: first timed exercise in catalog order within filter).
 - **Timer behavior:** Reuse Phase 3 per-exercise timer (explicit start, `estimated_time_minutes`, timeout submit). No whole-session master clock in Phase 4.
 - **Advance rules:** After submit or timeout on an interview exercise, show grading feedback, then learner clicks **Next question** (no forced auto-skip timer). Last exercise shows **View session summary** instead.
@@ -45,7 +46,7 @@ Current implementation context:
 
 ## Goals
 
-- Offer a **timed interview session** flow: pick queue length (and optional difficulty), work through timed exercises in order, and view a **session summary**.
+- Offer a **timed interview session** flow: pick queue length (3, 5, 8, or unlimited) and optional difficulty, work through timed exercises in order, and view a **session summary** (on completion or early end).
 - Keep strict grid-match grading and cookie progress behavior from Phases 2–3.
 - Fix session storage so submit feedback is reliable even for wide result sets.
 - Correct audited catalog copy so prompts and samples do not mislead learners relative to gradable SQL.
@@ -95,9 +96,9 @@ The app must let learners start a timed multi-exercise session from the practice
 Acceptance criteria:
 
 - `/practice` (and/or home) exposes **Start interview session** (or equivalent) linking to a configuration step.
-- Configuration UI lets the learner pick queue length: **3, 5, or 8**.
+- Configuration UI lets the learner pick queue length: **3, 5, 8**, or **Unlimited** (all eligible timed exercises in scope).
 - Optional **difficulty** filter (`Beginner`, `Intermediate`, `Advanced`) applies to which timed exercises are eligible, matching Phase 3 continue filter semantics.
-- Copy states the session is **timed questions only**, runs in **catalog order** within the filter, and ends when the queue is complete or the learner leaves.
+- Copy states the session is **timed questions only**, runs in **catalog order** within the filter, and ends when the queue is complete, the learner **ends session early**, or they leave and abandon.
 - Starting a session creates session state server-side in the **browser session** (not the progress cookie) and redirects to the first queued exercise.
 
 ### R2. Interview session queue and navigation
@@ -108,9 +109,11 @@ Acceptance criteria:
 
 - Queue contains only exercises with `mode == "Timed"` from `TIMES_ARCHIVE_CATALOG` in stable tuple order.
 - When difficulty filter is set, queue draws only from that difficulty; when unset, all timed exercises are eligible.
-- Queue length is the minimum of (selected length, eligible timed exercise count).
-- Session state tracks: `queue` (exercise ids in order), `current_index`, `started_at`, and per-exercise outcomes (`passed`/`failed`, `elapsed_seconds` when available).
-- Exercise preview in interview context shows **Question X of Y** and interview-mode chrome (distinct from casual single-exercise practice).
+- Fixed queue lengths use `min(selected, eligible timed count)`; **Unlimited** queues every eligible timed exercise in order.
+- Session state tracks: `queue` (exercise ids in order), `current_index`, `started_at`, `queue_mode` (`fixed` | `unlimited`), and per-exercise outcomes (`passed`/`failed`, `elapsed_seconds` when available).
+- Exercise preview in interview context shows **Question X of Y** (fixed) or **Question X** with optional “of N timed exercises” hint (unlimited); interview-mode chrome distinct from casual practice.
+- **End session early** ends the interview and opens the summary for exercises completed so far (available for any queue mode).
+- `/practice` and home show **Resume interview** when session state exists and the queue is not finished.
 - Routes remain under `/practice/...` or a dedicated prefix documented in the implementation plan (e.g. `/practice/interview/...`); no standalone catalog route.
 - Leaving mid-session (navigate to catalog/home) preserves session state until the browser session ends; learner can resume current question if session state exists.
 - **Abandon session** control clears interview session state and returns to `/practice`.
@@ -123,14 +126,14 @@ Acceptance criteria:
 
 - Each queued exercise shows the existing timer UI (explicit start, countdown, timeout submit).
 - On manual submit or timeout, grading uses the existing submit path; progress cookie updates per Phase 3 rules.
-- After grading renders, UI shows **Next question** (or **View session summary** on the last exercise); no auto-advance without learner action.
+- After grading renders, UI shows **Next question**, **End session early**, or **View session summary** on the last queued exercise; no auto-advance without learner action.
 - Timeout on a failed/empty query records `failed` for session summary; progress cookie follows Phase 3 attempted rules.
 - `elapsed_seconds` for timed passes is recorded in both progress cookie (best time) and session outcome.
 - Client prevents double submit on timeout (existing `submitting` guard retained).
 
 ### R4. Session summary
 
-After the last exercise, learners see a recap of the interview session.
+After the last exercise—or **End session early**—learners see a recap of the interview session.
 
 Acceptance criteria:
 
@@ -180,7 +183,9 @@ Acceptance criteria:
 
 | Case | Expected behavior |
 |------|-------------------|
-| Fewer timed exercises than requested queue length | Use all eligible timed exercises; show actual count in UI before start |
+| Fewer timed exercises than requested fixed queue length | Use all eligible timed exercises; show actual count in UI before start |
+| Unlimited with difficulty filter | Queue includes all timed exercises in that difficulty only |
+| End session early with zero completes | Summary shows empty state with link back to catalog |
 | No timed exercises for difficulty filter | Configuration shows zero available; start disabled with explanation |
 | Session cookie lost mid-interview | Session queue lost; progress cookie retains any passes already written |
 | Large query result on run | Preview capped; row count and truncated flag shown |
@@ -212,9 +217,8 @@ Phase 4 is successful when a reviewer can:
 
 ## Open questions
 
-- **URL shape:** `/practice/interview/start` + `/practice/interview/{exercise_id}` vs query-param mode on existing routes — resolve in implementation plan.
-- **Resume UX:** If learner leaves mid-session, show a **Resume interview** banner on `/practice` — default **yes** unless plan argues otherwise.
-- **Content audit tooling:** Manual audit only vs scripted diff of prompt/sample/reference — plan to decide.
+- **URL shape:** `/practice/interview/start` + `/practice/interview/{exercise_id}` vs query-param mode on existing routes — resolve in implementation plan (see PR discussion).
+- **Content audit tooling:** Manual audit vs scripted diff — resolve in implementation plan (see PR discussion).
 
 ## Approval
 
