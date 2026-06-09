@@ -282,7 +282,7 @@
     "id": "times-archive-011",
     "dataset_id": "times-archive",
     "title": "January publications",
-    "prompt": "Count articles published in January 2024.",
+    "prompt": "Count articles published in January 1920.",
     "difficulty": "Intermediate",
     "mode": "Untimed",
     "target_dialect": "PostgreSQL",
@@ -295,7 +295,7 @@
       "Write a intermediate-level PostgreSQL query for: january publications."
     ],
     "hint": "Filter pub_date by month.",
-    "sample_sql": "-- PostgreSQL target dialect\nSELECT COUNT(*) AS january_articles FROM times_archive WHERE pub_date >= DATE '2024-01-01' AND pub_date < DATE '2024-02-01';",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT COUNT(*) AS january_articles FROM times_archive WHERE pub_date >= DATE '1920-01-01' AND pub_date < DATE '1920-02-01';",
     "availability_status": "available",
     "expected_result": {
       "description": "Reserved expected columns for January publications.",
@@ -364,7 +364,7 @@
     "id": "times-archive-014",
     "dataset_id": "times-archive",
     "title": "Publication window",
-    "prompt": "List articles published between two dates you choose.",
+    "prompt": "List articles published in the first quarter of 1920.",
     "difficulty": "Intermediate",
     "mode": "Timed",
     "target_dialect": "PostgreSQL",
@@ -377,7 +377,7 @@
       "Write a intermediate-level PostgreSQL query for: publication window."
     ],
     "hint": "Use BETWEEN on pub_date.",
-    "sample_sql": "-- PostgreSQL target dialect\nSELECT headline_main, pub_date FROM times_archive WHERE pub_date BETWEEN DATE '2024-01-01' AND DATE '2024-03-31';",
+    "sample_sql": "-- PostgreSQL target dialect\nSELECT headline_main, pub_date FROM times_archive WHERE pub_date BETWEEN DATE '1920-01-01' AND DATE '1920-03-31' ORDER BY pub_date LIMIT 500;",
     "availability_status": "available",
     "expected_result": {
       "description": "Reserved expected columns for Publication window.",
