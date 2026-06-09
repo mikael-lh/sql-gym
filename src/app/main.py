@@ -10,6 +10,15 @@ from starlette.middleware.sessions import SessionMiddleware
 
 from app.domain.progress import ProgressStore
 from app.execution import execute_query
+from app.interview.session import (
+    create_interview_session,
+    current_exercise_url,
+    save_interview_session,
+)
+from app.interview.views import (
+    get_interview_start_context,
+    parse_interview_start_form,
+)
 from app.practice import (
     get_exercise_preview_context,
     get_home_context,
@@ -115,6 +124,51 @@ def create_app() -> FastAPI:
 
     def _exercise_path(dataset_id: str, exercise_id: str) -> str:
         return f"/practice/{dataset_id}/{exercise_id}"
+
+    def _interview_exercise_path(dataset_id: str, exercise_id: str) -> str:
+        return f"/practice/interview/{dataset_id}/{exercise_id}"
+
+    @app.get("/practice/interview/start", response_class=HTMLResponse, tags=["pages"])
+    def interview_start_get(
+        request: Request,
+        difficulty: str | None = None,
+        queue_length: str | None = None,
+    ) -> HTMLResponse:
+        return templates.TemplateResponse(
+            request,
+            "interview_start.html",
+            get_interview_start_context(
+                request,
+                difficulty=difficulty,
+                queue_length=queue_length,
+            )
+            | {"request": request},
+        )
+
+    @app.post("/practice/interview/start", tags=["pages"])
+    def interview_start_post(
+        request: Request,
+        queue_length: str = Form(...),
+        difficulty: str = Form(default=""),
+    ) -> Response:
+        parsed = parse_interview_start_form(
+            queue_length=queue_length,
+            difficulty=difficulty or None,
+        )
+        if parsed is None:
+            return RedirectResponse(url="/practice/interview/start", status_code=303)
+        requested_length, parsed_difficulty = parsed
+        session = create_interview_session(
+            requested_length=requested_length,
+            difficulty=parsed_difficulty,
+        )
+        if session is None:
+            return RedirectResponse(url="/practice/interview/start", status_code=303)
+        save_interview_session(request, session)
+        first_url = current_exercise_url(session)
+        if first_url is None:
+            return RedirectResponse(url="/practice/interview/start", status_code=303)
+        return RedirectResponse(url=first_url, status_code=303)
 
     @app.get("/practice/{dataset_id}/{exercise_id}", response_class=HTMLResponse, tags=["pages"])
     def practice_exercise(
