@@ -273,7 +273,7 @@ function updateProgressUi(progress) {
   }
 }
 
-function prefersReducedPointerFocus() {
+function hasCoarsePointer() {
   return window.matchMedia("(pointer: coarse)").matches;
 }
 
@@ -322,7 +322,7 @@ function createGradingModal(submitButton) {
     summary.className = passed ? "feedback feedback-pass" : "feedback feedback-fail";
     backdrop.hidden = false;
     setShellInert(true);
-    if (!prefersReducedPointerFocus()) {
+    if (!hasCoarsePointer()) {
       okButton.focus();
     }
   };
