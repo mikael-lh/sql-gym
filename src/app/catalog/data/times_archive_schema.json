@@ -1,0 +1,90 @@
+{
+  "dataset_id": "times-archive",
+  "tables": [
+    {
+      "name": "times_archive",
+      "columns": [
+        {
+          "name": "article_id",
+          "type": "TEXT",
+          "description": "Stable article identifier (primary key)."
+        },
+        {
+          "name": "uri",
+          "type": "TEXT",
+          "description": "NYT URI for the article."
+        },
+        {
+          "name": "pub_date",
+          "type": "DATE",
+          "description": "Publication date."
+        },
+        {
+          "name": "section_name",
+          "type": "TEXT",
+          "description": "Newspaper section (e.g. Arts, Sports)."
+        },
+        {
+          "name": "news_desk",
+          "type": "TEXT",
+          "description": "Editorial desk that produced the story."
+        },
+        {
+          "name": "type_of_material",
+          "type": "TEXT",
+          "description": "Material type label from the archive."
+        },
+        {
+          "name": "document_type",
+          "type": "TEXT",
+          "description": "Document classification."
+        },
+        {
+          "name": "word_count",
+          "type": "INTEGER",
+          "description": "Approximate word count."
+        },
+        {
+          "name": "web_url",
+          "type": "TEXT",
+          "description": "Public web URL when available."
+        },
+        {
+          "name": "headline_main",
+          "type": "TEXT",
+          "description": "Main headline text."
+        },
+        {
+          "name": "byline_original",
+          "type": "TEXT",
+          "description": "Original byline string."
+        },
+        {
+          "name": "abstract",
+          "type": "TEXT",
+          "description": "Article abstract or summary."
+        },
+        {
+          "name": "snippet",
+          "type": "TEXT",
+          "description": "Short excerpt from the article body."
+        },
+        {
+          "name": "keywords",
+          "type": "JSONB",
+          "description": "Keyword tags stored as JSON array."
+        },
+        {
+          "name": "byline_person",
+          "type": "JSONB",
+          "description": "Structured byline contributors as JSON."
+        },
+        {
+          "name": "multimedia_count_by_type",
+          "type": "JSONB",
+          "description": "Counts of multimedia assets by type."
+        }
+      ]
+    }
+  ]
+}
