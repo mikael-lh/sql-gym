@@ -13,13 +13,18 @@ BASELINE_COMMANDS = (
     "./scripts/validate-env.sh",
 )
 
+README_REQUIRED_PHASE5_DOCS = (
+    "## Phase 5 behavior status",
+    "/api/practice/",
+    "docs/phase-5-manual-test-plan.md",
+    "docs/session-state.md",
+    "practice workspace",
+)
+
 README_REQUIRED_PHASE4_DOCS = (
     "## Phase 4 behavior status",
-    "interview sessions",
-    "docs/session-state.md",
     "docs/phase-4-manual-test-plan.md",
-    "/practice/interview/",
-    "Resume interview",
+    "Removed in Phase 5",
 )
 
 README_REQUIRED_PHASE3_DOCS = (
@@ -77,6 +82,13 @@ def test_readme_documents_baseline_validation_checks() -> None:
     assert "## Baseline validation checks" in readme
     for command in BASELINE_COMMANDS:
         assert command in readme
+
+
+def test_readme_documents_phase_5_behavior_status() -> None:
+    readme = README.read_text()
+
+    for expected_text in README_REQUIRED_PHASE5_DOCS:
+        assert expected_text in readme
 
 
 def test_readme_documents_phase_4_behavior_status() -> None:

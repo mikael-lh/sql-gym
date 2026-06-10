@@ -30,8 +30,8 @@ Statuses: `attempted`, `passed` (absent entry = `not_started`).
 
 ## Write triggers
 
-- `POST /practice/{dataset}/{exercise}/submit` after grading
-- `POST /practice/progress/clear`
+- `POST /api/practice/{dataset}/{exercise}/submit` after grading
+- `POST /api/practice/progress/clear`
 
 Not written on `POST …/run` or ordinary page views.
 
@@ -39,10 +39,10 @@ Not written on `POST …/run` or ordinary page views.
 
 | Store | Holds | Lifetime |
 |-------|--------|----------|
-| Session cookie | Draft SQL, last run, last grade; interview queue (Phase 4) | Browser session |
+| Session cookie | Draft SQL, last run, last grade | Browser session |
 | Progress cookie | Pass/attempt badges, best timed elapsed | 60 days |
 
-Interview session shape, preview row cap, and route guards: [session-state.md](session-state.md).
+Workspace APIs and session restore: [session-state.md](session-state.md).
 
 ## Privacy
 

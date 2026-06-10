@@ -2,7 +2,7 @@
 
 ## Status
 
-**Draft for approval** — generated from approved `prd/phase-5-console-workspace.md` (2026-06-09). No application code until you approve this plan.
+**Approved and implemented** (2026-06-10) — Phase 5 shipped (TIM-56 epic, TIM-57–TIM-64).
 
 ## Source
 
@@ -378,6 +378,6 @@ TIM-58 can start in parallel with TIM-57 after schema types are defined; TIM-59 
 
 ## Approval
 
-- [ ] User approves this implementation plan.
-- [ ] Create Linear epic **TIM-56** and child issues **TIM-57**–**TIM-64** (or equivalent).
-- [ ] No application code until plan approval is explicit.
+- [x] User approves this implementation plan.
+- [x] Create Linear epic **TIM-56** and child issues **TIM-57**–**TIM-64**.
+- [x] Application code merged via autonomous phase run.
