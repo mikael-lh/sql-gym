@@ -2,7 +2,7 @@
 
 ## Status
 
-**Draft for review** — not an active implementation phase until you approve this PRD and an `implement-from-prd` plan.
+**Draft for review** — open questions resolved (2026-06-09). Not an active implementation phase until you explicitly approve scope and an `implement-from-prd` plan.
 
 ## Source context
 
@@ -10,7 +10,7 @@ Follows `prd/00-product-vision.md`. Supersedes the Phase 4 catalog + interview n
 
 **Today:** `/practice` card grid; per-exercise pages with form POST run/submit (full reload); `/practice/interview/...` queues; CodeMirror + progress cookie + timed mode.
 
-**Your direction:** One workspace — filters on top; schema/prompt/hint left; editor + console right; exercise drawer with badges; prev/next; no interview mode; no card grid.
+**Direction:** One workspace — filters on top; schema/prompt/hint/objectives left; editor + console right; exercise drawer with badges; prev/next; no interview mode; no card grid.
 
 ## Problem
 
@@ -18,8 +18,9 @@ Run/submit reload the whole page. Practice is split across catalog, exercise, an
 
 ## Goals
 
-- Single `/practice` workspace as the main surface.
-- Run SQL updates console without navigation; submit shows grading inline.
+- Single practice workspace as the main surface.
+- Run SQL updates the output console without navigation.
+- Submit shows a **dismissible pass/fail notification** (not a full grading panel).
 - Remove catalog cards and interview session product surface (routes + UI + state).
 - Keep execution, strict grading, progress cookie, timed mode, draft SQL.
 
@@ -27,86 +28,177 @@ Run/submit reload the whole page. Practice is split across catalog, exercise, an
 
 Accounts; AI grading; new datasets; mobile-first; WebSockets; interview queues under another name.
 
+## Resolved product decisions (2026-06-09)
+
+| Topic | Decision |
+|-------|----------|
+| **Home** | `/` redirects straight to `/practice`. |
+| **Grading UX** | Temporary notification (modal/toast) with pass/fail status and summary; user clicks **OK** to dismiss, then may retry or switch exercises. No persistent grading panel in the console. |
+| **Exercise switch** | Restore that exercise's last run output and last grading outcome from session when available. |
+| **Schema panel** | Column names, types, and descriptions when available in the schema fixture. |
+| **Sample SQL** | Keep collapsible `<details>` on the left panel. |
+| **Learning objectives** | Show on the left panel. |
+| **Canonical URL** | Path-style `/practice/{dataset_id}/{exercise_id}`; filters via query params on the same route (e.g. `?difficulty=Beginner&mode=Timed`). |
+| **Client stack** | `fetch` + JSON APIs under `/api/practice/...`. |
+
 ## Layout
 
 | Region | Content |
 |--------|---------|
-| Top | Dataset, difficulty, mode filters; title; progress; clear progress |
-| Left | Schema, prompt, hint (optional sample SQL) |
-| Right top | Editor, Run, Submit, timer if Timed |
-| Right bottom | Output console (results, errors, grading) |
-| Drawer | Toggle exercise list with Not started / Attempted / Passed |
-| Footer | Previous / Next in filtered catalog order |
+| **Top** | Dataset, difficulty, mode filters; exercise title; progress summary; clear progress |
+| **Left** | Schema (name, type, description); prompt; hint; learning objectives; collapsible sample SQL |
+| **Right top** | Editor, Run SQL, Submit for grading, timer if Timed |
+| **Right bottom** | Output console (query results and execution errors only) |
+| **Drawer** | Toggle exercise list with Not started / Attempted / Passed badges |
+| **Footer** | Previous / Next in filtered catalog order |
+| **Grading** | Overlay notification on submit (pass/fail + summary); OK dismisses |
+
+```text
+┌─────────────────────────────────────────────────────────────┐
+│ Filters   [Exercise list ▤]                    12 / 50 passed│
+├──────────────────────┬──────────────────────────────────────┤
+│ Schema               │  SQL editor                          │
+│ Prompt               │  [Run SQL]  [Submit]                 │
+│ Hint                 ├──────────────────────────────────────┤
+│ Objectives           │  Output console (results / errors)     │
+│ ▸ Sample SQL         │                                      │
+├──────────────────────┴──────────────────────────────────────┤
+│  ◀ Previous                         Next ▶                  │
+└─────────────────────────────────────────────────────────────┘
+        ┌─────────────────────────┐
+        │  Passed / Not passed    │  ← modal on submit
+        │  [summary text]   [OK]  │
+        └─────────────────────────┘
+```
 
 ## Requirements
 
-### R1. Workspace route
+### R1. Workspace route and URL shape
 
-- `GET /practice` renders shell. `/` redirects to `/practice` (default).
-- `/practice/{dataset}/{exercise}` redirects into workspace with exercise selected.
-- Card grid removed.
+- `GET /` redirects to `GET /practice` (first eligible exercise or last visited per implementation plan).
+- **Canonical exercise URL:** `GET /practice/{dataset_id}/{exercise_id}` renders the workspace with that exercise active (not a separate template page).
+- Optional query params on the same path: `dataset` filter is implicit in path; `difficulty`, `mode` for filter state.
+- Legacy standalone exercise template flow is removed; path URLs load the workspace shell.
+- Catalog card grid removed from all surfaces.
+
+Acceptance criteria:
+
+- Visiting `/` yields a redirect to `/practice/...`.
+- Bookmarking `/practice/times-archive/times-archive-014` opens the workspace on that exercise.
+- No full-page catalog card grid remains.
 
 ### R2. Console run (no reload)
 
-- `POST /api/practice/{dataset}/{exercise}/run` JSON `{sql}` → grid or error.
-- UI updates console in place; editor preserved; SELECT-only rules unchanged.
+- `POST /api/practice/{dataset_id}/{exercise_id}/run` with JSON `{ "sql": "..." }`.
+- Response: result grid JSON or structured execution error.
+- UI updates the output console in place; editor focus and content preserved.
+- SELECT-only validation and execution limits unchanged.
+- Last run stored in session for restore on exercise switch (R5).
+
+Acceptance criteria:
+
+- Run does not change `window.location` (except initial load).
+- Automated API + browser tests cover happy path and validation errors.
 
 ### R3. Schema panel
 
-- Static `times_archive` column names + types from checked-in fixture (not live INFORMATION_SCHEMA v1).
+- Left panel lists tables/columns for the active dataset from a **checked-in schema fixture** (not live `INFORMATION_SCHEMA` in v1).
+- Each column shows **name**, **type**, and **description** when the fixture provides one.
+- Updates when the active dataset changes.
 
-### R4. Inline submit
+### R4. Submit and grading notification
 
-- `POST /api/practice/.../submit` → grading JSON; progress cookie updates; timed timeout uses same API.
+- `POST /api/practice/{dataset_id}/{exercise_id}/submit` with JSON `{ "sql": "...", "elapsed_seconds": optional }`.
+- Response includes grading payload (`passed`, `summary`, `status`, etc.).
+- UI shows a **temporary notification** (modal or equivalent) with pass/fail and summary text.
+- **OK** dismisses the notification; console and editor remain visible underneath.
+- Progress cookie updates per Phase 3 rules; drawer badges refresh without navigation.
+- Timed timeout auto-submit uses the same API and notification pattern.
+- Last grading outcome stored in session for restore on exercise switch (R5).
 
-### R5. Exercise drawer
+Acceptance criteria:
 
-- Filtered list with progress badges; select loads exercise via fetch, not document navigation.
+- Submit does not reload the page.
+- Notification is keyboard-accessible (focus trap or focus return on dismiss).
+- Progress cookie updates on pass/attempt in tests.
+
+### R5. Exercise drawer and in-place switching
+
+- Toggle opens filtered exercise list with progress badges.
+- Selecting an exercise updates URL to canonical path (`/practice/{dataset}/{exercise}`) via `history.pushState` or navigation that does not reload the workspace shell (SPA-style shell load once, or full navigation acceptable only if shell is the same document — prefer no full reload).
+- On switch: restore draft SQL, last run console output, and last grading state from session when present.
 
 ### R6. Filters
 
-- Same dataset/difficulty/mode semantics; URL query params for filters + active exercise.
+- Dataset, difficulty, mode — same semantics as Phase 1–4 catalog filters.
+- Applying filters updates eligible set, drawer, and prev/next sequence.
+- If active exercise falls outside filter, navigate to first eligible in catalog order.
+- Filter state in URL query params; exercise identity in path.
 
-### R7. Prev / Next
+### R7. Previous / Next
 
-- Filtered catalog order; disabled at ends; position label (e.g. 12 of 50).
+- Move within filtered catalog order; disabled at ends.
+- Position label (e.g. `Exercise 12 of 50` filtered count).
+- Same restore behavior as drawer selection (R5).
 
-### R8. Remove interview
+### R8. Remove interview session product surface
 
-- Delete interview routes, UI, `interview_session`, related code/tests/docs.
+- Remove interview UI, routes under `/practice/interview/...`, `interview_session` state, related templates, tests, and docs references.
+- Old interview URLs redirect to `/practice` (or first exercise).
 
-### R9. Progress
+### R9. Progress and session
 
-- Keep `sql_gym_progress` cookie and clear-progress; sync drawer badges after submit.
+- `sql_gym_progress` cookie unchanged.
+- **Clear my progress** in workspace chrome.
+- Session holds per-exercise: `sql`, last `query_result` preview, last `grading`, `execution_error` (bounded previews per Phase 4 rules).
 
 ### R10. Timed mode
 
-- Timer in toolbar; Phase 3 start/countdown/timeout behavior.
+- Timer in editor toolbar when `mode == Timed`.
+- Phase 3 start, countdown, timeout submit behavior.
 
-### R11. Docs
+### R11. Docs and validation
 
-- README, `docs/phase-5-manual-test-plan.md`, green validate-env/pytest.
+- README describes workspace model.
+- `docs/phase-5-manual-test-plan.md` added.
+- `docs/session-state.md` updated for workspace + API model.
+- `./scripts/validate-env.sh` and pytest green.
 
 ## Phase acceptance criteria
 
-- [ ] Workspace only; no card grid or interview UI.
-- [ ] Run/submit without full page reload.
-- [ ] Schema left; editor + console right; drawer + prev/next.
-- [ ] Legacy URLs redirect; tests documented.
+- [ ] `/` redirects to practice workspace; path-style exercise URLs work.
+- [ ] No catalog card grid or interview UI.
+- [ ] Run updates console without full page reload.
+- [ ] Submit shows dismissible pass/fail notification; progress updates.
+- [ ] Left panel: schema (with descriptions), prompt, hint, objectives, collapsible sample SQL.
+- [ ] Drawer and prev/next switch exercises in place with session restore.
+- [ ] Interview code removed; legacy behavior documented.
 
-## Open questions
+## Edge cases
 
-1. Home: redirect `/` → `/practice` or minimal landing?
-2. Grading: replace run output vs separate tabs?
-3. On exercise switch: clear console vs restore last run/grade?
-4. Schema: names/types only or richer?
-5. Keep sample SQL collapsible on left?
-6. Show learning objectives or drop?
-7. Canonical URL: `?exercise=` vs path?
-8. `fetch`+JSON (recommended) vs htmx?
+| Case | Behavior |
+|------|----------|
+| Submit while notification open | Queue or replace per implementation plan; no double progress write |
+| Switch exercise while notification open | Dismiss notification; load selected exercise state |
+| No exercises match filters | Empty drawer; disabled editor; guidance copy |
+| Session too large | Retain Phase 4.1 slimming; console holds transient run client-side where possible |
+| Removed interview URL | Redirect to `/practice` |
+
+## Success signals
+
+- Iterative run loop without document reload.
+- Grading feedback is lightweight (notification) but trustworthy.
+- Route and template surface area shrinks after interview removal.
 
 ## Approval needed
 
-- [ ] Approve scope.
-- [ ] Answer open questions (or defer defaults to implementation plan).
-- [ ] Name Phase 5 active in `prd/README.md` when ready to implement.
+- [ ] Approve PRD scope (product decisions above are locked).
+- [ ] Name Phase 5 **active** in `prd/README.md` when ready for `implement-from-prd`.
+- [ ] Approve implementation plan from `implement-from-prd` before application code.
+
+## References
+
+- `prd/00-product-vision.md`
+- `prd/phase-4-interview-sessions-and-polish.md`
+- `docs/session-state.md`, `docs/progress.md`
+- `src/app/main.py`, `templates/practice_exercise.html`

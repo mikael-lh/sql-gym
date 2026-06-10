@@ -14,7 +14,7 @@ Specs are added here via the `write-prd` repo skill. Do not treat informal chat 
 | 2 | [phase-2-sql-execution-grading.md](phase-2-sql-execution-grading.md) | [TIM-30](https://linear.app/times-api/issue/TIM-30/phase-2-or-sql-execution-and-grading) | Complete; TIM-31–TIM-36 merged |
 | 3 | [phase-3-progress-and-timed-mode.md](phase-3-progress-and-timed-mode.md) | [TIM-37](https://linear.app/times-api/issue/TIM-37/phase-3-or-progress-and-timed-mode) | Complete; TIM-42, TIM-41, TIM-38, TIM-39, and TIM-40 merged |
 | 4 | [phase-4-interview-sessions-and-polish.md](phase-4-interview-sessions-and-polish.md) | [TIM-43](https://linear.app/times-api/issue/TIM-43/phase-4-or-interview-sessions-and-reliability-polish) | Complete; TIM-44, TIM-49, TIM-50, TIM-46, TIM-47, TIM-48, and TIM-45 merged |
-| 5 | [phase-5-console-workspace.md](phase-5-console-workspace.md) | TBD | Draft — console workspace; removes catalog grid and interview mode |
+| 5 | [phase-5-console-workspace.md](phase-5-console-workspace.md) | TBD | Draft — open questions resolved; awaiting scope approval |
 
 ## Linear
 
