@@ -82,17 +82,229 @@ function buildRunUrl(config) {
   return `/api/practice/${config.dataset_id}/${config.exercise_id}/run`;
 }
 
+function buildSubmitUrl(config) {
+  return `/api/practice/${config.dataset_id}/${config.exercise_id}/submit`;
+}
+
+function progressLabelForStatus(status) {
+  if (status === "passed") {
+    return "Passed";
+  }
+  if (status === "attempted") {
+    return "Attempted";
+  }
+  return "Not started";
+}
+
+function updateProgressUi(progress) {
+  const passedCount = document.getElementById("workspace-passed-count");
+  if (passedCount instanceof HTMLElement && progress?.passed_count !== undefined) {
+    passedCount.textContent = String(progress.passed_count);
+  }
+
+  const badge = document.getElementById("workspace-progress-badge");
+  if (badge instanceof HTMLElement && progress?.status) {
+    badge.textContent = progress.label ?? progressLabelForStatus(progress.status);
+    badge.className = `progress-badge progress-badge-${progress.status}`;
+  }
+}
+
+function createGradingModal(submitButton) {
+  const backdrop = document.getElementById("workspace-grading-modal");
+  const title = document.getElementById("workspace-grading-title");
+  const summary = document.getElementById("workspace-grading-summary");
+  const okButton = document.getElementById("workspace-grading-ok");
+  if (
+    !(backdrop instanceof HTMLElement) ||
+    !(title instanceof HTMLElement) ||
+    !(summary instanceof HTMLElement) ||
+    !(okButton instanceof HTMLButtonElement)
+  ) {
+    return {
+      show() {},
+      hide() {},
+    };
+  }
+
+  const hide = () => {
+    backdrop.hidden = true;
+    if (submitButton instanceof HTMLButtonElement) {
+      submitButton.focus();
+    }
+  };
+
+  const show = (grading) => {
+    const passed = grading.passed === true;
+    title.textContent = passed ? "Passed" : "Not yet correct";
+    summary.textContent = grading.summary ?? "";
+    summary.className = passed ? "feedback feedback-pass" : "feedback feedback-fail";
+    backdrop.hidden = false;
+    okButton.focus();
+  };
+
+  okButton.addEventListener("click", hide);
+  backdrop.addEventListener("click", (event) => {
+    if (event.target === backdrop) {
+      hide();
+    }
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !backdrop.hidden) {
+      hide();
+    }
+  });
+
+  return { show, hide };
+}
+
+function initWorkspaceTimer(onTimeoutSubmit) {
+  const config = document.getElementById("practice-timer-config");
+  const startButton = document.getElementById("start-timed-exercise");
+  const display = document.getElementById("timer-display");
+  if (
+    !(config instanceof HTMLElement) ||
+    !(startButton instanceof HTMLButtonElement) ||
+    !(display instanceof HTMLElement)
+  ) {
+    return { getElapsedSeconds: () => null };
+  }
+
+  const totalSeconds = Number.parseInt(config.dataset.durationSeconds ?? "", 10);
+  if (!Number.isFinite(totalSeconds) || totalSeconds <= 0) {
+    return { getElapsedSeconds: () => null };
+  }
+
+  let remainingSeconds = totalSeconds;
+  let startedAtMs = null;
+  let intervalId = null;
+
+  const formatTime = (seconds) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainder = seconds % 60;
+    return `${minutes}:${String(remainder).padStart(2, "0")}`;
+  };
+
+  const getElapsedSeconds = () => {
+    if (startedAtMs === null) {
+      return null;
+    }
+    const elapsed = Math.max(1, Math.round((Date.now() - startedAtMs) / 1000));
+    return Math.min(elapsed, totalSeconds);
+  };
+
+  const tick = () => {
+    remainingSeconds -= 1;
+    if (remainingSeconds <= 0) {
+      display.textContent = "0:00";
+      window.clearInterval(intervalId);
+      intervalId = null;
+      onTimeoutSubmit();
+      return;
+    }
+    display.textContent = formatTime(remainingSeconds);
+  };
+
+  startButton.addEventListener("click", () => {
+    if (intervalId !== null) {
+      return;
+    }
+    startedAtMs = Date.now();
+    remainingSeconds = totalSeconds;
+    startButton.hidden = true;
+    display.hidden = false;
+    display.textContent = formatTime(remainingSeconds);
+    intervalId = window.setInterval(tick, 1000);
+  });
+
+  return { getElapsedSeconds };
+}
+
 export function initPracticeWorkspace() {
   const config = readWorkspaceConfig();
   const consoleEl = document.getElementById("workspace-console");
   const runButton = document.getElementById("workspace-run-sql");
-  if (!config || !(consoleEl instanceof HTMLElement) || !(runButton instanceof HTMLButtonElement)) {
+  const submitButton = document.getElementById("workspace-submit-sql");
+  const clearButton = document.getElementById("workspace-clear-progress");
+  if (
+    !config ||
+    !(consoleEl instanceof HTMLElement) ||
+    !(runButton instanceof HTMLButtonElement) ||
+    !(submitButton instanceof HTMLButtonElement)
+  ) {
     return;
   }
 
   renderConsoleAttempt(consoleEl, config.attempt);
 
+  const modal = createGradingModal(submitButton);
   let runInFlight = false;
+  let submitInFlight = false;
+  let timer = { getElapsedSeconds: () => null };
+
+  const submitForGrading = async () => {
+    if (submitInFlight) {
+      return;
+    }
+    const sqlInput = getSqlInput();
+    if (!sqlInput) {
+      return;
+    }
+    const sql = sqlInput.value.trim();
+    if (!sql) {
+      modal.show({
+        passed: false,
+        summary: "Enter SQL before submitting for grading.",
+      });
+      return;
+    }
+
+    submitInFlight = true;
+    submitButton.disabled = true;
+    submitButton.setAttribute("aria-busy", "true");
+
+    const body = { sql };
+    const elapsedSeconds = timer.getElapsedSeconds();
+    if (elapsedSeconds !== null) {
+      body.elapsed_seconds = elapsedSeconds;
+    }
+
+    try {
+      const response = await fetch(buildSubmitUrl(config), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      const payload = await response.json();
+      if (!response.ok) {
+        const message = payload.error?.message ?? "Could not submit SQL for grading.";
+        modal.show({ passed: false, summary: message });
+        return;
+      }
+      if (payload.grading) {
+        modal.show(payload.grading);
+      }
+      if (payload.progress) {
+        updateProgressUi({
+          passed_count: payload.progress.passed_count,
+          status: payload.grading?.passed ? "passed" : "attempted",
+          label: payload.grading?.passed ? "Passed" : "Attempted",
+        });
+      }
+    } catch {
+      modal.show({
+        passed: false,
+        summary: "Network error while submitting SQL. Try again.",
+      });
+    } finally {
+      submitInFlight = false;
+      submitButton.disabled = false;
+      submitButton.removeAttribute("aria-busy");
+    }
+  };
+
+  timer = initWorkspaceTimer(() => {
+    void submitForGrading();
+  });
 
   runButton.addEventListener("click", async () => {
     if (runInFlight) {
@@ -142,4 +354,29 @@ export function initPracticeWorkspace() {
       runButton.removeAttribute("aria-busy");
     }
   });
+
+  submitButton.addEventListener("click", () => {
+    void submitForGrading();
+  });
+
+  if (clearButton instanceof HTMLButtonElement) {
+    clearButton.addEventListener("click", async () => {
+      clearButton.disabled = true;
+      try {
+        const response = await fetch("/api/practice/progress/clear", { method: "POST" });
+        if (!response.ok) {
+          return;
+        }
+        updateProgressUi({
+          passed_count: 0,
+          status: "not_started",
+          label: "Not started",
+        });
+      } finally {
+        clearButton.disabled = false;
+      }
+    });
+  }
+
+  return { hideGradingModal: modal.hide };
 }
