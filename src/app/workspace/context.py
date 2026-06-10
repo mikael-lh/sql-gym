@@ -79,6 +79,10 @@ def get_workspace_context(
             "mode": filters.mode or "",
         },
         "navigation": navigation,
+        "attempt": {
+            "query_result": attempt_state["query_result"],
+            "execution_error": attempt_state["execution_error"],
+        },
     }
 
     return {

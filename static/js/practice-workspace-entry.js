@@ -1,16 +1,6 @@
-function readWorkspaceConfig() {
-  const configNode = document.getElementById("workspace-config");
-  if (!(configNode instanceof HTMLScriptElement) || !configNode.textContent) {
-    return null;
-  }
-  try {
-    return JSON.parse(configNode.textContent);
-  } catch {
-    return null;
-  }
-}
+import { initPracticeWorkspace } from "./practice-workspace.js";
 
-const config = readWorkspaceConfig();
-if (config) {
-  document.documentElement.dataset.workspaceReady = "shell";
-}
+document.addEventListener("DOMContentLoaded", () => {
+  initPracticeWorkspace();
+  document.documentElement.dataset.workspaceReady = "run";
+});

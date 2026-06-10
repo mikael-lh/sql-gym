@@ -1,4 +1,6 @@
 import asyncio
+import json
+import re
 
 import httpx
 
@@ -65,6 +67,8 @@ def test_workspace_renders_editor_and_actions() -> None:
     assert 'id="workspace-run-sql"' in response.text
     assert 'id="workspace-submit-sql"' in response.text
     assert "/static/js/practice-workspace-entry.js" in response.text
+    assert 'id="workspace-run-sql"' in response.text
+    assert 'id="workspace-console"' in response.text
 
 
 def test_workspace_exercise_outside_filter_redirects() -> None:
@@ -75,6 +79,24 @@ def test_workspace_exercise_outside_filter_redirects() -> None:
     assert response.status_code == 303
     assert "difficulty=Beginner" in response.headers["location"]
     assert "mode=Untimed" in response.headers["location"]
+
+
+def test_workspace_config_includes_attempt_restore_payload() -> None:
+    response = asyncio.run(get("/practice/times-archive/times-archive-001"))
+
+    assert response.status_code == 200
+    match = re.search(
+        r'<script type="application/json" id="workspace-config">(.*?)</script>',
+        response.text,
+        re.DOTALL,
+    )
+    assert match is not None
+    config = json.loads(match.group(1))
+    assert config["dataset_id"] == "times-archive"
+    assert config["exercise_id"] == "times-archive-001"
+    assert "attempt" in config
+    assert "query_result" in config["attempt"]
+    assert "execution_error" in config["attempt"]
 
 
 def test_workspace_unknown_exercise_returns_404() -> None:
