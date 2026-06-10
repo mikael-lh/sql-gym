@@ -99,6 +99,13 @@ def test_workspace_config_includes_attempt_restore_payload() -> None:
     assert "execution_error" in config["attempt"]
 
 
+def test_interview_legacy_urls_redirect_to_practice() -> None:
+    response = asyncio.run(get("/practice/interview/start"))
+
+    assert response.status_code == 303
+    assert response.headers["location"] == "/practice"
+
+
 def test_workspace_unknown_exercise_returns_404() -> None:
     response = asyncio.run(get("/practice/times-archive/missing-exercise"))
 

@@ -19,7 +19,7 @@ def _rows_from_grid() -> tuple[tuple[object, ...], ...]:
     return tuple(tuple(row) for row in EXPECTED_GRID["rows"])
 
 
-@patch("app.main.execute_query")
+@patch("app.api.practice.execute_query")
 def test_submit_pass_sets_progress_cookie(mock_execute: MagicMock) -> None:
     from app.execution.models import QueryResult
 
@@ -38,12 +38,12 @@ def test_submit_pass_sets_progress_cookie(mock_execute: MagicMock) -> None:
             follow_redirects=False,
         ) as client:
             return await client.post(
-                "/practice/times-archive/times-archive-001/submit",
-                data={"sql": "SELECT headline_main, pub_date FROM times_archive LIMIT 1"},
+                "/api/practice/times-archive/times-archive-001/submit",
+                json={"sql": "SELECT headline_main, pub_date FROM times_archive LIMIT 1"},
             )
 
     response = asyncio.run(_flow())
-    assert response.status_code == 303
+    assert response.status_code == 200
     set_cookie = response.headers.get("set-cookie", "")
     assert COOKIE_NAME in set_cookie
 
@@ -60,7 +60,7 @@ def test_submit_pass_sets_progress_cookie(mock_execute: MagicMock) -> None:
     assert store.get_status("times-archive-001") == "passed"
 
 
-@patch("app.main.execute_query")
+@patch("app.api.practice.execute_query")
 def test_submit_fail_sets_attempted(mock_execute: MagicMock) -> None:
     from app.execution.models import QueryResult
 
@@ -79,8 +79,8 @@ def test_submit_fail_sets_attempted(mock_execute: MagicMock) -> None:
             follow_redirects=False,
         ) as client:
             return await client.post(
-                "/practice/times-archive/times-archive-001/submit",
-                data={"sql": "SELECT 1 AS wrong"},
+                "/api/practice/times-archive/times-archive-001/submit",
+                json={"sql": "SELECT 1 AS wrong"},
             )
 
     response = asyncio.run(_flow())
@@ -98,7 +98,7 @@ def test_submit_fail_sets_attempted(mock_execute: MagicMock) -> None:
     assert store.get_status("times-archive-001") == "attempted"
 
 
-@patch("app.main.execute_query")
+@patch("app.api.practice.execute_query")
 def test_wide_result_submit_still_renders_grading_panel(mock_execute: MagicMock) -> None:
     from app.execution.models import QueryResult
 
@@ -117,8 +117,8 @@ def test_wide_result_submit_still_renders_grading_panel(mock_execute: MagicMock)
         transport = httpx.ASGITransport(app=app)
         async with httpx.AsyncClient(transport=transport, base_url="http://testserver") as client:
             await client.post(
-                "/practice/times-archive/times-archive-003/submit",
-                data={
+                "/api/practice/times-archive/times-archive-003/submit",
+                json={
                     "sql": (
                         "SELECT section_name, COUNT(*) AS article_count "
                         "FROM times_archive GROUP BY 1"
@@ -134,7 +134,7 @@ def test_wide_result_submit_still_renders_grading_panel(mock_execute: MagicMock)
     assert grading["passed"] is True
 
 
-@patch("app.main.execute_query")
+@patch("app.api.practice.execute_query")
 def test_run_does_not_set_progress_cookie(mock_execute: MagicMock) -> None:
     from app.execution.models import QueryResult
 
@@ -153,8 +153,8 @@ def test_run_does_not_set_progress_cookie(mock_execute: MagicMock) -> None:
             follow_redirects=False,
         ) as client:
             return await client.post(
-                "/practice/times-archive/times-archive-001/run",
-                data={"sql": "SELECT 1 AS n"},
+                "/api/practice/times-archive/times-archive-001/run",
+                json={"sql": "SELECT 1 AS n"},
             )
 
     response = asyncio.run(_flow())
@@ -162,7 +162,7 @@ def test_run_does_not_set_progress_cookie(mock_execute: MagicMock) -> None:
     assert COOKIE_NAME not in set_cookie
 
 
-@patch("app.main.execute_query")
+@patch("app.api.practice.execute_query")
 def test_fail_after_pass_keeps_passed(mock_execute: MagicMock) -> None:
     from app.execution.models import QueryResult
 
@@ -183,15 +183,15 @@ def test_fail_after_pass_keeps_passed(mock_execute: MagicMock) -> None:
             follow_redirects=False,
         ) as client:
             first = await client.post(
-                "/practice/times-archive/times-archive-001/submit",
-                data={"sql": "pass"},
+                "/api/practice/times-archive/times-archive-001/submit",
+                json={"sql": "pass"},
             )
             cookie = first.headers.get("set-cookie", "")
             cookie_pair = cookie.split(";")[0]
             client.cookies.set("sql_gym_progress", cookie_pair.split("=", 1)[1])
             second = await client.post(
-                "/practice/times-archive/times-archive-001/submit",
-                data={"sql": "fail"},
+                "/api/practice/times-archive/times-archive-001/submit",
+                json={"sql": "fail"},
             )
             cookie_header = second.headers.get("set-cookie", "")
             return cookie_header if cookie_header is not None else ""
@@ -213,7 +213,7 @@ def test_fail_after_pass_keeps_passed(mock_execute: MagicMock) -> None:
     assert store.get_status("times-archive-001") == "passed"
 
 
-@patch("app.main.execute_query")
+@patch("app.api.practice.execute_query")
 def test_timed_pass_stores_elapsed_seconds(mock_execute: MagicMock) -> None:
     from app.execution.models import QueryResult
 
@@ -235,8 +235,8 @@ def test_timed_pass_stores_elapsed_seconds(mock_execute: MagicMock) -> None:
             follow_redirects=False,
         ) as client:
             return await client.post(
-                "/practice/times-archive/times-archive-005/submit",
-                data={"sql": "SELECT 1", "elapsed_seconds": "420"},
+                "/api/practice/times-archive/times-archive-005/submit",
+                json={"sql": "SELECT 1", "elapsed_seconds": 420},
             )
 
     response = asyncio.run(_flow())
@@ -258,7 +258,7 @@ def test_timed_pass_stores_elapsed_seconds(mock_execute: MagicMock) -> None:
     assert record.elapsed_seconds == 420
 
 
-@patch("app.main.execute_query")
+@patch("app.api.practice.execute_query")
 def test_timed_retry_updates_best_elapsed(mock_execute: MagicMock) -> None:
     from app.execution.models import QueryResult
 
@@ -281,14 +281,14 @@ def test_timed_retry_updates_best_elapsed(mock_execute: MagicMock) -> None:
             follow_redirects=False,
         ) as client:
             first = await client.post(
-                "/practice/times-archive/times-archive-005/submit",
-                data={"sql": "pass", "elapsed_seconds": "600"},
+                "/api/practice/times-archive/times-archive-005/submit",
+                json={"sql": "pass", "elapsed_seconds": 600},
             )
             cookie = first.headers.get("set-cookie", "")
             client.cookies.set("sql_gym_progress", cookie.split("=", 1)[1].split(";")[0])
             second = await client.post(
-                "/practice/times-archive/times-archive-005/submit",
-                data={"sql": "pass", "elapsed_seconds": "300"},
+                "/api/practice/times-archive/times-archive-005/submit",
+                json={"sql": "pass", "elapsed_seconds": 300},
             )
             cookie_header = second.headers.get("set-cookie", "")
             return cookie_header if cookie_header is not None else ""
@@ -318,10 +318,11 @@ def test_clear_progress_wipes_cookie_store() -> None:
             base_url="http://testserver",
             follow_redirects=False,
         ) as client:
-            return await client.post("/practice/progress/clear")
+            return await client.post("/api/practice/progress/clear")
 
     response = asyncio.run(_flow())
-    assert response.status_code == 303
+    assert response.status_code == 200
+    assert response.json() == {"ok": True}
     set_cookie = response.headers.get("set-cookie", "")
     assert COOKIE_NAME in set_cookie
     cookie_value = set_cookie.split(f"{COOKIE_NAME}=")[1].split(";")[0]

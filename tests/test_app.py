@@ -93,7 +93,7 @@ def test_practice_exercise_unknown_dataset_returns_friendly_404() -> None:
     assert "could not find that exercise" in response.text
 
 
-@patch("app.main.execute_query")
+@patch("app.api.practice.execute_query")
 def test_practice_run_sql_stores_attempt_in_session(mock_execute: MagicMock) -> None:
     mock_execute.return_value = QueryResult(
         columns=("n",),
@@ -106,8 +106,8 @@ def test_practice_run_sql_stores_attempt_in_session(mock_execute: MagicMock) -> 
         transport = httpx.ASGITransport(app=app)
         async with httpx.AsyncClient(transport=transport, base_url="http://testserver") as client:
             await client.post(
-                "/practice/times-archive/times-archive-001/run",
-                data={"sql": "SELECT 1 AS n"},
+                "/api/practice/times-archive/times-archive-001/run",
+                json={"sql": "SELECT 1 AS n"},
             )
             return await client.get("/api/practice/times-archive/times-archive-001")
 
