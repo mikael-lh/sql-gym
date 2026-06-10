@@ -42,7 +42,7 @@
       </div>
     </div>
     <div class="workspace-title-row">
-      <p class="eyebrow">{{ dataset.name }} · {{ exercise.difficulty }} · {{ exercise.mode }}</p>
+      <p class="eyebrow" id="workspace-eyebrow">{{ dataset.name }} · {{ exercise.difficulty }} · {{ exercise.mode }}</p>
       <h1 id="workspace-exercise-title">{{ exercise.title }}</h1>
       <p class="workspace-progress-badge">
         Progress:
@@ -56,9 +56,10 @@
 
   <div class="workspace-body">
     <aside class="workspace-left" aria-label="Exercise context">
-      {% if schema and schema.tables %}
-      <section class="workspace-panel" aria-labelledby="workspace-schema-title">
+      <section class="workspace-panel" aria-labelledby="workspace-schema-title" id="workspace-schema-panel" {% if not schema or not schema.tables %}hidden{% endif %}>
         <h2 id="workspace-schema-title">Schema</h2>
+        <div id="workspace-schema-content">
+        {% if schema and schema.tables %}
         {% for table in schema.tables %}
         <div class="workspace-schema-table">
           <h3>{{ table.name }}</h3>
@@ -74,8 +75,9 @@
           </div>
         </div>
         {% endfor %}
+        {% endif %}
+        </div>
       </section>
-      {% endif %}
 
       <section class="workspace-panel" aria-labelledby="workspace-prompt-title">
         <h2 id="workspace-prompt-title">Prompt</h2>
@@ -118,13 +120,11 @@
           <div id="practice-editor-config"
             data-host-id="practice-editor-host"
             data-input-id="practice-sql-input"></div>
-          {% if exercise.mode == "Timed" %}
-          <div class="workspace-timer-region" id="workspace-timer-region">
+          <div class="workspace-timer-region" id="workspace-timer-region" {% if exercise.mode != "Timed" %}hidden{% endif %}>
             <div id="practice-timer-config" data-duration-seconds="{{ exercise.estimated_time_minutes * 60 }}"></div>
             <button type="button" id="start-timed-exercise" class="button-secondary">Start timed exercise</button>
             <p id="timer-display" class="timer-display" hidden aria-live="polite"></p>
           </div>
-          {% endif %}
           <div class="editor-actions">
             <button type="button" id="workspace-run-sql">Run SQL</button>
             <button type="button" id="workspace-submit-sql" class="button-primary">Submit for grading</button>
