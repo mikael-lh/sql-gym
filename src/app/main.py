@@ -8,6 +8,15 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from starlette.middleware.sessions import SessionMiddleware
 
+from app.api.practice import (
+    RunRequest,
+    SubmitRequest,
+    api_clear_progress,
+    api_get_exercise,
+    api_list_exercises,
+    api_run_sql,
+    api_submit_sql,
+)
 from app.domain.exercises import Exercise
 from app.domain.progress import ProgressStore
 from app.execution import execute_query
@@ -100,6 +109,53 @@ def create_app() -> FastAPI:
     @app.get("/health", tags=["system"])
     def health() -> dict[str, str]:
         return {"status": "ok"}
+
+    @app.get("/api/practice/exercises", tags=["api"])
+    def practice_api_list_exercises(
+        request: Request,
+        dataset: str | None = None,
+        difficulty: str | None = None,
+        mode: str | None = None,
+    ) -> dict[str, object]:
+        return api_list_exercises(request, dataset=dataset, difficulty=difficulty, mode=mode)
+
+    @app.get("/api/practice/{dataset_id}/{exercise_id}", tags=["api"])
+    def practice_api_get_exercise(
+        request: Request,
+        dataset_id: str,
+        exercise_id: str,
+        difficulty: str | None = None,
+        mode: str | None = None,
+    ) -> dict[str, object]:
+        return api_get_exercise(
+            request,
+            dataset_id,
+            exercise_id,
+            difficulty=difficulty,
+            mode=mode,
+        )
+
+    @app.post("/api/practice/{dataset_id}/{exercise_id}/run", tags=["api"])
+    def practice_api_run(
+        request: Request,
+        dataset_id: str,
+        exercise_id: str,
+        body: RunRequest,
+    ) -> Response:
+        return api_run_sql(request, dataset_id, exercise_id, body)
+
+    @app.post("/api/practice/{dataset_id}/{exercise_id}/submit", tags=["api"])
+    def practice_api_submit(
+        request: Request,
+        dataset_id: str,
+        exercise_id: str,
+        body: SubmitRequest,
+    ) -> Response:
+        return api_submit_sql(request, dataset_id, exercise_id, body)
+
+    @app.post("/api/practice/progress/clear", tags=["api"])
+    def practice_api_clear_progress() -> Response:
+        return api_clear_progress()
 
     @app.get("/", response_class=HTMLResponse, tags=["pages"])
     def index(request: Request) -> HTMLResponse:
