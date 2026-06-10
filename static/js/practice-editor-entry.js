@@ -43,3 +43,11 @@ function initPracticeEditor(hostId, hiddenInputId, initialSql) {
 }
 
 globalThis.initPracticeEditor = initPracticeEditor;
+
+globalThis.resetPracticeEditor = (hostId, hiddenInputId, sql) => {
+  const host = document.getElementById(hostId);
+  if (host) {
+    host.innerHTML = "";
+  }
+  initPracticeEditor(hostId, hiddenInputId, sql);
+};

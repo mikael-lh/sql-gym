@@ -121,6 +121,7 @@ def test_timed_workspace_renders_timer_region() -> None:
     assert response.status_code == 200
     assert "Start timed exercise" in response.text
     assert 'id="workspace-timer-region"' in response.text
+    assert 'id="workspace-timer-region" hidden' not in response.text
 
 
 def test_codemirror_assets_are_served() -> None:

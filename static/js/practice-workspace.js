@@ -86,6 +86,170 @@ function buildSubmitUrl(config) {
   return `/api/practice/${config.dataset_id}/${config.exercise_id}/submit`;
 }
 
+function filtersToQuery(filters) {
+  const params = new URLSearchParams();
+  if (filters?.difficulty) {
+    params.set("difficulty", filters.difficulty);
+  }
+  if (filters?.mode) {
+    params.set("mode", filters.mode);
+  }
+  const query = params.toString();
+  return query ? `?${query}` : "";
+}
+
+function buildExercisePath(datasetId, exerciseId, filters) {
+  return `/practice/${datasetId}/${exerciseId}${filtersToQuery(filters)}`;
+}
+
+function buildExerciseApiUrl(datasetId, exerciseId, filters) {
+  return `/api/practice/${datasetId}/${exerciseId}${filtersToQuery(filters)}`;
+}
+
+function buildExercisesListUrl(filters) {
+  return `/api/practice/exercises${filtersToQuery(filters)}`;
+}
+
+function parseExerciseLocation(pathname, search) {
+  const match = pathname.match(/^\/practice\/([^/]+)\/([^/]+)$/);
+  if (!match) {
+    return null;
+  }
+  const params = new URLSearchParams(search);
+  return {
+    dataset_id: match[1],
+    exercise_id: match[2],
+    filters: {
+      difficulty: params.get("difficulty") ?? "",
+      mode: params.get("mode") ?? "",
+    },
+  };
+}
+
+function renderSchemaHtml(schema) {
+  if (!schema?.tables?.length) {
+    return "";
+  }
+  return schema.tables
+    .map((table) => {
+      const columns = table.columns
+        .map((column) => {
+          const description = column.description
+            ? `<p class="workspace-schema-description">${formatCell(column.description)}</p>`
+            : "";
+          return `
+            <div class="workspace-schema-column">
+              <p class="workspace-schema-column-name"><code>${formatCell(column.name)}</code>
+              <span class="workspace-schema-type">${formatCell(column.type)}</span></p>
+              ${description}
+            </div>`;
+        })
+        .join("");
+      return `
+        <div class="workspace-schema-table">
+          <h3>${formatCell(table.name)}</h3>
+          <div class="workspace-schema-columns">${columns}</div>
+        </div>`;
+    })
+    .join("");
+}
+
+function setEditorSql(sql) {
+  const config = document.getElementById("practice-editor-config");
+  if (!(config instanceof HTMLElement) || typeof globalThis.resetPracticeEditor !== "function") {
+    const input = getSqlInput();
+    if (input) {
+      input.value = sql;
+    }
+    return;
+  }
+  globalThis.resetPracticeEditor(config.dataset.hostId, config.dataset.inputId, sql);
+}
+
+function updateNavigationButtons(navigation) {
+  const prevButton = document.getElementById("workspace-prev");
+  const nextButton = document.getElementById("workspace-next");
+  const footerPosition = document.getElementById("workspace-footer-position");
+  const positionLabel = document.getElementById("workspace-position-label");
+  if (prevButton instanceof HTMLButtonElement) {
+    prevButton.disabled = !navigation?.prev_url;
+    prevButton.dataset.targetUrl = navigation?.prev_url ?? "";
+  }
+  if (nextButton instanceof HTMLButtonElement) {
+    nextButton.disabled = !navigation?.next_url;
+    nextButton.dataset.targetUrl = navigation?.next_url ?? "";
+  }
+  if (footerPosition instanceof HTMLElement && navigation?.position_label) {
+    footerPosition.textContent = navigation.position_label;
+  }
+  if (positionLabel instanceof HTMLElement && navigation?.position_label) {
+    positionLabel.textContent = navigation.position_label;
+  }
+}
+
+function applyExercisePayload(payload) {
+  const exercise = payload.exercise;
+  const dataset = payload.dataset;
+  const eyebrow = document.getElementById("workspace-eyebrow");
+  const title = document.getElementById("workspace-exercise-title");
+  const prompt = document.getElementById("workspace-prompt-text");
+  const hint = document.getElementById("workspace-hint-text");
+  const objectives = document.getElementById("workspace-objectives-list");
+  const sampleSql = document.getElementById("workspace-sample-sql");
+  const schemaPanel = document.getElementById("workspace-schema-panel");
+  const schemaContent = document.getElementById("workspace-schema-content");
+  const editorNote = document.querySelector(".workspace-editor-panel .placeholder-note");
+  const timerRegion = document.getElementById("workspace-timer-region");
+  const timerConfig = document.getElementById("practice-timer-config");
+  const bestElapsed = document.getElementById("workspace-best-elapsed");
+
+  if (eyebrow instanceof HTMLElement) {
+    eyebrow.textContent = `${dataset.name} · ${exercise.difficulty} · ${exercise.mode}`;
+  }
+  if (title instanceof HTMLElement) {
+    title.textContent = exercise.title;
+  }
+  if (prompt instanceof HTMLElement) {
+    prompt.textContent = exercise.prompt;
+  }
+  if (hint instanceof HTMLElement) {
+    hint.textContent = exercise.hint;
+  }
+  if (objectives instanceof HTMLElement) {
+    objectives.innerHTML = exercise.learning_objectives
+      .map((objective) => `<li>${formatCell(objective)}</li>`)
+      .join("");
+  }
+  if (sampleSql instanceof HTMLElement) {
+    sampleSql.textContent = exercise.sample_sql ?? "";
+  }
+  if (schemaPanel instanceof HTMLElement && schemaContent instanceof HTMLElement) {
+    const schemaHtml = renderSchemaHtml(payload.schema);
+    schemaContent.innerHTML = schemaHtml;
+    schemaPanel.hidden = !schemaHtml;
+  }
+  if (editorNote instanceof HTMLElement) {
+    editorNote.textContent = `Write PostgreSQL for: ${exercise.title}`;
+  }
+  if (timerRegion instanceof HTMLElement && timerConfig instanceof HTMLElement) {
+    const isTimed = exercise.mode === "Timed";
+    timerRegion.hidden = !isTimed;
+    if (isTimed) {
+      timerConfig.dataset.durationSeconds = String(exercise.estimated_time_minutes * 60);
+    }
+  }
+  if (bestElapsed instanceof HTMLElement) {
+    bestElapsed.textContent = payload.progress?.best_elapsed
+      ? ` — best time ${payload.progress.best_elapsed}`
+      : "";
+  }
+
+  setEditorSql(payload.attempt?.sql ?? "");
+  updateProgressUi(payload.progress);
+  updateNavigationButtons(payload.navigation);
+  document.title = `${exercise.title} - SQL Gym`;
+}
+
 function progressLabelForStatus(status) {
   if (status === "passed") {
     return "Passed";
@@ -216,7 +380,158 @@ function initWorkspaceTimer(onTimeoutSubmit) {
     intervalId = window.setInterval(tick, 1000);
   });
 
-  return { getElapsedSeconds };
+  const reset = () => {
+    if (intervalId !== null) {
+      window.clearInterval(intervalId);
+      intervalId = null;
+    }
+    startedAtMs = null;
+    remainingSeconds = Number.parseInt(config.dataset.durationSeconds ?? "", 10);
+    startButton.hidden = false;
+    display.hidden = true;
+    display.textContent = "";
+  };
+
+  return { getElapsedSeconds, reset };
+}
+
+function initWorkspaceNavigation({
+  workspaceConfig,
+  consoleEl,
+  modal,
+  timer,
+  loadDrawerExercises,
+}) {
+  const drawer = document.getElementById("workspace-drawer");
+  const drawerToggle = document.getElementById("workspace-drawer-toggle");
+  const drawerClose = document.getElementById("workspace-drawer-close");
+  const drawerList = document.getElementById("workspace-drawer-list");
+  const prevButton = document.getElementById("workspace-prev");
+  const nextButton = document.getElementById("workspace-next");
+  const difficultyFilter = document.getElementById("workspace-filter-difficulty");
+  const modeFilter = document.getElementById("workspace-filter-mode");
+
+  const setDrawerOpen = (open) => {
+    if (!(drawer instanceof HTMLElement) || !(drawerToggle instanceof HTMLButtonElement)) {
+      return;
+    }
+    drawer.hidden = !open;
+    drawerToggle.setAttribute("aria-expanded", open ? "true" : "false");
+  };
+
+  const loadExercise = async (datasetId, exerciseId, filters, { push = true } = {}) => {
+    modal.hide();
+    timer.reset();
+    const response = await fetch(buildExerciseApiUrl(datasetId, exerciseId, filters));
+    if (!response.ok) {
+      window.location.assign(buildExercisePath(datasetId, exerciseId, filters));
+      return;
+    }
+    const payload = await response.json();
+    workspaceConfig.dataset_id = datasetId;
+    workspaceConfig.exercise_id = exerciseId;
+    workspaceConfig.filters = filters;
+    workspaceConfig.navigation = payload.navigation;
+    workspaceConfig.attempt = {
+      query_result: payload.attempt?.query_result ?? null,
+      execution_error: payload.attempt?.execution_error ?? null,
+    };
+    applyExercisePayload(payload);
+    renderConsoleAttempt(consoleEl, workspaceConfig.attempt);
+    if (push) {
+      window.history.pushState(
+        { workspace: true },
+        "",
+        buildExercisePath(datasetId, exerciseId, filters),
+      );
+    }
+    void loadDrawerExercises();
+  };
+
+  const navigateByPath = async (path) => {
+    const url = new URL(path, window.location.origin);
+    const parsed = parseExerciseLocation(url.pathname, url.search);
+    if (!parsed) {
+      return;
+    }
+    await loadExercise(parsed.dataset_id, parsed.exercise_id, parsed.filters, { push: false });
+  };
+
+  if (drawerToggle instanceof HTMLButtonElement) {
+    drawerToggle.addEventListener("click", () => {
+      const open = drawer instanceof HTMLElement && drawer.hidden;
+      setDrawerOpen(Boolean(open));
+      if (open) {
+        void loadDrawerExercises();
+      }
+    });
+  }
+  if (drawerClose instanceof HTMLButtonElement) {
+    drawerClose.addEventListener("click", () => setDrawerOpen(false));
+  }
+
+  if (drawerList instanceof HTMLElement) {
+    drawerList.addEventListener("click", (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLElement)) {
+        return;
+      }
+      const button = target.closest("[data-exercise-id]");
+      if (!(button instanceof HTMLButtonElement)) {
+        return;
+      }
+      const datasetId = button.dataset.datasetId;
+      const exerciseId = button.dataset.exerciseId;
+      if (!datasetId || !exerciseId) {
+        return;
+      }
+      setDrawerOpen(false);
+      void loadExercise(datasetId, exerciseId, workspaceConfig.filters);
+    });
+  }
+
+  const wireNavButton = (button) => {
+    if (!(button instanceof HTMLButtonElement)) {
+      return;
+    }
+    button.addEventListener("click", () => {
+      const targetUrl = button.dataset.targetUrl;
+      if (!targetUrl) {
+        return;
+      }
+      void navigateByPath(targetUrl);
+    });
+  };
+  wireNavButton(prevButton);
+  wireNavButton(nextButton);
+
+  const redirectForFilters = () => {
+    const params = new URLSearchParams();
+    if (difficultyFilter instanceof HTMLSelectElement && difficultyFilter.value) {
+      params.set("difficulty", difficultyFilter.value);
+    }
+    if (modeFilter instanceof HTMLSelectElement && modeFilter.value) {
+      params.set("mode", modeFilter.value);
+    }
+    const query = params.toString();
+    window.location.assign(query ? `/practice?${query}` : "/practice");
+  };
+  if (difficultyFilter instanceof HTMLSelectElement) {
+    difficultyFilter.addEventListener("change", redirectForFilters);
+  }
+  if (modeFilter instanceof HTMLSelectElement) {
+    modeFilter.addEventListener("change", redirectForFilters);
+  }
+
+  window.addEventListener("popstate", () => {
+    const parsed = parseExerciseLocation(window.location.pathname, window.location.search);
+    if (!parsed) {
+      return;
+    }
+    void loadExercise(parsed.dataset_id, parsed.exercise_id, parsed.filters, { push: false });
+  });
+
+  return { loadExercise };
 }
 
 export function initPracticeWorkspace() {
@@ -234,12 +549,13 @@ export function initPracticeWorkspace() {
     return;
   }
 
-  renderConsoleAttempt(consoleEl, config.attempt);
+  const workspaceConfig = { ...config, filters: { ...config.filters } };
+  renderConsoleAttempt(consoleEl, workspaceConfig.attempt);
 
   const modal = createGradingModal(submitButton);
   let runInFlight = false;
   let submitInFlight = false;
-  let timer = { getElapsedSeconds: () => null };
+  let timer = { getElapsedSeconds: () => null, reset() {} };
 
   const submitForGrading = async () => {
     if (submitInFlight) {
@@ -269,7 +585,7 @@ export function initPracticeWorkspace() {
     }
 
     try {
-      const response = await fetch(buildSubmitUrl(config), {
+      const response = await fetch(buildSubmitUrl(workspaceConfig), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
@@ -328,7 +644,7 @@ export function initPracticeWorkspace() {
     runButton.setAttribute("aria-busy", "true");
 
     try {
-      const response = await fetch(buildRunUrl(config), {
+      const response = await fetch(buildRunUrl(workspaceConfig), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ sql }),
@@ -359,6 +675,38 @@ export function initPracticeWorkspace() {
     void submitForGrading();
   });
 
+  const loadDrawerExercises = async () => {
+    const drawerList = document.getElementById("workspace-drawer-list");
+    const drawerCount = document.getElementById("workspace-drawer-count");
+    if (!(drawerList instanceof HTMLElement)) {
+      return;
+    }
+    const response = await fetch(buildExercisesListUrl(workspaceConfig.filters));
+    if (!response.ok) {
+      return;
+    }
+    const payload = await response.json();
+    if (drawerCount instanceof HTMLElement) {
+      drawerCount.textContent = `Showing ${payload.total} exercises`;
+    }
+    drawerList.innerHTML = payload.exercises
+      .map((exercise) => {
+        const active =
+          exercise.id === workspaceConfig.exercise_id &&
+          exercise.dataset_id === workspaceConfig.dataset_id
+            ? ' aria-current="true"'
+            : "";
+        return `
+          <li>
+            <button type="button" class="workspace-drawer-item" data-dataset-id="${formatCell(exercise.dataset_id)}" data-exercise-id="${formatCell(exercise.id)}"${active}>
+              <span>${formatCell(exercise.title)}</span>
+              <span class="progress-badge progress-badge-${exercise.progress_status}">${formatCell(exercise.progress_label)}</span>
+            </button>
+          </li>`;
+      })
+      .join("");
+  };
+
   if (clearButton instanceof HTMLButtonElement) {
     clearButton.addEventListener("click", async () => {
       clearButton.disabled = true;
@@ -372,11 +720,20 @@ export function initPracticeWorkspace() {
           status: "not_started",
           label: "Not started",
         });
+        await loadDrawerExercises();
       } finally {
         clearButton.disabled = false;
       }
     });
   }
+
+  initWorkspaceNavigation({
+    workspaceConfig,
+    consoleEl,
+    modal,
+    timer,
+    loadDrawerExercises,
+  });
 
   return { hideGradingModal: modal.hide };
 }
