@@ -282,11 +282,11 @@ def test_interview_abandon_clears_session_and_returns_to_practice() -> None:
     assert abandon_response.status_code == 303
     assert abandon_response.headers["location"] == "/practice"
     assert practice_response.status_code == 200
-    assert "Start interview session" in practice_response.text
+    assert 'data-workspace-shell' in practice_response.text
 
 
 @patch("app.main.execute_query")
-def test_resume_banner_shown_on_practice(mock_execute: MagicMock) -> None:
+def test_active_interview_session_survives_workspace_redirect(mock_execute: MagicMock) -> None:
     from app.execution.models import QueryResult
 
     rows = tuple(tuple(row) for row in EXPECTED_GRID["rows"])
@@ -302,14 +302,15 @@ def test_resume_banner_shown_on_practice(mock_execute: MagicMock) -> None:
         async with httpx.AsyncClient(
             transport=transport,
             base_url="http://testserver",
-            follow_redirects=True,
+            follow_redirects=False,
         ) as client:
             await client.post(
                 "/practice/interview/start",
                 data={"queue_length": "3", "difficulty": ""},
             )
-            return await client.get("/practice")
+            await client.get("/practice", follow_redirects=True)
+            return await client.get("/practice/interview/times-archive/times-archive-001")
 
     response = asyncio.run(_flow())
     assert response.status_code == 200
-    assert "Resume interview" in response.text
+    assert "Interview exercise" in response.text or "SQL editor" in response.text

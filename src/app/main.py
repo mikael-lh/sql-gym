@@ -36,49 +36,20 @@ from app.interview.views import (
     get_interview_summary_context,
     parse_interview_start_form,
 )
-from app.practice import (
-    get_exercise_preview_context,
-    get_home_context,
-    get_not_found_context,
-    get_practice_context,
-    lookup_exercise,
-)
+from app.practice import get_not_found_context, lookup_dataset, lookup_exercise
 from app.practice_session import slim_practice_attempts, store_run_result, store_submit_result
 from app.progress import attach_progress_cookie, clear_progress_cookie, load_progress
+from app.workspace.context import (
+    get_default_workspace_redirect_url,
+    get_workspace_context,
+    parse_workspace_filters,
+)
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 TEMPLATES_DIR = PROJECT_ROOT / "templates"
 STATIC_DIR = PROJECT_ROOT / "static"
 
 templates = Jinja2Templates(directory=TEMPLATES_DIR)
-
-CORE_LOOP = [
-    "Pick a dataset",
-    "Pick a difficulty",
-    "Choose timed or untimed practice",
-    "Complete a SQL exercise",
-    "Review grading feedback",
-    "Move to the next exercise",
-]
-
-PLACEHOLDERS = [
-    {
-        "title": "Accounts and cross-device sync",
-        "description": (
-            "Progress is saved in a browser cookie for 60 days on this device. "
-            "Sign-in and sync across devices are not available."
-        ),
-    },
-    {
-        "title": "AI grading and explanations",
-        "description": "Strict grid-match grading is live; AI feedback and partial credit are not.",
-    },
-    {
-        "title": "Standalone catalog route",
-        "description": "Catalog browsing remains integrated into `/practice` only.",
-    },
-]
-
 
 def _session_secret() -> str:
     return os.environ.get("SESSION_SECRET", "dev-only-session-secret-change-me")
@@ -157,42 +128,26 @@ def create_app() -> FastAPI:
     def practice_api_clear_progress() -> Response:
         return api_clear_progress()
 
-    @app.get("/", response_class=HTMLResponse, tags=["pages"])
-    def index(request: Request) -> HTMLResponse:
-        return templates.TemplateResponse(
-            request,
-            "index.html",
-            {
-                "page_title": "SQL Gym",
-                "status_label": "Phase 4 practice",
-                "positioning": (
-                    "Browse 50 Times Archive SQL exercises, run PostgreSQL against imported "
-                    "article data, track progress in your browser, run multi-question interview "
-                    "sessions, and practice timed exercises with strict pass/fail grading."
-                ),
-                "core_loop": CORE_LOOP,
-                "placeholders": PLACEHOLDERS,
-                **get_home_context(request),
-            },
-        )
+    @app.get("/", tags=["pages"])
+    def index() -> RedirectResponse:
+        return RedirectResponse(url="/practice", status_code=303)
 
-    @app.get("/practice", response_class=HTMLResponse, tags=["pages"])
+    @app.get("/practice", tags=["pages"])
     def practice(
         request: Request,
-        dataset: str | None = None,
         difficulty: str | None = None,
         mode: str | None = None,
-    ) -> HTMLResponse:
-        return templates.TemplateResponse(
-            request,
-            "practice.html",
-            get_practice_context(
+    ) -> Response:
+        filters = parse_workspace_filters(difficulty=difficulty, mode=mode)
+        redirect_url = get_default_workspace_redirect_url(request, filters)
+        if redirect_url is None:
+            return templates.TemplateResponse(
                 request,
-                dataset_id=dataset,
-                difficulty=difficulty,
-                mode=mode,
-            ),
-        )
+                "404.html",
+                get_not_found_context("exercise") | {"request": request},
+                status_code=404,
+            )
+        return RedirectResponse(url=redirect_url, status_code=303)
 
     def _exercise_path(dataset_id: str, exercise_id: str) -> str:
         return f"/practice/{dataset_id}/{exercise_id}"
@@ -400,20 +355,33 @@ def create_app() -> FastAPI:
         request: Request,
         dataset_id: str,
         exercise_id: str,
-    ) -> HTMLResponse:
-        context = get_exercise_preview_context(request, dataset_id, exercise_id)
-        if context is None:
+        difficulty: str | None = None,
+        mode: str | None = None,
+    ) -> Response:
+        filters = parse_workspace_filters(difficulty=difficulty, mode=mode)
+        context = get_workspace_context(request, dataset_id, exercise_id, filters)
+        if context is not None:
+            return templates.TemplateResponse(
+                request,
+                "workspace.html",
+                context | {"request": request},
+            )
+        if lookup_dataset(dataset_id) is None or lookup_exercise(dataset_id, exercise_id) is None:
             return templates.TemplateResponse(
                 request,
                 "404.html",
                 get_not_found_context("exercise") | {"request": request},
                 status_code=404,
             )
-        return templates.TemplateResponse(
-            request,
-            "practice_exercise.html",
-            context | {"request": request},
-        )
+        redirect_url = get_default_workspace_redirect_url(request, filters)
+        if redirect_url is None:
+            return templates.TemplateResponse(
+                request,
+                "404.html",
+                get_not_found_context("exercise") | {"request": request},
+                status_code=404,
+            )
+        return RedirectResponse(url=redirect_url, status_code=303)
 
     @app.post(
         "/practice/{dataset_id}/{exercise_id}/run",
