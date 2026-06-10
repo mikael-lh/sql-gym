@@ -2,7 +2,7 @@
 
 ## Status
 
-**Approved** (2026-06-09) — scope and product decisions locked. Implementation plan: `docs/phase-5-implementation-plan.md` (awaiting plan approval before code).
+**Complete** (2026-06-10) — shipped via TIM-56 epic (TIM-57–TIM-64). Implementation plan: `docs/phase-5-implementation-plan.md`.
 
 ## Source context
 

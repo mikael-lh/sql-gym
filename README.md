@@ -4,14 +4,16 @@ A lightweight gym for SQL: practice on curated datasets, run queries, and level 
 
 ## Status
 
-**Phase 4 complete** — interview sessions, session payload slimming, and catalog copy polish ([prd/phase-4-interview-sessions-and-polish.md](prd/phase-4-interview-sessions-and-polish.md)). Phase 3 cookie progress and per-exercise timed mode, Phase 2 execution/grading, Phase 1 catalog, and Phase 0 scaffold are complete. New product scope requires a new phase PRD plus an approved implementation plan.
+**Phase 5 complete** — single practice workspace with in-page run/submit console, exercise drawer, and JSON APIs ([prd/phase-5-console-workspace.md](prd/phase-5-console-workspace.md)). Phase 4–0 behavior below remains unless superseded in the Phase 5 PRD. New product scope requires a new phase PRD plus an approved implementation plan.
 
 | | |
 |--|--|
 | Full workflow reference | [docs/WORKFLOW.md](docs/WORKFLOW.md) |
 | Product specs | [prd/README.md](prd/README.md) |
-| Phase 4 implementation plan | [docs/phase-4-implementation-plan.md](docs/phase-4-implementation-plan.md) |
+| Phase 5 implementation plan | [docs/phase-5-implementation-plan.md](docs/phase-5-implementation-plan.md) |
 | Session state | [docs/session-state.md](docs/session-state.md) |
+| Phase 5 manual test plan | [docs/phase-5-manual-test-plan.md](docs/phase-5-manual-test-plan.md) |
+| Phase 4 implementation plan | [docs/phase-4-implementation-plan.md](docs/phase-4-implementation-plan.md) |
 | Phase 4 manual test plan | [docs/phase-4-manual-test-plan.md](docs/phase-4-manual-test-plan.md) |
 | Phase 3 implementation plan | [docs/phase-3-implementation-plan.md](docs/phase-3-implementation-plan.md) |
 | Progress cookie | [docs/progress.md](docs/progress.md) |
@@ -83,21 +85,33 @@ docker compose up -d
 
 See [docs/times-data-setup.md](docs/times-data-setup.md) for GCS credentials and troubleshooting.
 
-## Phase 4 behavior status
+## Phase 5 behavior status
 
 Working behavior:
 
-- Multi-exercise **interview sessions** (queue lengths 3, 5, 8, or unlimited; optional difficulty filter).
-- Interview routes under `/practice/interview/...` with per-question timer when `Timed`.
-- Session summary, end early, abandon, and **Resume interview** banner on home/practice.
-- Session preview cap (25 rows) so grading UI survives wide result sets.
-- Catalog copy aligned for date exercises `times-archive-011` and `times-archive-014`.
+- **`GET /practice/{dataset}/{exercise}`** workspace: schema, prompt, hint, objectives, editor, output console, drawer, prev/next.
+- **Run/submit without page reload** via `/api/practice/...` JSON endpoints.
+- Dismissible **grading modal** on submit; timed auto-submit uses the same API.
+- In-place exercise switching (`fetch` + `history.pushState`) with session restore.
+- Filter changes navigate to `/practice?difficulty=...&mode=...` then first eligible exercise.
+- Legacy interview URLs redirect to `/practice`.
 
 Placeholder behavior:
 
 - Authentication, accounts, and cross-device sync.
 - AI grading, explanations, and partial credit.
-- Whole-session master clock or randomized queues.
+
+## Phase 4 behavior status
+
+Shipped in Phase 4 and retained where not superseded by Phase 5:
+
+- Session preview cap (25 rows) for wide result sets.
+- Catalog copy aligned for date exercises `times-archive-011` and `times-archive-014`.
+
+Removed in Phase 5:
+
+- Interview session queues and `/practice/interview/...` UI (redirect only).
+- Catalog card grid and per-exercise form POST run/submit pages.
 
 ## Phase 3 behavior status
 
@@ -105,7 +119,7 @@ Working behavior:
 
 - Signed `sql_gym_progress` cookie (60-day lifetime) for pass/attempt badges without accounts.
 - Catalog and home **Continue practicing** link (difficulty-aware on `/practice`).
-- **Clear my progress** on the practice catalog.
+- **Clear my progress** in the workspace via the JSON API.
 - Per-exercise timed countdown on 16 `Timed` catalog exercises with timeout auto-submit.
 - Best elapsed time recorded on timed passes (retries allowed).
 
@@ -113,7 +127,7 @@ Placeholder behavior:
 
 - Authentication, accounts, and cross-device progress sync.
 - AI grading, explanations, and partial credit.
-- Standalone `/catalog` route (catalog remains in `/practice`).
+- Standalone `/catalog` route (practice entry is `/practice` → workspace).
 
 ## Phase 2 behavior status
 
