@@ -672,7 +672,13 @@ h3 {
   justify-items: center;
   padding: 1rem;
   position: fixed;
+  touch-action: manipulation;
   z-index: 20;
+  -webkit-transform: translateZ(0);
+}
+
+.workspace-modal-backdrop[hidden] {
+  display: none !important;
 }
 
 .workspace-modal {

@@ -273,11 +273,16 @@ function updateProgressUi(progress) {
   }
 }
 
+function prefersReducedPointerFocus() {
+  return window.matchMedia("(pointer: coarse)").matches;
+}
+
 function createGradingModal(submitButton) {
   const backdrop = document.getElementById("workspace-grading-modal");
   const title = document.getElementById("workspace-grading-title");
   const summary = document.getElementById("workspace-grading-summary");
   const okButton = document.getElementById("workspace-grading-ok");
+  const workspaceShell = document.querySelector("[data-workspace-shell]");
   if (
     !(backdrop instanceof HTMLElement) ||
     !(title instanceof HTMLElement) ||
@@ -290,8 +295,21 @@ function createGradingModal(submitButton) {
     };
   }
 
+  if (backdrop.parentElement !== document.body) {
+    document.body.appendChild(backdrop);
+  }
+
+  const isOpen = () => !backdrop.hidden;
+
+  const setShellInert = (inert) => {
+    if (workspaceShell instanceof HTMLElement) {
+      workspaceShell.inert = inert;
+    }
+  };
+
   const hide = () => {
     backdrop.hidden = true;
+    setShellInert(false);
     if (submitButton instanceof HTMLButtonElement) {
       submitButton.focus();
     }
@@ -303,17 +321,27 @@ function createGradingModal(submitButton) {
     summary.textContent = grading.summary ?? "";
     summary.className = passed ? "feedback feedback-pass" : "feedback feedback-fail";
     backdrop.hidden = false;
-    okButton.focus();
+    setShellInert(true);
+    if (!prefersReducedPointerFocus()) {
+      okButton.focus();
+    }
   };
 
-  okButton.addEventListener("click", hide);
-  backdrop.addEventListener("click", (event) => {
+  const dismissFromBackdrop = (event) => {
     if (event.target === backdrop) {
+      event.preventDefault();
       hide();
     }
+  };
+
+  okButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    hide();
   });
+  backdrop.addEventListener("click", dismissFromBackdrop);
+  backdrop.addEventListener("touchend", dismissFromBackdrop);
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && !backdrop.hidden) {
+    if (event.key === "Escape" && isOpen()) {
       hide();
     }
   });

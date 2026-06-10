@@ -156,3 +156,11 @@ def test_static_stylesheet_is_served() -> None:
     assert response.status_code == 200
     assert ".page-shell" in response.text
     assert ".result-table" in response.text
+    assert ".workspace-modal-backdrop[hidden]" in response.text
+
+
+def test_workspace_grading_modal_is_hidden_in_markup() -> None:
+    response = asyncio.run(get("/practice/times-archive/times-archive-001"))
+
+    assert response.status_code == 200
+    assert 'id="workspace-grading-modal" hidden' in response.text
