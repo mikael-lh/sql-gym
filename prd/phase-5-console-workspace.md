@@ -2,7 +2,7 @@
 
 ## Status
 
-**Draft for review** — open questions resolved (2026-06-09). Not an active implementation phase until you explicitly approve scope and an `implement-from-prd` plan.
+**Approved** (2026-06-09) — scope and product decisions locked. Implementation plan: `docs/phase-5-implementation-plan.md` (awaiting plan approval before code).
 
 ## Source context
 
@@ -190,11 +190,11 @@ Acceptance criteria:
 - Grading feedback is lightweight (notification) but trustworthy.
 - Route and template surface area shrinks after interview removal.
 
-## Approval needed
+## Approval
 
-- [ ] Approve PRD scope (product decisions above are locked).
-- [ ] Name Phase 5 **active** in `prd/README.md` when ready for `implement-from-prd`.
-- [ ] Approve implementation plan from `implement-from-prd` before application code.
+- [x] PRD scope approved (2026-06-09).
+- [x] Phase 5 named active in `prd/README.md`.
+- [ ] Implementation plan approved — see `docs/phase-5-implementation-plan.md`.
 
 ## References
 
