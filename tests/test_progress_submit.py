@@ -115,12 +115,8 @@ def test_wide_result_submit_still_renders_grading_panel(mock_execute: MagicMock)
 
     async def _flow() -> httpx.Response:
         transport = httpx.ASGITransport(app=app)
-        async with httpx.AsyncClient(
-            transport=transport,
-            base_url="http://testserver",
-            follow_redirects=True,
-        ) as client:
-            return await client.post(
+        async with httpx.AsyncClient(transport=transport, base_url="http://testserver") as client:
+            await client.post(
                 "/practice/times-archive/times-archive-003/submit",
                 data={
                     "sql": (
@@ -129,11 +125,13 @@ def test_wide_result_submit_still_renders_grading_panel(mock_execute: MagicMock)
                     ),
                 },
             )
+            return await client.get("/api/practice/times-archive/times-archive-003")
 
     response = asyncio.run(_flow())
     assert response.status_code == 200
-    assert 'id="grading-title"' in response.text
-    assert "Passed" in response.text
+    grading = response.json()["attempt"]["grading"]
+    assert grading is not None
+    assert grading["passed"] is True
 
 
 @patch("app.main.execute_query")

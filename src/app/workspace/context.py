@@ -71,6 +71,15 @@ def get_workspace_context(
     )
     schema = get_dataset_schema(dataset_id)
     navigation = workspace_navigation(exercise.id, filters)
+    workspace_config = {
+        "dataset_id": dataset_id,
+        "exercise_id": exercise_id,
+        "filters": {
+            "difficulty": filters.difficulty or "",
+            "mode": filters.mode or "",
+        },
+        "navigation": navigation,
+    }
 
     return {
         "page_title": f"{exercise.title} - SQL Gym",
@@ -114,6 +123,7 @@ def get_workspace_context(
         "passed_count": store.passed_count(),
         "total_exercise_count": len(TIMES_ARCHIVE_CATALOG.exercises),
         "filtered_exercise_count": len(eligible),
+        "workspace_config": workspace_config,
     }
 
 
