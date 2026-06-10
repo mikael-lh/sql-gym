@@ -8,3 +8,4 @@ cd "$ROOT"
 export PATH="${HOME}/.local/bin:${PATH}"
 
 uv sync --locked
+uv run playwright install chromium
