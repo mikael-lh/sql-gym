@@ -7,14 +7,27 @@ def _format_failure(summary: str) -> GradingOutcome:
     return GradingOutcome(passed=False, summary=summary)
 
 
+def _expected_columns_label(columns: tuple[str, ...]) -> str:
+    return ", ".join(columns)
+
+
 def grade(result: QueryResult, expected_grid: ExpectedGrid) -> GradingOutcome:
+    expected_columns = _expected_columns_label(expected_grid.columns)
     if result.columns != expected_grid.columns:
         if set(result.columns) == set(expected_grid.columns):
-            return _format_failure("Column order does not match the expected result.")
-        return _format_failure("Column names do not match the expected result.")
+            return _format_failure(
+                f"Column order does not match. Expected order: {expected_columns}."
+            )
+        return _format_failure(
+            f"Column names do not match. Expected columns (in order): {expected_columns}."
+        )
 
-    if result.row_count != len(expected_grid.rows):
-        return _format_failure("Row count does not match the expected result.")
+    expected_rows = len(expected_grid.rows)
+    if result.row_count != expected_rows:
+        row_label = "row" if expected_rows == 1 else "rows"
+        return _format_failure(
+            f"Row count does not match. Expected {expected_rows} {row_label}."
+        )
 
     for actual_row, expected_row in zip(result.rows, expected_grid.rows, strict=True):
         if len(actual_row) != len(expected_row):

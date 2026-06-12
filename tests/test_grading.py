@@ -54,7 +54,7 @@ def test_grade_fails_wrong_row_count() -> None:
     outcome = grade(actual, expected)
 
     assert outcome.passed is False
-    assert "Row count" in outcome.summary
+    assert "Expected 2 rows" in outcome.summary
 
 
 def test_grade_fails_wrong_column_order() -> None:
@@ -64,7 +64,7 @@ def test_grade_fails_wrong_column_order() -> None:
     outcome = grade(actual, expected)
 
     assert outcome.passed is False
-    assert "Column order" in outcome.summary
+    assert "Expected order: a, b" in outcome.summary
 
 
 def test_grade_fails_wrong_column_names() -> None:
@@ -74,7 +74,7 @@ def test_grade_fails_wrong_column_names() -> None:
     outcome = grade(actual, expected)
 
     assert outcome.passed is False
-    assert "Column names" in outcome.summary
+    assert "Expected columns (in order): a" in outcome.summary
 
 
 def test_grade_compares_null_vs_empty_string() -> None:

@@ -55,6 +55,7 @@ def test_api_get_exercise_returns_workspace_payload() -> None:
     assert payload["exercise"]["id"] == "times-archive-001"
     assert payload["exercise"]["reference_sql"]
     assert "LIMIT 500" in payload["exercise"]["reference_sql"]
+    assert "`headline_main`, `pub_date`" in payload["exercise"]["output_requirements"]
     assert payload["schema"] is not None
     assert "navigation" in payload
     assert "attempt" in payload

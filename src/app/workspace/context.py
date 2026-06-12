@@ -5,6 +5,7 @@ from typing import cast
 from starlette.requests import Request
 
 from app.catalog import TIMES_ARCHIVE_CATALOG
+from app.catalog.output_requirements import build_output_requirements_text
 from app.catalog.schema import DatasetSchema, get_dataset_schema
 from app.domain.exercises import DIFFICULTY_OPTIONS, MODE_OPTIONS, Difficulty, PracticeMode
 from app.practice import PracticeFilters, lookup_dataset, lookup_exercise
@@ -71,6 +72,7 @@ def get_workspace_context(
     )
     schema = get_dataset_schema(dataset_id)
     navigation = workspace_navigation(exercise.id, filters)
+    output_requirements = build_output_requirements_text(exercise)
     workspace_config = {
         "dataset_id": dataset_id,
         "exercise_id": exercise_id,
@@ -94,11 +96,13 @@ def get_workspace_context(
             "description": dataset.description,
         },
         "schema": _schema_payload(schema),
+        "output_requirements": output_requirements,
         "exercise": {
             "id": exercise.id,
             "dataset_id": exercise.dataset_id,
             "title": exercise.title,
             "prompt": exercise.prompt,
+            "output_requirements": output_requirements,
             "difficulty": exercise.difficulty,
             "mode": exercise.mode,
             "target_dialect": exercise.target_dialect,
