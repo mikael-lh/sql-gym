@@ -53,7 +53,8 @@ def test_api_get_exercise_returns_workspace_payload() -> None:
     assert response.status_code == 200
     payload = response.json()
     assert payload["exercise"]["id"] == "times-archive-001"
-    assert "reference_sql" not in payload["exercise"]
+    assert payload["exercise"]["reference_sql"]
+    assert "LIMIT 500" in payload["exercise"]["reference_sql"]
     assert payload["schema"] is not None
     assert "navigation" in payload
     assert "attempt" in payload
