@@ -121,7 +121,7 @@ Run [**sql-gym-pre-review**](../.cursor/skills/sql-gym-pre-review/SKILL.md) befo
 Always-on agent guidance: [.cursor/rules/engineering.mdc](../.cursor/rules/engineering.mdc) and [google-eng-practices.md](references/google-eng-practices.md).
 
 - **CI** (add when stack is chosen): automated format, lint, and tests on every PR; add as first pre-review checkbox when enabled
-- **Workspace browser checks** (pre-review): when a PR changes practice workspace UI, the reviewer runs `uv run pytest tests/test_grading_modal.py tests/test_workspace_console_scroll.py` (Playwright + Chromium; see [sql-gym-pre-review-reviewer](../.cursor/skills/sql-gym-pre-review-reviewer/SKILL.md))
+- **Browser checks** (pre-review): when a PR changes **user-facing behavior** (templates, client JS/CSS, practice UI routes/APIs), the reviewer runs existing Playwright tests and expects **new or updated browser tests** for changed flows not already covered — see [sql-gym-pre-review-reviewer](../.cursor/skills/sql-gym-pre-review-reviewer/SKILL.md)
 - **User PR review:** architecture and design judgment after agent pre-review passes
 
 Optional later: enable **Cursor Bugbot** on the repo for automated PR review once there is substantial code — it catches bugs and issues, not product scope.

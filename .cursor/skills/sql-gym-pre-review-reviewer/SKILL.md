@@ -34,15 +34,25 @@ Ask if missing:
 3. Superpowers **`code-reviewer`** vs the approved plan and [engineering.mdc](../../../.cursor/rules/engineering.mdc).
    - **If Superpowers is unavailable:** manually review the diff against the approved plan and `engineering.mdc` using available tools. Document this as "manual code review (Superpowers unavailable)" in findings. Leave the Superpowers PR box **unchecked**.
 4. Review the diff against [docs/references/google-eng-practices.md](../../../docs/references/google-eng-practices.md). Use **`Nit:`** only for non-blocking items.
-5. **Playwright workspace browser checks** when the PR touches practice workspace UI or client behavior (or adds/changes workspace Playwright tests):
-   - **Applies when** the diff includes any of: `templates/workspace.html`, `static/js/practice-workspace*.js`, workspace console/modal/drawer rules in `static/styles.css`, or `tests/test_grading_modal.py` / `tests/test_workspace_console_scroll.py`.
-   - **Run** (after `uv sync`):
+5. **Playwright browser checks for user-facing behavior** — required when the PR changes anything learners see or interact with in the browser (not scrolling-only):
+   - **Applies when** the diff touches user-facing surfaces, including: `templates/`, `static/js/`, `static/styles.css`, practice page/API routes (`src/app/main.py` pages, `src/app/api/`, `src/app/workspace/`), or learner-visible copy/errors wired to the UI.
+   - **N/A** only for docs-only, tooling-only, or strictly internal backend changes with no UI or client-contract impact — state **N/A** in Tools, not “passed”.
+   - **Run all existing workspace Playwright tests** (after `uv sync`):
      ```bash
      uv run playwright install chromium
      uv run pytest tests/test_grading_modal.py tests/test_workspace_console_scroll.py -v
      ```
-   - **N/A** for docs-only or backend-only PRs with no workspace UI impact — state **N/A** in Tools, not “passed”.
-   - **Blocking** if tests fail, Chromium cannot be installed in the environment, or a workspace UX fix/regression lacks coverage when an existing Playwright test should have caught it (e.g. modal dismiss, console scroll without page growth).
+   - **What those tests cover today** (read the files — do not assume broader coverage):
+     | File | Browser? | Verifies |
+     |------|----------|----------|
+     | `tests/test_grading_modal.py` | Partial | CSS `[hidden]` rule (static); modal **not visible on load**; empty submit opens modal; **OK dismisses** on desktop click and iPhone tap |
+     | `tests/test_workspace_console_scroll.py` | Yes | **Run SQL** with a large result; **page height unchanged**; results **scroll inside** the output console panel |
+     | *(no other Playwright workspace tests yet)* | — | Run SQL display, prev/next nav, drawer, filters, grading pass/fail, timer, clear progress, answer SQL, etc. are **not** automated |
+   - **Blocking** if:
+     - Existing Playwright tests fail or Chromium cannot be installed;
+     - The PR changes user-facing behavior but adds **no** Playwright coverage when a test should exist for that flow (new test in `tests/test_*.py` using Playwright, or extend an existing browser test);
+     - The PR only relies on static/HTML assertions for behavior that requires a real browser (clicks, scroll, layout).
+   - Reviewer should name the **changed UX** in findings and state whether it is covered by an existing browser test, a new test in the PR, or why N/A.
 6. **Triage** every item as **blocking** or **`Nit:`** and return the lists to the caller (orchestrator or **user**). Do not check PR boxes or mark ready for **user** review. Include:
    - Blocking list (numbered)
    - `Nit:` list (optional)
