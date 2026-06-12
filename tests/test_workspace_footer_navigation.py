@@ -54,6 +54,35 @@ sync_playwright = pytest.importorskip("playwright.sync_api").sync_playwright
 
 
 @pytest.mark.integration
+def test_drawer_shows_loading_state_before_exercise_list(
+    workspace_server_url: str,
+) -> None:
+    url = f"{workspace_server_url}/practice/times-archive/times-archive-001"
+
+    with sync_playwright() as playwright:
+        browser = playwright.chromium.launch(headless=True)
+        try:
+            page = browser.new_page()
+
+            def delay_exercises(route, request):  # type: ignore[no-untyped-def]
+                if "/api/practice/exercises" in request.url:
+                    time.sleep(0.3)
+                route.continue_()
+
+            page.route("**/api/practice/exercises**", delay_exercises)
+            page.goto(url, wait_until="domcontentloaded")
+            page.wait_for_function(
+                "() => document.documentElement.dataset.workspaceReady === 'submit'"
+            )
+            page.click("#workspace-drawer-toggle")
+            page.wait_for_selector(".workspace-drawer-loading", timeout=5_000)
+            page.wait_for_selector("[data-exercise-id]", timeout=10_000)
+            assert page.locator("[data-exercise-id]").count() > 0
+        finally:
+            browser.close()
+
+
+@pytest.mark.integration
 def test_footer_next_sets_target_url_on_load_and_updates_location(
     workspace_server_url: str,
 ) -> None:
