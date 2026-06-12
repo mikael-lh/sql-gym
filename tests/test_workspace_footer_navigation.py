@@ -83,6 +83,34 @@ def test_drawer_shows_loading_state_before_exercise_list(
 
 
 @pytest.mark.integration
+def test_answer_sql_updates_on_footer_navigation(workspace_server_url: str) -> None:
+    url = f"{workspace_server_url}/practice/times-archive/times-archive-001"
+
+    with sync_playwright() as playwright:
+        browser = playwright.chromium.launch(headless=True)
+        try:
+            page = browser.new_page()
+            page.goto(url, wait_until="domcontentloaded")
+            page.wait_for_function(
+                "() => document.documentElement.dataset.workspaceReady === 'submit'"
+            )
+            page.locator("#workspace-sample-sql-details summary").click()
+            answer_before = page.locator("#workspace-answer-sql").inner_text()
+            assert "section_name = 'Arts'" in answer_before
+
+            page.click("#workspace-next")
+            page.wait_for_function(
+                "() => window.location.pathname.endsWith('times-archive-002')",
+                timeout=10_000,
+            )
+            answer_after = page.locator("#workspace-answer-sql").inner_text()
+            assert "news_desk = 'Business'" in answer_after
+            assert answer_after != answer_before
+        finally:
+            browser.close()
+
+
+@pytest.mark.integration
 def test_footer_next_sets_target_url_on_load_and_updates_location(
     workspace_server_url: str,
 ) -> None:
