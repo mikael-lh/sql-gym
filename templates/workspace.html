@@ -102,11 +102,7 @@
         <details class="hint-details" id="workspace-sample-sql-details">
           <summary>Show sample SQL (illustrative only)</summary>
           <pre class="sample-sql" id="workspace-sample-sql">{{ exercise.sample_sql }}</pre>
-          <div id="workspace-answer-block" {% if not exercise.reference_sql %}hidden{% endif %}>
-            <h3 class="workspace-answer-heading">Answer</h3>
-            <pre class="sample-sql" id="workspace-answer-sql">{{ exercise.reference_sql or "" }}</pre>
-          </div>
-          <p class="placeholder-note">Sample SQL is illustrative. Answer SQL is the reference query used for grading.</p>
+          <p class="placeholder-note">Sample SQL is illustrative only; it may differ from a passing solution.</p>
         </details>
       </section>
     </aside>

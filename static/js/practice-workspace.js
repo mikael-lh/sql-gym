@@ -229,13 +229,6 @@ function applyExercisePayload(payload) {
   if (sampleSql instanceof HTMLElement) {
     sampleSql.textContent = exercise.sample_sql ?? "";
   }
-  const answerBlock = document.getElementById("workspace-answer-block");
-  const answerSql = document.getElementById("workspace-answer-sql");
-  if (answerBlock instanceof HTMLElement && answerSql instanceof HTMLElement) {
-    const referenceSql = exercise.reference_sql ?? "";
-    answerSql.textContent = referenceSql;
-    answerBlock.hidden = !referenceSql;
-  }
   if (schemaPanel instanceof HTMLElement && schemaContent instanceof HTMLElement) {
     const schemaHtml = renderSchemaHtml(payload.schema);
     schemaContent.innerHTML = schemaHtml;
@@ -489,15 +482,6 @@ function initWorkspaceNavigation({
     void loadDrawerExercises();
   };
 
-  const navigateByPath = async (path) => {
-    const url = new URL(path, window.location.origin);
-    const parsed = parseExerciseLocation(url.pathname, url.search);
-    if (!parsed) {
-      return;
-    }
-    await loadExercise(parsed.dataset_id, parsed.exercise_id, parsed.filters, { push: false });
-  };
-
   if (drawerToggle instanceof HTMLButtonElement) {
     drawerToggle.addEventListener("click", () => {
       const open = drawer instanceof HTMLElement && drawer.hidden;
@@ -540,7 +524,12 @@ function initWorkspaceNavigation({
       if (!targetUrl) {
         return;
       }
-      void navigateByPath(targetUrl);
+      const url = new URL(targetUrl, window.location.origin);
+      const parsed = parseExerciseLocation(url.pathname, url.search);
+      if (!parsed) {
+        return;
+      }
+      void loadExercise(parsed.dataset_id, parsed.exercise_id, parsed.filters, { push: true });
     });
   };
   wireNavButton(prevButton);
@@ -716,12 +705,22 @@ export function initPracticeWorkspace() {
     void submitForGrading();
   });
 
+  const renderDrawerLoading = () => {
+    const drawerList = document.getElementById("workspace-drawer-list");
+    if (!(drawerList instanceof HTMLElement)) {
+      return;
+    }
+    drawerList.innerHTML =
+      '<li class="workspace-drawer-loading"><p class="placeholder-note">Loading exercises…</p></li>';
+  };
+
   const loadDrawerExercises = async () => {
     const drawerList = document.getElementById("workspace-drawer-list");
     const drawerCount = document.getElementById("workspace-drawer-count");
     if (!(drawerList instanceof HTMLElement)) {
       return;
     }
+    renderDrawerLoading();
     const response = await fetch(buildExercisesListUrl(workspaceConfig.filters));
     if (!response.ok) {
       return;
@@ -775,6 +774,8 @@ export function initPracticeWorkspace() {
     timer,
     loadDrawerExercises,
   });
+
+  updateNavigationButtons(workspaceConfig.navigation);
 
   return { hideGradingModal: modal.hide };
 }
