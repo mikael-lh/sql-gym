@@ -11,7 +11,7 @@ Check only after **`sql-gym-pre-review`** passes: independent **reviewer** agent
 - [ ] Reviewed against [google-eng-practices](docs/references/google-eng-practices.md) (or N/A — docs-only) — blocking items fixed
 - [ ] cursor-team-kit `deslop` (or N/A — docs-only)
 - [ ] Tests/lint run (or **CI not configured yet** — manual checks: ___)
-- [ ] Playwright browser checks for user-facing behavior (or N/A — no UI/client impact) — existing tests green; new/changed UX covered by Playwright or noted in test plan
+- [ ] Browser checks for user-facing behavior (or N/A — no UI/client impact) — affected flows listed; relevant Playwright tests + ad-hoc browser validation recorded in PR/review
 
 ## PRD
 

@@ -22,7 +22,7 @@ If there are no reviewer findings yet, run **`sql-gym-pre-review`** (or a review
 1. Checkout the PR branch.
 2. For each **blocking** item from the latest reviewer pass, implement the fix. Do **not** expand scope beyond the issue / PRD without **user** approval.
 3. cursor-team-kit **`deslop`** on changed code (or N/A — docs-only). **If cursor-team-kit is unavailable**, do a manual slop pass: remove redundant comments, dead code, and AI-ism phrasing; note "manual deslop (cursor-team-kit unavailable)" in the PR description and leave the deslop PR box **unchecked**.
-4. Run tests/lint (or manual equivalent); fix until green. When the PR touches user-facing behavior, run `uv run pytest tests/test_grading_modal.py tests/test_workspace_console_scroll.py -v` and add/update Playwright tests for any changed UX not already covered (install Chromium via `uv run playwright install chromium` if needed).
+4. Run tests/lint (or manual equivalent); fix until green. When the PR touches user-facing behavior, validate **affected flows** in browser: run **relevant** committed Playwright tests (see reviewer skill catalog) plus ad-hoc checks for this PR; add a committed Playwright test only for regressions worth keeping (install Chromium via `uv run playwright install chromium` if needed).
 5. Commit, push, and update the PR description with what changed (e.g. “Pre-review fix pass 2 — …”).
 6. Hand back to **`sql-gym-pre-review`** for the next review pass (or tell the **user** to run it). Increment pass number in the PR notes when helpful.
 

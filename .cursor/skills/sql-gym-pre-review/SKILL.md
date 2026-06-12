@@ -70,7 +70,7 @@ Check **Agent pre-review** boxes on the PR only after a reviewer pass reports no
 - [google-eng-practices](../../../docs/references/google-eng-practices.md) review (blocking fixed; `Nit:` optional)
 - cursor-team-kit `deslop` (or N/A docs-only)
 - Tests/lint green, or state **CI not configured yet** and note what ran (e.g. `./scripts/validate-env.sh`)
-- Playwright browser checks for user-facing behavior — run `tests/test_grading_modal.py` + `tests/test_workspace_console_scroll.py`; PR must add/update browser tests for changed UX not already covered (or **N/A** — no user-facing behavior in PR)
+- Browser checks for user-facing behavior — case-by-case: reviewer lists affected UX, runs relevant committed Playwright tests + ad-hoc browser validation for this PR (or **N/A** — no user-facing behavior)
 
 PR description must include: summary, risks, test plan, PRD deviations, and any remaining **`Nit:`** items.
 
