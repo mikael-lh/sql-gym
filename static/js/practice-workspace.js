@@ -199,6 +199,7 @@ function applyExercisePayload(payload) {
   const eyebrow = document.getElementById("workspace-eyebrow");
   const title = document.getElementById("workspace-exercise-title");
   const prompt = document.getElementById("workspace-prompt-text");
+  const outputRequirements = document.getElementById("workspace-output-requirements");
   const hint = document.getElementById("workspace-hint-text");
   const objectives = document.getElementById("workspace-objectives-list");
   const sampleSql = document.getElementById("workspace-sample-sql");
@@ -217,6 +218,9 @@ function applyExercisePayload(payload) {
   }
   if (prompt instanceof HTMLElement) {
     prompt.textContent = exercise.prompt;
+  }
+  if (outputRequirements instanceof HTMLElement) {
+    outputRequirements.textContent = exercise.output_requirements ?? "";
   }
   if (hint instanceof HTMLElement) {
     hint.textContent = exercise.hint;

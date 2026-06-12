@@ -68,6 +68,15 @@ def test_workspace_renders_editor_and_session_copy() -> None:
     assert "/static/js/practice-workspace-entry.js" in response.text
 
 
+def test_workspace_renders_expected_output_section() -> None:
+    response = asyncio.run(get("/practice/times-archive/times-archive-001"))
+
+    assert response.status_code == 200
+    assert 'id="workspace-output-requirements"' in response.text
+    assert "`headline_main`, `pub_date`" in response.text
+    assert "not your SQL wording" in response.text
+
+
 def test_workspace_hides_sample_sql_in_collapsed_details() -> None:
     response = asyncio.run(get("/practice/times-archive/times-archive-019"))
 
