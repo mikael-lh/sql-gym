@@ -664,6 +664,26 @@ h3 {
   margin: 1rem 0 0.5rem;
 }
 
+.workspace-console .result-table-wrap {
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  max-height: min(24rem, 45vh);
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.workspace-console .result-table thead th {
+  background: #f8fafc;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.workspace-answer-heading {
+  font-size: 0.95rem;
+  margin: 1rem 0 0.5rem;
+}
+
 .workspace-console-panel .placeholder-note {
   margin: 0;
 }
