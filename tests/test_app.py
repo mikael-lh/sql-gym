@@ -74,17 +74,16 @@ def test_workspace_hides_sample_sql_in_collapsed_details() -> None:
     assert response.status_code == 200
     assert "Show sample SQL (illustrative only)" in response.text
     assert 'id="workspace-sample-sql"' in response.text
-    assert 'id="workspace-answer-sql"' in response.text
     assert "RANK() OVER" in response.text
 
 
-def test_workspace_renders_reference_sql_answer_below_sample_sql() -> None:
+def test_workspace_does_not_expose_reference_sql_answer() -> None:
     response = asyncio.run(get("/practice/times-archive/times-archive-001"))
 
     assert response.status_code == 200
-    assert 'id="workspace-answer-block"' in response.text
-    assert "LIMIT 500" in response.text
-    assert response.text.index("workspace-sample-sql") < response.text.index("workspace-answer-sql")
+    assert 'id="workspace-answer-block"' not in response.text
+    assert 'id="workspace-answer-sql"' not in response.text
+    assert "section_name = 'Arts'" not in response.text
 
 
 def test_practice_exercise_unknown_route_returns_friendly_404() -> None:
@@ -158,6 +157,22 @@ def test_health_endpoint_reports_ok() -> None:
 
     assert response.status_code == 200
     assert response.json() == {"status": "ok"}
+
+
+def test_favicon_is_served() -> None:
+    response = asyncio.run(get("/favicon.ico"))
+
+    assert response.status_code == 200
+    assert response.headers["content-type"].startswith("image/")
+    assert "SQL" in response.text
+
+
+def test_base_template_references_favicon() -> None:
+    response = asyncio.run(get("/practice/times-archive/times-archive-001"))
+
+    assert response.status_code == 200
+    assert 'rel="icon"' in response.text
+    assert "/static/favicon.svg" in response.text
 
 
 def test_static_stylesheet_is_served() -> None:

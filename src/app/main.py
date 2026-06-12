@@ -3,7 +3,7 @@ from pathlib import Path
 
 import uvicorn
 from fastapi import FastAPI, Request
-from fastapi.responses import HTMLResponse, RedirectResponse, Response
+from fastapi.responses import FileResponse, HTMLResponse, RedirectResponse, Response
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from starlette.middleware.sessions import SessionMiddleware
@@ -46,6 +46,10 @@ def create_app() -> FastAPI:
     @app.get("/health", tags=["system"])
     def health() -> dict[str, str]:
         return {"status": "ok"}
+
+    @app.get("/favicon.ico", include_in_schema=False)
+    def favicon() -> FileResponse:
+        return FileResponse(STATIC_DIR / "favicon.svg", media_type="image/svg+xml")
 
     @app.get("/api/practice/exercises", tags=["api"])
     def practice_api_list_exercises(
