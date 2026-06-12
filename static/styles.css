@@ -602,23 +602,61 @@ h3 {
   min-height: 0;
 }
 
-.workspace-console {
-  min-height: 8rem;
+.workspace-console-panel {
+  display: flex;
+  flex-direction: column;
 }
 
-.workspace-console .result-table-wrap {
-  border: 1px solid #e2e8f0;
-  border-radius: 0.75rem;
-  max-height: min(24rem, 45vh);
+.workspace-console-panel > h2 {
+  flex: 0 0 auto;
+}
+
+.workspace-console {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  height: clamp(10rem, 38vh, 24rem);
+  max-height: clamp(10rem, 38vh, 24rem);
+  min-height: clamp(10rem, 38vh, 24rem);
+  min-width: 0;
+  overflow: hidden;
+}
+
+.workspace-console-meta {
+  flex: 0 0 auto;
+}
+
+.workspace-console-meta h3 {
+  margin: 0.25rem 0 0.5rem;
+}
+
+.workspace-console-results {
+  flex: 1 1 auto;
+  margin-top: 0.5rem;
+  min-height: 0;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
 }
 
-.workspace-console .result-table thead th {
+.workspace-console-results .result-table-wrap {
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  max-height: none;
+  overflow-x: auto;
+  overflow-y: visible;
+}
+
+.workspace-console-results .result-table thead th {
   background: #f8fafc;
   position: sticky;
   top: 0;
   z-index: 1;
+}
+
+.workspace-console-results .result-table td,
+.workspace-console-results .result-table th {
+  max-width: 16rem;
+  overflow-wrap: anywhere;
 }
 
 .workspace-answer-heading {
