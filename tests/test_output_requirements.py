@@ -15,6 +15,15 @@ def test_output_requirements_lists_columns_in_order() -> None:
     assert "not your SQL wording" in text
 
 
+def test_output_requirements_resolves_positional_order_by() -> None:
+    exercise = lookup_exercise("times-archive", "times-archive-002")
+    assert exercise is not None
+    text = build_output_requirements_text(exercise)
+
+    assert "Order rows by: headline_main." in text
+    assert "Order rows by: 1." not in text
+
+
 def test_output_requirements_for_scalar_count() -> None:
     exercise = lookup_exercise("times-archive", "times-archive-011")
     assert exercise is not None

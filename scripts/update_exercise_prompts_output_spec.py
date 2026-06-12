@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Append precise expected-output requirements to catalog exercise prompts."""
+"""Validate output-requirements copy for all catalog exercises.
+
+Expected output specs are rendered in the workspace UI (not embedded in prompts).
+Re-run after changing reference_sql or column metadata.
+"""
 
 from __future__ import annotations
 
@@ -14,32 +18,26 @@ from app.catalog.output_requirements import build_output_requirements_text  # no
 from app.catalog.times import _parse_exercise  # noqa: E402
 
 EXERCISES_PATH = ROOT / "src/app/catalog/data/times_exercises.json"
-_EXPECTED_OUTPUT_MARKER = "\n\nExpected output:"
-
-
-def _base_prompt(prompt: str) -> str:
-    if _EXPECTED_OUTPUT_MARKER in prompt:
-        return prompt.split(_EXPECTED_OUTPUT_MARKER, maxsplit=1)[0].rstrip()
-    return prompt.rstrip()
 
 
 def main() -> int:
     entries = json.loads(EXERCISES_PATH.read_text(encoding="utf-8"))
-    updated = 0
+    issues: list[str] = []
     for entry in entries:
         exercise = _parse_exercise(dict(entry))
-        requirements = build_output_requirements_text(exercise)
-        base = _base_prompt(entry["prompt"])
-        new_prompt = f"{base}{_EXPECTED_OUTPUT_MARKER} {requirements}"
-        if entry["prompt"] != new_prompt:
-            entry["prompt"] = new_prompt
-            updated += 1
+        text = build_output_requirements_text(exercise)
+        if "Order rows by: 1." in text or "Order rows by: 2." in text:
+            issues.append(f"{exercise.id}: positional ORDER BY in learner copy")
+        for name in exercise.expected_result.column_names:
+            if f"`{name}`" not in text:
+                issues.append(f"{exercise.id}: missing column `{name}` in output copy")
 
-    EXERCISES_PATH.write_text(
-        json.dumps(entries, indent=2, ensure_ascii=False) + "\n",
-        encoding="utf-8",
-    )
-    print(f"Updated prompts for {updated} exercises.")
+    if issues:
+        for issue in issues:
+            print(f"ERROR: {issue}", file=sys.stderr)
+        return 1
+
+    print(f"Validated output requirements for {len(entries)} exercises.")
     return 0
 
 

@@ -73,8 +73,12 @@ def test_workspace_renders_expected_output_section() -> None:
 
     assert response.status_code == 200
     assert 'id="workspace-output-requirements"' in response.text
-    assert "`headline_main`, `pub_date`" in response.text
-    assert "not your SQL wording" in response.text
+    panel_match = response.text.split('id="workspace-output-requirements"', maxsplit=1)[1]
+    assert "`headline_main`, `pub_date`" in panel_match[:500]
+    assert "not your SQL wording" in panel_match[:500]
+    assert "Expected output:" not in response.text.split('id="workspace-prompt-text"', maxsplit=1)[
+        1
+    ][:400]
 
 
 def test_workspace_hides_sample_sql_in_collapsed_details() -> None:

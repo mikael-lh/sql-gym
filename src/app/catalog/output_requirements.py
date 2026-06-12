@@ -11,6 +11,10 @@ _ORDER_BY_PATTERN = re.compile(
     re.IGNORECASE | re.DOTALL,
 )
 _LIMIT_PATTERN = re.compile(r"\bLIMIT\s+(\d+)\s*;?\s*$", re.IGNORECASE)
+_POSITIONAL_ORDER_PATTERN = re.compile(
+    r"^(\d+)(\s+(ASC|DESC))?$",
+    re.IGNORECASE,
+)
 
 
 def _extract_order_by(reference_sql: str | None) -> str | None:
@@ -21,6 +25,21 @@ def _extract_order_by(reference_sql: str | None) -> str | None:
         return None
     clause = match.group(1).strip().rstrip(";")
     return clause or None
+
+
+def _humanize_order_by(clause: str, columns: tuple[str, ...]) -> str:
+    """Turn positional ORDER BY (e.g. ``1 DESC``) into column names learners can use."""
+    positional = _POSITIONAL_ORDER_PATTERN.match(clause.strip())
+    if positional is None:
+        return clause
+
+    index = int(positional.group(1))
+    direction = (positional.group(2) or "").strip()
+    if index < 1 or index > len(columns):
+        return clause
+
+    column_name = columns[index - 1]
+    return f"{column_name} {direction}".strip() if direction else column_name
 
 
 def _extract_limit(reference_sql: str | None) -> int | None:
@@ -50,7 +69,8 @@ def build_output_requirements_text(exercise: Exercise) -> str:
     reference_sql = exercise.expected_result.reference_sql
     order_by = _extract_order_by(reference_sql)
     if order_by:
-        parts.append(f"Order rows by: {order_by}.")
+        humanized = _humanize_order_by(order_by, columns)
+        parts.append(f"Order rows by: {humanized}.")
 
     limit = _extract_limit(reference_sql)
     if limit is not None:

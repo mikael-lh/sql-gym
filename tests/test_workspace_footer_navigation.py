@@ -111,6 +111,34 @@ def test_answer_sql_updates_on_footer_navigation(workspace_server_url: str) -> N
 
 
 @pytest.mark.integration
+def test_expected_output_panel_updates_on_footer_navigation(
+    workspace_server_url: str,
+) -> None:
+    url = f"{workspace_server_url}/practice/times-archive/times-archive-001"
+
+    with sync_playwright() as playwright:
+        browser = playwright.chromium.launch(headless=True)
+        try:
+            page = browser.new_page()
+            page.goto(url, wait_until="domcontentloaded")
+            page.wait_for_function(
+                "() => document.documentElement.dataset.workspaceReady === 'submit'"
+            )
+            output = page.locator("#workspace-output-requirements")
+            assert "pub_date DESC" in output.inner_text()
+
+            page.click("#workspace-next")
+            page.wait_for_function(
+                "() => window.location.pathname.endsWith('times-archive-002')",
+                timeout=10_000,
+            )
+            assert "headline_main." in output.inner_text()
+            assert "pub_date DESC" not in output.inner_text()
+        finally:
+            browser.close()
+
+
+@pytest.mark.integration
 def test_footer_next_sets_target_url_on_load_and_updates_location(
     workspace_server_url: str,
 ) -> None:
