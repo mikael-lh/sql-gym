@@ -223,6 +223,13 @@ function applyExercisePayload(payload) {
   if (sampleSql instanceof HTMLElement) {
     sampleSql.textContent = exercise.sample_sql ?? "";
   }
+  const answerBlock = document.getElementById("workspace-answer-block");
+  const answerSql = document.getElementById("workspace-answer-sql");
+  if (answerBlock instanceof HTMLElement && answerSql instanceof HTMLElement) {
+    const referenceSql = exercise.reference_sql ?? "";
+    answerSql.textContent = referenceSql;
+    answerBlock.hidden = !referenceSql;
+  }
   if (schemaPanel instanceof HTMLElement && schemaContent instanceof HTMLElement) {
     const schemaHtml = renderSchemaHtml(payload.schema);
     schemaContent.innerHTML = schemaHtml;

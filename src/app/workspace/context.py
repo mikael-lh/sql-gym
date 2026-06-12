@@ -108,6 +108,7 @@ def get_workspace_context(
             "availability_status": exercise.availability_status,
             "hint": exercise.hint,
             "sample_sql": exercise.sample_sql,
+            "reference_sql": exercise.expected_result.reference_sql,
         },
         "sql": attempt_state["sql"],
         "query_result": attempt_state["query_result"],
