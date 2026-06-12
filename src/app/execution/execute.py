@@ -6,11 +6,10 @@ from decimal import Decimal
 import psycopg
 from psycopg import errors as pg_errors
 
-from app.db.settings import get_database_url
+from app.db.settings import get_database_url, get_statement_timeout_ms
 from app.execution.models import ExecutionError, QueryResult
 from app.execution.sql_sanitize import strip_sql_comments
 
-STATEMENT_TIMEOUT_MS = 5_000
 MAX_ROWS = 500
 
 _SELECT_PREFIX = re.compile(r"^\s*(with\s+.+?\)\s*)?select\b", re.IGNORECASE | re.DOTALL)
@@ -72,7 +71,7 @@ def execute_query(sql: str) -> QueryResult | ExecutionError:
     executable_sql = strip_sql_comments(sql).rstrip(";")
     try:
         with psycopg.connect(database_url) as conn:
-            conn.execute(f"SET statement_timeout = {STATEMENT_TIMEOUT_MS}")
+            conn.execute(f"SET statement_timeout = {get_statement_timeout_ms()}")
             with conn.cursor() as cur:
                 cur.execute(executable_sql)
                 if cur.description is None:

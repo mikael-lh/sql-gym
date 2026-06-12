@@ -20,6 +20,8 @@ Phase 2 grades learner SQL by comparing the executed result grid to a committed 
 
 Learner queries are capped at **500 rows**. If the executed result is truncated, grading fails with a learner-safe message even when the visible rows match.
 
+Queries are cancelled after **30 seconds** by default (`SQL_STATEMENT_TIMEOUT_MS` in `.env` overrides this).
+
 ## Failure messages
 
 Summaries are intentionally generic (for example, "Row count does not match") and do not reveal expected answers.
