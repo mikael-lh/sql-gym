@@ -44,24 +44,30 @@ function renderQueryResult(consoleEl, result) {
     .join("");
 
   consoleEl.innerHTML = `
-    <p class="eyebrow">Execution</p>
-    <h3>Query result</h3>
-    ${truncatedNote}
-    <p class="catalog-count">${result.row_count} ${rowLabel} returned.</p>
-    <div class="result-table-wrap">
-      <table class="result-table">
-        <thead><tr>${header}</tr></thead>
-        <tbody>${body}</tbody>
-      </table>
+    <div class="workspace-console-meta">
+      <p class="eyebrow">Execution</p>
+      <h3>Query result</h3>
+      ${truncatedNote}
+      <p class="catalog-count">${result.row_count} ${rowLabel} returned.</p>
+    </div>
+    <div class="workspace-console-results">
+      <div class="result-table-wrap">
+        <table class="result-table">
+          <thead><tr>${header}</tr></thead>
+          <tbody>${body}</tbody>
+        </table>
+      </div>
     </div>
   `;
 }
 
 function renderExecutionError(consoleEl, error) {
   consoleEl.innerHTML = `
-    <p class="eyebrow">Execution</p>
-    <h3>Could not run query</h3>
-    <p class="feedback feedback-error">${formatCell(error.message)}</p>
+    <div class="workspace-console-meta">
+      <p class="eyebrow">Execution</p>
+      <h3>Could not run query</h3>
+      <p class="feedback feedback-error">${formatCell(error.message)}</p>
+    </div>
   `;
 }
 

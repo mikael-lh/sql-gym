@@ -166,4 +166,4 @@ def test_static_stylesheet_is_served() -> None:
     assert response.status_code == 200
     assert ".page-shell" in response.text
     assert ".result-table" in response.text
-    assert ".workspace-console .result-table-wrap" in response.text
+    assert ".workspace-console-results" in response.text
