@@ -34,7 +34,16 @@ Ask if missing:
 3. Superpowers **`code-reviewer`** vs the approved plan and [engineering.mdc](../../../.cursor/rules/engineering.mdc).
    - **If Superpowers is unavailable:** manually review the diff against the approved plan and `engineering.mdc` using available tools. Document this as "manual code review (Superpowers unavailable)" in findings. Leave the Superpowers PR box **unchecked**.
 4. Review the diff against [docs/references/google-eng-practices.md](../../../docs/references/google-eng-practices.md). Use **`Nit:`** only for non-blocking items.
-5. **Triage** every item as **blocking** or **`Nit:`** and return the lists to the caller (orchestrator or **user**). Do not check PR boxes or mark ready for **user** review. Include:
+5. **Playwright workspace browser checks** when the PR touches practice workspace UI or client behavior (or adds/changes workspace Playwright tests):
+   - **Applies when** the diff includes any of: `templates/workspace.html`, `static/js/practice-workspace*.js`, workspace console/modal/drawer rules in `static/styles.css`, or `tests/test_grading_modal.py` / `tests/test_workspace_console_scroll.py`.
+   - **Run** (after `uv sync`):
+     ```bash
+     uv run playwright install chromium
+     uv run pytest tests/test_grading_modal.py tests/test_workspace_console_scroll.py -v
+     ```
+   - **N/A** for docs-only or backend-only PRs with no workspace UI impact — state **N/A** in Tools, not “passed”.
+   - **Blocking** if tests fail, Chromium cannot be installed in the environment, or a workspace UX fix/regression lacks coverage when an existing Playwright test should have caught it (e.g. modal dismiss, console scroll without page growth).
+6. **Triage** every item as **blocking** or **`Nit:`** and return the lists to the caller (orchestrator or **user**). Do not check PR boxes or mark ready for **user** review. Include:
    - Blocking list (numbered)
    - `Nit:` list (optional)
    - Which tools ran vs were unavailable (and manual fallback used instead)
