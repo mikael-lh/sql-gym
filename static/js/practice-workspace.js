@@ -175,7 +175,7 @@ function setEditorSql(sql) {
 function updateNavigationButtons(navigation) {
   const prevButton = document.getElementById("workspace-prev");
   const nextButton = document.getElementById("workspace-next");
-  const footerPosition = document.getElementById("workspace-footer-position");
+  const footerPosition = document.getElementById("workspace-nav-position");
   const positionLabel = document.getElementById("workspace-position-label");
   if (prevButton instanceof HTMLButtonElement) {
     prevButton.disabled = !navigation?.prev_url;
@@ -304,17 +304,19 @@ function hasCoarsePointer() {
   return window.matchMedia("(pointer: coarse)").matches;
 }
 
-function createGradingModal(submitButton) {
+function createGradingModal(submitButton, nextNavButton) {
   const backdrop = document.getElementById("workspace-grading-modal");
   const title = document.getElementById("workspace-grading-title");
   const summary = document.getElementById("workspace-grading-summary");
   const okButton = document.getElementById("workspace-grading-ok");
+  const nextButton = document.getElementById("workspace-grading-next");
   const workspaceShell = document.querySelector("[data-workspace-shell]");
   if (
     !(backdrop instanceof HTMLElement) ||
     !(title instanceof HTMLElement) ||
     !(summary instanceof HTMLElement) ||
-    !(okButton instanceof HTMLButtonElement)
+    !(okButton instanceof HTMLButtonElement) ||
+    !(nextButton instanceof HTMLButtonElement)
   ) {
     return {
       show() {},
@@ -328,6 +330,12 @@ function createGradingModal(submitButton) {
 
   const isOpen = () => !backdrop.hidden;
 
+  const canGoToNextExercise = (passed) =>
+    passed &&
+    nextNavButton instanceof HTMLButtonElement &&
+    !nextNavButton.disabled &&
+    Boolean(nextNavButton.dataset.targetUrl);
+
   const setShellInert = (inert) => {
     if (workspaceShell instanceof HTMLElement) {
       workspaceShell.inert = inert;
@@ -336,6 +344,7 @@ function createGradingModal(submitButton) {
 
   const hide = () => {
     backdrop.hidden = true;
+    nextButton.hidden = true;
     setShellInert(false);
     if (submitButton instanceof HTMLButtonElement) {
       submitButton.focus();
@@ -347,10 +356,16 @@ function createGradingModal(submitButton) {
     title.textContent = passed ? "Passed" : "Not yet correct";
     summary.textContent = grading.summary ?? "";
     summary.className = passed ? "feedback feedback-pass" : "feedback feedback-fail";
+    const showNext = canGoToNextExercise(passed);
+    nextButton.hidden = !showNext;
     backdrop.hidden = false;
     setShellInert(true);
     if (!hasCoarsePointer()) {
-      okButton.focus();
+      if (showNext) {
+        nextButton.focus();
+      } else {
+        okButton.focus();
+      }
     }
   };
 
@@ -364,6 +379,13 @@ function createGradingModal(submitButton) {
   okButton.addEventListener("click", (event) => {
     event.preventDefault();
     hide();
+  });
+  nextButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    hide();
+    if (nextNavButton instanceof HTMLButtonElement) {
+      nextNavButton.click();
+    }
   });
   backdrop.addEventListener("click", dismissFromBackdrop);
   backdrop.addEventListener("touchend", dismissFromBackdrop);
@@ -603,7 +625,7 @@ export function initPracticeWorkspace() {
   const workspaceConfig = { ...config, filters: { ...config.filters } };
   renderConsoleAttempt(consoleEl, workspaceConfig.attempt);
 
-  const modal = createGradingModal(submitButton);
+  const modal = createGradingModal(submitButton, document.getElementById("workspace-next"));
   let runInFlight = false;
   let submitInFlight = false;
   let timer = { getElapsedSeconds: () => null, reset() {} };
