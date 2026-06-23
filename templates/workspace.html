@@ -28,26 +28,28 @@
           </select>
         </label>
       </form>
-      <div class="workspace-top-actions">
-        <button type="button" class="button-secondary workspace-drawer-toggle" id="workspace-drawer-toggle" aria-expanded="false" aria-controls="workspace-drawer">
-          Exercise list
-        </button>
-        <p class="workspace-progress-summary">
-          <span id="workspace-passed-count">{{ passed_count }}</span> of {{ total_exercise_count }} passed
+      <div class="workspace-top-cluster">
+        <div class="workspace-top-actions">
+          <button type="button" class="button-secondary workspace-drawer-toggle" id="workspace-drawer-toggle" aria-expanded="false" aria-controls="workspace-drawer">
+            Exercise list
+          </button>
+          <p class="workspace-progress-summary">
+            <span id="workspace-passed-count">{{ passed_count }}</span> of {{ total_exercise_count }} passed
+            {% if navigation.position_label %}
+            · <span id="workspace-position-label">{{ navigation.position_label }}</span>
+            {% endif %}
+          </p>
+          <button type="button" class="button-secondary" id="workspace-clear-progress">Clear progress</button>
+        </div>
+        <nav class="workspace-top-nav" aria-label="Exercise navigation">
+          <button type="button" class="button-secondary" id="workspace-prev" {% if not navigation.prev_url %}disabled{% endif %}>Previous</button>
           {% if navigation.position_label %}
-          · <span id="workspace-position-label">{{ navigation.position_label }}</span>
+          <p class="workspace-nav-position" id="workspace-nav-position">{{ navigation.position_label }}</p>
           {% endif %}
-        </p>
-        <button type="button" class="button-secondary" id="workspace-clear-progress">Clear progress</button>
+          <button type="button" class="button-secondary" id="workspace-next" {% if not navigation.next_url %}disabled{% endif %}>Next</button>
+        </nav>
       </div>
     </div>
-    <nav class="workspace-top-nav" aria-label="Exercise navigation">
-      <button type="button" class="button-secondary" id="workspace-prev" {% if not navigation.prev_url %}disabled{% endif %}>Previous</button>
-      {% if navigation.position_label %}
-      <p class="workspace-nav-position" id="workspace-nav-position">{{ navigation.position_label }}</p>
-      {% endif %}
-      <button type="button" class="button-secondary" id="workspace-next" {% if not navigation.next_url %}disabled{% endif %}>Next</button>
-    </nav>
     <div class="workspace-title-row">
       <p class="eyebrow" id="workspace-eyebrow">{{ dataset.name }} · {{ exercise.difficulty }} · {{ exercise.mode }}</p>
       <h1 id="workspace-exercise-title">{{ exercise.title }}</h1>
@@ -179,7 +181,7 @@
     <p id="workspace-grading-summary"></p>
     <div class="workspace-modal-actions">
       <button type="button" class="button-secondary" id="workspace-grading-ok">OK</button>
-      <button type="button" class="button-primary" id="workspace-grading-next" hidden>Next exercise</button>
+      <button type="button" class="button-secondary" id="workspace-grading-next" hidden>Next exercise</button>
     </div>
   </div>
 </div>

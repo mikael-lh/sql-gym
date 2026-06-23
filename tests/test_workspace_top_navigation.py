@@ -74,6 +74,32 @@ def test_prev_next_controls_live_in_top_header(workspace_server_url: str) -> Non
             assert top_nav.locator("#workspace-next").is_visible()
             assert page.locator("#workspace-nav-position").is_visible()
 
+            cluster = page.locator(".workspace-top-cluster")
+            assert cluster.is_visible()
+            assert cluster.locator(".workspace-top-actions").is_visible()
+            assert cluster.locator(".workspace-top-nav").is_visible()
+
+            nav_follows_actions = page.evaluate(
+                """() => {
+                    const actions = document.querySelector('.workspace-top-actions');
+                    const nav = document.querySelector('.workspace-top-nav');
+                    return Boolean(actions && nav && actions.nextElementSibling === nav);
+                }"""
+            )
+            assert nav_follows_actions is True
+
+            nav_on_one_row = page.evaluate(
+                """() => {
+                    const nav = document.querySelector('.workspace-top-nav');
+                    if (!nav) return false;
+                    const prev = document.getElementById('workspace-prev');
+                    const next = document.getElementById('workspace-next');
+                    if (!(prev instanceof HTMLElement) || !(next instanceof HTMLElement)) return false;
+                    return prev.offsetTop === next.offsetTop;
+                }"""
+            )
+            assert nav_on_one_row is True
+
             in_header = page.evaluate(
                 """() => {
                     const header = document.querySelector('.workspace-top');
@@ -130,6 +156,7 @@ def test_pass_modal_next_exercise_navigates_without_ok(workspace_server_url: str
 
             next_button = page.locator("#workspace-grading-next")
             assert next_button.is_visible()
+            assert "button-secondary" in (next_button.get_attribute("class") or "")
             next_button.click()
 
             page.wait_for_function(
