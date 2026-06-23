@@ -56,9 +56,27 @@
 
   <div class="workspace-body">
     <aside class="workspace-left" aria-label="Exercise context">
-      <section class="workspace-panel" aria-labelledby="workspace-schema-title" id="workspace-schema-panel" {% if not schema or not schema.tables %}hidden{% endif %}>
-        <h2 id="workspace-schema-title">Schema</h2>
-        <div id="workspace-schema-content">
+      <section class="workspace-panel" aria-labelledby="workspace-prompt-title">
+        <h2 id="workspace-prompt-title">Prompt</h2>
+        <p id="workspace-prompt-text">{{ exercise.prompt }}</p>
+      </section>
+
+      <section class="workspace-panel" aria-labelledby="workspace-output-title">
+        <h2 id="workspace-output-title">Expected output</h2>
+        <p id="workspace-output-requirements">{{ output_requirements }}</p>
+      </section>
+
+      <section class="workspace-panel">
+        <details class="hint-details" id="workspace-hint-details">
+          <summary>Show hint</summary>
+          <p id="workspace-hint-text">{{ exercise.hint }}</p>
+        </details>
+      </section>
+
+      <section class="workspace-panel" id="workspace-schema-panel" {% if not schema or not schema.tables %}hidden{% endif %}>
+        <details class="hint-details" id="workspace-schema-details">
+          <summary>Show schema</summary>
+          <div id="workspace-schema-content">
         {% if schema and schema.tables %}
         {% for table in schema.tables %}
         <div class="workspace-schema-table">
@@ -76,22 +94,8 @@
         </div>
         {% endfor %}
         {% endif %}
-        </div>
-      </section>
-
-      <section class="workspace-panel" aria-labelledby="workspace-prompt-title">
-        <h2 id="workspace-prompt-title">Prompt</h2>
-        <p id="workspace-prompt-text">{{ exercise.prompt }}</p>
-      </section>
-
-      <section class="workspace-panel" aria-labelledby="workspace-output-title">
-        <h2 id="workspace-output-title">Expected output</h2>
-        <p id="workspace-output-requirements">{{ output_requirements }}</p>
-      </section>
-
-      <section class="workspace-panel" aria-labelledby="workspace-hint-title">
-        <h2 id="workspace-hint-title">Hint</h2>
-        <p id="workspace-hint-text">{{ exercise.hint }}</p>
+          </div>
+        </details>
       </section>
 
       <section class="workspace-panel" aria-labelledby="workspace-objectives-title">
