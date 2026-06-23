@@ -1,4 +1,5 @@
 from collections import Counter
+from typing import assert_never
 
 from app.domain.exercises import ExpectedGrid, GradingRowOrder
 from app.domain.grading import GradingOutcome
@@ -54,10 +55,13 @@ def grade(
             return _format_failure(
                 "One or more cell values do not match the expected result."
             )
-    elif Counter(result.rows) != Counter(expected_grid.rows):
-        return _format_failure(
-            "One or more rows do not match the expected result (row order is ignored)."
-        )
+    elif row_order == "multiset":
+        if Counter(result.rows) != Counter(expected_grid.rows):
+            return _format_failure(
+                "One or more rows do not match the expected result (row order is ignored)."
+            )
+    else:
+        assert_never(row_order)
 
     if result.truncated:
         return GradingOutcome(

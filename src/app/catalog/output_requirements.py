@@ -52,7 +52,7 @@ def _extract_limit(reference_sql: str | None) -> int | None:
 
 
 def build_output_requirements_text(exercise: Exercise) -> str:
-    """Describe the exact result grid learners must produce for strict grading."""
+    """Describe the result grid learners must produce for grading."""
     columns = exercise.expected_result.column_names
     if not columns:
         return (
