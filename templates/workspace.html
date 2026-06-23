@@ -41,6 +41,13 @@
         <button type="button" class="button-secondary" id="workspace-clear-progress">Clear progress</button>
       </div>
     </div>
+    <nav class="workspace-top-nav" aria-label="Exercise navigation">
+      <button type="button" class="button-secondary" id="workspace-prev" {% if not navigation.prev_url %}disabled{% endif %}>Previous</button>
+      {% if navigation.position_label %}
+      <p class="workspace-nav-position" id="workspace-nav-position">{{ navigation.position_label }}</p>
+      {% endif %}
+      <button type="button" class="button-secondary" id="workspace-next" {% if not navigation.next_url %}disabled{% endif %}>Next</button>
+    </nav>
     <div class="workspace-title-row">
       <p class="eyebrow" id="workspace-eyebrow">{{ dataset.name }} · {{ exercise.difficulty }} · {{ exercise.mode }}</p>
       <h1 id="workspace-exercise-title">{{ exercise.title }}</h1>
@@ -164,21 +171,16 @@
     <p class="catalog-count" id="workspace-drawer-count">Showing {{ filtered_exercise_count }} exercises</p>
     <ul class="workspace-drawer-list" id="workspace-drawer-list"></ul>
   </aside>
-
-  <footer class="workspace-footer" aria-label="Exercise navigation">
-    <button type="button" class="button-secondary" id="workspace-prev" {% if not navigation.prev_url %}disabled{% endif %}>Previous</button>
-    {% if navigation.position_label %}
-    <p class="workspace-footer-position" id="workspace-footer-position">{{ navigation.position_label }}</p>
-    {% endif %}
-    <button type="button" class="button-secondary" id="workspace-next" {% if not navigation.next_url %}disabled{% endif %}>Next</button>
-  </footer>
 </div>
 
 <div class="workspace-modal-backdrop" id="workspace-grading-modal" hidden role="presentation">
   <div class="workspace-modal" role="dialog" aria-modal="true" aria-labelledby="workspace-grading-title" aria-describedby="workspace-grading-summary">
     <h2 id="workspace-grading-title">Grading result</h2>
     <p id="workspace-grading-summary"></p>
-    <button type="button" class="button-primary" id="workspace-grading-ok">OK</button>
+    <div class="workspace-modal-actions">
+      <button type="button" class="button-secondary" id="workspace-grading-ok">OK</button>
+      <button type="button" class="button-primary" id="workspace-grading-next" hidden>Next exercise</button>
+    </div>
   </div>
 </div>
 

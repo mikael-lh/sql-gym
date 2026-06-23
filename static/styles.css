@@ -531,6 +531,19 @@ h3 {
   margin: 0;
 }
 
+.workspace-top-nav {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.workspace-nav-position {
+  font-weight: 700;
+  margin: 0;
+}
+
 .workspace-title-row h1 {
   font-size: clamp(1.75rem, 4vw, 2.5rem);
   margin: 0.25rem 0;
@@ -688,21 +701,6 @@ h3 {
   margin: 0;
 }
 
-.workspace-footer {
-  align-items: center;
-  border-top: 1px solid #eadfc7;
-  display: flex;
-  gap: 1rem;
-  justify-content: space-between;
-  padding-top: 1rem;
-}
-
-.workspace-footer-position {
-  font-weight: 700;
-  margin: 0;
-}
-
-.workspace-drawer {
   background: #fffaf0;
   border: 1px solid #eadfc7;
   border-radius: 1rem;
@@ -777,6 +775,13 @@ h3 {
 
 .workspace-modal .feedback {
   margin: 0;
+}
+
+.workspace-modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: flex-end;
 }
 
 @media (max-width: 960px) {
