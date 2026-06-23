@@ -30,6 +30,12 @@ A lightweight gym for SQL: practice on curated datasets, run queries, and level 
 
 SQL Gym uses Python 3.12, FastAPI, server-rendered templates, and [`uv`](https://docs.astral.sh/uv/) for dependency management. This keeps the scaffold close to the adjacent [`times-api`](https://github.com/mikael-lh/times-api) Python ecosystem while preserving a simple web app path for later SQL practice features.
 
+**One-command local dev** (git pull, `.env`, deps, Postgres, Times import if needed, server, browser):
+
+```bash
+./scripts/dev.sh
+```
+
 Install dependencies:
 
 ```bash
