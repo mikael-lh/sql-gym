@@ -10,18 +10,29 @@ def test_output_requirements_lists_columns_in_order() -> None:
 
     assert "`headline_main`, `pub_date`" in text
     assert "in this order" in text
-    assert "pub_date DESC" in text
+    assert "row order does not matter" in text
+    assert "Order rows by" not in text
     assert "at most 500 row(s)" in text
     assert "not your SQL wording" in text
 
 
-def test_output_requirements_resolves_positional_order_by() -> None:
+def test_output_requirements_multiset_omits_sort_copy() -> None:
     exercise = lookup_exercise("times-archive", "times-archive-002")
     assert exercise is not None
     text = build_output_requirements_text(exercise)
 
-    assert "Order rows by: headline_main." in text
-    assert "Order rows by: 1." not in text
+    assert "Order rows by" not in text
+    assert "row order does not matter" in text
+
+
+def test_output_requirements_strict_includes_sort_copy() -> None:
+    exercise = lookup_exercise("times-archive", "times-archive-039")
+    assert exercise is not None
+    text = build_output_requirements_text(exercise)
+
+    assert "Order rows by: news_desk, headline_main." in text
+    assert "row order" in text
+    assert "row order does not matter" not in text
 
 
 def test_output_requirements_for_scalar_count() -> None:
@@ -31,6 +42,14 @@ def test_output_requirements_for_scalar_count() -> None:
 
     assert "`january_articles`" in text
     assert "Order rows by" not in text
+
+
+def test_catalog_grading_row_order_flags() -> None:
+    by_id = {exercise.id: exercise for exercise in TIMES_ARCHIVE_CATALOG.exercises}
+    assert by_id["times-archive-023"].expected_result.grading_row_order == "strict"
+    assert by_id["times-archive-039"].expected_result.grading_row_order == "strict"
+    assert by_id["times-archive-005"].expected_result.grading_row_order == "multiset"
+    assert by_id["times-archive-001"].expected_result.grading_row_order == "multiset"
 
 
 def test_all_catalog_exercises_have_output_requirements() -> None:

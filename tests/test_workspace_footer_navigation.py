@@ -125,15 +125,15 @@ def test_expected_output_panel_updates_on_footer_navigation(
                 "() => document.documentElement.dataset.workspaceReady === 'submit'"
             )
             output = page.locator("#workspace-output-requirements")
-            assert "pub_date DESC" in output.inner_text()
+            assert "row order does not matter" in output.inner_text()
 
             page.click("#workspace-next")
             page.wait_for_function(
                 "() => window.location.pathname.endsWith('times-archive-002')",
                 timeout=10_000,
             )
-            assert "headline_main." in output.inner_text()
-            assert "pub_date DESC" not in output.inner_text()
+            assert "`headline_main`, `news_desk`" in output.inner_text()
+            assert "row order does not matter" in output.inner_text()
         finally:
             browser.close()
 

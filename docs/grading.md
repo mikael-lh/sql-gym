@@ -6,8 +6,15 @@ Phase 2 grades learner SQL by comparing the executed result grid to a committed 
 
 1. **Column names and order** must match exactly.
 2. **Row count** must match exactly.
-3. **Cell values** must match in row order, column by column.
+3. **Cell values** must match. For most exercises, **row order does not matter** (unordered multiset compare). Exercises that explicitly require sorted output use strict row-order grading.
 4. **No partial credit** — any mismatch is a fail.
+
+Per-exercise `grading_row_order` in the catalog:
+
+| Mode | Exercises | Behavior |
+|------|-----------|----------|
+| `multiset` | 48 (default) | Same rows in any order |
+| `strict` | `times-archive-023`, `times-archive-039` | Prompt requires explicit sort order |
 
 ## NULL and formatting
 

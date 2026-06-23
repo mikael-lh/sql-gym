@@ -44,7 +44,7 @@ def test_grade_fails_wrong_cell_value() -> None:
     outcome = grade(actual, expected)
 
     assert outcome.passed is False
-    assert "cell values" in outcome.summary
+    assert "do not match" in outcome.summary
 
 
 def test_grade_fails_wrong_row_count() -> None:
@@ -103,3 +103,32 @@ def test_grade_fails_when_result_truncated() -> None:
 
     assert outcome.passed is False
     assert "truncated" in outcome.summary.lower()
+
+
+def test_grade_multiset_passes_reordered_rows() -> None:
+    expected = _grid(("section_name", "article_count"), (("Arts", 10), ("Sports", 5)))
+    actual = _result(("section_name", "article_count"), (("Sports", 5), ("Arts", 10)))
+
+    outcome = grade(actual, expected, row_order="multiset")
+
+    assert outcome.passed is True
+
+
+def test_grade_multiset_fails_wrong_row_values() -> None:
+    expected = _grid(("section_name", "article_count"), (("Arts", 10), ("Sports", 5)))
+    actual = _result(("section_name", "article_count"), (("Arts", 11), ("Sports", 5)))
+
+    outcome = grade(actual, expected, row_order="multiset")
+
+    assert outcome.passed is False
+    assert "row order is ignored" in outcome.summary
+
+
+def test_grade_strict_fails_reordered_rows() -> None:
+    expected = _grid(("section_name", "article_count"), (("Arts", 10), ("Sports", 5)))
+    actual = _result(("section_name", "article_count"), (("Sports", 5), ("Arts", 10)))
+
+    outcome = grade(actual, expected, row_order="strict")
+
+    assert outcome.passed is False
+    assert "cell values" in outcome.summary

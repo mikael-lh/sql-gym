@@ -61,6 +61,7 @@ def _parse_exercise(entry: dict[str, Any]) -> Exercise:
         column_names=column_names,
         reference_sql=reference_sql,
         expected_grid=expected_grid,
+        grading_row_order=expected_result.get("grading_row_order", "multiset"),
     )
     return Exercise.model_validate(payload)
 

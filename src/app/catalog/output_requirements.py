@@ -68,7 +68,7 @@ def build_output_requirements_text(exercise: Exercise) -> str:
 
     reference_sql = exercise.expected_result.reference_sql
     order_by = _extract_order_by(reference_sql)
-    if order_by:
+    if order_by and exercise.expected_result.grading_row_order == "strict":
         humanized = _humanize_order_by(order_by, columns)
         parts.append(f"Order rows by: {humanized}.")
 
@@ -76,8 +76,14 @@ def build_output_requirements_text(exercise: Exercise) -> str:
     if limit is not None:
         parts.append(f"Return at most {limit} row(s).")
 
-    parts.append(
-        "Grading compares your query result to the expected output grid "
-        "(column names, order, row order, and values)—not your SQL wording."
-    )
+    if exercise.expected_result.grading_row_order == "strict":
+        parts.append(
+            "Grading compares your query result to the expected output grid "
+            "(column names, order, row order, and values)—not your SQL wording."
+        )
+    else:
+        parts.append(
+            "Grading compares your query result to the expected output grid "
+            "(column names and values; row order does not matter)—not your SQL wording."
+        )
     return " ".join(parts)
