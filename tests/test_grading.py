@@ -1,3 +1,6 @@
+import json
+from pathlib import Path
+
 from app.domain.exercises import ExpectedGrid
 from app.domain.grading import GradingOutcome
 from app.execution.models import QueryResult
@@ -44,7 +47,7 @@ def test_grade_fails_wrong_cell_value() -> None:
     outcome = grade(actual, expected)
 
     assert outcome.passed is False
-    assert "cell values" in outcome.summary
+    assert "do not match" in outcome.summary
 
 
 def test_grade_fails_wrong_row_count() -> None:
@@ -103,3 +106,58 @@ def test_grade_fails_when_result_truncated() -> None:
 
     assert outcome.passed is False
     assert "truncated" in outcome.summary.lower()
+
+
+def test_grade_multiset_passes_reordered_rows() -> None:
+    expected = _grid(("section_name", "article_count"), (("Arts", 10), ("Sports", 5)))
+    actual = _result(("section_name", "article_count"), (("Sports", 5), ("Arts", 10)))
+
+    outcome = grade(actual, expected, row_order="multiset")
+
+    assert outcome.passed is True
+
+
+def test_grade_multiset_fails_wrong_row_values() -> None:
+    expected = _grid(("section_name", "article_count"), (("Arts", 10), ("Sports", 5)))
+    actual = _result(("section_name", "article_count"), (("Arts", 11), ("Sports", 5)))
+
+    outcome = grade(actual, expected, row_order="multiset")
+
+    assert outcome.passed is False
+    assert "row order is ignored" in outcome.summary
+
+
+def test_grade_strict_fails_reordered_rows() -> None:
+    expected = _grid(("section_name", "article_count"), (("Arts", 10), ("Sports", 5)))
+    actual = _result(("section_name", "article_count"), (("Sports", 5), ("Arts", 10)))
+
+    outcome = grade(actual, expected, row_order="strict")
+
+    assert outcome.passed is False
+    assert "cell values" in outcome.summary
+
+
+def test_grade_multiset_passes_exercise_005_tied_row_reorder() -> None:
+    grid_path = Path("src/app/catalog/data/expected_grids/times-archive-005.json")
+    payload = json.loads(grid_path.read_text())
+    rows = [tuple(row) for row in payload["rows"]]
+    tied_index = next(
+        index
+        for index in range(len(rows) - 1)
+        if rows[index][1] == rows[index + 1][1]
+    )
+    reordered = rows[:]
+    reordered[tied_index], reordered[tied_index + 1] = (
+        reordered[tied_index + 1],
+        reordered[tied_index],
+    )
+
+    expected = ExpectedGrid(
+        columns=tuple(payload["columns"]),
+        rows=tuple(rows),
+    )
+    actual = _result(expected.columns, tuple(reordered))
+
+    outcome = grade(actual, expected, row_order="multiset")
+
+    assert outcome.passed is True

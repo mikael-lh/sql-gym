@@ -6,6 +6,7 @@ Difficulty = Literal["Beginner", "Intermediate", "Advanced"]
 PracticeMode = Literal["Untimed", "Timed"]
 SqlDialect = Literal["PostgreSQL"]
 AvailabilityStatus = Literal["available", "placeholder", "coming_soon"]
+GradingRowOrder = Literal["strict", "multiset"]
 
 
 class SelectionOption(BaseModel):
@@ -29,6 +30,7 @@ class ExpectedResultSpec(BaseModel):
     column_names: tuple[str, ...] = ()
     reference_sql: str | None = None
     expected_grid: ExpectedGrid | None = None
+    grading_row_order: GradingRowOrder = "multiset"
 
 
 class Exercise(BaseModel):

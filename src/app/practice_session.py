@@ -125,7 +125,11 @@ def store_submit_result(
         store_run_result(request, exercise.id, sql, outcome)
         return None
 
-    grading_outcome = grade(outcome, expected_grid)
+    grading_outcome = grade(
+        outcome,
+        expected_grid,
+        row_order=exercise.expected_result.grading_row_order,
+    )
     grading = grading_result_from_outcome(exercise.id, grading_outcome)
     slim_practice_attempts(request, keep_exercise_id=exercise.id)
     attempts = _attempts(request)

@@ -1,4 +1,7 @@
-from app.domain.exercises import ExpectedGrid
+from collections import Counter
+from typing import assert_never
+
+from app.domain.exercises import ExpectedGrid, GradingRowOrder
 from app.domain.grading import GradingOutcome
 from app.execution.models import QueryResult
 
@@ -11,7 +14,25 @@ def _expected_columns_label(columns: tuple[str, ...]) -> str:
     return ", ".join(columns)
 
 
-def grade(result: QueryResult, expected_grid: ExpectedGrid) -> GradingOutcome:
+def _rows_match_strictly(
+    actual_rows: tuple[tuple[object, ...], ...],
+    expected_rows: tuple[tuple[object, ...], ...],
+) -> bool:
+    for actual_row, expected_row in zip(actual_rows, expected_rows, strict=True):
+        if len(actual_row) != len(expected_row):
+            return False
+        for actual_cell, expected_cell in zip(actual_row, expected_row, strict=True):
+            if actual_cell != expected_cell:
+                return False
+    return True
+
+
+def grade(
+    result: QueryResult,
+    expected_grid: ExpectedGrid,
+    *,
+    row_order: GradingRowOrder = "multiset",
+) -> GradingOutcome:
     expected_columns = _expected_columns_label(expected_grid.columns)
     if result.columns != expected_grid.columns:
         if set(result.columns) == set(expected_grid.columns):
@@ -29,14 +50,18 @@ def grade(result: QueryResult, expected_grid: ExpectedGrid) -> GradingOutcome:
             f"Row count does not match. Expected {expected_rows} {row_label}."
         )
 
-    for actual_row, expected_row in zip(result.rows, expected_grid.rows, strict=True):
-        if len(actual_row) != len(expected_row):
-            return _format_failure("Row shape does not match the expected result.")
-        for actual_cell, expected_cell in zip(actual_row, expected_row, strict=True):
-            if actual_cell != expected_cell:
-                return _format_failure(
-                    "One or more cell values do not match the expected result."
-                )
+    if row_order == "strict":
+        if not _rows_match_strictly(result.rows, expected_grid.rows):
+            return _format_failure(
+                "One or more cell values do not match the expected result."
+            )
+    elif row_order == "multiset":
+        if Counter(result.rows) != Counter(expected_grid.rows):
+            return _format_failure(
+                "One or more rows do not match the expected result (row order is ignored)."
+            )
+    else:
+        assert_never(row_order)
 
     if result.truncated:
         return GradingOutcome(

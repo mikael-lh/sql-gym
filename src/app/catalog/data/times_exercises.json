@@ -23,7 +23,8 @@
       "column_names": [
         "headline_main",
         "pub_date"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT headline_main, pub_date FROM times_archive WHERE section_name = 'Arts' ORDER BY pub_date DESC LIMIT 500;"
   },
@@ -51,7 +52,8 @@
       "column_names": [
         "headline_main",
         "news_desk"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT headline_main, news_desk FROM times_archive WHERE news_desk = 'Business' ORDER BY 1 LIMIT 500;"
   },
@@ -79,7 +81,8 @@
       "column_names": [
         "section_name",
         "article_count"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT section_name, COUNT(*) AS article_count FROM times_archive GROUP BY section_name ORDER BY article_count DESC LIMIT 500;"
   },
@@ -107,7 +110,8 @@
       "column_names": [
         "headline_main",
         "pub_date"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT headline_main, pub_date FROM times_archive ORDER BY pub_date DESC LIMIT 10;"
   },
@@ -135,7 +139,8 @@
       "column_names": [
         "headline_main",
         "word_count"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT headline_main, word_count FROM times_archive WHERE word_count > 1000 ORDER BY word_count DESC LIMIT 500;"
   },
@@ -162,7 +167,8 @@
       "description": "Reserved expected columns for Distinct sections.",
       "column_names": [
         "section_name"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT DISTINCT section_name FROM times_archive ORDER BY section_name LIMIT 500;"
   },
@@ -190,7 +196,8 @@
       "column_names": [
         "headline_main",
         "type_of_material"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT headline_main, type_of_material FROM times_archive WHERE type_of_material = 'News' ORDER BY 1 LIMIT 500;"
   },
@@ -218,7 +225,8 @@
       "column_names": [
         "headline_main",
         "word_count"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT headline_main, word_count FROM times_archive ORDER BY word_count ASC LIMIT 5;"
   },
@@ -246,7 +254,8 @@
       "column_names": [
         "news_desk",
         "avg_word_count"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT news_desk, ROUND(AVG(word_count)) AS avg_word_count FROM times_archive GROUP BY news_desk ORDER BY 1 LIMIT 500;"
   },
@@ -274,7 +283,8 @@
       "column_names": [
         "headline_main",
         "snippet"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT headline_main, snippet FROM times_archive WHERE section_name = 'Sports' AND snippet ILIKE '%championship%' ORDER BY 1 LIMIT 500;"
   },
@@ -301,7 +311,8 @@
       "description": "Reserved expected columns for January publications.",
       "column_names": [
         "january_articles"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT COUNT(*) AS january_articles FROM times_archive WHERE pub_date >= DATE '1920-01-01' AND pub_date < DATE '1920-02-01';"
   },
@@ -329,7 +340,8 @@
       "column_names": [
         "news_desk",
         "article_count"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT news_desk, COUNT(*) AS article_count FROM times_archive GROUP BY news_desk HAVING COUNT(*) > 20 ORDER BY 1 LIMIT 500;"
   },
@@ -356,7 +368,8 @@
       "description": "Reserved expected columns for Headline keyword search.",
       "column_names": [
         "headline_main"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT headline_main FROM times_archive WHERE headline_main ILIKE '%climate%' ORDER BY 1 LIMIT 500;"
   },
@@ -384,7 +397,8 @@
       "column_names": [
         "headline_main",
         "pub_date"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT headline_main, pub_date FROM times_archive WHERE pub_date BETWEEN DATE '1920-01-01' AND DATE '1920-03-31' ORDER BY pub_date LIMIT 500;"
   },
@@ -412,7 +426,8 @@
       "column_names": [
         "section_name",
         "article_count"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "WITH section_counts AS (SELECT section_name, COUNT(*) AS article_count FROM times_archive GROUP BY section_name) SELECT section_name, article_count FROM section_counts ORDER BY article_count DESC LIMIT 500;"
   },
@@ -440,7 +455,8 @@
       "column_names": [
         "headline_main",
         "word_count"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT headline_main, word_count FROM times_archive WHERE word_count > (SELECT AVG(word_count) FROM times_archive) ORDER BY 1 LIMIT 500;"
   },
@@ -468,7 +484,8 @@
       "column_names": [
         "type_of_material",
         "article_count"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT type_of_material, COUNT(*) AS article_count FROM times_archive GROUP BY type_of_material ORDER BY article_count DESC LIMIT 500;"
   },
@@ -497,7 +514,8 @@
         "headline_main",
         "section_name",
         "news_desk"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT headline_main, section_name, news_desk FROM times_archive WHERE section_name = 'Opinion' AND news_desk = 'Opinion' ORDER BY 1 LIMIT 500;"
   },
@@ -526,7 +544,8 @@
         "section_name",
         "headline_main",
         "word_rank"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT section_name, headline_main, word_count, RANK() OVER (PARTITION BY section_name ORDER BY word_count DESC) AS word_rank FROM times_archive LIMIT 500;"
   },
@@ -554,7 +573,8 @@
       "column_names": [
         "pub_date",
         "running_total"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT pub_date, COUNT(*) OVER (ORDER BY pub_date) AS running_total FROM times_archive LIMIT 500;"
   },
@@ -582,7 +602,8 @@
       "column_names": [
         "section_name",
         "pct_of_total"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT section_name, ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS pct_of_total FROM times_archive GROUP BY section_name ORDER BY 1 LIMIT 500;"
   },
@@ -611,7 +632,8 @@
         "news_desk",
         "headline_main",
         "word_count"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT news_desk, headline_main, word_count FROM (SELECT news_desk, headline_main, word_count, ROW_NUMBER() OVER (PARTITION BY news_desk ORDER BY word_count DESC) AS rn FROM times_archive) ranked WHERE rn <= 3 LIMIT 500;"
   },
@@ -638,7 +660,8 @@
       "description": "Reserved expected columns for Technology headlines.",
       "column_names": [
         "headline_main"
-      ]
+      ],
+      "grading_row_order": "strict"
     },
     "reference_sql": "SELECT headline_main FROM times_archive WHERE section_name = 'Technology' ORDER BY headline_main LIMIT 500;"
   },
@@ -665,7 +688,8 @@
       "description": "Reserved expected columns for Total archive size.",
       "column_names": [
         "total_articles"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT COUNT(*) AS total_articles FROM times_archive;"
   },
@@ -693,7 +717,8 @@
       "column_names": [
         "headline_main",
         "pub_date"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT headline_main, pub_date FROM times_archive ORDER BY pub_date ASC LIMIT 5;"
   },
@@ -721,7 +746,8 @@
       "column_names": [
         "headline_main",
         "byline_original"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT headline_main, byline_original FROM times_archive WHERE byline_original ILIKE '%Smith%' ORDER BY 1 LIMIT 500;"
   },
@@ -748,7 +774,8 @@
       "description": "Reserved expected columns for Weekend publications.",
       "column_names": [
         "weekend_articles"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT COUNT(*) AS weekend_articles FROM times_archive WHERE EXTRACT(DOW FROM pub_date) IN (0, 6);"
   },
@@ -776,7 +803,8 @@
       "column_names": [
         "news_desk",
         "latest_pub_date"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "WITH desk_latest AS (SELECT news_desk, MAX(pub_date) AS latest_pub_date FROM times_archive GROUP BY news_desk) SELECT * FROM desk_latest ORDER BY latest_pub_date DESC LIMIT 500;"
   },
@@ -804,7 +832,8 @@
       "column_names": [
         "headline_main",
         "word_quartile"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT headline_main, word_count, NTILE(4) OVER (ORDER BY word_count) AS word_quartile FROM times_archive LIMIT 500;"
   },
@@ -832,7 +861,8 @@
       "column_names": [
         "section_name",
         "avg_words"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT section_name, AVG(word_count) AS avg_words FROM times_archive GROUP BY section_name HAVING AVG(word_count) > (SELECT PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY word_count) FROM times_archive) LIMIT 500;"
   },
@@ -860,7 +890,8 @@
       "column_names": [
         "headline_main",
         "type_of_material"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT headline_main, type_of_material FROM times_archive WHERE section_name = 'Health' AND type_of_material = 'Review' ORDER BY 1 LIMIT 500;"
   },
@@ -888,7 +919,8 @@
       "column_names": [
         "section_name",
         "max_word_count"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT section_name, MAX(word_count) AS max_word_count FROM times_archive GROUP BY section_name ORDER BY 1 LIMIT 500;"
   },
@@ -915,7 +947,8 @@
       "description": "Reserved expected columns for Material types present.",
       "column_names": [
         "document_type"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT DISTINCT document_type FROM times_archive ORDER BY document_type LIMIT 500;"
   },
@@ -942,7 +975,8 @@
       "description": "Reserved expected columns for World desk analysis.",
       "column_names": [
         "headline_main"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT headline_main FROM times_archive WHERE section_name = 'World' AND type_of_material = 'An Analysis; News Analysis' ORDER BY headline_main LIMIT 500;"
   },
@@ -970,7 +1004,8 @@
       "column_names": [
         "month",
         "article_count"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT DATE_TRUNC('month', pub_date) AS month, COUNT(*) AS article_count FROM times_archive GROUP BY month ORDER BY month LIMIT 500;"
   },
@@ -998,7 +1033,8 @@
       "column_names": [
         "headline_main",
         "abstract"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT headline_main, abstract FROM times_archive WHERE abstract ILIKE '%economy%' ORDER BY 1 LIMIT 500;"
   },
@@ -1026,7 +1062,8 @@
       "column_names": [
         "headline_main",
         "previous_pub_date"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT section_name, headline_main, pub_date, LAG(pub_date) OVER (PARTITION BY section_name ORDER BY pub_date) AS previous_pub_date FROM times_archive LIMIT 500;"
   },
@@ -1054,7 +1091,8 @@
       "column_names": [
         "section_name",
         "month_over_month_change"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "WITH monthly AS (SELECT section_name, DATE_TRUNC('month', pub_date) AS month, COUNT(*) AS article_count FROM times_archive GROUP BY section_name, DATE_TRUNC('month', pub_date)) SELECT section_name, month, article_count, article_count - LAG(article_count) OVER (PARTITION BY section_name ORDER BY month) AS month_over_month_change FROM monthly LIMIT 500;"
   },
@@ -1082,7 +1120,8 @@
       "column_names": [
         "news_desk",
         "headline_main"
-      ]
+      ],
+      "grading_row_order": "strict"
     },
     "reference_sql": "SELECT news_desk, headline_main FROM times_archive ORDER BY news_desk, headline_main LIMIT 500;"
   },
@@ -1110,7 +1149,8 @@
       "column_names": [
         "headline_main",
         "multimedia_count_by_type"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT headline_main, multimedia_count_by_type FROM times_archive WHERE (multimedia_count_by_type->>'image')::int > 0 ORDER BY 1 LIMIT 500;"
   },
@@ -1138,7 +1178,8 @@
       "column_names": [
         "news_desk",
         "median_word_count"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT news_desk, PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY word_count) AS median_word_count FROM times_archive GROUP BY news_desk LIMIT 500;"
   },
@@ -1166,7 +1207,8 @@
       "column_names": [
         "headline_main",
         "web_url"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT headline_main, web_url FROM times_archive WHERE article_id = (SELECT article_id FROM times_archive ORDER BY article_id LIMIT 1);"
   },
@@ -1195,7 +1237,8 @@
         "headline_main",
         "news_desk",
         "word_count"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT headline_main, news_desk, word_count FROM (SELECT headline_main, news_desk, word_count, ROW_NUMBER() OVER (PARTITION BY news_desk ORDER BY word_count DESC, headline_main) AS rn FROM times_archive) ranked WHERE rn = 1 ORDER BY news_desk LIMIT 500;"
   },
@@ -1223,7 +1266,8 @@
       "column_names": [
         "pub_date",
         "rolling_seven_day_count"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT pub_date, COUNT(*) OVER (ORDER BY pub_date RANGE BETWEEN INTERVAL '6 days' PRECEDING AND CURRENT ROW) AS rolling_seven_day_count FROM times_archive LIMIT 500;"
   },
@@ -1251,7 +1295,8 @@
       "column_names": [
         "section_name",
         "avg_snippet_length"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT section_name, ROUND(AVG(LENGTH(snippet))) AS avg_snippet_length FROM times_archive GROUP BY section_name ORDER BY 1 LIMIT 500;"
   },
@@ -1279,7 +1324,8 @@
       "column_names": [
         "headline_main",
         "word_count"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT headline_main, word_count FROM times_archive WHERE word_count < 400 ORDER BY 1 LIMIT 500;"
   },
@@ -1307,7 +1353,8 @@
       "column_names": [
         "headline_main",
         "headline_length_bucket"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT headline_main, CASE WHEN LENGTH(headline_main) < 40 THEN 'short' WHEN LENGTH(headline_main) < 80 THEN 'medium' ELSE 'long' END AS headline_length_bucket FROM times_archive ORDER BY 1 LIMIT 500;"
   },
@@ -1335,7 +1382,8 @@
       "column_names": [
         "quarter",
         "article_count"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT DATE_TRUNC('quarter', pub_date) AS quarter, COUNT(*) AS article_count FROM times_archive GROUP BY quarter ORDER BY quarter LIMIT 500;"
   },
@@ -1363,7 +1411,8 @@
       "column_names": [
         "news_desk",
         "desk_rank"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "WITH desk_totals AS (SELECT news_desk, COUNT(*) AS article_count FROM times_archive GROUP BY news_desk), ranked AS (SELECT news_desk, article_count, RANK() OVER (ORDER BY article_count DESC) AS desk_rank FROM desk_totals) SELECT * FROM ranked LIMIT 500;"
   },
@@ -1391,7 +1440,8 @@
       "column_names": [
         "headline_main",
         "length_rank"
-      ]
+      ],
+      "grading_row_order": "multiset"
     },
     "reference_sql": "SELECT headline_main, word_count, DENSE_RANK() OVER (ORDER BY word_count DESC) AS length_rank FROM times_archive LIMIT 500;"
   }
