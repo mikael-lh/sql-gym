@@ -48,7 +48,8 @@ def test_workspace_renders_shell_without_catalog_cards() -> None:
     assert 'data-workspace-shell' in response.text
     assert "Browse the practice catalog" not in response.text
     assert "Arts section headlines" in response.text
-    assert "Schema" in response.text
+    assert "Show hint" in response.text
+    assert "Show schema" in response.text
     assert "article_id" in response.text
     assert "Learning objectives" in response.text
     assert "Show sample SQL" in response.text

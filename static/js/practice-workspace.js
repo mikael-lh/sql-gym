@@ -193,6 +193,15 @@ function updateNavigationButtons(navigation) {
   }
 }
 
+function collapseContextDisclosures() {
+  for (const id of ["workspace-hint-details", "workspace-schema-details"]) {
+    const details = document.getElementById(id);
+    if (details instanceof HTMLDetailsElement) {
+      details.open = false;
+    }
+  }
+}
+
 function applyExercisePayload(payload) {
   const exercise = payload.exercise;
   const dataset = payload.dataset;
@@ -245,6 +254,7 @@ function applyExercisePayload(payload) {
     schemaContent.innerHTML = schemaHtml;
     schemaPanel.hidden = !schemaHtml;
   }
+  collapseContextDisclosures();
   if (editorNote instanceof HTMLElement) {
     editorNote.textContent = `Write PostgreSQL for: ${exercise.title}`;
   }

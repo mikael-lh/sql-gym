@@ -58,6 +58,13 @@ def test_workspace_renders_editor_and_session_copy() -> None:
     assert response.status_code == 200
     assert "Arts section headlines" in response.text
     assert "Learning objectives" in response.text
+    assert "Show hint" in response.text
+    assert "Show schema" in response.text
+    assert 'id="workspace-hint-details"' in response.text
+    assert 'id="workspace-schema-details"' in response.text
+    assert response.text.index("workspace-hint-details") < response.text.index(
+        "workspace-schema-details"
+    )
     assert "Show sample SQL" in response.text
     assert "Not started" in response.text
     assert "SQL editor" in response.text
