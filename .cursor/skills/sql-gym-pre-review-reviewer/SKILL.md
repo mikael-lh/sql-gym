@@ -37,6 +37,7 @@ Ask if missing:
 5. **Browser checks for user-facing behavior** — **case by case**, not a fixed mega-suite. No monolithic `test_workspace_browser.py` is required; the reviewer (or implementer) identifies **which flows this PR affects** and validates **those** in a real browser.
    - **Applies when** the diff touches user-facing surfaces: `templates/`, `static/js/`, `static/styles.css`, practice pages/APIs (`src/app/main.py`, `src/app/api/`, `src/app/workspace/`), or learner-visible copy/errors.
    - **N/A** only for docs-only, tooling-only, or strictly internal backend with no UI/client impact — state **N/A** in Tools, not “passed”.
+   - **Layout/CSS PRs** (structure or responsive chrome): follow [docs/ui-layout-review.md](../../../docs/ui-layout-review.md). **Blocking** if viewport-matrix checks (desktop 1280×800 + mobile 390×844) are missing, row assertions omit any control in the group, or the user’s merge request is used to skip this review.
    - **Workflow (each PR):**
      1. List **affected UX** from the diff (e.g. “grading modal dismiss”, “console scroll”, “answer SQL in details”, “prev/next nav”).
      2. **Run relevant committed tests** that already cover overlapping behavior (subset only — do not require the full list every time):
@@ -52,6 +53,7 @@ Ask if missing:
      |------|--------|
      | `tests/test_grading_modal.py` | Modal hidden on load; submit opens modal; OK dismiss (desktop + iPhone); CSS `[hidden]` rule (static) |
      | `tests/test_workspace_console_scroll.py` | Large run SQL result; page height unchanged; scroll inside output console |
+     | `tests/test_workspace_top_navigation.py` | Top prev/next row layout (viewport matrix via `tests/playwright_layout.py`) |
    - **Blocking** if:
      - A relevant committed test fails;
      - Affected UX was not validated in browser (committed test **or** documented ad-hoc Playwright check);
