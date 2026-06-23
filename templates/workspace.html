@@ -44,7 +44,7 @@
         <nav class="workspace-top-nav" aria-label="Exercise navigation">
           <button type="button" class="button-secondary" id="workspace-prev" {% if not navigation.prev_url %}disabled{% endif %}>Previous</button>
           {% if navigation.position_label %}
-          <p class="workspace-nav-position" id="workspace-nav-position">{{ navigation.position_label }}</p>
+          <span class="workspace-nav-position" id="workspace-nav-position">{{ navigation.position_label }}</span>
           {% endif %}
           <button type="button" class="button-secondary" id="workspace-next" {% if not navigation.next_url %}disabled{% endif %}>Next</button>
         </nav>

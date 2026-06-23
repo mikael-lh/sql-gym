@@ -519,18 +519,20 @@ h3 {
   padding: 0.55rem 0.75rem;
 }
 
+.workspace-top-cluster {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 100%;
+}
+
 .workspace-top-actions {
   align-items: center;
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
   justify-content: flex-end;
-}
-
-.workspace-top-cluster {
-  display: grid;
-  gap: 0.5rem;
-  justify-items: end;
 }
 
 .workspace-progress-summary {
@@ -541,17 +543,23 @@ h3 {
 
 .workspace-top-nav {
   align-items: center;
-  display: flex;
-  flex-wrap: nowrap;
+  display: grid;
   gap: 0.75rem;
-  justify-content: flex-end;
+  grid-auto-columns: max-content;
+  grid-auto-flow: column;
+  grid-template-rows: minmax(0, 1fr);
+  max-width: 100%;
+  white-space: nowrap;
+  width: max-content;
+}
+
+.workspace-top-nav .button-secondary {
+  width: auto;
 }
 
 .workspace-nav-position {
-  flex-shrink: 0;
   font-weight: 700;
-  margin: 0;
-  white-space: nowrap;
+  line-height: 1;
 }
 
 .workspace-title-row h1 {

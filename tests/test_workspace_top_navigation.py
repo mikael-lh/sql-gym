@@ -90,12 +90,15 @@ def test_prev_next_controls_live_in_top_header(workspace_server_url: str) -> Non
 
             nav_on_one_row = page.evaluate(
                 """() => {
-                    const nav = document.querySelector('.workspace-top-nav');
-                    if (!nav) return false;
-                    const prev = document.getElementById('workspace-prev');
-                    const next = document.getElementById('workspace-next');
-                    if (!(prev instanceof HTMLElement) || !(next instanceof HTMLElement)) return false;
-                    return prev.offsetTop === next.offsetTop;
+                    const ids = ['workspace-prev', 'workspace-nav-position', 'workspace-next'];
+                    const tops = ids.map((id) => {
+                        const el = document.getElementById(id);
+                        return el instanceof HTMLElement ? el.getBoundingClientRect().top : null;
+                    });
+                    if (tops.some((top) => top === null)) return false;
+                    const minTop = Math.min(...tops);
+                    const maxTop = Math.max(...tops);
+                    return maxTop - minTop < 8;
                 }"""
             )
             assert nav_on_one_row is True
@@ -108,6 +111,38 @@ def test_prev_next_controls_live_in_top_header(workspace_server_url: str) -> Non
                 }"""
             )
             assert in_header is True
+        finally:
+            browser.close()
+
+
+@pytest.mark.integration
+def test_prev_next_controls_stay_on_one_row_on_mobile(workspace_server_url: str) -> None:
+    url = f"{workspace_server_url}/practice/times-archive/times-archive-006"
+
+    with sync_playwright() as playwright:
+        browser = playwright.chromium.launch(headless=True)
+        try:
+            page = browser.new_page(viewport={"width": 390, "height": 844})
+            page.goto(url, wait_until="domcontentloaded")
+            page.wait_for_function(
+                "() => document.documentElement.dataset.workspaceReady === 'submit'",
+            )
+
+            nav_on_one_row = page.evaluate(
+                """() => {
+                    const nav = document.querySelector('.workspace-top-nav');
+                    if (!nav) return false;
+                    const style = getComputedStyle(nav);
+                    if (style.gridAutoFlow !== 'column') return false;
+                    const ids = ['workspace-prev', 'workspace-nav-position', 'workspace-next'];
+                    const tops = ids.map((id) => document.getElementById(id)?.getBoundingClientRect().top);
+                    if (tops.some((top) => top === undefined)) return false;
+                    const minTop = Math.min(...tops);
+                    const maxTop = Math.max(...tops);
+                    return maxTop - minTop < 8;
+                }"""
+            )
+            assert nav_on_one_row is True
         finally:
             browser.close()
 
