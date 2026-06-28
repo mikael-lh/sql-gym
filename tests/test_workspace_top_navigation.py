@@ -63,7 +63,7 @@ sync_playwright = pytest.importorskip("playwright.sync_api").sync_playwright
 
 @pytest.mark.integration
 def test_prev_next_controls_live_in_top_header(workspace_server_url: str) -> None:
-    url = f"{workspace_server_url}/practice/times-archive/times-archive-001"
+    url = f"{workspace_server_url}/practice/times-archive/times-archive-011"
 
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True)
@@ -113,7 +113,7 @@ def test_prev_next_controls_live_in_top_header(workspace_server_url: str) -> Non
 def test_prev_next_controls_stay_on_one_row_at_layout_viewports(
     workspace_server_url: str,
 ) -> None:
-    url = f"{workspace_server_url}/practice/times-archive/times-archive-006"
+    url = f"{workspace_server_url}/practice/times-archive/times-archive-012"
 
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True)
@@ -139,7 +139,7 @@ def test_prev_next_controls_stay_on_one_row_at_layout_viewports(
 
 @pytest.mark.integration
 def test_pass_modal_next_exercise_navigates_without_ok(workspace_server_url: str) -> None:
-    url = f"{workspace_server_url}/practice/times-archive/times-archive-001"
+    url = f"{workspace_server_url}/practice/times-archive/times-archive-011"
 
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True)
@@ -156,13 +156,13 @@ def test_pass_modal_next_exercise_navigates_without_ok(workspace_server_url: str
                     body=json.dumps(
                         {
                             "grading": {
-                                "exercise_id": "times-archive-001",
+                                "exercise_id": "times-archive-011",
                                 "status": "passed",
                                 "summary": "Result matches expected output.",
                                 "passed": True,
                                 "is_placeholder": False,
                             },
-                            "progress": {"passed_count": 1, "total": 50},
+                            "progress": {"passed_count": 1, "total": 60},
                         }
                     ),
                 )
@@ -185,18 +185,18 @@ def test_pass_modal_next_exercise_navigates_without_ok(workspace_server_url: str
             next_button.click()
 
             page.wait_for_function(
-                "() => window.location.pathname.endsWith('times-archive-002')",
+                "() => window.location.pathname.endsWith('times-archive-012')",
                 timeout=10_000,
             )
             assert page.locator("#workspace-grading-modal").evaluate("el => el.hidden") is True
-            assert "Business desk articles" in page.locator("#workspace-exercise-title").inner_text()
+            assert "Desks with many articles" in page.locator("#workspace-exercise-title").inner_text()
         finally:
             browser.close()
 
 
 @pytest.mark.integration
 def test_fail_modal_hides_next_exercise_button(workspace_server_url: str) -> None:
-    url = f"{workspace_server_url}/practice/times-archive/times-archive-001"
+    url = f"{workspace_server_url}/practice/times-archive/times-archive-011"
 
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True)

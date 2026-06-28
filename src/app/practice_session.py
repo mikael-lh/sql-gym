@@ -38,7 +38,13 @@ def _serialize_query_result(result: QueryResult) -> dict[str, Any]:
     }
 
 
-def _serialize_execution_error(error: ExecutionError) -> dict[str, str]:
+def _serialize_execution_error(
+    error: ExecutionError,
+    *,
+    for_run: bool = False,
+) -> dict[str, str]:
+    if for_run and error.postgres_message:
+        return {"message": error.postgres_message, "code": error.code}
     return {"message": error.message, "code": error.code}
 
 
@@ -105,7 +111,7 @@ def store_run_result(
         payload["execution_error"] = None
     else:
         payload["query_result"] = None
-        payload["execution_error"] = _serialize_execution_error(outcome)
+        payload["execution_error"] = _serialize_execution_error(outcome, for_run=True)
     attempts[exercise_id] = payload
     request.session[SESSION_KEY] = attempts
 

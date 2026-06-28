@@ -99,6 +99,25 @@ def test_execute_query_timeout(_mock_url: MagicMock, mock_connect: MagicMock) ->
     assert result.code == "timeout"
 
 
+@patch("app.execution.execute.psycopg.connect")
+@patch("app.execution.execute.get_database_url", return_value="postgresql://example")
+def test_execute_query_returns_postgres_message(
+    _mock_url: MagicMock,
+    mock_connect: MagicMock,
+) -> None:
+    connection = MagicMock()
+    connection.cursor.return_value.__enter__.return_value.execute.side_effect = (
+        pg_errors.UndefinedColumn('column "missing_col" does not exist')
+    )
+    mock_connect.return_value.__enter__.return_value = connection
+
+    result = execute_query("SELECT missing_col FROM times_archive")
+    assert isinstance(result, ExecutionError)
+    assert result.code == "execution_error"
+    assert result.postgres_message is not None
+    assert "missing_col" in result.postgres_message
+
+
 @pytest.mark.integration
 def test_execute_query_integration_select() -> None:
     database_url = os.environ.get("DATABASE_URL")

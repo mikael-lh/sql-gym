@@ -1,0 +1,4508 @@
+{
+  "columns": [
+    "headline_main",
+    "keyword_subject"
+  ],
+  "rows": [
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Forecasts"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Company Reports"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 11,
+        "major": "N",
+        "value": "Stocks and Bonds"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 12,
+        "major": "N",
+        "value": "Mergers, Acquisitions and Divestitures"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 13,
+        "major": "N",
+        "value": "Fines (Penalties)"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 14,
+        "major": "N",
+        "value": "Suits and Litigation"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 15,
+        "major": "N",
+        "value": "Records and Achievements"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 16,
+        "major": "N",
+        "value": "VIOLATIONS OF SECURITIES AND COMMODITIES REGULATIONS"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 17,
+        "major": "N",
+        "value": "INSIDERS INFORMATION"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "Roads and Traffic"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 7,
+        "major": "N",
+        "value": "Cheating"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 8,
+        "major": "N",
+        "value": "Tolls"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 8,
+        "major": "N",
+        "value": "Education and Schools"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 9,
+        "major": "N",
+        "value": "Scholarships and Fellowships"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 10,
+        "major": "N",
+        "value": "Tuition"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 11,
+        "major": "N",
+        "value": "Private Schools"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 12,
+        "major": "N",
+        "value": "Finances"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Housing"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Finances"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "Homeless Persons"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 7,
+        "major": "N",
+        "value": "Economic Conditions and Trends"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 8,
+        "major": "N",
+        "value": "Taxation"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 9,
+        "major": "N",
+        "value": "Property Taxes"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 10,
+        "major": "N",
+        "value": "Law and Legislation"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 11,
+        "major": "N",
+        "value": "Restoration and Rehabilitation"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Crime and Criminals"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "REWARDS"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Governors (US)"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Railroads"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Finances"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "PASSENGER SERVICES"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "STATE AND LOCAL AID (US)"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Food"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "Finances"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "Mergers, Acquisitions and Divestitures"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 7,
+        "major": "N",
+        "value": "Appointments and Executive Changes"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Chemicals"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Hazardous and Toxic Substances"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "CLASS-ACTION SUITS"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Dancing"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Women"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Electric Light and Power"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "RATES"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Oil (Petroleum) and Gasoline"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "AIRLINES AND AIRPLANES"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Housing"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Real Estate"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Football"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "RETAIL STORES AND TRADE"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "International Trade and World Market"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Economic Conditions and Trends"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "LABOR"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Draft and Recruitment (Military)"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Age, Chronological"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Defense and Military Forces"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Layoffs and Job Reductions"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "United States Economy"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "ADVERTISING AND MARKETING"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "MOTION PICTURES"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "PRICES"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Legal Profession"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Awards, Decorations and Honors"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "LAWYERS"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Finances"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Budgets and Budgeting"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "Public Relations and Publicity"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Culture"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Gifts"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Historic Buildings and Sites"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "BOOK REVIEWS"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "MOTION PICTURES"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Biographical Information"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Age, Chronological"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "Children and Youth"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 7,
+        "major": "N",
+        "value": "Finances"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 8,
+        "major": "N",
+        "value": "Government Bonds"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 9,
+        "major": "N",
+        "value": "LABOR"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 10,
+        "major": "N",
+        "value": "PUBLIC WORKS"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 11,
+        "major": "N",
+        "value": "Elections"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 12,
+        "major": "N",
+        "value": "Referendums"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Foreign Aid"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Forecasts"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "United States International Relations"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "Economic Conditions and Trends"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 7,
+        "major": "N",
+        "value": "Reform and Reorganization"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 8,
+        "major": "N",
+        "value": "Privatization"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 9,
+        "major": "N",
+        "value": "PRICES"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 10,
+        "major": "N",
+        "value": "Finances"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 11,
+        "major": "N",
+        "value": "Budgets and Budgeting"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Area Planning and Renewal"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Museums"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "AQUARIUMS"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Parks and Other Recreation Areas"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Mergers, Acquisitions and Divestitures"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Day Care Centers"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "Medicine and Health"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 7,
+        "major": "N",
+        "value": "Hospitals"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "PESTICIDES AND PESTS"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Suits and Litigation"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Insurance"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Company Reports"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Telephones and Telecommunications"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Cellular Telephones"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Music"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Company Reports"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "United States Economy"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Banks and Banking"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Crime and Criminals"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Capital Punishment"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Murders and Attempted Murders"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Suits and Litigation"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Securities and Commodities Violations"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Home Furnishings"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Interior Design"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Oil (Petroleum) and Gasoline"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Company Reports"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Sales"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Dancing"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Banks and Banking"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Stocks and Bonds"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "ADVERTISING AND MARKETING"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "ADVERTISING AND MARKETING"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "ADVERTISING AND MARKETING"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "ADVERTISING AND MARKETING"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "ADVERTISING AND MARKETING"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "ADVERTISING AND MARKETING"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "ADVERTISING AND MARKETING"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "GOVERNMENT SPENDING"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Budgets and Budgeting"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "HEATING FUEL"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Federal Aid (US)"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "STATE AND LOCAL AID (US)"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "MOTION PICTURES"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Grants (Corporate and Foundation)"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Homeless Persons"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "Grants (Corporate and Foundation)"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Restaurants"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Reviews"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Buildings (Structures)"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "ARCHITECTURE"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Colleges and Universities"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Oil (Petroleum) and Gasoline"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Virtual Reality (Computers)"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Culture"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Cooking and Cookbooks"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Restaurants"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Travel and Vacations"
+      }
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Crossword Puzzles"
+      }
+    ],
+    [
+      "\t\tFor the Curious, It’s Open House Season",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Historic Buildings and Sites"
+      }
+    ],
+    [
+      "\t\tFor the Curious, It’s Open House Season",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Trees and Shrubs"
+      }
+    ],
+    [
+      "\t\tHome & Garden Calendar",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Parks and Other Recreation Areas"
+      }
+    ],
+    [
+      "\t\tHome & Garden Calendar",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Art"
+      }
+    ],
+    [
+      "\t  7 Tribune Directors Say Call for Breakup Is Power Play",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "News and News Media"
+      }
+    ],
+    [
+      "\t  A High Price in Harlem",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Housing"
+      }
+    ],
+    [
+      "\t  A Place to Savor the Torrents of Spring",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "DAMS AND DIKES"
+      }
+    ],
+    [
+      "\t  Beach Parking Pass Bingo",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Travel and Vacations"
+      }
+    ],
+    [
+      "\t  Burger King Posts a Loss for the Fourth Quarter",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Fast Food Industry"
+      }
+    ],
+    [
+      "\t  Burger King Posts a Loss for the Fourth Quarter",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Company Reports"
+      }
+    ],
+    [
+      "\t  Condo Sales, With a Catch",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Condominiums"
+      }
+    ],
+    [
+      "\t  Hasbro Ends Plans for 'Pussycat Dolls'",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Toys"
+      }
+    ],
+    [
+      "\t  How to Dry Out a Flooded House",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Floods"
+      }
+    ],
+    [
+      "\t  How to Dry Out a Flooded House",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Housing"
+      }
+    ],
+    [
+      "\t  In Mexico, Loans Without Borders",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Mortgages"
+      }
+    ],
+    [
+      "\t  India Becoming a Crucial Cog in the Machine at I.B.M.",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Computers and the Internet"
+      }
+    ],
+    [
+      "\t  Intel Details Broader Role in Indian PC's",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Computers and the Internet"
+      }
+    ],
+    [
+      "\t  Johnson's Frustration Continues to Fester",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Baseball"
+      }
+    ],
+    [
+      "\t  Keeping Mosquitoes From Ruining the Fun",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Insects"
+      }
+    ],
+    [
+      "\t  Keeping Mosquitoes From Ruining the Fun",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Mosquitoes"
+      }
+    ],
+    [
+      "\t  Knicks May Be Looking for Way to Part With Brown",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Basketball"
+      }
+    ],
+    [
+      "\t  O'Neal Returns to Form as Heat Eliminates Bulls",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Basketball"
+      }
+    ],
+    [
+      "\t  Pak Wins in Playoff; Wie Ties for Fifth",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Golf"
+      }
+    ],
+    [
+      "\t  Profit Falls as Sales Rise at Verizon",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Wire and Cable"
+      }
+    ],
+    [
+      "\t  Profit Falls as Sales Rise at Verizon",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Telephones and Telecommunications"
+      }
+    ],
+    [
+      "\t  Profit Falls as Sales Rise at Verizon",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Cellular Telephones"
+      }
+    ],
+    [
+      "\t  Rasheed Wallace Guarantees Victory, Again",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Basketball"
+      }
+    ],
+    [
+      "\t  Second Homes That Put Ecology First",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Environment"
+      }
+    ],
+    [
+      "\t  Second Homes That Put Ecology First",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Housing"
+      }
+    ],
+    [
+      "\t  Text of the Fed's Statement on Interest Rate Increase",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Interest Rates"
+      }
+    ],
+    [
+      "\t  When the Rules Change About Washer/Dryers",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Cooperatives"
+      }
+    ],
+    [
+      "\t  Where Manhattan Is the Biggest Amenity",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "LIFE STYLES"
+      }
+    ],
+    [
+      "\t  With Abreu in, Sheffield Could Be Out",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Baseball"
+      }
+    ],
+    [
+      "\tAs Victim Dies, a Mystery Grows in Westchester",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Legal Profession"
+      }
+    ],
+    [
+      "\tAs Victim Dies, a Mystery Grows in Westchester",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Murders and Attempted Murders"
+      }
+    ],
+    [
+      "\tKobe Bryant Asks to be Traded",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Basketball"
+      }
+    ],
+    [
+      "\tMarla Tusk and Josh Gottheimer",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Weddings and Engagements"
+      }
+    ],
+    [
+      "\tSpace Shuttle Atlantis Blasts Off",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Space"
+      }
+    ],
+    [
+      "\tSpace Shuttle Atlantis Blasts Off",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Atlantis (Space Shuttle)"
+      }
+    ],
+    [
+      "\tSpace Shuttle Atlantis Blasts Off",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "International Space Cooperation and Ventures"
+      }
+    ],
+    [
+      "\tSpace Shuttle Atlantis Blasts Off",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "SPACE SHUTTLE"
+      }
+    ],
+    [
+      "\nSpare Times",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Historic Buildings and Sites"
+      }
+    ],
+    [
+      "\r\nChina: Earthquake Death Toll Increased",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Earthquakes"
+      }
+    ],
+    [
+      " ",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Comic Books and Strips"
+      }
+    ],
+    [
+      " \t  A Leafy, Scenic Enclave, and Now a Landmark",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Historic Buildings and Sites"
+      }
+    ],
+    [
+      " \t  Alou Backs Bonds for All-Star Game",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Baseball"
+      }
+    ],
+    [
+      " \t  Ecology and Second Homes",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Travel and Vacations"
+      }
+    ],
+    [
+      " \t  Everybody Into the Pool",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Swimming"
+      }
+    ],
+    [
+      " \t  Everybody Into the Pool",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Real Estate"
+      }
+    ],
+    [
+      " \t  Everybody Into the Pool",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Building (Construction)"
+      }
+    ],
+    [
+      " \t  How Much Power Does a Co-op Board Have?",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Cooperatives"
+      }
+    ],
+    [
+      " \t  How Much Power Does a Co-op Board Have?",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Renting and Leasing"
+      }
+    ],
+    [
+      " \t  In Sublets, Relatives Get Special Treatment",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Rent Control and Stabilization"
+      }
+    ],
+    [
+      " \t  In Sublets, Relatives Get Special Treatment",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Renting and Leasing"
+      }
+    ],
+    [
+      " \t  N.C.A.A. Begins Listing High Schools It Considers Invalid",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "College Athletics"
+      }
+    ],
+    [
+      " \t  Opening Up a Duplex, Letting the Sunshine In",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Buildings (Structures)"
+      }
+    ],
+    [
+      " \t  Opening Up a Duplex, Letting the Sunshine In",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "ARCHITECTURE"
+      }
+    ],
+    [
+      " \t  When a Garden Sprouted at Park Ave. and 67th St.",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Restaurants"
+      }
+    ],
+    [
+      " \t  When a Garden Sprouted at Park Ave. and 67th St.",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "ARCHITECTURE"
+      }
+    ],
+    [
+      " \t  Workaholics' Dream: Fixing Up a Fixer-Upper",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Real Estate"
+      }
+    ],
+    [
+      " \t  Workaholics' Dream: Fixing Up a Fixer-Upper",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Design"
+      }
+    ],
+    [
+      "  \t  Bambino's New Curse Is Bonds's Tormentor\t",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Baseball"
+      }
+    ],
+    [
+      "  \t  Patrick Sees a Moral Victory in Her Disappointing Finish",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Indianapolis 500 (Auto Race)"
+      }
+    ],
+    [
+      "  \t  Patrick Sees a Moral Victory in Her Disappointing Finish",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Automobiles"
+      }
+    ],
+    [
+      "  \t  Rentals Are Strong, and the Rich Keep Buying",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Mortgages"
+      }
+    ],
+    [
+      "  \t  Rentals Are Strong, and the Rich Keep Buying",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Renting and Leasing"
+      }
+    ],
+    [
+      "                Philip Johnson’s Not Glass Houses ",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "ARCHITECTURE"
+      }
+    ],
+    [
+      "         CONSUMER RATES",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "SAVINGS ACCOUNTS AND CERTIFICATES"
+      }
+    ],
+    [
+      "         CONSUMER RATES",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Mortgages"
+      }
+    ],
+    [
+      "         CONSUMER RATES",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "INTEREST (MONEY)"
+      }
+    ],
+    [
+      "         CONSUMER RATES",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Mutual Funds"
+      }
+    ],
+    [
+      "         CONSUMER RATES",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "Credit"
+      }
+    ],
+    [
+      "         HOT POTATOES TO HOLD ONTO",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Diet and Nutrition"
+      }
+    ],
+    [
+      "         HOT POTATOES TO HOLD ONTO",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Recipes"
+      }
+    ],
+    [
+      "         HOW TO AND HOW NOT TO INSULATE AN UNFINISHED ATTIC",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "INSULATION"
+      }
+    ],
+    [
+      "         HOW TO AND HOW NOT TO INSULATE AN UNFINISHED ATTIC",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "HOME REPAIRS"
+      }
+    ],
+    [
+      "         REPAIRING OR REPLACING CERAMIC TILE: SOME TIPS ON CUTTING",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "HOME REPAIRS"
+      }
+    ],
+    [
+      "         WHEN A HEATING SYSTEM'S SAFETY VALVE GIVES WARNING",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Heating"
+      }
+    ],
+    [
+      "         WHEN A HEATING SYSTEM'S SAFETY VALVE GIVES WARNING",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "HEAT"
+      }
+    ],
+    [
+      "         WHEN A HEATING SYSTEM'S SAFETY VALVE GIVES WARNING",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "HOME REPAIRS"
+      }
+    ],
+    [
+      "     INTERNATIONAL/3-24",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "NO INDEX TERMS"
+      }
+    ],
+    [
+      "    As Easy as ... Look Ahead! Turn! Oh, No!     ",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Bicycles and Bicycling"
+      }
+    ],
+    [
+      "   ' 'NIGHT, MOTHER'",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   ;",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   ;    International",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   ;    International",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   ;   Former Head of Abbott Is Genentech President",
+      {
+        "name": "subject",
+        "rank": 8,
+        "major": "N",
+        "value": "Appointments and Executive Changes"
+      }
+    ],
+    [
+      "   ;   Grumman Picks Officer From Aerospace Unit",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Appointments and Executive Changes"
+      }
+    ],
+    [
+      "   ;   Stratus Computer And I.B.M. in Pact Stratus Computer Inc., a Marlborough, Mass., company, said it had signed a contract with the International Business Machines Corporation to sell it selected products of the Stratus fault-tolerant computer line and to grant I.B.M. the right to market the products. Fault-tolerant computers continue to function despite internal component breakdowns.",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   A BED FOR WORKING",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   A JOURNALISM MOVIE THAT RAISES TOUGH QUESTIONS",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Reviews"
+      }
+    ],
+    [
+      "   A JOURNALISM MOVIE THAT RAISES TOUGH QUESTIONS",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "MOTION PICTURES"
+      }
+    ],
+    [
+      "   Buildings Wrecked Without Permits",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Buildings (Structures)"
+      }
+    ],
+    [
+      "   By John Gross;",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   By John Gross;",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   By John Gross;",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   By John Gross;",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   By John Gross;",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   By John Gross;",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   By John Gross;",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   By John Gross;",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   By John Gross;",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   By John Gross;",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   By John Gross;",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   By John Gross;    LADY GREGORY. The Woman Behind",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   By John Grosss;",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Carnival",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Debt",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Finances"
+      }
+    ],
+    [
+      "   Debt",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "EUROBONDS"
+      }
+    ],
+    [
+      "   Debt",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Stocks and Bonds"
+      }
+    ],
+    [
+      "   Debt",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "CORPORATE BONDS"
+      }
+    ],
+    [
+      "   Debt",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Debt",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Debt",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Debt",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Finances"
+      }
+    ],
+    [
+      "   Debt",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Credit"
+      }
+    ],
+    [
+      "   Debt",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Debt",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Debt",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Finances"
+      }
+    ],
+    [
+      "   Debt",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Credit"
+      }
+    ],
+    [
+      "   Debt",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Debt",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Debt",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Debt",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Debt",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Debt",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "BOND OFFERINGS"
+      }
+    ],
+    [
+      "   Debt",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Debt",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Debt",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Debt",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "CORPORATE BONDS"
+      }
+    ],
+    [
+      "   Debt",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Debt",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "BOND OFFERINGS"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "CORPORATE BONDS"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "COMMERCIAL PAPER"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Stocks and Bonds"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "BOND OFFERINGS"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Stocks and Bonds"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "CORPORATE BONDS"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "BOND OFFERINGS"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Mortgages"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "INTEREST (MONEY)"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Credit"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "BOND OFFERINGS"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Government Bonds"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "BOND OFFERINGS"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "BOND OFFERINGS"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "CORPORATE BONDS"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "BOND OFFERINGS"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "BOND OFFERINGS"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "INTEREST (MONEY)"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "BOND OFFERINGS"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "CORPORATE BONDS"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "COMMERCIAL PAPER"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "INTEREST (MONEY)"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "BOND OFFERINGS"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "BOND OFFERINGS"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "EUROBONDS"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "BOND OFFERINGS"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "BOND OFFERINGS"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "BOND OFFERINGS"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Finances"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "BOND OFFERINGS"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "EUROBONDS"
+      }
+    ],
+    [
+      "   Debt Issues",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Debt Issues ;    Common Stock",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "BOND OFFERINGS"
+      }
+    ],
+    [
+      "   FIGHTERS PROMOTE A DREADED DATE",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   FUTURE LOOKS DIM FOR PORSCHE",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Automobile Racing"
+      }
+    ],
+    [
+      "   Friday A DIFFERENT DRUMMER",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Friday AN EVENING WITH SEGOVIA",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Friday BACH INSTRUMENTS",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Friday BELLOW TO READ AT Y",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Friday FROM TV TO STAGE",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Friday LIBRARY TREASURES",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Friday MEWS OF THE WORLD",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   HAPPY HUNDRED In this year of big round-number musical anniversaries - 300th for Bach and Scarlatti, for instance - Jerome Kern, who would have been 100 years old on Sunday, is a comparative parvenu, a youngster and an American who composed some of the best scores for the musical-comedy theater. Even so, a 100th anniversary calls for something special, and that is what is planned at Carnegie Recital Hall, 57th Street and Seventh Avenue (903-9700), starting today.",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   HEIFETZ MASTER CLASS",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   IN BROOKLYN",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   IRISH FOLK MUSIC",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   IRISH LETTERS",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Low-Level Testing Done at Shoreham",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Tests and Testing"
+      }
+    ],
+    [
+      "   Low-Level Testing Done at Shoreham",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "ATOMIC ENERGY"
+      }
+    ],
+    [
+      "   Making His Point",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "BLACKS (IN US)"
+      }
+    ],
+    [
+      "   Making His Point",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Discrimination"
+      }
+    ],
+    [
+      "   Making His Point",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "Golf"
+      }
+    ],
+    [
+      "   N.H.L.",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   NEW CASSETTES: MOZART TO BOGART",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   ROYAL SHAKESPEARE VISIT",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Ratings",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Reprieve at U.P.I.",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   SAMMY CAHN TO PERFORM",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   SATURDAY, APRIL 6, 1985 International",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   Second of two articles on zero-coupon securities. ;   SELECTING ZERO-COUPON MUNICIPALS",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "   U.S. TO SELL SAUDIS 385 OF BEST TANKS",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "ARMS SALES ABROAD"
+      }
+    ],
+    [
+      "   U.S. TO SELL SAUDIS 385 OF BEST TANKS",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "TANKS (MILITARY VEHICLES)"
+      }
+    ],
+    [
+      "   U.S. TO SELL SAUDIS 385 OF BEST TANKS",
+      {
+        "name": "subject",
+        "rank": 7,
+        "major": "N",
+        "value": "United States International Relations"
+      }
+    ],
+    [
+      "   U.S. TO SELL SAUDIS 385 OF BEST TANKS",
+      {
+        "name": "subject",
+        "rank": 8,
+        "major": "N",
+        "value": "M-1A2 TANK"
+      }
+    ],
+    [
+      "   U.S. TO SELL SAUDIS 385 OF BEST TANKS",
+      {
+        "name": "subject",
+        "rank": 9,
+        "major": "N",
+        "value": "UNITED STATES ARMAMENT AND DEFENSE"
+      }
+    ],
+    [
+      "   Unwelcome Relief He threw the strike that nailed down the first World Series victory in the club's 98-year history, but that was in 1980. The Philadelphia Phillies are 103 years old this year, and",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "  #2d Mortgages: Yield vs. Risk",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Mortgages"
+      }
+    ],
+    [
+      "  #2d Mortgages: Yield vs. Risk",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Housing"
+      }
+    ],
+    [
+      "  #2d Mortgages: Yield vs. Risk",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "INVESTMENT STRATEGIES"
+      }
+    ],
+    [
+      "  '",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "  ''42nd Street'' Brings Joy to Candlewood Theater",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Theater"
+      }
+    ],
+    [
+      "  ''HURRICANE,'' PART II",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Murders and Attempted Murders"
+      }
+    ],
+    [
+      "  ''HURRICANE,'' PART II",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Decisions and Verdicts"
+      }
+    ],
+    [
+      "  ''NIGHT, MOTHER': UNIVERSAL TRUTHS",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Reviews"
+      }
+    ],
+    [
+      "  ''NIGHT, MOTHER': UNIVERSAL TRUTHS",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Theater"
+      }
+    ],
+    [
+      "  ''SHOPPER'S SHUTTLE''",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "  ''WEST SIDE STORY'' RETAINS ITS THRILL",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "  ''ightly Problem In a Neighborhood",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Prostitution"
+      }
+    ],
+    [
+      "  '1940's RADIO HOUR'",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Reviews"
+      }
+    ],
+    [
+      "  '1940's RADIO HOUR'",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Theater"
+      }
+    ],
+    [
+      "  '80-20' BENEFICIARY",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Housing"
+      }
+    ],
+    [
+      "  '80-20' BENEFICIARY",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Renting and Leasing"
+      }
+    ],
+    [
+      "  '80-20' BENEFICIARY",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Cooperatives"
+      }
+    ],
+    [
+      "  '80-20' BENEFICIARY",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "RETAIL STORES AND TRADE"
+      }
+    ],
+    [
+      "  '83 Agca Letter Says U.S. Encouraged His Charges",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Assassinations and Attempted Assassinations"
+      }
+    ],
+    [
+      "  '83 Agca Letter Says U.S. Encouraged His Charges",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "Foreign Service"
+      }
+    ],
+    [
+      "  '84 TAX ACT BROUGHT NEW RULES TO THE GAME",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "  '86 Medicare At '85 Rates",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "AGED"
+      }
+    ],
+    [
+      "  '86 Medicare At '85 Rates",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Medicare"
+      }
+    ],
+    [
+      "  '86 Medicare At '85 Rates",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Medicine and Health"
+      }
+    ],
+    [
+      "  '89 Choices Leave Giants Well Set Up",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Draft and Recruitment (Sports)"
+      }
+    ],
+    [
+      "  '89 Choices Leave Giants Well Set Up",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Football"
+      }
+    ],
+    [
+      "  'A GREAT SPECTATOR' HELPS SELL SPORTS",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Tennis"
+      }
+    ],
+    [
+      "  'A Little Bit of Help'",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Culture"
+      }
+    ],
+    [
+      "  'A Little Bit of Help'",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "Awards, Decorations and Honors"
+      }
+    ],
+    [
+      "  'A Little Bit of Help'",
+      {
+        "name": "subject",
+        "rank": 7,
+        "major": "N",
+        "value": "Handicapped"
+      }
+    ],
+    [
+      "  'A Manifestation of Peace'",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "International Relations"
+      }
+    ],
+    [
+      "  'A Manifestation of Peace'",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Writing and Writers"
+      }
+    ],
+    [
+      "  'A New Ben Johnson'",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Suspensions, Dismissals and Resignations"
+      }
+    ],
+    [
+      "  'A New Ben Johnson'",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Olympic Games (1988)"
+      }
+    ],
+    [
+      "  'A New Ben Johnson'",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Steroids"
+      }
+    ],
+    [
+      "  'A New Ben Johnson'",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "DRUG USE IN SPORTS"
+      }
+    ],
+    [
+      "  'A New Ben Johnson'",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "SUMMER GAMES (OLYMPICS)"
+      }
+    ],
+    [
+      "  'A New Ben Johnson'",
+      {
+        "name": "subject",
+        "rank": 7,
+        "major": "N",
+        "value": "Track and Field"
+      }
+    ],
+    [
+      "  'A New Ben Johnson'",
+      {
+        "name": "subject",
+        "rank": 8,
+        "major": "N",
+        "value": "Tests and Testing"
+      }
+    ],
+    [
+      "  'A REASON TO LIVE,' WITH FONDA AND SCHRODER",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Reviews"
+      }
+    ],
+    [
+      "  'A REASON TO LIVE,' WITH FONDA AND SCHRODER",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Television"
+      }
+    ],
+    [
+      "  'A SHAYNA MAIDEL' AT HARTFORD",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Theater"
+      }
+    ],
+    [
+      "  'A Teacher Affects Eternity'",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Education and Schools"
+      }
+    ],
+    [
+      "  'A Teacher Affects Eternity'",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Teachers and School Employees"
+      }
+    ],
+    [
+      "  'A Teacher Affects Eternity'",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Awards, Decorations and Honors"
+      }
+    ],
+    [
+      "  'ACHIEVER' LOOKS TO NEW HORIZONS",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "  'ADVENTURES OF SANTA'",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Reviews"
+      }
+    ],
+    [
+      "  'ADVENTURES OF SANTA'",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Television"
+      }
+    ],
+    [
+      "  'ALIVE FROM OFF CENTER,' A SHOWCASE",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Reviews"
+      }
+    ],
+    [
+      "  'ALIVE FROM OFF CENTER,' A SHOWCASE",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Television"
+      }
+    ],
+    [
+      "  'ALIVE FROM OFF CENTER,' A SHOWCASE",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Public Television"
+      }
+    ],
+    [
+      "  'AMERICAN FILM INSTITUTE SALUTE TO GENE KELLY'",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Reviews"
+      }
+    ],
+    [
+      "  'AMERICAN FILM INSTITUTE SALUTE TO GENE KELLY'",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Television"
+      }
+    ],
+    [
+      "  'AMICABLE' RESIGNATION BY COACHMAN PRESIDENT",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Suspensions, Dismissals and Resignations"
+      }
+    ],
+    [
+      "  'AND WHAT ARE THE NEIGHBORS LIKE?'",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "  'ARCTIC VISIONS,' THE ART OF THE INUIT, AT THE MONTCLAIR MUSEUM",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Eskimos"
+      }
+    ],
+    [
+      "  'ARCTIC VISIONS,' THE ART OF THE INUIT, AT THE MONTCLAIR MUSEUM",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Reviews"
+      }
+    ],
+    [
+      "  'ARCTIC VISIONS,' THE ART OF THE INUIT, AT THE MONTCLAIR MUSEUM",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "ART SHOWS"
+      }
+    ],
+    [
+      "  'ARCTIC VISIONS,' THE ART OF THE INUIT, AT THE MONTCLAIR MUSEUM",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Art"
+      }
+    ],
+    [
+      "  'AT WOR,' A PEG FOR THREENEW ROCHELLE FACULTY PAINTERS",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Reviews"
+      }
+    ],
+    [
+      "  'AT WOR,' A PEG FOR THREENEW ROCHELLE FACULTY PAINTERS",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "ART SHOWS"
+      }
+    ],
+    [
+      "  'AT WOR,' A PEG FOR THREENEW ROCHELLE FACULTY PAINTERS",
+      {
+        "name": "subject",
+        "rank": 7,
+        "major": "N",
+        "value": "Art"
+      }
+    ],
+    [
+      "  'AUNT DAN AND LEMON' CUTS CLOSE TO THE MARROW",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Reviews"
+      }
+    ],
+    [
+      "  'AUNT DAN AND LEMON' CUTS CLOSE TO THE MARROW",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Theater"
+      }
+    ],
+    [
+      "  'Airwolf' Stunt Man Killed in Copter Crash",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Accidents and Safety"
+      }
+    ],
+    [
+      "  'Airwolf' Stunt Man Killed in Copter Crash",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Television"
+      }
+    ],
+    [
+      "  'Airwolf' Stunt Man Killed in Copter Crash",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Helicopters"
+      }
+    ],
+    [
+      "  'All Holders' Rule Studied",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Mergers, Acquisitions and Divestitures"
+      }
+    ],
+    [
+      "  'All Holders' Rule Studied",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "TENDER OFFERS"
+      }
+    ],
+    [
+      "  'All Holders' Rule Studied",
+      {
+        "name": "subject",
+        "rank": 7,
+        "major": "N",
+        "value": "Law and Legislation"
+      }
+    ],
+    [
+      "  'Alternative Maximum Tax'",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "  'Anarchy' in the Senate",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "AGRICULTURE"
+      }
+    ],
+    [
+      "  'Anarchy' in the Senate",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "Filibusters and Debate Curbs"
+      }
+    ],
+    [
+      "  'Anarchy' in the Senate",
+      {
+        "name": "subject",
+        "rank": 7,
+        "major": "N",
+        "value": "Law and Legislation"
+      }
+    ],
+    [
+      "  'Anarchy' in the Senate",
+      {
+        "name": "subject",
+        "rank": 8,
+        "major": "N",
+        "value": "Federal Aid (US)"
+      }
+    ],
+    [
+      "  'Anything Goes,' in Elmsford",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Reviews"
+      }
+    ],
+    [
+      "  'Anything Goes,' in Elmsford",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Theater"
+      }
+    ],
+    [
+      "  'Apartheid Has No Future'",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Political Prisoners"
+      }
+    ],
+    [
+      "  'BABY' IS A NATURAL FOR THE SMALL STAGE",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Reviews"
+      }
+    ],
+    [
+      "  'BABY' IS A NATURAL FOR THE SMALL STAGE",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Theater"
+      }
+    ],
+    [
+      "  'BABY,''BABY'",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "  'BACH AND BEER'",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Music"
+      }
+    ],
+    [
+      "  'BACH AND BEER'",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "Parties (Social)"
+      }
+    ],
+    [
+      "  'BARCODES' COME INTO THEIR OWN",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "DATA PROCESSING"
+      }
+    ],
+    [
+      "  'BARCODES' COME INTO THEIR OWN",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "PERSONAL COMPUTERS"
+      }
+    ],
+    [
+      "  'BARCODES' COME INTO THEIR OWN",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "UNIVERSAL PRODUCT SYMBOL"
+      }
+    ],
+    [
+      "  'BEEHIVE A REMINDER THAT THE 60's WERE FUN",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "NIGHTCLUBS AND CABARETS"
+      }
+    ],
+    [
+      "  'BEL CANTO' AND BELIEF IN TRADITION",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Opera"
+      }
+    ],
+    [
+      "  'BELL, BOOK AND CANDLE' ALIGHT",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "  'BELLS AND WHISTLES' MARK A BORDER IN AUDIO DESIGN",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Recording Equipment"
+      }
+    ],
+    [
+      "  'BERRINGER'S,' STARRING WANAMAKER",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Reviews"
+      }
+    ],
+    [
+      "  'BERRINGER'S,' STARRING WANAMAKER",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Television"
+      }
+    ],
+    [
+      "  'BIG RIVER' IS FAITHFUL AND FELICITOUS MARK TWAIN",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Reviews"
+      }
+    ],
+    [
+      "  'BIG RIVER' IS FAITHFUL AND FELICITOUS MARK TWAIN",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Theater"
+      }
+    ],
+    [
+      "  'BIRDY' WATCHING HAS ITS REWARDS",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Reviews"
+      }
+    ],
+    [
+      "  'BIRDY' WATCHING HAS ITS REWARDS",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "MOTION PICTURES"
+      }
+    ],
+    [
+      "  'BISON FOREST,' A PBS DOCUMENTARY",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "ANIMALS"
+      }
+    ],
+    [
+      "  'BISON FOREST,' A PBS DOCUMENTARY",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "Reviews"
+      }
+    ],
+    [
+      "  'BISON FOREST,' A PBS DOCUMENTARY",
+      {
+        "name": "subject",
+        "rank": 7,
+        "major": "N",
+        "value": "Television"
+      }
+    ],
+    [
+      "  'BISON FOREST,' A PBS DOCUMENTARY",
+      {
+        "name": "subject",
+        "rank": 8,
+        "major": "N",
+        "value": "Documentary Films and Programs"
+      }
+    ],
+    [
+      "  'BLATANT AND CONTINUOUS'",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "AFFIRMATIVE ACTION"
+      }
+    ],
+    [
+      "  'BLATANT AND CONTINUOUS'",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "BLACKS (IN US)"
+      }
+    ],
+    [
+      "  'BLATANT AND CONTINUOUS'",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "Hiring and Promotion"
+      }
+    ],
+    [
+      "  'BLATANT AND CONTINUOUS'",
+      {
+        "name": "subject",
+        "rank": 7,
+        "major": "N",
+        "value": "SUITS AND CLAIMS AGAINST GOVERNMENT"
+      }
+    ],
+    [
+      "  'BLATANT AND CONTINUOUS'",
+      {
+        "name": "subject",
+        "rank": 8,
+        "major": "N",
+        "value": "Police"
+      }
+    ],
+    [
+      "  'BLIND ALLEYS,' DRAMA ON METROMEDIA PLAYHOUSE",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Reviews"
+      }
+    ],
+    [
+      "  'BLIND ALLEYS,' DRAMA ON METROMEDIA PLAYHOUSE",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Television"
+      }
+    ],
+    [
+      "  'BLUE YONDER' ON DISNEY TELLS OF A BOY'S TRIP THROUGH TIME",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Cable Television"
+      }
+    ],
+    [
+      "  'BLUE YONDER' ON DISNEY TELLS OF A BOY'S TRIP THROUGH TIME",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Reviews"
+      }
+    ],
+    [
+      "  'BLUE YONDER' ON DISNEY TELLS OF A BOY'S TRIP THROUGH TIME",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Television"
+      }
+    ],
+    [
+      "  'BOY OF SUMMER,' BUT ONLY BRIEFLY",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "  'BROADWAY JOE' IS NOW 'BOARDWALK JOE'",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Reviews"
+      }
+    ],
+    [
+      "  'BROADWAY JOE' IS NOW 'BOARDWALK JOE'",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Theater"
+      }
+    ],
+    [
+      "  'BUT WE HAVE NO CHOICE'",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "  'Barber of Seville' Leads Week's Performances",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Music"
+      }
+    ],
+    [
+      "  'Basic Justice' in Poland Is in Danger, Glemp Says",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "ROMAN CATHOLIC CHURCH"
+      }
+    ],
+    [
+      "  'Basic Justice' in Poland Is in Danger, Glemp Says",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "POLITICS AND GOVERNMENT (1983)"
+      }
+    ],
+    [
+      "  'Basic Justice' in Poland Is in Danger, Glemp Says",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "TRIALS"
+      }
+    ],
+    [
+      "  'Basic Justice' in Poland Is in Danger, Glemp Says",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "Church-State Relations"
+      }
+    ],
+    [
+      "  'Basic Justice' in Poland Is in Danger, Glemp Says",
+      {
+        "name": "subject",
+        "rank": 7,
+        "major": "N",
+        "value": "Freedom and Human Rights"
+      }
+    ],
+    [
+      "  'Batman' Among 4 Convicted of Fraud",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "Robberies and Thefts"
+      }
+    ],
+    [
+      "  'Batman' Among 4 Convicted of Fraud",
+      {
+        "name": "subject",
+        "rank": 7,
+        "major": "N",
+        "value": "Frauds and Swindling"
+      }
+    ],
+    [
+      "  'Batman' Among 4 Convicted of Fraud",
+      {
+        "name": "subject",
+        "rank": 8,
+        "major": "N",
+        "value": "Insurance"
+      }
+    ],
+    [
+      "  'Batman' Among 4 Convicted of Fraud",
+      {
+        "name": "subject",
+        "rank": 9,
+        "major": "N",
+        "value": "FIRES AND FIREMEN"
+      }
+    ],
+    [
+      "  'Batman' Among 4 Convicted of Fraud",
+      {
+        "name": "subject",
+        "rank": 10,
+        "major": "N",
+        "value": "ARSON"
+      }
+    ],
+    [
+      "  'Batman' Among 4 Convicted of Fraud",
+      {
+        "name": "subject",
+        "rank": 11,
+        "major": "N",
+        "value": "Police"
+      }
+    ],
+    [
+      "  'Batman' Among 4 Convicted of Fraud",
+      {
+        "name": "subject",
+        "rank": 12,
+        "major": "N",
+        "value": "Decisions and Verdicts"
+      }
+    ],
+    [
+      "  'Be Nice to New Jersey'",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "  'Beach House,' romantic comedy at Circle Rep.",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "Theater"
+      }
+    ],
+    [
+      "  'Beaning' Is Suspected",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "  'Bedroom Farce': 3 Couples Rampant",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Reviews"
+      }
+    ],
+    [
+      "  'Bedroom Farce': 3 Couples Rampant",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Theater"
+      }
+    ],
+    [
+      "  'Black Eagles,' a Tale Of War, Glory and Race",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Reviews"
+      }
+    ],
+    [
+      "  'Black Eagles,' a Tale Of War, Glory and Race",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Theater"
+      }
+    ],
+    [
+      "  'CAETAKER' GETS SUPERB STAGING",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Reviews"
+      }
+    ],
+    [
+      "  'CAETAKER' GETS SUPERB STAGING",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Theater"
+      }
+    ],
+    [
+      "  'CARNIVAL' LACKS COHESION",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TERMS NOT AVAILABLE"
+      }
+    ],
+    [
+      "  'CAROUSEL' IS BACK IN ALL ITS GLORY",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Reviews"
+      }
+    ]
+  ]
+}

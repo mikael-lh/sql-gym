@@ -9,7 +9,7 @@ from app.main import app
 from app.progress.cookie import COOKIE_NAME
 
 EXPECTED_GRID = json.loads(
-    Path("src/app/catalog/data/expected_grids/times-archive-001.json").read_text()
+    Path("src/app/catalog/data/expected_grids/times-archive-011.json").read_text()
 )
 
 
@@ -39,23 +39,23 @@ async def _post_json(
 
 
 def test_api_list_exercises_returns_filtered_catalog() -> None:
-    response = asyncio.run(_get("/api/practice/exercises?difficulty=Beginner"))
+    response = asyncio.run(_get("/api/practice/exercises?difficulty=Advanced"))
     assert response.status_code == 200
     payload = response.json()
     assert payload["total"] > 0
-    assert all(item["difficulty"] == "Beginner" for item in payload["exercises"])
+    assert all(item["difficulty"] == "Advanced" for item in payload["exercises"])
 
 
 def test_api_get_exercise_returns_workspace_payload() -> None:
     response = asyncio.run(
-        _get("/api/practice/times-archive/times-archive-001")
+        _get("/api/practice/times-archive/times-archive-011")
     )
     assert response.status_code == 200
     payload = response.json()
-    assert payload["exercise"]["id"] == "times-archive-001"
+    assert payload["exercise"]["id"] == "times-archive-011"
+    assert "reference_sql" in payload["exercise"]
     assert payload["exercise"]["reference_sql"]
-    assert "LIMIT 500" in payload["exercise"]["reference_sql"]
-    assert "`headline_main`, `pub_date`" in payload["exercise"]["output_requirements"]
+    assert "`january_articles`" in payload["exercise"]["output_requirements"]
     assert payload["schema"] is not None
     assert "navigation" in payload
     assert "attempt" in payload
@@ -80,7 +80,7 @@ def test_api_run_sql_returns_json_result(mock_execute: MagicMock) -> None:
     )
     response = asyncio.run(
         _post_json(
-            "/api/practice/times-archive/times-archive-001/run",
+            "/api/practice/times-archive/times-archive-011/run",
             {"sql": "SELECT headline_main FROM times_archive LIMIT 1"},
         )
     )
@@ -100,12 +100,53 @@ def test_api_run_sql_returns_execution_error(mock_execute: MagicMock) -> None:
     )
     response = asyncio.run(
         _post_json(
-            "/api/practice/times-archive/times-archive-001/run",
+            "/api/practice/times-archive/times-archive-011/run",
             {"sql": "DELETE FROM times_archive"},
         )
     )
     assert response.status_code == 422
     assert "error" in response.json()
+
+
+@patch("app.api.practice.execute_query")
+def test_api_run_sql_returns_postgres_error_message(mock_execute: MagicMock) -> None:
+    from app.execution.models import ExecutionError
+
+    mock_execute.return_value = ExecutionError(
+        message="The query could not be executed. Check your SQL and try again.",
+        code="execution_error",
+        postgres_message='column "missing_col" does not exist',
+    )
+    response = asyncio.run(
+        _post_json(
+            "/api/practice/times-archive/times-archive-011/run",
+            {"sql": "SELECT missing_col FROM times_archive"},
+        )
+    )
+    assert response.status_code == 422
+    assert response.json()["error"]["message"] == 'column "missing_col" does not exist'
+
+
+@patch("app.api.practice.execute_query")
+def test_api_submit_sql_keeps_friendly_execution_error(mock_execute: MagicMock) -> None:
+    from app.execution.models import ExecutionError
+
+    mock_execute.return_value = ExecutionError(
+        message="The query could not be executed. Check your SQL and try again.",
+        code="execution_error",
+        postgres_message='column "missing_col" does not exist',
+    )
+    response = asyncio.run(
+        _post_json(
+            "/api/practice/times-archive/times-archive-011/submit",
+            {"sql": "SELECT missing_col FROM times_archive"},
+        )
+    )
+    assert response.status_code == 422
+    assert (
+        response.json()["error"]["message"]
+        == "The query could not be executed. Check your SQL and try again."
+    )
 
 
 @patch("app.api.practice.execute_query")
@@ -121,7 +162,7 @@ def test_api_submit_sql_sets_progress_cookie(mock_execute: MagicMock) -> None:
     )
     response = asyncio.run(
         _post_json(
-            "/api/practice/times-archive/times-archive-001/submit",
+            "/api/practice/times-archive/times-archive-011/submit",
             {"sql": "SELECT headline_main, pub_date FROM times_archive LIMIT 1"},
         )
     )

@@ -53,10 +53,10 @@ def test_practice_redirects_to_workspace_exercise() -> None:
 
 
 def test_workspace_renders_editor_and_session_copy() -> None:
-    response = asyncio.run(get("/practice/times-archive/times-archive-001"))
+    response = asyncio.run(get("/practice/times-archive/times-archive-011"))
 
     assert response.status_code == 200
-    assert "Arts section headlines" in response.text
+    assert "January publications" in response.text
     assert "Learning objectives" in response.text
     assert "Show hint" in response.text
     assert "Show schema" in response.text
@@ -76,12 +76,12 @@ def test_workspace_renders_editor_and_session_copy() -> None:
 
 
 def test_workspace_renders_expected_output_section() -> None:
-    response = asyncio.run(get("/practice/times-archive/times-archive-001"))
+    response = asyncio.run(get("/practice/times-archive/times-archive-011"))
 
     assert response.status_code == 200
     assert 'id="workspace-output-requirements"' in response.text
     panel_match = response.text.split('id="workspace-output-requirements"', maxsplit=1)[1]
-    assert "`headline_main`, `pub_date`" in panel_match[:500]
+    assert "`january_articles`" in panel_match[:500]
     assert "not your SQL wording" in panel_match[:500]
     assert "Expected output:" not in response.text.split('id="workspace-prompt-text"', maxsplit=1)[
         1
@@ -99,7 +99,7 @@ def test_workspace_hides_sample_sql_in_collapsed_details() -> None:
 
 
 def test_workspace_renders_reference_sql_answer_below_sample_sql() -> None:
-    response = asyncio.run(get("/practice/times-archive/times-archive-001"))
+    response = asyncio.run(get("/practice/times-archive/times-archive-012"))
 
     assert response.status_code == 200
     assert 'id="workspace-answer-block"' in response.text
@@ -117,7 +117,7 @@ def test_practice_exercise_unknown_route_returns_friendly_404() -> None:
 
 
 def test_practice_exercise_unknown_dataset_returns_friendly_404() -> None:
-    response = asyncio.run(get("/practice/missing-dataset/times-archive-001"))
+    response = asyncio.run(get("/practice/missing-dataset/times-archive-011"))
 
     assert response.status_code == 404
     assert "could not find that exercise" in response.text
@@ -136,22 +136,23 @@ def test_practice_run_sql_stores_attempt_in_session(mock_execute: MagicMock) -> 
         transport = httpx.ASGITransport(app=app)
         async with httpx.AsyncClient(transport=transport, base_url="http://testserver") as client:
             await client.post(
-                "/api/practice/times-archive/times-archive-001/run",
+                "/api/practice/times-archive/times-archive-011/run",
                 json={"sql": "SELECT 1 AS n"},
             )
-            return await client.get("/api/practice/times-archive/times-archive-001")
+            return await client.get("/api/practice/times-archive/times-archive-011")
 
     payload = asyncio.run(_run_and_fetch_api()).json()
     assert payload["attempt"]["query_result"]["row_count"] == 1
 
 
-def test_timed_workspace_renders_timer_region() -> None:
-    response = asyncio.run(get("/practice/times-archive/times-archive-005"))
+def test_workspace_renders_stopwatch_region() -> None:
+    response = asyncio.run(get("/practice/times-archive/times-archive-019"))
 
     assert response.status_code == 200
-    assert "Start timed exercise" in response.text
+    assert "Elapsed" in response.text
     assert 'id="workspace-timer-region"' in response.text
     assert 'id="workspace-timer-region" hidden' not in response.text
+    assert "Start timed exercise" not in response.text
 
 
 def test_codemirror_assets_are_served() -> None:
@@ -189,7 +190,7 @@ def test_favicon_is_served() -> None:
 
 
 def test_base_template_references_favicon() -> None:
-    response = asyncio.run(get("/practice/times-archive/times-archive-001"))
+    response = asyncio.run(get("/practice/times-archive/times-archive-011"))
 
     assert response.status_code == 200
     assert 'rel="icon"' in response.text

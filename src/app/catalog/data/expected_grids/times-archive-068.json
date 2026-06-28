@@ -1,0 +1,414 @@
+{
+  "columns": [
+    "section_name",
+    "headline_main",
+    "pub_date"
+  ],
+  "rows": [
+    [
+      "",
+      "NYT: Washington Report for 2/03/2006",
+      "2018-08-28"
+    ],
+    [
+      "Admin",
+      "Our 25 Most Popular Vegetarian Recipes of 2019",
+      "2019-12-28"
+    ],
+    [
+      "Archives",
+      "Prince: In Memoriam",
+      "2016-04-21"
+    ],
+    [
+      "Arts",
+      "12 Things Our Critics Are Looking Forward to in 2020",
+      "2019-12-31"
+    ],
+    [
+      "Automobiles",
+      "Only the ‘Most Hard-Core Women’ Go Off-Road for Rebelle Rally",
+      "2019-10-03"
+    ],
+    [
+      "Blogs",
+      "Single Mother, Pioneering Photographer: The Remarkable Life of Bayard Wootten",
+      "2018-01-29"
+    ],
+    [
+      "Books",
+      "Gertrude Himmelfarb, Conservative Historian of Ideas, Dies at 97",
+      "2019-12-31"
+    ],
+    [
+      "Booming",
+      "Remembering to Pray",
+      "2014-02-04"
+    ],
+    [
+      "Briefing",
+      "Carlos Ghosn, Brexit, Cyprus: Your Tuesday Briefing",
+      "2019-12-31"
+    ],
+    [
+      "Business Day",
+      "A Simple Investment Strategy That Worked in 2019: Buy Almost Anything",
+      "2019-12-31"
+    ],
+    [
+      "Climate",
+      "Science Panel Staffed With Trump Appointees Says E.P.A. Rollbacks Lack Scientific Rigor",
+      "2019-12-31"
+    ],
+    [
+      "College",
+      "One Move Puts Future Of Law School in Doubt",
+      "2007-09-17"
+    ],
+    [
+      "Corrections",
+      "Editors’ Note: Dec. 31, 2019",
+      "2019-12-31"
+    ],
+    [
+      "Critic's Choice",
+      "Everything Considered",
+      "2009-11-24"
+    ],
+    [
+      "Crosswords & Games",
+      "Silently Bids Adieu",
+      "2019-12-31"
+    ],
+    [
+      "Editors Picks",
+      "Slide Show: Photos 1929-1939",
+      "2002-03-31"
+    ],
+    [
+      "Education",
+      "The Machines Are Learning, and So Are the Students",
+      "2019-12-18"
+    ],
+    [
+      "Fashion & Style",
+      "Ringing in the New Year (With Rings)",
+      "2019-12-31"
+    ],
+    [
+      "Feeds",
+      "C. J. Chivers on Instagram",
+      "2014-03-11"
+    ],
+    [
+      "Food",
+      "A Devotee of Basque Food Brings It to Two Bridges",
+      "2019-12-31"
+    ],
+    [
+      "Giving",
+      "Disgraced Hedge Fund Manager Focuses on Aiding Veterans",
+      "2016-11-04"
+    ],
+    [
+      "Global Home",
+      "Shopping for Brass Accessories",
+      "2013-04-10"
+    ],
+    [
+      "Great Homes & Destinations",
+      "In Tokyo, Creating a Community",
+      "2015-01-29"
+    ],
+    [
+      "Guides",
+      "How to Grow Your Business",
+      "2019-04-17"
+    ],
+    [
+      "Health",
+      "As Tens of Thousands Died, F.D.A. Failed to Police Opioids",
+      "2019-12-30"
+    ],
+    [
+      "Home & Garden",
+      "A Harmonic Convergence of Apples and Oranges",
+      "2015-03-05"
+    ],
+    [
+      "Homepage",
+      "5 Monday Must-Reads",
+      "2019-10-21"
+    ],
+    [
+      "International Home",
+      "Allan J. MacEachen, a Force in Bringing Public Health Care to Canada, Dies at 96",
+      "2017-09-19"
+    ],
+    [
+      "Job Market",
+      "The New York Times wants to hire a journalist to travel the world",
+      "2018-10-23"
+    ],
+    [
+      "Lens",
+      "Afro-Ecuadoreans Maintain Identity Through Spiritual Practices",
+      "2019-05-31"
+    ],
+    [
+      "Magazine",
+      "How to Talk to Someone With Alzheimer’s",
+      "2019-12-31"
+    ],
+    [
+      "Movies",
+      "The Most Important Decade for Movies About Black Lives",
+      "2019-12-30"
+    ],
+    [
+      "Multimedia/Photos",
+      "Yes You Can: Wrap Any Gift",
+      "2019-12-02"
+    ],
+    [
+      "NYT Now",
+      "‘Nevertheless, She Persisted!’",
+      "2017-04-22"
+    ],
+    [
+      "Neediest Cases",
+      "Over a Year After Hurricane, ‘Recovery Is a Long Process’",
+      "2019-12-31"
+    ],
+    [
+      "New York",
+      "Anti-Semitic Attacks Put New York on Edge",
+      "2019-12-31"
+    ],
+    [
+      "Obituaries",
+      "Fred P. Graham, Legal Affairs Reporter and Court TV Anchor, Dies at 88",
+      "2019-12-29"
+    ],
+    [
+      "Open",
+      "NYT: From Anna to Britney to Zawahri",
+      "2018-08-28"
+    ],
+    [
+      "Opinion",
+      "A New Year’s Climate Diet",
+      "2019-12-31"
+    ],
+    [
+      "Parenting",
+      "The Decade Parents Couldn’t Win",
+      "2019-12-25"
+    ],
+    [
+      "Podcasts",
+      "Our Fear Facer Makes a New Friend",
+      "2019-12-31"
+    ],
+    [
+      "Public Editor",
+      "The Public Editor Signs Off",
+      "2017-06-02"
+    ],
+    [
+      "Reader Center",
+      "79 of Our Favorite Facts of 2019",
+      "2019-12-31"
+    ],
+    [
+      "Real Estate",
+      "Cole Valley, San Francisco: Where High Prices Meet Low Inventory",
+      "2019-12-31"
+    ],
+    [
+      "Science",
+      "An Afterlife So Perilous, You Needed a Guidebook",
+      "2019-12-30"
+    ],
+    [
+      "Slideshows",
+      "What You Get for $1.7 Million",
+      "2017-09-06"
+    ],
+    [
+      "Smarter Living",
+      "5 Cheap(ish) Things for Backing Up and Protecting Your Stuff",
+      "2019-12-31"
+    ],
+    [
+      "Sports",
+      "A Rookie Season in the N.F.L. Filled With Thoughts of a Lost Friend",
+      "2019-12-31"
+    ],
+    [
+      "Style",
+      "Throw a Dish. Don’t Eat Lobster. What Are Your New Year’s Superstitions?",
+      "2019-12-31"
+    ],
+    [
+      "Sunday Review",
+      "How McKinsey Makes Its Own Rules",
+      "2019-12-14"
+    ],
+    [
+      "T Brand",
+      "Giving Water a Second Life",
+      "2019-12-16"
+    ],
+    [
+      "T Magazine",
+      "How Do I Find Meaning and Beauty in My Life?",
+      "2019-12-30"
+    ],
+    [
+      "Technology",
+      "California Wanted to Protect Uber Drivers. Now It May Hurt Freelancers.",
+      "2019-12-31"
+    ],
+    [
+      "The Learning Network",
+      "Last-Minute Shopping",
+      "2019-12-20"
+    ],
+    [
+      "The Upshot",
+      "How Cutting Food Stamps Can Add Costs Elsewhere",
+      "2019-12-31"
+    ],
+    [
+      "The Weekly",
+      "Confidential Videos Show Why Navy SEALs Reported Edward Gallagher",
+      "2019-12-27"
+    ],
+    [
+      "Theater",
+      "Remembering Jerry Herman: ‘He Called His Shows His Children’",
+      "2019-12-28"
+    ],
+    [
+      "Times Insider",
+      "The Reporters Carrying On a Century-Old Holiday Tradition",
+      "2019-12-25"
+    ],
+    [
+      "Times Topics",
+      "A Lineup of Missteps",
+      "2016-03-22"
+    ],
+    [
+      "Today’s Paper",
+      "Quotation of the Day: Business Got Big Tax Cut; Lobbyists Made It Bigger",
+      "2019-12-31"
+    ],
+    [
+      "Topics",
+      "Tell Us What You Think",
+      "2015-04-24"
+    ],
+    [
+      "Travel",
+      "Exploring Spectacular Caves in a Quiet Corner of Vietnam",
+      "2019-12-31"
+    ],
+    [
+      "U.S.",
+      "2nd Senate Republican Questions Impartiality of Impeachment Trial",
+      "2019-12-31"
+    ],
+    [
+      "Universal",
+      "La espera en la frontera: ¿quiere su orden con papas fritas?",
+      "2019-05-10"
+    ],
+    [
+      "UrbanEye",
+      "Fornés Fest",
+      "2010-04-05"
+    ],
+    [
+      "Video",
+      "Presidential Candidates Crave the Spotlight. 200 Years Ago That Was Taboo.",
+      "2019-11-03"
+    ],
+    [
+      "Washington",
+      "Back Story With Anne Kornblut",
+      "2018-08-28"
+    ],
+    [
+      "Watching",
+      "The Best Movies and TV Shows New to Netflix Australia in February",
+      "2019-01-31"
+    ],
+    [
+      "Week in Review",
+      "Rings of Dissent",
+      "2013-03-15"
+    ],
+    [
+      "Well",
+      "Antibiotics May Raise the Risk of Allergies",
+      "2019-12-31"
+    ],
+    [
+      "World",
+      "A Couple Unwittingly Threw Away $20,000. The Dump Gave It Back.",
+      "2019-12-31"
+    ],
+    [
+      "Your Money",
+      "No Line to Board Private Jets, but There Is a Line to Buy Them",
+      "2019-12-27"
+    ],
+    [
+      "en Español",
+      "Un álbum de selfis y abrazos en América del Sur",
+      "2019-09-11"
+    ],
+    [
+      "membercenter",
+      "Letters to the Editor",
+      "2016-02-22"
+    ],
+    [
+      "nationchallenged",
+      "Ceremony at Ground Zero",
+      "2002-09-11"
+    ],
+    [
+      "none",
+      "Clip: 'Food Jammers'",
+      "2010-04-20"
+    ],
+    [
+      "nytfrontpage",
+      "Drug Violence Invades Tucson",
+      "2011-09-11"
+    ],
+    [
+      "readersopinions",
+      "Barbara Ehrenreich",
+      "2004-08-04"
+    ],
+    [
+      "timesselect",
+      "The Animated Life: Paper View",
+      "2007-06-26"
+    ],
+    [
+      "timestalks",
+      "Vows: Dalia & Saquib",
+      "2006-06-02"
+    ],
+    [
+      "xword",
+      "Acrostic",
+      "2010-10-08"
+    ]
+  ]
+}

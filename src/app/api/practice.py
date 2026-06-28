@@ -46,6 +46,12 @@ def _serialize_execution_error(error: ExecutionError) -> dict[str, str]:
     return {"message": error.message, "code": error.code}
 
 
+def _serialize_run_execution_error(error: ExecutionError) -> dict[str, str]:
+    if error.postgres_message:
+        return {"message": error.postgres_message, "code": error.code}
+    return _serialize_execution_error(error)
+
+
 def _exercise_list_item(exercise: Exercise, request: Request) -> dict[str, Any]:
     store = load_progress(request)
     status = store.get_status(exercise.id)
@@ -54,18 +60,15 @@ def _exercise_list_item(exercise: Exercise, request: Request) -> dict[str, Any]:
         "dataset_id": exercise.dataset_id,
         "title": exercise.title,
         "difficulty": exercise.difficulty,
-        "mode": exercise.mode,
         "progress_status": status,
         "progress_label": _PROGRESS_LABELS[status],
         "url": f"/practice/{exercise.dataset_id}/{exercise.id}",
     }
 
 
-def _parse_elapsed_seconds(exercise: Exercise, elapsed_seconds: int | None) -> int | None:
-    if elapsed_seconds is not None and exercise.mode == "Timed":
-        max_seconds = exercise.estimated_time_minutes * 60
-        if 0 < elapsed_seconds <= max_seconds:
-            return elapsed_seconds
+def _parse_elapsed_seconds(elapsed_seconds: int | None) -> int | None:
+    if elapsed_seconds is not None and elapsed_seconds > 0:
+        return elapsed_seconds
     return None
 
 
@@ -73,14 +76,12 @@ def api_list_exercises(
     request: Request,
     dataset: str | None = None,
     difficulty: str | None = None,
-    mode: str | None = None,
 ) -> dict[str, Any]:
-    filters = parse_workspace_filters(difficulty=difficulty, mode=mode)
+    filters = parse_workspace_filters(difficulty=difficulty)
     if dataset:
         filters = PracticeFilters(
             dataset_id=dataset,
             difficulty=filters.difficulty,
-            mode=filters.mode,
         )
     exercises = filtered_exercises(filters)
     return {
@@ -94,9 +95,8 @@ def api_get_exercise(
     dataset_id: str,
     exercise_id: str,
     difficulty: str | None = None,
-    mode: str | None = None,
 ) -> dict[str, Any]:
-    filters = parse_workspace_filters(difficulty=difficulty, mode=mode)
+    filters = parse_workspace_filters(difficulty=difficulty)
     context = get_workspace_context(request, dataset_id, exercise_id, filters)
     if context is None:
         raise HTTPException(status_code=404, detail="Exercise not found")
@@ -114,7 +114,7 @@ def api_get_exercise(
         "progress": {
             "status": context["progress_status"],
             "label": context["progress_label"],
-            "best_elapsed": context["best_elapsed"],
+            "first_pass_elapsed": context["first_pass_elapsed"],
         },
         "navigation": context["navigation"],
         "filters": context["filters"],
@@ -136,7 +136,7 @@ def api_run_sql(
     if isinstance(outcome, ExecutionError):
         return JSONResponse(
             status_code=422,
-            content={"error": _serialize_execution_error(outcome)},
+            content={"error": _serialize_run_execution_error(outcome)},
         )
     return JSONResponse(content=_serialize_query_result(outcome))
 
@@ -164,7 +164,7 @@ def api_submit_sql(
             content={"error": {"message": "Grading unavailable", "code": "grading_unavailable"}},
         )
 
-    elapsed = _parse_elapsed_seconds(exercise, body.elapsed_seconds)
+    elapsed = _parse_elapsed_seconds(body.elapsed_seconds)
     progress = load_progress(request).apply_submit_outcome(
         exercise.id,
         passed=grading.passed is True,

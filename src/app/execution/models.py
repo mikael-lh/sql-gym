@@ -15,3 +15,4 @@ class ExecutionError(BaseModel):
 
     message: str
     code: str
+    postgres_message: str | None = None

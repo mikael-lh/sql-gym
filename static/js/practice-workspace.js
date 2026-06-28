@@ -97,9 +97,6 @@ function filtersToQuery(filters) {
   if (filters?.difficulty) {
     params.set("difficulty", filters.difficulty);
   }
-  if (filters?.mode) {
-    params.set("mode", filters.mode);
-  }
   const query = params.toString();
   return query ? `?${query}` : "";
 }
@@ -127,7 +124,6 @@ function parseExerciseLocation(pathname, search) {
     exercise_id: match[2],
     filters: {
       difficulty: params.get("difficulty") ?? "",
-      mode: params.get("mode") ?? "",
     },
   };
 }
@@ -216,11 +212,10 @@ function applyExercisePayload(payload) {
   const schemaContent = document.getElementById("workspace-schema-content");
   const editorNote = document.querySelector(".workspace-editor-panel .placeholder-note");
   const timerRegion = document.getElementById("workspace-timer-region");
-  const timerConfig = document.getElementById("practice-timer-config");
-  const bestElapsed = document.getElementById("workspace-best-elapsed");
+  const firstPassElapsed = document.getElementById("workspace-first-pass-elapsed");
 
   if (eyebrow instanceof HTMLElement) {
-    eyebrow.textContent = `${dataset.name} · ${exercise.difficulty} · ${exercise.mode}`;
+    eyebrow.textContent = `${dataset.name} · ${exercise.difficulty}`;
   }
   if (title instanceof HTMLElement) {
     title.textContent = exercise.title;
@@ -258,17 +253,17 @@ function applyExercisePayload(payload) {
   if (editorNote instanceof HTMLElement) {
     editorNote.textContent = `Write PostgreSQL for: ${exercise.title}`;
   }
-  if (timerRegion instanceof HTMLElement && timerConfig instanceof HTMLElement) {
-    const isTimed = exercise.mode === "Timed";
-    timerRegion.hidden = !isTimed;
-    if (isTimed) {
-      timerConfig.dataset.durationSeconds = String(exercise.estimated_time_minutes * 60);
-    }
+  if (timerRegion instanceof HTMLElement) {
+    timerRegion.hidden = false;
   }
-  if (bestElapsed instanceof HTMLElement) {
-    bestElapsed.textContent = payload.progress?.best_elapsed
-      ? ` — best time ${payload.progress.best_elapsed}`
-      : "";
+  if (firstPassElapsed instanceof HTMLElement) {
+    if (payload.progress?.first_pass_elapsed) {
+      firstPassElapsed.textContent = ` — solved in ${payload.progress.first_pass_elapsed}`;
+      firstPassElapsed.hidden = false;
+    } else {
+      firstPassElapsed.textContent = "";
+      firstPassElapsed.hidden = true;
+    }
   }
 
   setEditorSql(payload.attempt?.sql ?? "");
@@ -398,26 +393,16 @@ function createGradingModal(submitButton, nextNavButton) {
   return { show, hide };
 }
 
-function initWorkspaceTimer(onTimeoutSubmit) {
-  const config = document.getElementById("practice-timer-config");
-  const startButton = document.getElementById("start-timed-exercise");
+function initWorkspaceStopwatch({ onStop, initialElapsedSeconds = 0, stopped = false }) {
   const display = document.getElementById("timer-display");
-  if (
-    !(config instanceof HTMLElement) ||
-    !(startButton instanceof HTMLButtonElement) ||
-    !(display instanceof HTMLElement)
-  ) {
-    return { getElapsedSeconds: () => null };
+  if (!(display instanceof HTMLElement)) {
+    return { getElapsedSeconds: () => null, stop() {}, reset() {} };
   }
 
-  const totalSeconds = Number.parseInt(config.dataset.durationSeconds ?? "", 10);
-  if (!Number.isFinite(totalSeconds) || totalSeconds <= 0) {
-    return { getElapsedSeconds: () => null };
-  }
-
-  let remainingSeconds = totalSeconds;
-  let startedAtMs = null;
+  let startedAtMs = Date.now() - initialElapsedSeconds * 1000;
+  let frozenElapsedSeconds = null;
   let intervalId = null;
+  let isStopped = stopped;
 
   const formatTime = (seconds) => {
     const minutes = Math.floor(seconds / 60);
@@ -425,58 +410,59 @@ function initWorkspaceTimer(onTimeoutSubmit) {
     return `${minutes}:${String(remainder).padStart(2, "0")}`;
   };
 
+  const currentElapsedSeconds = () =>
+    Math.max(0, Math.round((Date.now() - startedAtMs) / 1000));
+
+  const renderElapsed = () => {
+    const elapsed = currentElapsedSeconds();
+    display.textContent = formatTime(elapsed);
+    return elapsed;
+  };
+
   const getElapsedSeconds = () => {
-    if (startedAtMs === null) {
-      return null;
+    if (frozenElapsedSeconds !== null) {
+      return Math.max(1, frozenElapsedSeconds);
     }
-    const elapsed = Math.max(1, Math.round((Date.now() - startedAtMs) / 1000));
-    return Math.min(elapsed, totalSeconds);
+    return Math.max(1, renderElapsed());
   };
 
-  const tick = () => {
-    remainingSeconds -= 1;
-    if (remainingSeconds <= 0) {
-      display.textContent = "0:00";
-      window.clearInterval(intervalId);
-      intervalId = null;
-      onTimeoutSubmit();
-      return;
+  const stop = () => {
+    if (isStopped) {
+      return getElapsedSeconds();
     }
-    display.textContent = formatTime(remainingSeconds);
-  };
-
-  startButton.addEventListener("click", () => {
-    if (intervalId !== null) {
-      return;
-    }
-    startedAtMs = Date.now();
-    remainingSeconds = totalSeconds;
-    startButton.hidden = true;
-    display.hidden = false;
-    display.textContent = formatTime(remainingSeconds);
-    intervalId = window.setInterval(tick, 1000);
-  });
-
-  const reset = () => {
+    isStopped = true;
     if (intervalId !== null) {
       window.clearInterval(intervalId);
       intervalId = null;
     }
-    startedAtMs = null;
-    remainingSeconds = Number.parseInt(config.dataset.durationSeconds ?? "", 10);
-    startButton.hidden = false;
-    display.hidden = true;
-    display.textContent = "";
+    frozenElapsedSeconds = renderElapsed();
+    onStop?.(frozenElapsedSeconds);
+    return frozenElapsedSeconds;
   };
 
-  return { getElapsedSeconds, reset };
+  const reset = ({ elapsedSeconds = 0, keepStopped = false } = {}) => {
+    if (intervalId !== null) {
+      window.clearInterval(intervalId);
+      intervalId = null;
+    }
+    startedAtMs = Date.now() - elapsedSeconds * 1000;
+    isStopped = keepStopped;
+    frozenElapsedSeconds = keepStopped ? elapsedSeconds : null;
+    display.textContent = formatTime(elapsedSeconds);
+    if (!isStopped) {
+      intervalId = window.setInterval(renderElapsed, 1000);
+    }
+  };
+
+  reset({ elapsedSeconds: initialElapsedSeconds, keepStopped: stopped });
+  return { getElapsedSeconds, stop, reset };
 }
 
 function initWorkspaceNavigation({
   workspaceConfig,
   consoleEl,
   modal,
-  timer,
+  stopwatch,
   loadDrawerExercises,
 }) {
   const drawer = document.getElementById("workspace-drawer");
@@ -485,8 +471,6 @@ function initWorkspaceNavigation({
   const drawerList = document.getElementById("workspace-drawer-list");
   const prevButton = document.getElementById("workspace-prev");
   const nextButton = document.getElementById("workspace-next");
-  const difficultyFilter = document.getElementById("workspace-filter-difficulty");
-  const modeFilter = document.getElementById("workspace-filter-mode");
 
   const setDrawerOpen = (open) => {
     if (!(drawer instanceof HTMLElement) || !(drawerToggle instanceof HTMLButtonElement)) {
@@ -498,7 +482,6 @@ function initWorkspaceNavigation({
 
   const loadExercise = async (datasetId, exerciseId, filters, { push = true } = {}) => {
     modal.hide();
-    timer.reset();
     const response = await fetch(buildExerciseApiUrl(datasetId, exerciseId, filters));
     if (!response.ok) {
       window.location.assign(buildExercisePath(datasetId, exerciseId, filters));
@@ -515,6 +498,9 @@ function initWorkspaceNavigation({
     };
     applyExercisePayload(payload);
     renderConsoleAttempt(consoleEl, workspaceConfig.attempt);
+    const passed = payload.progress?.status === "passed";
+    const elapsedSeconds = parseElapsedDisplay(payload.progress?.first_pass_elapsed);
+    stopwatch.reset({ elapsedSeconds, keepStopped: passed });
     if (push) {
       window.history.pushState(
         { workspace: true },
@@ -580,20 +566,16 @@ function initWorkspaceNavigation({
 
   const redirectForFilters = () => {
     const params = new URLSearchParams();
+    const difficultyFilter = document.getElementById("workspace-filter-difficulty");
     if (difficultyFilter instanceof HTMLSelectElement && difficultyFilter.value) {
       params.set("difficulty", difficultyFilter.value);
-    }
-    if (modeFilter instanceof HTMLSelectElement && modeFilter.value) {
-      params.set("mode", modeFilter.value);
     }
     const query = params.toString();
     window.location.assign(query ? `/practice?${query}` : "/practice");
   };
+  const difficultyFilter = document.getElementById("workspace-filter-difficulty");
   if (difficultyFilter instanceof HTMLSelectElement) {
     difficultyFilter.addEventListener("change", redirectForFilters);
-  }
-  if (modeFilter instanceof HTMLSelectElement) {
-    modeFilter.addEventListener("change", redirectForFilters);
   }
 
   window.addEventListener("popstate", () => {
@@ -605,6 +587,17 @@ function initWorkspaceNavigation({
   });
 
   return { loadExercise };
+}
+
+function parseElapsedDisplay(value) {
+  if (!value || typeof value !== "string") {
+    return 0;
+  }
+  const match = value.match(/^(\d+):(\d{2})$/);
+  if (!match) {
+    return 0;
+  }
+  return Number.parseInt(match[1], 10) * 60 + Number.parseInt(match[2], 10);
 }
 
 export function initPracticeWorkspace() {
@@ -628,7 +621,13 @@ export function initPracticeWorkspace() {
   const modal = createGradingModal(submitButton, document.getElementById("workspace-next"));
   let runInFlight = false;
   let submitInFlight = false;
-  let timer = { getElapsedSeconds: () => null, reset() {} };
+  const initialProgress = workspaceConfig.progress ?? {};
+  const alreadyPassed = initialProgress.status === "passed";
+  const initialElapsedSeconds = parseElapsedDisplay(initialProgress.first_pass_elapsed);
+  let stopwatch = initWorkspaceStopwatch({
+    initialElapsedSeconds,
+    stopped: alreadyPassed,
+  });
 
   const submitForGrading = async () => {
     if (submitInFlight) {
@@ -652,7 +651,7 @@ export function initPracticeWorkspace() {
     submitButton.setAttribute("aria-busy", "true");
 
     const body = { sql };
-    const elapsedSeconds = timer.getElapsedSeconds();
+    const elapsedSeconds = stopwatch.getElapsedSeconds();
     if (elapsedSeconds !== null) {
       body.elapsed_seconds = elapsedSeconds;
     }
@@ -669,6 +668,9 @@ export function initPracticeWorkspace() {
         modal.show({ passed: false, summary: message });
         return;
       }
+      if (payload.grading?.passed === true) {
+        stopwatch.stop();
+      }
       if (payload.grading) {
         modal.show(payload.grading);
       }
@@ -678,6 +680,15 @@ export function initPracticeWorkspace() {
           status: payload.grading?.passed ? "passed" : "attempted",
           label: payload.grading?.passed ? "Passed" : "Attempted",
         });
+      }
+      if (payload.grading?.passed === true && elapsedSeconds !== null) {
+        const firstPassElapsed = document.getElementById("workspace-first-pass-elapsed");
+        if (firstPassElapsed instanceof HTMLElement) {
+          const minutes = Math.floor(elapsedSeconds / 60);
+          const remainder = elapsedSeconds % 60;
+          firstPassElapsed.textContent = ` — solved in ${minutes}:${String(remainder).padStart(2, "0")}`;
+          firstPassElapsed.hidden = false;
+        }
       }
     } catch {
       modal.show({
@@ -690,10 +701,6 @@ export function initPracticeWorkspace() {
       submitButton.removeAttribute("aria-busy");
     }
   };
-
-  timer = initWorkspaceTimer(() => {
-    void submitForGrading();
-  });
 
   runButton.addEventListener("click", async () => {
     if (runInFlight) {
@@ -814,7 +821,7 @@ export function initPracticeWorkspace() {
     workspaceConfig,
     consoleEl,
     modal,
-    timer,
+    stopwatch,
     loadDrawerExercises,
   });
 

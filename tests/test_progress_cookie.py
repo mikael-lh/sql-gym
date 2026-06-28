@@ -26,14 +26,14 @@ def _request_with_cookie(value: str) -> Request:
 
 def test_roundtrip_signed_progress_cookie() -> None:
     store = ProgressStore().apply_submit_outcome(
-        "times-archive-001",
+        "times-archive-011",
         passed=True,
         elapsed_seconds=120,
     )
     request = _request_with_cookie(dump_progress(store))
     loaded = load_progress(request)
-    assert loaded.get_status("times-archive-001") == "passed"
-    assert loaded.exercises["times-archive-001"].elapsed_seconds == 120
+    assert loaded.get_status("times-archive-011") == "passed"
+    assert loaded.exercises["times-archive-011"].elapsed_seconds == 120
 
 
 def test_tampered_cookie_returns_empty_store() -> None:
@@ -59,7 +59,7 @@ def test_attach_progress_cookie_sets_max_age() -> None:
     assert "HttpOnly" in set_cookie
 
 
-def test_apply_submit_outcome_pass_sticky_and_best_time() -> None:
+def test_apply_submit_outcome_pass_sticky_and_first_pass_time() -> None:
     store = ProgressStore()
     store = store.apply_submit_outcome("ex-1", passed=False)
     assert store.get_status("ex-1") == "attempted"
@@ -68,9 +68,9 @@ def test_apply_submit_outcome_pass_sticky_and_best_time() -> None:
     store = store.apply_submit_outcome("ex-1", passed=False)
     assert store.get_status("ex-1") == "passed"
     store = store.apply_submit_outcome("ex-1", passed=True, elapsed_seconds=200)
-    assert store.exercises["ex-1"].elapsed_seconds == 200
+    assert store.exercises["ex-1"].elapsed_seconds == 300
     store = store.apply_submit_outcome("ex-1", passed=True, elapsed_seconds=250)
-    assert store.exercises["ex-1"].elapsed_seconds == 200
+    assert store.exercises["ex-1"].elapsed_seconds == 300
 
 
 def test_progress_payload_stays_under_typical_cookie_budget() -> None:

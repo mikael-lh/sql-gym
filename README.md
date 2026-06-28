@@ -97,9 +97,11 @@ Working behavior:
 
 - **`GET /practice/{dataset}/{exercise}`** workspace: schema, prompt, hint, objectives, editor, output console, drawer, prev/next.
 - **Run/submit without page reload** via `/api/practice/...` JSON endpoints.
-- Dismissible **grading modal** on submit; timed auto-submit uses the same API.
+- Dismissible **grading modal** on submit.
 - In-place exercise switching (`fetch` + `history.pushState`) with session restore.
-- Filter changes navigate to `/practice?difficulty=...&mode=...` then first eligible exercise.
+- Filter changes navigate to `/practice?difficulty=...` then first eligible exercise.
+- Auto-start stopwatch on every exercise; first-pass solve time is recorded when you submit a correct answer.
+- Run SQL surfaces raw PostgreSQL error messages in the output console.
 - Legacy interview URLs redirect to `/practice`.
 
 Placeholder behavior:
@@ -126,8 +128,7 @@ Working behavior:
 - Signed `sql_gym_progress` cookie (60-day lifetime) for pass/attempt badges without accounts.
 - Catalog and home **Continue practicing** link (difficulty-aware on `/practice`).
 - **Clear my progress** in the workspace via the JSON API.
-- Per-exercise timed countdown on 16 `Timed` catalog exercises with timeout auto-submit.
-- Best elapsed time recorded on timed passes (retries allowed).
+- Auto-start **Elapsed** stopwatch on every exercise; elapsed time stops on first correct submit and is shown as first-pass solve time.
 
 Placeholder behavior:
 
@@ -141,7 +142,7 @@ Working behavior:
 
 - Docker Compose PostgreSQL with imported Times Archive rows (`times_archive` table).
 - CodeMirror SQL editor on exercise preview pages with **Run SQL** and **Submit for grading**.
-- Strict grid-match grading for all 50 catalog exercises.
+- Strict grid-match grading for all 60 catalog exercises.
 - Learner-facing SELECT-only execution with timeout and row limits.
 - Session cookie for draft SQL and last run/grade (browser session).
 
@@ -155,8 +156,8 @@ Placeholder behavior (superseded in Phase 3 where noted):
 Working behavior:
 
 - Catalog domain models and validation for datasets and exercises.
-- Production-ready Times Archive catalog dataset with 50 structured exercise entries.
-- `/practice` catalog browsing with dataset, difficulty, and mode filters.
+- Production-ready Times Archive catalog dataset with 60 structured exercise entries.
+- `/practice` catalog browsing via the exercise drawer with difficulty filters (Intermediate and Advanced).
 - `/practice/{dataset_id}/{exercise_id}` exercise preview pages linked from the practice flow.
 - User-friendly 404 responses for unknown exercise preview routes.
 - Inline empty states when practice filters return no exercises.

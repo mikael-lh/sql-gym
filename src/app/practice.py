@@ -2,14 +2,13 @@ from dataclasses import dataclass
 
 from app.catalog import TIMES_ARCHIVE_CATALOG
 from app.domain.datasets import Dataset
-from app.domain.exercises import Difficulty, Exercise, PracticeMode
+from app.domain.exercises import Difficulty, Exercise
 
 
 @dataclass(frozen=True)
 class PracticeFilters:
     dataset_id: str | None = None
     difficulty: Difficulty | None = None
-    mode: PracticeMode | None = None
 
 
 def lookup_dataset(dataset_id: str) -> Dataset | None:

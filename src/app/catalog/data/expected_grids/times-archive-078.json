@@ -1,0 +1,36 @@
+{
+  "columns": [
+    "weekday_name",
+    "article_count"
+  ],
+  "rows": [
+    [
+      "Sunday",
+      2758345
+    ],
+    [
+      "Monday",
+      1322889
+    ],
+    [
+      "Tuesday",
+      1559804
+    ],
+    [
+      "Wednesday",
+      1591192
+    ],
+    [
+      "Thursday",
+      1637187
+    ],
+    [
+      "Friday",
+      1622189
+    ],
+    [
+      "Saturday",
+      1379708
+    ]
+  ]
+}
