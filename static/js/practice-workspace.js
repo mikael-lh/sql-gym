@@ -400,6 +400,7 @@ function initWorkspaceStopwatch({ onStop, initialElapsedSeconds = 0, stopped = f
   }
 
   let startedAtMs = Date.now() - initialElapsedSeconds * 1000;
+  let frozenElapsedSeconds = null;
   let intervalId = null;
   let isStopped = stopped;
 
@@ -409,15 +410,18 @@ function initWorkspaceStopwatch({ onStop, initialElapsedSeconds = 0, stopped = f
     return `${minutes}:${String(remainder).padStart(2, "0")}`;
   };
 
+  const currentElapsedSeconds = () =>
+    Math.max(0, Math.round((Date.now() - startedAtMs) / 1000));
+
   const renderElapsed = () => {
-    const elapsed = Math.max(0, Math.round((Date.now() - startedAtMs) / 1000));
+    const elapsed = currentElapsedSeconds();
     display.textContent = formatTime(elapsed);
     return elapsed;
   };
 
   const getElapsedSeconds = () => {
-    if (isStopped) {
-      return Math.max(1, Math.round((Date.now() - startedAtMs) / 1000));
+    if (frozenElapsedSeconds !== null) {
+      return Math.max(1, frozenElapsedSeconds);
     }
     return Math.max(1, renderElapsed());
   };
@@ -431,9 +435,9 @@ function initWorkspaceStopwatch({ onStop, initialElapsedSeconds = 0, stopped = f
       window.clearInterval(intervalId);
       intervalId = null;
     }
-    const elapsed = renderElapsed();
-    onStop?.(elapsed);
-    return elapsed;
+    frozenElapsedSeconds = renderElapsed();
+    onStop?.(frozenElapsedSeconds);
+    return frozenElapsedSeconds;
   };
 
   const reset = ({ elapsedSeconds = 0, keepStopped = false } = {}) => {
@@ -443,6 +447,7 @@ function initWorkspaceStopwatch({ onStop, initialElapsedSeconds = 0, stopped = f
     }
     startedAtMs = Date.now() - elapsedSeconds * 1000;
     isStopped = keepStopped;
+    frozenElapsedSeconds = keepStopped ? elapsedSeconds : null;
     display.textContent = formatTime(elapsedSeconds);
     if (!isStopped) {
       intervalId = window.setInterval(renderElapsed, 1000);
@@ -494,7 +499,8 @@ function initWorkspaceNavigation({
     applyExercisePayload(payload);
     renderConsoleAttempt(consoleEl, workspaceConfig.attempt);
     const passed = payload.progress?.status === "passed";
-    stopwatch.reset({ elapsedSeconds: 0, keepStopped: passed });
+    const elapsedSeconds = parseElapsedDisplay(payload.progress?.first_pass_elapsed);
+    stopwatch.reset({ elapsedSeconds, keepStopped: passed });
     if (push) {
       window.history.pushState(
         { workspace: true },

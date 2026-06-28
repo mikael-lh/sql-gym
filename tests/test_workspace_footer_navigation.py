@@ -96,7 +96,7 @@ def test_answer_sql_updates_on_footer_navigation(workspace_server_url: str) -> N
             )
             page.locator("#workspace-sample-sql-details summary").click()
             answer_before = page.locator("#workspace-answer-sql").inner_text()
-            assert "section_name = 'Arts'" in answer_before
+            assert "january_articles" in answer_before
 
             page.click("#workspace-next")
             page.wait_for_function(
@@ -104,7 +104,7 @@ def test_answer_sql_updates_on_footer_navigation(workspace_server_url: str) -> N
                 timeout=10_000,
             )
             answer_after = page.locator("#workspace-answer-sql").inner_text()
-            assert "news_desk = 'Business'" in answer_after
+            assert "HAVING" in answer_after
             assert answer_after != answer_before
         finally:
             browser.close()
@@ -132,7 +132,7 @@ def test_expected_output_panel_updates_on_footer_navigation(
                 "() => window.location.pathname.endsWith('times-archive-012')",
                 timeout=10_000,
             )
-            assert "`headline_main`, `news_desk`" in output.inner_text()
+            assert "`news_desk`, `article_count`" in output.inner_text()
             assert "row order does not matter" in output.inner_text()
         finally:
             browser.close()
@@ -165,7 +165,7 @@ def test_footer_next_sets_target_url_on_load_and_updates_location(
                 timeout=10_000,
             )
             title = page.locator("#workspace-exercise-title").inner_text()
-            assert "Business desk articles" in title
+            assert "Desks with many articles" in title
         finally:
             browser.close()
 
@@ -200,7 +200,7 @@ def test_footer_prev_next_and_back_navigation(workspace_server_url: str) -> None
                     const el = document.getElementById('workspace-exercise-title');
                     return el && el.innerText.includes(title);
                 }""",
-                arg="Business desk",
+                arg="Desks with many",
                 timeout=10_000,
             )
 
@@ -210,7 +210,7 @@ def test_footer_prev_next_and_back_navigation(workspace_server_url: str) -> None
                 timeout=10_000,
             )
             title = page.locator("#workspace-exercise-title").inner_text()
-            assert "Arts section headlines" in title
+            assert "January publications" in title
             assert title_after_next  # used by back navigation above
         finally:
             browser.close()

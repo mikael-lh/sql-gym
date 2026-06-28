@@ -86,11 +86,10 @@ def execute_query(sql: str) -> QueryResult | ExecutionError:
                     tuple(_normalize_cell(value) for value in row)
                     for row in fetched[:MAX_ROWS]
                 )
-    except pg_errors.QueryCanceled as exc:
+    except pg_errors.QueryCanceled:
         return ExecutionError(
             message="The query took too long and was stopped. Try simplifying your SQL.",
             code="timeout",
-            postgres_message=str(exc).strip() or None,
         )
     except pg_errors.SyntaxError as exc:
         return ExecutionError(

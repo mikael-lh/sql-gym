@@ -75,7 +75,7 @@ def test_hint_and_schema_collapsed_by_default(workspace_server_url: str) -> None
 
             hint_details.locator("summary").click()
             assert page.locator("#workspace-hint-text").is_visible()
-            assert "section_name" in page.locator("#workspace-hint-text").inner_text()
+            assert "pub_date" in page.locator("#workspace-hint-text").inner_text()
 
             schema_details.locator("summary").click()
             assert page.locator("#workspace-schema-content").is_visible()
