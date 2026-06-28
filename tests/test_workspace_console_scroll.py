@@ -55,7 +55,7 @@ sync_playwright = pytest.importorskip("playwright.sync_api").sync_playwright
 
 @pytest.mark.integration
 def test_console_results_scroll_without_page_growth(workspace_server_url: str) -> None:
-    url = f"{workspace_server_url}/practice/times-archive/times-archive-001"
+    url = f"{workspace_server_url}/practice/times-archive/times-archive-011"
 
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True)

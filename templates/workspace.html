@@ -16,17 +16,6 @@
             {% endfor %}
           </select>
         </label>
-        <label>
-          Mode
-          <select name="mode" id="workspace-filter-mode">
-            <option value="">All modes</option>
-            {% for mode in modes %}
-            <option value="{{ mode.label }}" {% if filters.mode == mode.label %}selected{% endif %}>
-              {{ mode.label }}
-            </option>
-            {% endfor %}
-          </select>
-        </label>
       </form>
       <div class="workspace-top-cluster">
         <div class="workspace-top-actions">
@@ -51,13 +40,15 @@
       </div>
     </div>
     <div class="workspace-title-row">
-      <p class="eyebrow" id="workspace-eyebrow">{{ dataset.name }} · {{ exercise.difficulty }} · {{ exercise.mode }}</p>
+      <p class="eyebrow" id="workspace-eyebrow">{{ dataset.name }} · {{ exercise.difficulty }}</p>
       <h1 id="workspace-exercise-title">{{ exercise.title }}</h1>
       <p class="workspace-progress-badge">
         Progress:
         <span class="progress-badge progress-badge-{{ progress_status }}" id="workspace-progress-badge">{{ progress_label }}</span>
-        {% if best_elapsed %}
-        <span id="workspace-best-elapsed"> — best time {{ best_elapsed }}</span>
+        {% if first_pass_elapsed %}
+        <span id="workspace-first-pass-elapsed"> — solved in {{ first_pass_elapsed }}</span>
+        {% else %}
+        <span id="workspace-first-pass-elapsed" hidden></span>
         {% endif %}
       </p>
     </div>
@@ -142,10 +133,9 @@
           <div id="practice-editor-config"
             data-host-id="practice-editor-host"
             data-input-id="practice-sql-input"></div>
-          <div class="workspace-timer-region" id="workspace-timer-region" {% if exercise.mode != "Timed" %}hidden{% endif %}>
-            <div id="practice-timer-config" data-duration-seconds="{{ exercise.estimated_time_minutes * 60 }}"></div>
-            <button type="button" id="start-timed-exercise" class="button-secondary">Start timed exercise</button>
-            <p id="timer-display" class="timer-display" hidden aria-live="polite"></p>
+          <div class="workspace-timer-region" id="workspace-timer-region">
+            <p class="workspace-timer-label">Elapsed</p>
+            <p id="timer-display" class="timer-display" aria-live="polite">0:00</p>
           </div>
           <div class="editor-actions">
             <button type="button" id="workspace-run-sql">Run SQL</button>

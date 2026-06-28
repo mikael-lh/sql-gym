@@ -40,25 +40,17 @@ class ProgressStore(BaseModel):
     ) -> ProgressStore:
         current = self.exercises.get(exercise_id)
         if passed:
-            best_elapsed = elapsed_seconds
-            if (
-                current is not None
-                and current.status == "passed"
-                and current.elapsed_seconds is not None
-            ):
-                if best_elapsed is None:
-                    best_elapsed = current.elapsed_seconds
-                else:
-                    best_elapsed = min(best_elapsed, current.elapsed_seconds)
-            if current is not None and current.status == "passed" and current.passed_at is not None:
+            if current is not None and current.status == "passed":
                 passed_at = current.passed_at
+                stored_elapsed = current.elapsed_seconds
             else:
                 passed_at = datetime.now(UTC).replace(microsecond=0).isoformat()
+                stored_elapsed = elapsed_seconds
             updated = dict(self.exercises)
             updated[exercise_id] = ExerciseProgress(
                 status="passed",
                 passed_at=passed_at,
-                elapsed_seconds=best_elapsed,
+                elapsed_seconds=stored_elapsed,
             )
             return self.model_copy(update={"exercises": updated})
 

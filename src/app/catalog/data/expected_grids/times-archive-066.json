@@ -1,332 +1,244 @@
 {
   "columns": [
     "section_name",
-    "max_word_count"
+    "avg_word_count"
   ],
   "rows": [
     [
-      "",
-      8211
-    ],
-    [
-      "Admin",
-      5634
-    ],
-    [
-      "Archives",
-      260832
-    ],
-    [
       "Arts",
-      24024
+      708.92
     ],
     [
       "Automobiles",
-      7112
+      568.52
     ],
     [
       "Blogs",
-      32874
+      492.62
     ],
     [
       "Books",
-      29597
+      935.62
     ],
     [
       "Booming",
-      6026
+      990.22
     ],
     [
       "Briefing",
-      1739
+      1162.14
     ],
     [
       "Business Day",
-      102439
+      411.04
     ],
     [
       "Climate",
-      3837
+      885.37
     ],
     [
       "College",
-      1409
+      769.33
     ],
     [
       "Corrections",
-      1715
+      287.56
     ],
     [
       "Critic's Choice",
-      917
+      351.65
     ],
     [
       "Crosswords & Games",
-      14507
-    ],
-    [
-      "Editors Picks",
-      0
+      506
     ],
     [
       "Education",
-      17753
+      811.86
     ],
     [
       "Fashion & Style",
-      9077
-    ],
-    [
-      "Feeds",
-      0
+      455.96
     ],
     [
       "Food",
-      5472
+      598.76
     ],
     [
       "Giving",
-      4563
-    ],
-    [
-      "Global Home",
-      0
+      1108.44
     ],
     [
       "Great Homes & Destinations",
-      2015
-    ],
-    [
-      "Guides",
-      0
+      471.49
     ],
     [
       "Health",
-      15765
+      711.11
     ],
     [
       "Home & Garden",
-      9096
-    ],
-    [
-      "Homepage",
-      1065
-    ],
-    [
-      "International Home",
-      1078
+      734.53
     ],
     [
       "Job Market",
-      4145
+      827.69
     ],
     [
       "Lens",
-      2844
+      827.74
     ],
     [
       "Magazine",
-      18641
+      1124.02
     ],
     [
       "Movies",
-      13202
-    ],
-    [
-      "Multimedia/Photos",
-      8064
+      824.41
     ],
     [
       "NYT Now",
-      1466
+      476.6
     ],
     [
       "Neediest Cases",
-      2209
+      887.21
     ],
     [
       "New York",
-      41546
+      649.93
     ],
     [
       "Obituaries",
-      13870
-    ],
-    [
-      "Open",
-      0
+      365.75
     ],
     [
       "Opinion",
-      12710
+      466.6
     ],
     [
       "Parenting",
-      1645
+      958.6
     ],
     [
       "Podcasts",
-      9638
+      459.98
     ],
     [
       "Public Editor",
-      2282
+      1046.25
     ],
     [
       "Reader Center",
-      8002
+      825.1
     ],
     [
       "Real Estate",
-      5630
+      771.19
     ],
     [
       "Science",
-      9521
-    ],
-    [
-      "Slideshows",
-      0
+      720.74
     ],
     [
       "Smarter Living",
-      3126
+      1051.6
     ],
     [
       "Sports",
-      25443
+      655.58
     ],
     [
       "Style",
-      6194
+      371.64
     ],
     [
       "Sunday Review",
-      4005
-    ],
-    [
-      "T Brand",
-      0
+      921.62
     ],
     [
       "T Magazine",
-      11546
+      392.34
     ],
     [
       "Technology",
-      21879
+      620.83
     ],
     [
       "The Learning Network",
-      17982
+      785.1
     ],
     [
       "The Upshot",
-      5478
+      771.43
     ],
     [
       "The Weekly",
-      961
+      704.08
     ],
     [
       "Theater",
-      15032
+      861.12
     ],
     [
       "Times Insider",
-      5495
+      641.02
     ],
     [
       "Times Topics",
-      4681
-    ],
-    [
-      "Today’s Paper",
-      732
-    ],
-    [
-      "Topics",
-      29
+      773.78
     ],
     [
       "Travel",
-      35508
+      910.47
     ],
     [
       "U.S.",
-      87634
+      728.92
     ],
     [
       "Universal",
-      4583
-    ],
-    [
-      "UrbanEye",
-      231
+      379.93
     ],
     [
       "Video",
-      1373
+      307.5
     ],
     [
       "Washington",
-      43733
+      867.23
     ],
     [
       "Watching",
-      4049
+      883.82
     ],
     [
       "Week in Review",
-      11419
+      543.03
     ],
     [
       "Well",
-      2565
+      705.95
     ],
     [
       "World",
-      23709
+      699.61
     ],
     [
       "Your Money",
-      13721
-    ],
-    [
-      "en Español",
-      0
+      734.65
     ],
     [
       "membercenter",
-      5629
-    ],
-    [
-      "nationchallenged",
-      0
+      298.93
     ],
     [
       "none",
-      788
-    ],
-    [
-      "nytfrontpage",
-      0
+      308.33
     ],
     [
       "readersopinions",
-      15057
-    ],
-    [
-      "timesselect",
-      0
-    ],
-    [
-      "timestalks",
-      0
-    ],
-    [
-      "xword",
-      119
+      2012.84
     ]
   ]
 }

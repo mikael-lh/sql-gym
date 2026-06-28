@@ -10,25 +10,17 @@ from app.workspace.navigation import (
 
 
 def test_filtered_exercises_by_difficulty() -> None:
-    filters = PracticeFilters(difficulty="Beginner")
+    filters = PracticeFilters(difficulty="Intermediate")
     exercises = filtered_exercises(filters)
     assert exercises
-    assert all(exercise.difficulty == "Beginner" for exercise in exercises)
-
-
-def test_filtered_exercises_by_mode() -> None:
-    filters = PracticeFilters(mode="Timed")
-    exercises = filtered_exercises(filters)
-    assert exercises
-    assert all(exercise.mode == "Timed" for exercise in exercises)
+    assert all(exercise.difficulty == "Intermediate" for exercise in exercises)
 
 
 def test_exercise_workspace_path_includes_query_params() -> None:
     exercise = TIMES_ARCHIVE_CATALOG.exercises[0]
-    path = exercise_workspace_path(exercise, difficulty="Beginner", mode="Timed")
+    path = exercise_workspace_path(exercise, difficulty="Advanced")
     assert path.startswith(f"/practice/{exercise.dataset_id}/{exercise.id}?")
-    assert "difficulty=Beginner" in path
-    assert "mode=Timed" in path
+    assert "difficulty=Advanced" in path
 
 
 def test_workspace_navigation_prev_next() -> None:

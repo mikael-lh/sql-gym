@@ -2,8 +2,7 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
-Difficulty = Literal["Beginner", "Intermediate", "Advanced"]
-PracticeMode = Literal["Untimed", "Timed"]
+Difficulty = Literal["Intermediate", "Advanced"]
 SqlDialect = Literal["PostgreSQL"]
 AvailabilityStatus = Literal["available", "placeholder", "coming_soon"]
 GradingRowOrder = Literal["strict", "multiset"]
@@ -41,7 +40,6 @@ class Exercise(BaseModel):
     title: str
     prompt: str
     difficulty: Difficulty
-    mode: PracticeMode
     target_dialect: SqlDialect
     concept_tags: tuple[str, ...]
     estimated_time_minutes: int = Field(gt=0)
@@ -54,27 +52,12 @@ class Exercise(BaseModel):
 
 DIFFICULTY_OPTIONS: tuple[SelectionOption, ...] = (
     SelectionOption(
-        label="Beginner",
-        description="Start with filtering, sorting, and simple aggregations.",
-    ),
-    SelectionOption(
         label="Intermediate",
         description="Practice grouping, joins, date logic, and CTEs.",
     ),
     SelectionOption(
         label="Advanced",
-        description="Reserved for window functions and deeper analytics prompts.",
-    ),
-)
-
-MODE_OPTIONS: tuple[SelectionOption, ...] = (
-    SelectionOption(
-        label="Untimed",
-        description="Practice mode for careful exploration.",
-    ),
-    SelectionOption(
-        label="Timed",
-        description="Interview-style exercises with a per-exercise countdown timer.",
+        description="Window functions, analytics, and deeper SQL patterns.",
     ),
 )
 
@@ -83,8 +66,7 @@ TIMES_ARCHIVE_PLACEHOLDER_EXERCISE = Exercise(
     dataset_id="times-archive-demo",
     title="Count articles by section",
     prompt="Explore how many demo articles appear in each Times section.",
-    difficulty="Beginner",
-    mode="Untimed",
+    difficulty="Intermediate",
     target_dialect="PostgreSQL",
     concept_tags=("aggregation", "group-by"),
     estimated_time_minutes=10,

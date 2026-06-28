@@ -1,0 +1,5009 @@
+{
+  "columns": [
+    "section_name",
+    "keyword_value",
+    "article_count"
+  ],
+  "rows": [
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 2,
+        "major": "N",
+        "value": "Judith Schlieper"
+      },
+      16
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 1,
+        "major": "N",
+        "value": "Iraq"
+      },
+      12
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Tyler Hicks"
+      },
+      12
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Earthquakes"
+      },
+      12
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Ruth Fremson"
+      },
+      9
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Chang W. Lee"
+      },
+      9
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 2,
+        "major": "N",
+        "value": "Iraq"
+      },
+      9
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Lynsey Addario"
+      },
+      7
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Elections"
+      },
+      7
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Ozier Muhammad"
+      },
+      5
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "James Estrin"
+      },
+      5
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Floods"
+      },
+      5
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Stephen Crowley"
+      },
+      4
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Presidential Elections (US)"
+      },
+      4
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Stocks and Bonds"
+      },
+      4
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 2,
+        "major": "N",
+        "value": "Middle East"
+      },
+      4
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "VIOLENCE"
+      },
+      4
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 1,
+        "major": "N",
+        "value": "New York City"
+      },
+      4
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Academy Awards (Oscars)"
+      },
+      4
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Ashley Gilbertson"
+      },
+      4
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Wallace, David Foster"
+      },
+      4
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "PRIMARIES"
+      },
+      3
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Popes"
+      },
+      3
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "MOTION PICTURES"
+      },
+      3
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "AIRLINES AND AIRPLANES"
+      },
+      3
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Children and Youth"
+      },
+      3
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 3,
+        "major": "N",
+        "value": "Iran"
+      },
+      3
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 3,
+        "major": "N",
+        "value": "Buchanan, Patrick J"
+      },
+      3
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Social Conditions and Trends"
+      },
+      3
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Kevin Moloney"
+      },
+      3
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Assaults"
+      },
+      3
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Amit Bhargava"
+      },
+      3
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "United States Economy"
+      },
+      3
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 1,
+        "major": "N",
+        "value": "France"
+      },
+      3
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Jim Wilson"
+      },
+      3
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Foreign Investments"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 1,
+        "major": "N",
+        "value": "Middle East"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "Politics and Government"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Angel Franco"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Michael Kamber"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 1,
+        "major": "N",
+        "value": "Israel"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Monica Almeida"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "ATOMIC WEAPONS"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 2,
+        "major": "N",
+        "value": "Asia Pacific"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 2,
+        "major": "N",
+        "value": "NEW YORK, USA"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Bombs and Explosives"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Cartoons and Cartoonists"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Prince Rainier III"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "organizations",
+        "rank": 2,
+        "major": "N",
+        "value": "Supreme Court"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Presidential Elections (US)"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "AGRICULTURE"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Caplin, Robert"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 1,
+        "major": "N",
+        "value": "New York State"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Elections"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 3,
+        "major": "N",
+        "value": "Judith Schlieper"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "War and Revolution"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Wilderness Areas"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 3,
+        "major": "N",
+        "value": "Kenseth, Matt"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Shawn Baldwin"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Mariella Furrer"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Currency"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 1,
+        "major": "N",
+        "value": "Japan"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Demonstrations and Riots"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "IMMIGRATION AND REFUGEES"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Economic Conditions and Trends"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Mental Health and Disorders"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Vincent Laforet"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "PESTICIDES AND PESTS"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 1,
+        "major": "N",
+        "value": "Bosnia and Herzegovina"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Yoni Brook"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Presidential Election of 1996"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Doug Mills"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Social Conditions and Trends"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Presidents and Presidency (US)"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 4,
+        "major": "N",
+        "value": "Judith Schlieper"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Islam"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Guillaume Bonn"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "J. Emilio Flores"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 4,
+        "major": "N",
+        "value": "Ruth Fremson"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Jacob Silberberg"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Mental Health and Disorders"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Mergers, Acquisitions and Divestitures"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "UNITED STATES ARMAMENT AND DEFENSE"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 2,
+        "major": "N",
+        "value": "Far East, South and Southeast Asia and Pacific Areas"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Joao Silva"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Presidential Elections (US)"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "John Maier"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 5,
+        "major": "N",
+        "value": "Judith Schlieper"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 2,
+        "major": "N",
+        "value": "Joao Silva"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 1,
+        "major": "N",
+        "value": "Europe"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 2,
+        "major": "N",
+        "value": "Judith's picks"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 1,
+        "major": "N",
+        "value": "Massachusetts"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Credit"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Terrorism"
+      },
+      2
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Andrew Testa"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Ann Johansson"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "BRANDSTETTER, ROBERT DANIEL, M.D."
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Baldwin, Shawn"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Buchanan, Patrick J"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Bush"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Carlos Villalon"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Castelnuovo, Rina"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "DaSilva, Peter"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Doug  Mills"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Gilbertson, Ashley"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Gregg Matthews"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "James Hill"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Jerry Redfern"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Judith Schlieper"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Lewis, Meriwether"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Luis J. Jimenez"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Maurizio Gambarini"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Max Becherer"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Moloney, Kevin"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Nagle, Michael"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Namas Bhojani"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Peet, Amanda"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Pope Benedict XVI"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Richard Patterson"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Richard Perry"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Rina Castelnuovo"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Simon Maina"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Sokolow, Morgan"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "William H. Rehnquist"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 1,
+        "major": "N",
+        "value": "Zehbrauskas, Adriana"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 2,
+        "major": "N",
+        "value": "Almeida, Monica"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 2,
+        "major": "N",
+        "value": "Ashley Gilbertson"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 2,
+        "major": "N",
+        "value": "BUCHANAN, PATRICK J ROBERT DOLE"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 2,
+        "major": "N",
+        "value": "Chao, Benjamin Fong"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 2,
+        "major": "N",
+        "value": "Chirac, Jacques"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 2,
+        "major": "N",
+        "value": "Christopher, Warren M"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 2,
+        "major": "N",
+        "value": "Clark, William"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 2,
+        "major": "N",
+        "value": "Dole, Bob"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 2,
+        "major": "N",
+        "value": "Fremson, Ruth"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 2,
+        "major": "N",
+        "value": "Greenspan, Alan"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 2,
+        "major": "N",
+        "value": "Jagadish Shukla"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 2,
+        "major": "N",
+        "value": "James Hill"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 2,
+        "major": "N",
+        "value": "John Castillo"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 2,
+        "major": "N",
+        "value": "LaValle, Andrew"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 2,
+        "major": "N",
+        "value": "Lee, Chang W."
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 2,
+        "major": "N",
+        "value": "Lukashenko, Aleksandr G"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 2,
+        "major": "N",
+        "value": "Michael, Jackson"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 2,
+        "major": "N",
+        "value": "Ozier Muhammad"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 2,
+        "major": "N",
+        "value": "Rao, P V Narasimha"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 2,
+        "major": "N",
+        "value": "Rina Castelnuovo"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 2,
+        "major": "N",
+        "value": "Scott Eells"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 2,
+        "major": "N",
+        "value": "Shawn Baldwin"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 2,
+        "major": "N",
+        "value": "Thomas, Sarah"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 2,
+        "major": "N",
+        "value": "Tyler Hicks"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 2,
+        "major": "N",
+        "value": "Wilson, Patrick"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 3,
+        "major": "N",
+        "value": "Abbas, Mahmoud"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 3,
+        "major": "N",
+        "value": "Becherer, Max"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 3,
+        "major": "N",
+        "value": "Billig, Alex"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 3,
+        "major": "N",
+        "value": "Bush, George W"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 3,
+        "major": "N",
+        "value": "Dole, Bob"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 3,
+        "major": "N",
+        "value": "Haniya, Ismail"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 3,
+        "major": "N",
+        "value": "Jaafari, Ibrahim Al-"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 3,
+        "major": "N",
+        "value": "James Hill"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 3,
+        "major": "N",
+        "value": "Kriss, Evan"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 3,
+        "major": "N",
+        "value": "Lederman, Lulu"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 3,
+        "major": "N",
+        "value": "MALCOLM S 'STEVE' FORBES JR"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 3,
+        "major": "N",
+        "value": "Monica Almeida"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 3,
+        "major": "N",
+        "value": "Olmert, Ehud"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 3,
+        "major": "N",
+        "value": "Scott Eells"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 3,
+        "major": "N",
+        "value": "Simon, Neil"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 3,
+        "major": "N",
+        "value": "Stapleton, Shannon"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 4,
+        "major": "N",
+        "value": "Ashley Gilbertson"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 4,
+        "major": "N",
+        "value": "Chirac, Jacques"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 4,
+        "major": "N",
+        "value": "Forbes, Steve"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 4,
+        "major": "N",
+        "value": "Joao Silva"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 4,
+        "major": "N",
+        "value": "Kazulin, Aleksandr V"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 4,
+        "major": "N",
+        "value": "Kerry, John F"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 4,
+        "major": "N",
+        "value": "MALCOLM S 'STEVE' FORBES JR"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 4,
+        "major": "N",
+        "value": "SCOTT, TOM"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 4,
+        "major": "N",
+        "value": "Sadr, Moktada Al-"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 4,
+        "major": "N",
+        "value": "Vincent Laforet"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 5,
+        "major": "N",
+        "value": "ALEXANDER, LAMAR ROBERT DOLE"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 5,
+        "major": "N",
+        "value": "Dole, Bob"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 5,
+        "major": "N",
+        "value": "Edwards, John"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 5,
+        "major": "N",
+        "value": "Elliott, Scott"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 5,
+        "major": "N",
+        "value": "Milinkevich, Aleksandr"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 5,
+        "major": "N",
+        "value": "Netanyahu, Benjamin"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 5,
+        "major": "N",
+        "value": "Rina Castelnuovo"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 5,
+        "major": "N",
+        "value": "Rowland, John G"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 5,
+        "major": "N",
+        "value": "de Villepin, Dominique Galouzeau"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 6,
+        "major": "N",
+        "value": "Cheney, Dick"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 6,
+        "major": "N",
+        "value": "Clayburgh, Jill"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 6,
+        "major": "N",
+        "value": "Djukic, Djordje"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 6,
+        "major": "N",
+        "value": "Dole, Bob"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 6,
+        "major": "N",
+        "value": "Forbes, Steve"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 6,
+        "major": "N",
+        "value": "Jospin, Lionel"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 7,
+        "major": "N",
+        "value": "ANDREW LAMAR 'LAMAR' ALEXANDER JR"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 7,
+        "major": "N",
+        "value": "Clinton, Bill"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 7,
+        "major": "N",
+        "value": "Peretz, Amir"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 7,
+        "major": "N",
+        "value": "Roberts, Tony"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 8,
+        "major": "N",
+        "value": "Clinton, Hillary Rodham"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 8,
+        "major": "N",
+        "value": "Dole, Bob"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 8,
+        "major": "N",
+        "value": "Joao Silva"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 8,
+        "major": "N",
+        "value": "Mizrahi, Isaac"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 9,
+        "major": "N",
+        "value": "D'Amato, Alfonse M"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 9,
+        "major": "N",
+        "value": "Judith Schlieper"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "persons",
+        "rank": 10,
+        "major": "N",
+        "value": "Dole, Bob"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "ANXIETY"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Accidents and Safety"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Attacks on Police"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Bombs and Explosives"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "CULTURAL RELATIONS"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Cooking and Cookbooks"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Daytona 500 (Auto Race)"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Demonstrations and Riots"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Depression (Mental)"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "ELECTION ISSUES"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Easter and Holy Week"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Environment"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Fires and Firefighters"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Floods"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Food"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Forecasts"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "HOTELS AND MOTELS"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Hurricanes and Tropical Storms"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "JEWS"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "LABOR"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "MARINE CORPS (US)"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "MOTION PICTURES"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "MUDSLIDES"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Medicine and Health"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Military Aircraft"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Mutual Funds"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Oil (Petroleum) and Gasoline"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Photography"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Presidents and Presidency (US)"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Psychology and Psychologists"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Retirement"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Schizophrenia"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Single Persons"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Smell"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Sociology"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Stocks and Bonds"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "TWENTY-FIRST CENTURY"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Torture"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Veterans"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "WAR CRIMES AND CRIMINALS"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "War and Revolution"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 1,
+        "major": "N",
+        "value": "Water"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "AGED"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "ARMAMENT, DEFENSE AND MILITARY FORCES"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "ARMIES"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Academy Awards (Oscars)"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Accidents and Safety"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Bars"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Christians and Christianity"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "DEFAULTING"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Deaths (Obituaries)"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Demonstrations and Riots"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Depression (Mental)"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Disasters"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Earth"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Earthquakes"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Easter and Holy Week"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Economic Conditions and Trends"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Emotions"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Explosions"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Families and Family Life"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Gold"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "HEALTH INSURANCE"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Homeless Persons"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Homosexuality"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Indians, American"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Interest Rates"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Nascar Nextel Cup Series"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Nasdaq Composite Index"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Oil (Petroleum) and Gasoline"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "PUBLIC OPINION"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Pensions and Retirement Plans"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Photography"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Politics and Government"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Presidential Election of 1996"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Prices (Fares, Fees and Rates)"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Psychology and Psychologists"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Race"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Recipes"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Religion and Churches"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Security and Warning Systems"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Shiite Muslims"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Social Conditions and Trends"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Stress (Human)"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Terrorism"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Typewriters and Typewriting"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "United States Economy"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "VIOLENCE"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "War and Revolution"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Weather"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Wilderness Areas"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 2,
+        "major": "N",
+        "value": "Women"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "ACTORS AND ACTRESSES"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "ADVERTISING"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "AIR FORCES"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "ANXIETY"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "APPAREL"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "ATOMIC ENERGY"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Buddhism"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "CABINETS AND SUB-CABINETS"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Cartoons and Cartoonists"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Civil War and Guerrilla Warfare"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Decisions and Verdicts"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Demonstrations and Riots"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Drugs (Pharmaceuticals)"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Economic Conditions and Trends"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Fertilizer"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Finances"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Foreign Investments"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Futures and Options Trading"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "History"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Indians, American"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "International Trade and World Market"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Islam"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "LABOR"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Legal Aid for the Poor"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Marriages"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Medicine and Health"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Mergers, Acquisitions and Divestitures"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Military Personnel"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "PAGING SYSTEMS"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "PUBLIC OPINION"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Population"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Psychology and Psychologists"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Shortages"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Social Conditions and Trends"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Space"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Telephones and Telecommunications"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Terrorism"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "United States Economy"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 3,
+        "major": "N",
+        "value": "Virtual Reality (Computers)"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "ADVERTISING"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "AGRIBUSINESS"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Automobile Racing"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Blacks"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Children and Youth"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Computers and the Internet"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Cuban-Americans"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Dow Jones Stock Average"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Earth"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Forecasts"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Foreign Investments"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Gross Domestic Product"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Helicopters"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Hiring and Promotion"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "INDUSTRY PROFILES"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "INTERNET AND WORLD WIDE WEB"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Islam"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Palestinians"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Politics and Government"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Presidents and Presidency (US)"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Prices (Fares, Fees and Rates)"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Reclamation of Land"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Records and Achievements"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Sociology"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Television"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "Theater"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "UNITED STATES ARMAMENT AND DEFENSE"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "United States Economy"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 4,
+        "major": "N",
+        "value": "VIOLENCE"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "ARMAMENT, DEFENSE AND MILITARY FORCES"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Black People"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Bribery"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Children and Youth"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Currency"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Drugs (Pharmaceuticals)"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Economic Conditions and Trends"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Electronics"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Forecasts"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Forests and Forestry"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Hinduism"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "INTERNATIONAL TRADEAND WORLD MARKET"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Population"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Presidential Election of 1996"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Satellites"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Stocks and Bonds"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Television"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Water"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Weather"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 5,
+        "major": "N",
+        "value": "Women"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "AGRICULTURE"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "APPAREL"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "BOSNIA-INTERNATIONALRELATIONS-IRAN"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "Biotechnology"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "Children and Youth"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "Consumer Behavior"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "Elections"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "Exploration of Resources"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "Moon"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "Outdoor Advertising"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "Prices (Fares, Fees and Rates)"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "Snow and Snowstorms"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 6,
+        "major": "N",
+        "value": "United States Economy"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 7,
+        "major": "N",
+        "value": "Athletics and Sports"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 7,
+        "major": "N",
+        "value": "Consumer Behavior"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 7,
+        "major": "N",
+        "value": "Credit"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 7,
+        "major": "N",
+        "value": "DAMS AND DIKES"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 7,
+        "major": "N",
+        "value": "Doctors"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 7,
+        "major": "N",
+        "value": "ELECTION ISSUES"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 7,
+        "major": "N",
+        "value": "Economic Conditions and Trends"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 7,
+        "major": "N",
+        "value": "Endangered and Extinct Species"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 7,
+        "major": "N",
+        "value": "Genetic Engineering"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 7,
+        "major": "N",
+        "value": "Islam"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 7,
+        "major": "N",
+        "value": "Presidential Election of 1996"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 7,
+        "major": "N",
+        "value": "Summit Conferences"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 7,
+        "major": "N",
+        "value": "WAR CRIMES AND CRIMINALS"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 7,
+        "major": "N",
+        "value": "Water"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 8,
+        "major": "N",
+        "value": "Blue Collar Workers"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 8,
+        "major": "N",
+        "value": "Economic Conditions and Trends"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 8,
+        "major": "N",
+        "value": "Medicine and Health"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 8,
+        "major": "N",
+        "value": "Presidential Election of 1996"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 8,
+        "major": "N",
+        "value": "RETAIL STORES AND TRADE"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 8,
+        "major": "N",
+        "value": "Stocks and Bonds"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 9,
+        "major": "N",
+        "value": "Economic Conditions and Trends"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 9,
+        "major": "N",
+        "value": "Freedom and Human Rights"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 9,
+        "major": "N",
+        "value": "Layoffs and Job Reductions"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 9,
+        "major": "N",
+        "value": "Presidential Election of 1996"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 10,
+        "major": "N",
+        "value": "PRIMARIES"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 10,
+        "major": "N",
+        "value": "PROFESSIONS"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 11,
+        "major": "N",
+        "value": "Colleges and Universities"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 11,
+        "major": "N",
+        "value": "Ethics"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 12,
+        "major": "N",
+        "value": "Presidential Election of 1996"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "subject",
+        "rank": 13,
+        "major": "N",
+        "value": "Whitewater Case"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 1,
+        "major": "N",
+        "value": "Manhattan (NYC)"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 1,
+        "major": "N",
+        "value": "Mexico"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 1,
+        "major": "N",
+        "value": "New England States (US)"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 1,
+        "major": "N",
+        "value": "Nigeria"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 1,
+        "major": "N",
+        "value": "PARIS, FRANCE"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 1,
+        "major": "N",
+        "value": "Russia"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 1,
+        "major": "N",
+        "value": "SOUTH CAROLINA, USA"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 1,
+        "major": "N",
+        "value": "Sudan"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 1,
+        "major": "N",
+        "value": "Uzbekistan"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 2,
+        "major": "N",
+        "value": "AFRICA"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 2,
+        "major": "N",
+        "value": "Arizona"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 2,
+        "major": "N",
+        "value": "Birmingham"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 2,
+        "major": "N",
+        "value": "CENTRAL PARK (NYC)"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 2,
+        "major": "N",
+        "value": "CONNECTICUT, USA"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 2,
+        "major": "N",
+        "value": "Ethiopia"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 2,
+        "major": "N",
+        "value": "Gaza"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 2,
+        "major": "N",
+        "value": "Haiti"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 2,
+        "major": "N",
+        "value": "Kazakhstan"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 2,
+        "major": "N",
+        "value": "Kenya"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 2,
+        "major": "N",
+        "value": "Lebanon"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 2,
+        "major": "N",
+        "value": "Lexington (Mass)"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 2,
+        "major": "N",
+        "value": "Madrid"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 2,
+        "major": "N",
+        "value": "Monaco"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 2,
+        "major": "N",
+        "value": "Nigeria"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 2,
+        "major": "N",
+        "value": "Nu River"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 2,
+        "major": "N",
+        "value": "Paris (France)"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 2,
+        "major": "N",
+        "value": "South America"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 2,
+        "major": "N",
+        "value": "South Carolina"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 2,
+        "major": "N",
+        "value": "Sudan"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 2,
+        "major": "N",
+        "value": "THEHAGUE, NETHERLANDS"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 2,
+        "major": "N",
+        "value": "Turkey"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 2,
+        "major": "N",
+        "value": "Yugoslavia"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 3,
+        "major": "N",
+        "value": "Asia Pacific"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 3,
+        "major": "N",
+        "value": "Baghdad"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 1,
+        "major": "N",
+        "value": "AFRICA"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 3,
+        "major": "N",
+        "value": "Bangkok (Thailand)"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 1,
+        "major": "N",
+        "value": "Asia Pacific"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 1,
+        "major": "N",
+        "value": "Belarus"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 1,
+        "major": "N",
+        "value": "Brazil"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 1,
+        "major": "N",
+        "value": "Connecticut"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 1,
+        "major": "N",
+        "value": "Copenhagen (Denmark)"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 1,
+        "major": "N",
+        "value": "Cuba"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 1,
+        "major": "N",
+        "value": "Hilla"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 1,
+        "major": "N",
+        "value": "Hudson River"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 1,
+        "major": "N",
+        "value": "India"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 1,
+        "major": "N",
+        "value": "Indonesia"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 1,
+        "major": "N",
+        "value": "Iran"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 1,
+        "major": "N",
+        "value": "Irvington (NY)"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 1,
+        "major": "N",
+        "value": "Latin America"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 1,
+        "major": "N",
+        "value": "Liberia"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 3,
+        "major": "N",
+        "value": "China"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 3,
+        "major": "N",
+        "value": "Denmark"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 3,
+        "major": "N",
+        "value": "Gaza"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 3,
+        "major": "N",
+        "value": "Iraq"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 3,
+        "major": "N",
+        "value": "Kosovo"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 3,
+        "major": "N",
+        "value": "Latin America"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 3,
+        "major": "N",
+        "value": "Middle East"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 3,
+        "major": "N",
+        "value": "United States"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 3,
+        "major": "N",
+        "value": "Yugoslavia"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 4,
+        "major": "N",
+        "value": "ARKANSAS"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 4,
+        "major": "N",
+        "value": "BOSNIA & HERZEGOVINA"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "glocations",
+        "rank": 4,
+        "major": "N",
+        "value": "BOSNIA &HERZEGOVINA"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "organizations",
+        "rank": 1,
+        "major": "N",
+        "value": "Boeing Co"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "organizations",
+        "rank": 1,
+        "major": "N",
+        "value": "Federal Reserve System"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "organizations",
+        "rank": 1,
+        "major": "N",
+        "value": "GODDARD SPACE FLIGHT CENTER GODDARD SPACE FLIGHT CENTER"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "organizations",
+        "rank": 1,
+        "major": "N",
+        "value": "Hamas"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "organizations",
+        "rank": 1,
+        "major": "N",
+        "value": "KAISER ALUMINUM CORP"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "organizations",
+        "rank": 1,
+        "major": "N",
+        "value": "MOTION PICTURE ASSOCIATION OF AMERICA"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "organizations",
+        "rank": 1,
+        "major": "N",
+        "value": "National Assn of Stock Car Auto Racing"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "organizations",
+        "rank": 1,
+        "major": "N",
+        "value": "Sloan School of Management"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "organizations",
+        "rank": 1,
+        "major": "N",
+        "value": "Washington and Lee University"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "organizations",
+        "rank": 1,
+        "major": "N",
+        "value": "World Wrestling Federation"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "organizations",
+        "rank": 2,
+        "major": "N",
+        "value": "AIRBUS INDUSTRIE"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "organizations",
+        "rank": 2,
+        "major": "N",
+        "value": "Alumax Inc"
+      },
+      1
+    ],
+    [
+      "",
+      {
+        "name": "organizations",
+        "rank": 2,
+        "major": "N",
+        "value": "Brothers to the Rescue"
+      },
+      1
+    ]
+  ]
+}

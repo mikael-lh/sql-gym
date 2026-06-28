@@ -56,9 +56,8 @@ def create_app() -> FastAPI:
         request: Request,
         dataset: str | None = None,
         difficulty: str | None = None,
-        mode: str | None = None,
     ) -> dict[str, object]:
-        return api_list_exercises(request, dataset=dataset, difficulty=difficulty, mode=mode)
+        return api_list_exercises(request, dataset=dataset, difficulty=difficulty)
 
     @app.get("/api/practice/{dataset_id}/{exercise_id}", tags=["api"])
     def practice_api_get_exercise(
@@ -66,14 +65,12 @@ def create_app() -> FastAPI:
         dataset_id: str,
         exercise_id: str,
         difficulty: str | None = None,
-        mode: str | None = None,
     ) -> dict[str, object]:
         return api_get_exercise(
             request,
             dataset_id,
             exercise_id,
             difficulty=difficulty,
-            mode=mode,
         )
 
     @app.post("/api/practice/{dataset_id}/{exercise_id}/run", tags=["api"])
@@ -106,9 +103,8 @@ def create_app() -> FastAPI:
     def practice(
         request: Request,
         difficulty: str | None = None,
-        mode: str | None = None,
     ) -> Response:
-        filters = parse_workspace_filters(difficulty=difficulty, mode=mode)
+        filters = parse_workspace_filters(difficulty=difficulty)
         redirect_url = get_default_workspace_redirect_url(request, filters)
         if redirect_url is None:
             return templates.TemplateResponse(
@@ -129,9 +125,8 @@ def create_app() -> FastAPI:
         dataset_id: str,
         exercise_id: str,
         difficulty: str | None = None,
-        mode: str | None = None,
     ) -> Response:
-        filters = parse_workspace_filters(difficulty=difficulty, mode=mode)
+        filters = parse_workspace_filters(difficulty=difficulty)
         context = get_workspace_context(request, dataset_id, exercise_id, filters)
         if context is not None:
             return templates.TemplateResponse(

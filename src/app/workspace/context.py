@@ -7,7 +7,7 @@ from starlette.requests import Request
 from app.catalog import TIMES_ARCHIVE_CATALOG
 from app.catalog.output_requirements import build_output_requirements_text
 from app.catalog.schema import DatasetSchema, get_dataset_schema
-from app.domain.exercises import DIFFICULTY_OPTIONS, MODE_OPTIONS, Difficulty, PracticeMode
+from app.domain.exercises import DIFFICULTY_OPTIONS, Difficulty
 from app.practice import PracticeFilters, lookup_dataset, lookup_exercise
 from app.practice_session import get_attempt_state
 from app.progress import format_elapsed_seconds, load_progress
@@ -28,15 +28,13 @@ _PROGRESS_LABELS = {
 def parse_workspace_filters(
     *,
     difficulty: str | None = None,
-    mode: str | None = None,
 ) -> PracticeFilters:
     parsed_difficulty = (
         cast(Difficulty, difficulty)
-        if difficulty in {"Beginner", "Intermediate", "Advanced"}
+        if difficulty in {"Intermediate", "Advanced"}
         else None
     )
-    parsed_mode = cast(PracticeMode, mode) if mode in {"Untimed", "Timed"} else None
-    return PracticeFilters(difficulty=parsed_difficulty, mode=parsed_mode)
+    return PracticeFilters(difficulty=parsed_difficulty)
 
 
 def _schema_payload(schema: DatasetSchema | None) -> dict[str, object] | None:
@@ -65,7 +63,7 @@ def get_workspace_context(
     attempt_state = get_attempt_state(request, exercise.id)
     status = store.get_status(exercise.id)
     record = store.exercises.get(exercise.id)
-    best_elapsed = (
+    first_pass_elapsed = (
         format_elapsed_seconds(record.elapsed_seconds)
         if record is not None and record.elapsed_seconds is not None
         else None
@@ -78,12 +76,15 @@ def get_workspace_context(
         "exercise_id": exercise_id,
         "filters": {
             "difficulty": filters.difficulty or "",
-            "mode": filters.mode or "",
         },
         "navigation": navigation,
         "attempt": {
             "query_result": attempt_state["query_result"],
             "execution_error": attempt_state["execution_error"],
+        },
+        "progress": {
+            "status": status,
+            "first_pass_elapsed": first_pass_elapsed,
         },
     }
 
@@ -104,7 +105,6 @@ def get_workspace_context(
             "prompt": exercise.prompt,
             "output_requirements": output_requirements,
             "difficulty": exercise.difficulty,
-            "mode": exercise.mode,
             "target_dialect": exercise.target_dialect,
             "concept_tags": exercise.concept_tags,
             "estimated_time_minutes": exercise.estimated_time_minutes,
@@ -121,14 +121,12 @@ def get_workspace_context(
         "attempt_status": attempt_state["status"],
         "progress_status": status,
         "progress_label": _PROGRESS_LABELS[status],
-        "best_elapsed": best_elapsed,
+        "first_pass_elapsed": first_pass_elapsed,
         "navigation": navigation,
         "filters": {
             "difficulty": filters.difficulty or "",
-            "mode": filters.mode or "",
         },
         "difficulties": DIFFICULTY_OPTIONS,
-        "modes": MODE_OPTIONS,
         "passed_count": store.passed_count(),
         "total_exercise_count": len(TIMES_ARCHIVE_CATALOG.exercises),
         "filtered_exercise_count": len(eligible),
@@ -147,5 +145,4 @@ def get_default_workspace_redirect_url(
     return exercise_workspace_path(
         exercise,
         difficulty=filters.difficulty,
-        mode=filters.mode,
     )

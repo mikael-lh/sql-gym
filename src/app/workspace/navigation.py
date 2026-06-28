@@ -1,9 +1,7 @@
 from __future__ import annotations
 
-from urllib.parse import urlencode
-
 from app.catalog import TIMES_ARCHIVE_CATALOG
-from app.domain.exercises import Difficulty, Exercise, PracticeMode
+from app.domain.exercises import Difficulty, Exercise
 from app.domain.progress import ProgressStore
 from app.practice import PracticeFilters, lookup_exercise
 from app.progress.navigation import find_continue_exercise
@@ -19,8 +17,6 @@ def filtered_exercises(filters: PracticeFilters) -> tuple[Exercise, ...]:
         exercises = tuple(
             exercise for exercise in exercises if exercise.difficulty == filters.difficulty
         )
-    if filters.mode:
-        exercises = tuple(exercise for exercise in exercises if exercise.mode == filters.mode)
     return exercises
 
 
@@ -28,17 +24,11 @@ def exercise_workspace_path(
     exercise: Exercise,
     *,
     difficulty: Difficulty | None = None,
-    mode: PracticeMode | None = None,
 ) -> str:
     path = f"/practice/{exercise.dataset_id}/{exercise.id}"
-    query: dict[str, str] = {}
     if difficulty is not None:
-        query["difficulty"] = difficulty
-    if mode is not None:
-        query["mode"] = mode
-    if not query:
-        return path
-    return f"{path}?{urlencode(query)}"
+        return f"{path}?difficulty={difficulty}"
+    return path
 
 
 def default_workspace_exercise(
@@ -83,14 +73,12 @@ def workspace_navigation(
         prev_url = exercise_workspace_path(
             prev_exercise,
             difficulty=filters.difficulty,
-            mode=filters.mode,
         )
     if index < total - 1:
         next_exercise = eligible[index + 1]
         next_url = exercise_workspace_path(
             next_exercise,
             difficulty=filters.difficulty,
-            mode=filters.mode,
         )
 
     return {

@@ -63,7 +63,7 @@ sync_playwright = pytest.importorskip("playwright.sync_api").sync_playwright
 
 @pytest.mark.integration
 def test_prev_next_controls_live_in_top_header(workspace_server_url: str) -> None:
-    url = f"{workspace_server_url}/practice/times-archive/times-archive-001"
+    url = f"{workspace_server_url}/practice/times-archive/times-archive-011"
 
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True)
@@ -139,7 +139,7 @@ def test_prev_next_controls_stay_on_one_row_at_layout_viewports(
 
 @pytest.mark.integration
 def test_pass_modal_next_exercise_navigates_without_ok(workspace_server_url: str) -> None:
-    url = f"{workspace_server_url}/practice/times-archive/times-archive-001"
+    url = f"{workspace_server_url}/practice/times-archive/times-archive-011"
 
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True)
@@ -156,7 +156,7 @@ def test_pass_modal_next_exercise_navigates_without_ok(workspace_server_url: str
                     body=json.dumps(
                         {
                             "grading": {
-                                "exercise_id": "times-archive-001",
+                                "exercise_id": "times-archive-011",
                                 "status": "passed",
                                 "summary": "Result matches expected output.",
                                 "passed": True,
@@ -185,7 +185,7 @@ def test_pass_modal_next_exercise_navigates_without_ok(workspace_server_url: str
             next_button.click()
 
             page.wait_for_function(
-                "() => window.location.pathname.endsWith('times-archive-002')",
+                "() => window.location.pathname.endsWith('times-archive-012')",
                 timeout=10_000,
             )
             assert page.locator("#workspace-grading-modal").evaluate("el => el.hidden") is True
@@ -196,7 +196,7 @@ def test_pass_modal_next_exercise_navigates_without_ok(workspace_server_url: str
 
 @pytest.mark.integration
 def test_fail_modal_hides_next_exercise_button(workspace_server_url: str) -> None:
-    url = f"{workspace_server_url}/practice/times-archive/times-archive-001"
+    url = f"{workspace_server_url}/practice/times-archive/times-archive-011"
 
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True)

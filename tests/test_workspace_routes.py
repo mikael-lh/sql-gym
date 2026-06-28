@@ -32,22 +32,21 @@ def test_practice_redirects_to_first_exercise() -> None:
 
 
 def test_practice_redirect_preserves_filters() -> None:
-    response = asyncio.run(get("/practice?difficulty=Beginner&mode=Untimed"))
+    response = asyncio.run(get("/practice?difficulty=Advanced"))
 
     assert response.status_code == 303
     location = response.headers["location"]
     assert location.startswith("/practice/times-archive/")
-    assert "difficulty=Beginner" in location
-    assert "mode=Untimed" in location
+    assert "difficulty=Advanced" in location
 
 
 def test_workspace_renders_shell_without_catalog_cards() -> None:
-    response = asyncio.run(get("/practice/times-archive/times-archive-001"))
+    response = asyncio.run(get("/practice/times-archive/times-archive-011"))
 
     assert response.status_code == 200
     assert 'data-workspace-shell' in response.text
     assert "Browse the practice catalog" not in response.text
-    assert "Arts section headlines" in response.text
+    assert "January publications" in response.text
     assert "Show hint" in response.text
     assert "Show schema" in response.text
     assert "article_id" in response.text
@@ -61,7 +60,7 @@ def test_workspace_renders_shell_without_catalog_cards() -> None:
 
 
 def test_workspace_renders_editor_and_actions() -> None:
-    response = asyncio.run(get("/practice/times-archive/times-archive-001"))
+    response = asyncio.run(get("/practice/times-archive/times-archive-011"))
 
     assert response.status_code == 200
     assert "SQL editor" in response.text
@@ -74,16 +73,15 @@ def test_workspace_renders_editor_and_actions() -> None:
 
 def test_workspace_exercise_outside_filter_redirects() -> None:
     response = asyncio.run(
-        get("/practice/times-archive/times-archive-005?difficulty=Beginner&mode=Untimed")
+        get("/practice/times-archive/times-archive-019?difficulty=Intermediate")
     )
 
     assert response.status_code == 303
-    assert "difficulty=Beginner" in response.headers["location"]
-    assert "mode=Untimed" in response.headers["location"]
+    assert "difficulty=Intermediate" in response.headers["location"]
 
 
 def test_workspace_config_includes_attempt_restore_payload() -> None:
-    response = asyncio.run(get("/practice/times-archive/times-archive-001"))
+    response = asyncio.run(get("/practice/times-archive/times-archive-011"))
 
     assert response.status_code == 200
     match = re.search(
@@ -94,7 +92,7 @@ def test_workspace_config_includes_attempt_restore_payload() -> None:
     assert match is not None
     config = json.loads(match.group(1))
     assert config["dataset_id"] == "times-archive"
-    assert config["exercise_id"] == "times-archive-001"
+    assert config["exercise_id"] == "times-archive-011"
     assert "attempt" in config
     assert "query_result" in config["attempt"]
     assert "execution_error" in config["attempt"]

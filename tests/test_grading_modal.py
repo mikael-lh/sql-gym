@@ -82,7 +82,7 @@ sync_playwright = pytest.importorskip("playwright.sync_api").sync_playwright
 @pytest.mark.integration
 def test_grading_modal_hidden_on_load_and_dismissible(workspace_server_url: str) -> None:
     modal_selector = "#workspace-grading-modal"
-    url = f"{workspace_server_url}/practice/times-archive/times-archive-001"
+    url = f"{workspace_server_url}/practice/times-archive/times-archive-011"
 
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True)

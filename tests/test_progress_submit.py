@@ -11,7 +11,7 @@ from app.main import app
 from app.progress.cookie import COOKIE_NAME, load_progress
 
 EXPECTED_GRID = json.loads(
-    Path("src/app/catalog/data/expected_grids/times-archive-001.json").read_text()
+    Path("src/app/catalog/data/expected_grids/times-archive-011.json").read_text()
 )
 
 
@@ -38,7 +38,7 @@ def test_submit_pass_sets_progress_cookie(mock_execute: MagicMock) -> None:
             follow_redirects=False,
         ) as client:
             return await client.post(
-                "/api/practice/times-archive/times-archive-001/submit",
+                "/api/practice/times-archive/times-archive-011/submit",
                 json={"sql": "SELECT headline_main, pub_date FROM times_archive LIMIT 1"},
             )
 
@@ -57,7 +57,7 @@ def test_submit_pass_sets_progress_cookie(mock_execute: MagicMock) -> None:
     from starlette.requests import Request
 
     store = load_progress(Request(scope))
-    assert store.get_status("times-archive-001") == "passed"
+    assert store.get_status("times-archive-011") == "passed"
 
 
 @patch("app.api.practice.execute_query")
@@ -79,7 +79,7 @@ def test_submit_fail_sets_attempted(mock_execute: MagicMock) -> None:
             follow_redirects=False,
         ) as client:
             return await client.post(
-                "/api/practice/times-archive/times-archive-001/submit",
+                "/api/practice/times-archive/times-archive-011/submit",
                 json={"sql": "SELECT 1 AS wrong"},
             )
 
@@ -95,7 +95,7 @@ def test_submit_fail_sets_attempted(mock_execute: MagicMock) -> None:
         "headers": [(b"cookie", f"{COOKIE_NAME}={cookie_value}".encode())],
     }
     store = load_progress(Request(scope))
-    assert store.get_status("times-archive-001") == "attempted"
+    assert store.get_status("times-archive-011") == "attempted"
 
 
 @patch("app.api.practice.execute_query")
@@ -103,7 +103,7 @@ def test_wide_result_submit_still_renders_grading_panel(mock_execute: MagicMock)
     from app.execution.models import QueryResult
 
     grid = json.loads(
-        Path("src/app/catalog/data/expected_grids/times-archive-003.json").read_text()
+        Path("src/app/catalog/data/expected_grids/times-archive-013.json").read_text()
     )
     wide_rows = tuple(tuple(row) for row in grid["rows"])
     mock_execute.return_value = QueryResult(
@@ -117,7 +117,7 @@ def test_wide_result_submit_still_renders_grading_panel(mock_execute: MagicMock)
         transport = httpx.ASGITransport(app=app)
         async with httpx.AsyncClient(transport=transport, base_url="http://testserver") as client:
             await client.post(
-                "/api/practice/times-archive/times-archive-003/submit",
+                "/api/practice/times-archive/times-archive-013/submit",
                 json={
                     "sql": (
                         "SELECT section_name, COUNT(*) AS article_count "
@@ -125,7 +125,7 @@ def test_wide_result_submit_still_renders_grading_panel(mock_execute: MagicMock)
                     ),
                 },
             )
-            return await client.get("/api/practice/times-archive/times-archive-003")
+            return await client.get("/api/practice/times-archive/times-archive-013")
 
     response = asyncio.run(_flow())
     assert response.status_code == 200
@@ -153,7 +153,7 @@ def test_run_does_not_set_progress_cookie(mock_execute: MagicMock) -> None:
             follow_redirects=False,
         ) as client:
             return await client.post(
-                "/api/practice/times-archive/times-archive-001/run",
+                "/api/practice/times-archive/times-archive-011/run",
                 json={"sql": "SELECT 1 AS n"},
             )
 
@@ -183,14 +183,14 @@ def test_fail_after_pass_keeps_passed(mock_execute: MagicMock) -> None:
             follow_redirects=False,
         ) as client:
             first = await client.post(
-                "/api/practice/times-archive/times-archive-001/submit",
+                "/api/practice/times-archive/times-archive-011/submit",
                 json={"sql": "pass"},
             )
             cookie = first.headers.get("set-cookie", "")
             cookie_pair = cookie.split(";")[0]
             client.cookies.set("sql_gym_progress", cookie_pair.split("=", 1)[1])
             second = await client.post(
-                "/api/practice/times-archive/times-archive-001/submit",
+                "/api/practice/times-archive/times-archive-011/submit",
                 json={"sql": "fail"},
             )
             cookie_header = second.headers.get("set-cookie", "")
@@ -210,7 +210,7 @@ def test_fail_after_pass_keeps_passed(mock_execute: MagicMock) -> None:
             }
         )
     )
-    assert store.get_status("times-archive-001") == "passed"
+    assert store.get_status("times-archive-011") == "passed"
 
 
 @patch("app.api.practice.execute_query")
@@ -218,7 +218,7 @@ def test_timed_pass_stores_elapsed_seconds(mock_execute: MagicMock) -> None:
     from app.execution.models import QueryResult
 
     grid = json.loads(
-        Path("src/app/catalog/data/expected_grids/times-archive-005.json").read_text()
+        Path("src/app/catalog/data/expected_grids/times-archive-019.json").read_text()
     )
     mock_execute.return_value = QueryResult(
         columns=tuple(grid["columns"]),
@@ -235,7 +235,7 @@ def test_timed_pass_stores_elapsed_seconds(mock_execute: MagicMock) -> None:
             follow_redirects=False,
         ) as client:
             return await client.post(
-                "/api/practice/times-archive/times-archive-005/submit",
+                "/api/practice/times-archive/times-archive-019/submit",
                 json={"sql": "SELECT 1", "elapsed_seconds": 420},
             )
 
@@ -253,17 +253,17 @@ def test_timed_pass_stores_elapsed_seconds(mock_execute: MagicMock) -> None:
             }
         )
     )
-    record = store.exercises.get("times-archive-005")
+    record = store.exercises.get("times-archive-019")
     assert record is not None
     assert record.elapsed_seconds == 420
 
 
 @patch("app.api.practice.execute_query")
-def test_timed_retry_updates_best_elapsed(mock_execute: MagicMock) -> None:
+def test_timed_retry_keeps_first_pass_elapsed(mock_execute: MagicMock) -> None:
     from app.execution.models import QueryResult
 
     grid = json.loads(
-        Path("src/app/catalog/data/expected_grids/times-archive-005.json").read_text()
+        Path("src/app/catalog/data/expected_grids/times-archive-019.json").read_text()
     )
     pass_result = QueryResult(
         columns=tuple(grid["columns"]),
@@ -281,13 +281,13 @@ def test_timed_retry_updates_best_elapsed(mock_execute: MagicMock) -> None:
             follow_redirects=False,
         ) as client:
             first = await client.post(
-                "/api/practice/times-archive/times-archive-005/submit",
+                "/api/practice/times-archive/times-archive-019/submit",
                 json={"sql": "pass", "elapsed_seconds": 600},
             )
             cookie = first.headers.get("set-cookie", "")
             client.cookies.set("sql_gym_progress", cookie.split("=", 1)[1].split(";")[0])
             second = await client.post(
-                "/api/practice/times-archive/times-archive-005/submit",
+                "/api/practice/times-archive/times-archive-019/submit",
                 json={"sql": "pass", "elapsed_seconds": 300},
             )
             cookie_header = second.headers.get("set-cookie", "")
@@ -307,7 +307,7 @@ def test_timed_retry_updates_best_elapsed(mock_execute: MagicMock) -> None:
             }
         )
     )
-    assert store.exercises["times-archive-005"].elapsed_seconds == 300
+    assert store.exercises["times-archive-019"].elapsed_seconds == 600
 
 
 def test_clear_progress_wipes_cookie_store() -> None:

@@ -59,8 +59,7 @@ def test_catalog_rejects_exercises_with_unknown_dataset() -> None:
         dataset_id="missing-dataset",
         title="Orphan exercise",
         prompt="This exercise references a dataset that is not in the catalog.",
-        difficulty="Beginner",
-        mode="Untimed",
+        difficulty="Intermediate",
         target_dialect="PostgreSQL",
         concept_tags=("filtering",),
         estimated_time_minutes=5,
@@ -82,8 +81,7 @@ def test_catalog_accepts_valid_dataset_and_exercise_pairs() -> None:
                 dataset_id=TIMES_ARCHIVE_CATALOG_DATASET.id,
                 title="Valid catalog exercise",
                 prompt="Count rows in the Times Archive catalog.",
-                difficulty="Beginner",
-                mode="Untimed",
+                difficulty="Intermediate",
                 target_dialect="PostgreSQL",
                 concept_tags=("counting",),
                 estimated_time_minutes=8,
@@ -98,12 +96,12 @@ def test_catalog_accepts_valid_dataset_and_exercise_pairs() -> None:
     assert len(catalog.exercises) == 1
 
 
-def test_times_archive_catalog_has_fifty_exercises() -> None:
+def test_times_archive_catalog_has_sixty_exercises() -> None:
     exercises = load_times_exercises()
 
-    assert len(exercises) == 50
-    assert len({exercise.id for exercise in exercises}) == 50
-    assert len({exercise.prompt for exercise in exercises}) == 50
+    assert len(exercises) == 60
+    assert len({exercise.id for exercise in exercises}) == 60
+    assert len({exercise.prompt for exercise in exercises}) == 60
 
 
 def test_times_archive_catalog_entries_include_required_metadata() -> None:
@@ -126,7 +124,7 @@ def test_times_archive_catalog_is_consistent() -> None:
 
     assert len(catalog.datasets) == 1
     assert catalog.datasets[0].id == TIMES_ARCHIVE_CATALOG_DATASET.id
-    assert len(catalog.exercises) == 50
+    assert len(catalog.exercises) == 60
 
 
 def test_attempt_grading_and_progress_stay_demo_only() -> None:
@@ -159,7 +157,7 @@ def test_domain_models_validate_input_and_are_immutable() -> None:
         Exercise.model_validate(
             {
                 **TIMES_ARCHIVE_PLACEHOLDER_EXERCISE.model_dump(),
-                "mode": "Relaxed",
+                "estimated_time_minutes": 0,
             }
         )
 

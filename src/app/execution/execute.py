@@ -86,20 +86,23 @@ def execute_query(sql: str) -> QueryResult | ExecutionError:
                     tuple(_normalize_cell(value) for value in row)
                     for row in fetched[:MAX_ROWS]
                 )
-    except pg_errors.QueryCanceled:
+    except pg_errors.QueryCanceled as exc:
         return ExecutionError(
             message="The query took too long and was stopped. Try simplifying your SQL.",
             code="timeout",
+            postgres_message=str(exc).strip() or None,
         )
-    except pg_errors.SyntaxError:
+    except pg_errors.SyntaxError as exc:
         return ExecutionError(
             message="PostgreSQL could not parse the SQL. Check syntax and try again.",
             code="syntax_error",
+            postgres_message=str(exc).strip() or None,
         )
-    except psycopg.Error:
+    except psycopg.Error as exc:
         return ExecutionError(
             message="The query could not be executed. Check your SQL and try again.",
             code="execution_error",
+            postgres_message=str(exc).strip() or None,
         )
 
     return QueryResult(

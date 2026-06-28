@@ -1,332 +1,414 @@
 {
   "columns": [
     "section_name",
-    "avg_snippet_length"
+    "long_reads",
+    "short_reads"
   ],
   "rows": [
     [
       "",
-      105
+      18,
+      1002
     ],
     [
       "Admin",
-      97
+      1,
+      189
     ],
     [
       "Archives",
-      42
+      36848,
+      7756284
     ],
     [
       "Arts",
-      89
+      21863,
+      121802
     ],
     [
       "Automobiles",
-      135
+      380,
+      7644
     ],
     [
       "Blogs",
-      143
+      1949,
+      31218
     ],
     [
       "Books",
-      87
+      11267,
+      26238
     ],
     [
       "Booming",
-      121
+      112,
+      152
     ],
     [
       "Briefing",
-      46
+      203,
+      107
     ],
     [
       "Business Day",
-      63
+      20059,
+      495159
     ],
     [
       "Climate",
-      143
+      89,
+      207
     ],
     [
       "College",
-      83
+      0,
+      1
     ],
     [
       "Corrections",
-      88
+      10,
+      7960
     ],
     [
       "Critic's Choice",
-      64
+      0,
+      61
     ],
     [
       "Crosswords & Games",
-      76
+      108,
+      5071
     ],
     [
       "Editors Picks",
-      0
+      0,
+      15
     ],
     [
       "Education",
-      130
+      3915,
+      10198
     ],
     [
       "Fashion & Style",
-      106
+      2260,
+      29545
     ],
     [
       "Feeds",
-      116
+      0,
+      1
     ],
     [
       "Food",
-      110
+      1992,
+      14189
     ],
     [
       "Giving",
-      181
+      77,
+      60
     ],
     [
       "Global Home",
-      32
+      0,
+      3
     ],
     [
       "Great Homes & Destinations",
-      108
+      51,
+      1277
     ],
     [
       "Guides",
-      179
+      0,
+      14
     ],
     [
       "Health",
-      141
+      1738,
+      11788
     ],
     [
       "Home & Garden",
-      52
+      4027,
+      16926
     ],
     [
       "Homepage",
-      110
+      0,
+      8
     ],
     [
       "International Home",
-      148
+      0,
+      14
     ],
     [
       "Job Market",
-      137
+      75,
+      349
     ],
     [
       "Lens",
-      144
+      14,
+      29
     ],
     [
       "Magazine",
-      85
+      10977,
+      27967
     ],
     [
       "Movies",
-      97
+      6673,
+      19537
     ],
     [
       "Multimedia/Photos",
-      111
+      118,
+      8216
     ],
     [
       "NYT Now",
-      58
+      0,
+      797
     ],
     [
       "Neediest Cases",
-      141
+      2,
+      3
     ],
     [
       "New York",
-      102
+      27386,
+      231259
     ],
     [
       "Obituaries",
-      23
+      634,
+      27232
     ],
     [
       "Open",
-      154
+      0,
+      3
     ],
     [
       "Opinion",
-      94
+      5930,
+      183679
     ],
     [
       "Parenting",
-      83
+      3,
+      15
     ],
     [
       "Podcasts",
-      132
+      28,
+      1007
     ],
     [
       "Public Editor",
-      123
+      17,
+      11
     ],
     [
       "Reader Center",
-      135
+      77,
+      209
     ],
     [
       "Real Estate",
-      94
+      3874,
+      18034
     ],
     [
       "Science",
-      102
+      3921,
+      15710
     ],
     [
       "Slideshows",
-      141
+      0,
+      1
     ],
     [
       "Smarter Living",
-      101
+      96,
+      67
     ],
     [
       "Sports",
-      76
+      10182,
+      131153
     ],
     [
       "Style",
-      45
+      2951,
+      81177
     ],
     [
       "Sunday Review",
-      99
+      70,
+      151
     ],
     [
       "T Brand",
-      109
+      0,
+      164
     ],
     [
       "T Magazine",
-      108
+      1037,
+      16735
     ],
     [
       "Technology",
-      135
+      1691,
+      22451
     ],
     [
       "The Learning Network",
-      102
+      517,
+      2327
     ],
     [
       "The Upshot",
-      121
+      221,
+      1261
     ],
     [
       "The Weekly",
-      106
+      0,
+      5
     ],
     [
       "Theater",
-      93
+      3855,
+      12316
     ],
     [
       "Times Insider",
-      125
+      44,
+      577
     ],
     [
       "Times Topics",
-      82
+      122,
+      456
     ],
     [
       "Today’s Paper",
-      50
+      0,
+      1422
     ],
     [
       "Topics",
-      66
+      0,
+      1
     ],
     [
       "Travel",
-      96
+      13113,
+      25979
     ],
     [
       "U.S.",
-      99
+      19536,
+      123633
     ],
     [
       "Universal",
-      120
+      11,
+      99
     ],
     [
       "UrbanEye",
-      242
+      0,
+      331
     ],
     [
       "Video",
-      187
+      0,
+      16
     ],
     [
       "Washington",
-      140
+      278,
+      1005
     ],
     [
       "Watching",
-      113
+      114,
+      228
     ],
     [
       "Week in Review",
-      65
+      1005,
+      25246
     ],
     [
       "Well",
-      112
+      38,
+      1004
     ],
     [
       "World",
-      97
+      13009,
+      104774
     ],
     [
       "Your Money",
-      123
+      290,
+      2625
     ],
     [
       "en Español",
-      102
+      0,
+      1
     ],
     [
       "membercenter",
-      81
+      1,
+      27
     ],
     [
       "nationchallenged",
-      87
+      0,
+      9
     ],
     [
       "none",
-      130
+      0,
+      2
     ],
     [
       "nytfrontpage",
-      126
+      0,
+      5
     ],
     [
       "readersopinions",
-      129
+      113,
+      7
     ],
     [
       "timesselect",
-      136
+      0,
+      17
     ],
     [
       "timestalks",
-      126
+      0,
+      2
     ],
     [
       "xword",
-      0
+      0,
+      3
     ]
   ]
 }

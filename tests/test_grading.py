@@ -138,7 +138,7 @@ def test_grade_strict_fails_reordered_rows() -> None:
 
 
 def test_grade_multiset_passes_exercise_005_tied_row_reorder() -> None:
-    grid_path = Path("src/app/catalog/data/expected_grids/times-archive-005.json")
+    grid_path = Path("src/app/catalog/data/expected_grids/times-archive-019.json")
     payload = json.loads(grid_path.read_text())
     rows = [tuple(row) for row in payload["rows"]]
     tied_index = next(

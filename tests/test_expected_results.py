@@ -26,5 +26,5 @@ def test_expected_grid_columns_match_metadata() -> None:
 
 
 def test_catalog_loads_with_expected_results() -> None:
-    assert len(TIMES_ARCHIVE_CATALOG.exercises) == 50
+    assert len(TIMES_ARCHIVE_CATALOG.exercises) == 60
     assert TIMES_ARCHIVE_CATALOG.datasets[0].id == TIMES_ARCHIVE_CATALOG_DATASET.id

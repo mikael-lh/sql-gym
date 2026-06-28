@@ -33,7 +33,7 @@ README_REQUIRED_PHASE3_DOCS = (
     "docs/progress.md",
     "docs/phase-3-manual-test-plan.md",
     "Clear my progress",
-    "Timed",
+    "Elapsed",
 )
 
 README_REQUIRED_PHASE2_DOCS = (
@@ -47,7 +47,7 @@ README_REQUIRED_PHASE2_DOCS = (
 
 README_REQUIRED_PHASE1_DOCS = (
     "## Phase 1 behavior status",
-    "50 structured exercise entries",
+    "60 structured exercise entries",
     "/practice` catalog browsing",
     "/practice/{dataset_id}/{exercise_id}` exercise preview",
 )

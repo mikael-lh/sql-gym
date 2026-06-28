@@ -1,2008 +1,2509 @@
 {
   "columns": [
     "news_desk",
-    "avg_word_count"
+    "article_count",
+    "cumulative_pct"
   ],
   "rows": [
     [
       "",
-      474
+      229983,
+      1.94
     ],
     [
       " / ",
-      441
+      1,
+      1.94
     ],
     [
       " The Arts/Cultural Desk",
-      375
+      1,
+      1.94
     ],
     [
       "\"PROFILE: Elizabeth Peterken McCaughey Ross\"",
-      892
+      1,
+      1.94
     ],
     [
       "(Photographs by Andrea Mohin/The New York",
-      1162
+      1,
+      1.94
     ],
     [
       "(pg. 1)",
-      1186
+      1,
+      1.94
     ],
     [
       "/",
-      920
+      6,
+      1.94
     ],
     [
       "/ Help",
-      229
+      3,
+      1.94
     ],
     [
       "0",
-      1160
+      1703,
+      1.95
     ],
     [
       "100 NEEDEST CASES Twenty second Annual Apeal DRAMA SCREEN MUSIC Radio Fashion Art Dance Shoppers Column Hotels Restaurants",
-      2218
+      1,
+      1.95
     ],
     [
       "100 NEEDIEST CASES DRAMA-SCREEN-MUSIC ART-RADIO",
-      795
+      1,
+      1.95
     ],
     [
       "100 NEEDIEST CASES Twenty first Annual Appeal DRAMA SCREEN Music Fashions Art Hotels Restaurants Society Shoppers Columns The Dance",
-      675
+      1,
+      1.95
     ],
     [
       "1996, Sunday, Late Edition - Final",
-      1174
+      1,
+      1.95
     ],
     [
       "1;             Foreign Desk",
-      609
+      1,
+      1.95
     ],
     [
       "2005: The Year In Pictures",
-      520
+      6,
+      1.95
     ],
     [
       ">>.np",
-      600
+      1,
+      1.95
     ],
     [
       "A Nation Challenged",
-      830
+      135,
+      1.95
     ],
     [
       "A Nation at War / A Nation at War",
-      936
+      51,
+      1.95
     ],
     [
       "AL",
-      1225
+      5,
+      1.95
     ],
     [
       "ALS",
-      2048
+      31,
+      1.95
     ],
     [
       "AMUSEMEN HOTELS AND RESTAURANTSTS",
-      1238
+      1,
+      1.95
     ],
     [
       "AMUSEMENT",
-      458
+      78,
+      1.95
     ],
     [
       "AMUSEMENT HOTELS AND RESTAURANTS",
-      837
+      4,
+      1.95
     ],
     [
       "AMUSEMENTS",
-      413
+      3090,
+      1.98
     ],
     [
       "AMUSEMENTS AND HOTELS AND RESTAURANTS",
-      1572
+      1,
+      1.98
     ],
     [
       "AMUSEMENTS APARTMENTS",
-      555
+      3,
+      1.98
     ],
     [
       "AMUSEMENTS ART",
-      412
+      6,
+      1.98
     ],
     [
       "AMUSEMENTS AUTOMOBILES",
-      1290
+      2,
+      1.98
     ],
     [
       "AMUSEMENTS BOOKS",
-      380
+      26,
+      1.98
     ],
     [
       "AMUSEMENTS BOOKS RADIO",
-      506
+      2,
+      1.98
     ],
     [
       "AMUSEMENTS BUSINESS",
-      307
+      7,
+      1.98
     ],
     [
       "AMUSEMENTS BUSINESS-FINANCIAL",
-      507
+      1,
+      1.98
     ],
     [
       "AMUSEMENTS EDUCATIONAL",
-      983
+      1,
+      1.98
     ],
     [
       "AMUSEMENTS HOTEL AND RESTAURANTS",
-      1219
+      6,
+      1.98
     ],
     [
       "AMUSEMENTS HOTELA AND RESTAURANTS",
-      747
+      1,
+      1.98
     ],
     [
       "AMUSEMENTS HOTELS AND REATAURANTS",
-      659
+      2,
+      1.98
     ],
     [
       "AMUSEMENTS HOTELS AND REATUSRANTS",
-      1364
+      1,
+      1.98
     ],
     [
       "AMUSEMENTS HOTELS AND RESTAURANT",
-      274
+      2,
+      1.98
     ],
     [
       "AMUSEMENTS HOTELS AND RESTAURANTS",
-      1065
+      339,
+      1.98
     ],
     [
       "AMUSEMENTS HOTELS AND RESTAURENTS",
-      1279
+      1,
+      1.98
     ],
     [
       "AMUSEMENTS HOTELS AND RESTAUTANTS",
-      1064
+      1,
+      1.98
     ],
     [
       "AMUSEMENTS HOTELS AND RESTUARANTS",
-      936
+      6,
+      1.98
     ],
     [
       "AMUSEMENTS HOTELS AND RETAURANT",
-      2232
+      1,
+      1.98
     ],
     [
       "AMUSEMENTS HOTELS AND RETAURANTS",
-      444
+      2,
+      1.98
     ],
     [
       "AMUSEMENTS PHOTOPLAYS",
-      365
+      2,
+      1.98
     ],
     [
       "AMUSEMENTS RADIO",
-      564
+      37,
+      1.98
     ],
     [
       "AMUSEMENTS RADIO AMUSEMENT",
-      1907
+      1,
+      1.98
     ],
     [
       "AMUSEMENTS RADIO AMUSEMENTS",
-      345
+      6,
+      1.98
     ],
     [
       "AMUSEMENTS RADIO ART",
-      333
+      4,
+      1.98
     ],
     [
       "AMUSEMENTS RADIO HOTELS AND RESTAURANTS",
-      376
+      1,
+      1.98
     ],
     [
       "AMUSEMENTS RESORTS",
-      1236
+      1,
+      1.98
     ],
     [
       "AMUSEMENTS SOCIAL NEWS",
-      222
+      1,
+      1.98
     ],
     [
       "AMUSEMENTS SPORTS",
-      278
+      1,
+      1.98
     ],
     [
       "AMUSEMENTS USED AUTOMOBILES",
-      560
+      2,
+      1.98
     ],
     [
       "AMUSEMENTS WHOLESALE MARKET",
-      677
+      1,
+      1.98
     ],
     [
       "AMUSEMENTS'",
-      386
+      1,
+      1.98
     ],
     [
       "AMUSEMENTS-ART-BOOKS BOOKS",
-      335
+      3,
+      1.98
     ],
     [
       "AMUSEMENTS-BUSINESS",
-      295
+      1,
+      1.98
     ],
     [
       "AMUSEMENTS-BUSINESS BUSINESS",
-      407
+      1,
+      1.98
     ],
     [
       "AMUSEMENTS-HOTELS_AND_RESTAURANTS",
-      499
+      1,
+      1.98
     ],
     [
       "AMUSEMENTS-RADIO",
-      379
+      19,
+      1.98
     ],
     [
       "AMUSEMENTSRESORTS",
-      782
+      1,
+      1.98
     ],
     [
       "AMUSEMENTSa",
-      454
+      2,
+      1.98
     ],
     [
       "AMUSEMENTs",
-      615
+      1,
+      1.98
     ],
     [
       "AMUSEMSENTS",
-      396
+      1,
+      1.98
     ],
     [
       "APARMENTS HOTELS AND RESTAURANTS",
-      1382
+      1,
+      1.98
     ],
     [
       "APARTMENTS HOTELS AND RESTAURANTS",
-      367
+      3,
+      1.98
     ],
     [
       "ART AMUSEMENTS",
-      413
+      12,
+      1.98
     ],
     [
       "ARTS AND LEISURE",
-      1449
+      6,
+      1.98
     ],
     [
       "AUT",
-      705
+      10,
+      1.98
     ],
     [
       "About NYTDigital",
-      1446
+      1,
+      1.98
     ],
     [
       "Admin",
-      0
+      77,
+      1.99
     ],
     [
       "Adventure Sports",
-      1125
+      19,
+      1.99
     ],
     [
       "After the War / After the War",
-      1225
+      2,
+      1.99
     ],
     [
       "Amato finished shaving and smoothed his cheeks with his hands.",
-      415
+      1,
+      1.99
     ],
     [
       "Amusements",
-      740
+      1384,
+      2
     ],
     [
       "Amusements Hotels and Restaurants",
-      2120
+      1,
+      2
     ],
     [
       "Amusements, Books",
-      886
+      30,
+      2
     ],
     [
       "Amusements, Educational",
-      865
+      3,
+      2
     ],
     [
       "Amusements, Hotel And Restaurants",
-      1149
+      2,
+      2
     ],
     [
       "Amusements, Hotels and Restaurants",
-      828
+      482,
+      2
     ],
     [
       "Amusements, Lost And Found",
-      520
+      4,
+      2
     ],
     [
       "Amusements, Radio",
-      765
+      53,
+      2
     ],
     [
       "Amusements, Resorts",
-      631
+      7,
+      2
     ],
     [
       "An odd bit of text that you could stumble across on Tallmo's Web site puts it",
-      93
+      1,
+      2
     ],
     [
       "Apartments, Hotels and Restaurants",
-      765
+      1,
+      2
     ],
     [
       "Art & Ideas/Cultural Desk",
-      765
+      11,
+      2
     ],
     [
       "Art and Leisure Desk",
-      2200
+      1,
+      2
     ],
     [
       "Arts",
-      273
+      5622,
+      2.05
     ],
     [
       "Arts & Ideas/Cultural Desk",
-      755
+      3835,
+      2.08
     ],
     [
       "Arts & Leisure",
-      1258
+      99,
+      2.08
     ],
     [
       "Arts & Leisure Desk",
-      950
+      6723,
+      2.14
     ],
     [
       "Arts & Liesure Desk",
-      909
+      1,
+      2.14
     ],
     [
       "Arts / Art & Design",
-      2148
+      318,
+      2.14
     ],
     [
       "Arts / Arts Extra",
-      543
+      22,
+      2.14
     ],
     [
       "Arts / Arts Special",
-      1092
+      1,
+      2.14
     ],
     [
       "Arts / Dance",
-      407
+      244,
+      2.14
     ],
     [
       "Arts / Music",
-      1276
+      500,
+      2.15
     ],
     [
       "Arts / Television",
-      1038
+      58,
+      2.15
     ],
     [
       "Arts / Theater",
-      2856
+      125,
+      2.15
     ],
     [
       "Arts Almanac Supplement",
-      2584
+      9,
+      2.15
     ],
     [
       "Arts Special",
-      1390
+      2,
+      2.15
     ],
     [
       "Arts Special/Arts Special",
-      1023
+      3,
+      2.15
     ],
     [
       "Arts and",
-      301
+      4,
+      2.15
     ],
     [
       "Arts and Leisure",
-      399
+      2,
+      2.15
     ],
     [
       "Arts and Leisure Desk",
-      1028
+      38540,
+      2.48
     ],
     [
       "Arts and Leisure Desk April 19",
-      1484
+      1,
+      2.48
     ],
     [
       "Arts and Leisure Desk Desk",
-      3032
+      1,
+      2.48
     ],
     [
       "Arts and Leisure Desk Morgan paid",
-      1470
+      1,
+      2.48
     ],
     [
       "Arts and Leisure Desk2",
-      247
+      1,
+      2.48
     ],
     [
       "Arts and Liesure Desk",
-      1307
+      24,
+      2.48
     ],
     [
       "Arts&Leisure",
-      1150
+      12447,
+      2.58
     ],
     [
       "Arts/Art & Design",
-      2124
+      6,
+      2.58
     ],
     [
       "Arts/Cultural Desk",
-      936
+      1,
+      2.58
     ],
     [
       "Arts/Dance",
-      268
+      4,
+      2.58
     ],
     [
       "Arts/Music",
-      863
+      10,
+      2.58
     ],
     [
       "Arts/Television",
-      435
+      3,
+      2.58
     ],
     [
       "Arts/Theater",
-      1985
+      6,
+      2.58
     ],
     [
       "AuTomobiles",
-      489
+      1,
+      2.58
     ],
     [
       "Autmobiles",
-      564
+      1,
+      2.58
     ],
     [
       "Autombiles",
-      730
+      1,
+      2.58
     ],
     [
       "Automobies",
-      487
+      1,
+      2.58
     ],
     [
       "Automobile",
-      647
+      6,
+      2.58
     ],
     [
       "Automobile Desk",
-      1163
+      2,
+      2.58
     ],
     [
       "Automobile Show",
-      840
+      63,
+      2.58
     ],
     [
       "Automobile Show Desk",
-      938
+      66,
+      2.58
     ],
     [
       "Automobilees",
-      1087
+      1,
+      2.58
     ],
     [
       "Automobiles",
-      679
+      6077,
+      2.63
     ],
     [
       "Automobiles / Automobiles Special",
-      311
+      80,
+      2.63
     ],
     [
       "Automobiles Desk",
-      118
+      1,
+      2.63
     ],
     [
       "Automobiles, Amusements",
-      843
+      1,
+      2.63
     ],
     [
       "Automobiles, Resorts",
-      516
+      1,
+      2.63
     ],
     [
       "Automobles",
-      889
+      1,
+      2.63
     ],
     [
       "Automoblies",
-      797
+      4,
+      2.63
     ],
     [
       "Automobliles",
-      1182
+      2,
+      2.63
     ],
     [
       "Automoiles",
-      884
+      2,
+      2.63
     ],
     [
       "Automoviles",
-      1382
+      1,
+      2.63
     ],
     [
       "Autumn Times Supplement",
-      1747
+      21,
+      2.63
     ],
     [
       "BIZ",
-      626
+      47,
+      2.63
     ],
     [
       "BKS",
-      1675
+      45,
+      2.63
     ],
     [
       "BOOKS",
-      390
+      35,
+      2.63
     ],
     [
       "BOOKS AMUSEMENTS",
-      427
+      7,
+      2.63
     ],
     [
       "BOOKS AMUSEMENTS AMUSEMENTS RADIO",
-      433
+      3,
+      2.63
     ],
     [
       "BOOKS AMUSEMENTS RADIO",
-      427
+      4,
+      2.63
     ],
     [
       "BOOKS AMUSEMENTS--ART--BOOKS",
-      438
+      1,
+      2.63
     ],
     [
       "BOOKS AMUSEMENTS--BOOKS",
-      208
+      2,
+      2.63
     ],
     [
       "BOOKS AMUSEMENTS-ART-BOOKS",
-      290
+      3,
+      2.64
     ],
     [
       "BOOKS AMUSEMENTS-BOOKS",
-      317
+      5,
+      2.64
     ],
     [
       "BOOKS ART AMUSEMENTS",
-      534
+      6,
+      2.64
     ],
     [
       "BOOKS RADIO AMUSEMENTS",
-      412
+      7,
+      2.64
     ],
     [
       "BOOKS RADIO ART AMUSEMENTS",
-      303
+      3,
+      2.64
     ],
     [
       "BOOKS RADIO ART BOOKS",
-      231
+      1,
+      2.64
     ],
     [
       "BOOKS RADIO-AMUSEMENTS",
-      323
+      9,
+      2.64
     ],
     [
       "BOOKS- AMUSEMENTS",
-      325
+      3,
+      2.64
     ],
     [
       "BOOKS-AMUSEMENTS",
-      377
+      6,
+      2.64
     ],
     [
       "BOOKS-RADIO AMUSEMENTS",
-      603
+      1,
+      2.64
     ],
     [
       "BUSINESS FINANCIAL",
-      487
+      2,
+      2.64
     ],
     [
       "BUSINESS OPPORTUNITIES",
-      1150
+      2,
+      2.64
     ],
     [
       "BUSINESS OPPORTUNITIES AMUSEMENTS",
-      348
+      2,
+      2.64
     ],
     [
       "Blogs",
-      0
+      1950,
+      2.65
     ],
     [
       "Bob Ross, a senior and the convention's political chairman, fretted",
-      980
+      1,
+      2.65
     ],
     [
       "Book Review Desk",
-      868
+      51045,
+      3.08
     ],
     [
       "Book Review Desk Book Review Desk",
-      1732
+      1,
+      3.08
     ],
     [
       "Book Review Desk\"Slim",
-      1236
+      1,
+      3.08
     ],
     [
       "Book Review DeskLk L0LK(0K0KKqCn Kk0k0C1CKn",
-      1366
+      1,
+      3.08
     ],
     [
       "Book Review Dest",
-      1111
+      1,
+      3.08
     ],
     [
       "Book Reviw Desk",
-      1081
+      1,
+      3.08
     ],
     [
       "BookReview",
-      979
+      20378,
+      3.25
     ],
     [
       "Books",
-      887
+      1707,
+      3.27
     ],
     [
       "Books / Best-Seller Lists",
-      266
+      226,
+      3.27
     ],
     [
       "Books / Books Special",
-      2304
+      4,
+      3.27
     ],
     [
       "Books / Chapters",
-      6432
+      1,
+      3.27
     ],
     [
       "Books / First Chapters",
-      2321
+      1512,
+      3.28
     ],
     [
       "Books / Sunday Book Review",
-      939
+      422,
+      3.29
     ],
     [
       "Books/First Chapters",
-      2591
+      30,
+      3.29
     ],
     [
       "Books/Sunday Book Review",
-      895
+      19,
+      3.29
     ],
     [
       "BooksReview",
-      1333
+      66,
+      3.29
     ],
     [
       "Booming",
-      0
+      7,
+      3.29
     ],
     [
       "Boston 2004",
-      827
+      25,
+      3.29
     ],
     [
       "Briefing",
-      0
+      93,
+      3.29
     ],
     [
       "Business",
-      639
+      151650,
+      4.57
     ],
     [
       "Business & Finance",
-      742
+      14,
+      4.57
     ],
     [
       "Business / Business Special",
-      560
+      20,
+      4.57
     ],
     [
       "Business / Media & Advertising",
-      825
+      631,
+      4.57
     ],
     [
       "Business / Mutual Funds",
-      1024
+      3,
+      4.57
     ],
     [
       "Business / World Business",
-      697
+      801,
+      4.58
     ],
     [
       "Business / Worldbusiness",
-      942
+      1,
+      4.58
     ],
     [
       "Business / Your Money",
-      820
+      244,
+      4.58
     ],
     [
       "Business / Your Taxes",
-      1666
+      2,
+      4.58
     ],
     [
       "Business Day",
-      0
+      2322,
+      4.6
     ],
     [
       "Business Day/Financial",
-      253
+      2,
+      4.6
     ],
     [
       "Business Desk",
-      170
+      42,
+      4.6
     ],
     [
       "Business Financial Desk",
-      1142
+      1,
+      4.6
     ],
     [
       "Business Opportunities, Automobiles",
-      526
+      1,
+      4.6
     ],
     [
       "Business Opportunities, Shipping And Mails",
-      942
+      1,
+      4.6
     ],
     [
       "Business Travel",
-      866
+      19,
+      4.6
     ],
     [
       "Business World Magazine",
-      2377
+      196,
+      4.6
     ],
     [
       "Business/Finacial Desk",
-      544
+      5,
+      4.6
     ],
     [
       "Business/Finance Desk",
-      418
+      1,
+      4.6
     ],
     [
       "Business/Financial",
-      109
+      9,
+      4.6
     ],
     [
       "Business/Financial Dek",
-      85
+      1,
+      4.6
     ],
     [
       "Business/Financial Desk",
-      446
+      143820,
+      5.81
     ],
     [
       "Business/Financial Desk Section D",
-      1532
+      1,
+      5.81
     ],
     [
       "Business/Financial Desk;",
-      576
+      59,
+      5.81
     ],
     [
       "Business/Financial DeskBusiness/Financial Desk",
-      129
+      4,
+      5.81
     ],
     [
       "Business/Financial desk",
-      107
+      40,
+      5.81
     ],
     [
       "Business/FinancialDesk",
-      333
+      46,
+      5.81
     ],
     [
       "Business/Finanical Desk",
-      694
+      1,
+      5.81
     ],
     [
       "Business/Foreign Desk",
-      1576
+      1,
+      5.81
     ],
     [
       "Business/Media & Advertising",
-      701
+      41,
+      5.82
     ],
     [
       "Business/World Business",
-      678
+      50,
+      5.82
     ],
     [
       "Business/Your Money",
-      1252
+      19,
+      5.82
     ],
     [
       "Business\\Financial Desk",
-      368
+      47,
+      5.82
     ],
     [
       "But surely that is just pouring more fuel on the fire. The big men will adjust",
-      1661
+      1,
+      5.82
     ],
     [
       "CIR",
-      1095
+      1,
+      5.82
     ],
     [
       "CND",
-      887
+      16,
+      5.82
     ],
     [
       "CUL",
-      275
+      103,
+      5.82
     ],
     [
       "Careers Supplement",
-      1309
+      26,
+      5.82
     ],
     [
       "Careers Supplement Desk",
-      1171
+      159,
+      5.82
     ],
     [
       "Carreers Supplement",
-      993
+      114,
+      5.82
     ],
     [
       "Carreers Supplement Desk",
-      251
+      1,
+      5.82
     ],
     [
       "Cars",
-      1128
+      341,
+      5.82
     ],
     [
       "Circuits",
-      665
+      8541,
+      5.89
     ],
     [
       "Circuits Desk",
-      829
+      1,
+      5.89
     ],
     [
       "CircuitsCircuits",
-      208
+      1,
+      5.89
     ],
     [
       "Citcuits",
-      1394
+      1,
+      5.89
     ],
     [
       "City Weekly Desk",
-      66
+      4,
+      5.89
     ],
     [
       "CityWeekly",
-      651
+      2437,
+      5.92
     ],
     [
       "Classfied",
-      87
+      34,
+      5.92
     ],
     [
       "Classifed",
-      83
+      141,
+      5.92
     ],
     [
       "Classified",
-      91
+      124081,
+      6.96
     ],
     [
       "Classified Desk",
-      78
+      387,
+      6.96
     ],
     [
       "Classifieds",
-      84
+      804,
+      6.97
     ],
     [
       "Classsified",
-      99
+      36,
+      6.97
     ],
     [
       "Climate",
-      888
+      896,
+      6.98
     ],
     [
       "College",
-      1000
+      196,
+      6.98
     ],
     [
       "College / College Specials",
-      760
+      6,
+      6.98
     ],
     [
       "College / Faculty",
-      829
+      2,
+      6.98
     ],
     [
       "College / Students",
-      220
+      1,
+      6.98
     ],
     [
       "Column 2 Long Island Weekly Desk",
-      1310
+      1,
+      6.98
     ],
     [
       "Commercial Real Estate Report",
-      1299
+      38,
+      6.98
     ],
     [
       "Connecticut",
-      896
+      266,
+      6.98
     ],
     [
       "Connecticut Weekly Desk",
-      966
+      26114,
+      7.2
     ],
     [
       "Connecticut Weekly Desk Connecticut",
-      691
+      1,
+      7.2
     ],
     [
       "Connecticut Weekly Desk Weschester",
-      1194
+      1,
+      7.2
     ],
     [
       "Connecticut Weekly Desk u",
-      1232
+      2,
+      7.2
     ],
     [
       "Connecticut Weekly Desk(Conn)",
-      994
+      1,
+      7.2
     ],
     [
       "Connecticut Weekly desk",
-      818
+      1,
+      7.2
     ],
     [
       "ContinuousNews",
-      769
+      8117,
+      7.27
     ],
     [
       "Corrections",
-      436
+      2677,
+      7.29
     ],
     [
       "Critic's Choice",
-      0
+      1,
+      7.29
     ],
     [
       "Crossword & Games",
-      61
+      1,
+      7.29
     ],
     [
       "Crossword & Games /",
-      339
+      1,
+      7.29
     ],
     [
       "Crossword & Games / Crossword/Games",
-      411
+      1,
+      7.29
     ],
     [
       "Crossword & Games/Crossword/Games",
-      262
+      3,
+      7.29
     ],
     [
       "Crossword/Games",
-      184
+      1,
+      7.29
     ],
     [
       "Crosswords & Games",
-      268
+      62,
+      7.3
     ],
     [
       "Crosswords & Games / ",
-      552
+      3,
+      7.3
     ],
     [
       "Crosswords & Games / Crosswords/Games",
-      633
+      1,
+      7.3
     ],
     [
       "Cultural",
-      445
+      4,
+      7.3
     ],
     [
       "Cultural Desk",
-      586
+      68445,
+      7.87
     ],
     [
       "Cultural Desk - SummerTimes Supplement",
-      1484
+      21,
+      7.87
     ],
     [
       "Cultural Desk Cultural Desk",
-      681
+      1,
+      7.87
     ],
     [
       "Cultural Desk National Desk",
-      732
+      1,
+      7.87
     ],
     [
       "Cultural Desk u",
-      1313
+      1,
+      7.87
     ],
     [
       "Cultural Desk\"Nova\"",
-      990
+      1,
+      7.87
     ],
     [
       "Cultural Desk;",
-      1327
+      1,
+      7.87
     ],
     [
       "Culture",
-      604
+      85321,
+      8.59
     ],
     [
       "DIN",
-      449
+      3,
+      8.59
     ],
     [
       "DORAL-RYDER OPEN",
-      287
+      1,
+      8.59
     ],
     [
       "DRAMA MUSIC ART SOCIETY FASHION SCREEN RESORTS STEAMSHIPS TRAVEL SHOPPERS' COLUMNS",
-      1835
+      1,
+      8.59
     ],
     [
       "DRAMA MUSIC ART SOCIETY SCHOOLS FASHION SCREEN RESORTS STEAMSHIPS TRAVEL",
-      1958
+      1,
+      8.59
     ],
     [
       "DRAMA MUSIC FASHION SCREEN",
-      1334
+      1,
+      8.59
     ],
     [
       "DRAMA MUSIC HOTEL AND RESTAURANTS ART SCREEN SHOPPERS COLUMN THE DANCE FASHION",
-      1124
+      1,
+      8.59
     ],
     [
       "DRAMA MUSIC HOTEL AND RESTAURANTS THE DANCE SCREEN SHOPPERS COLUMN FASHION",
-      1237
+      1,
+      8.59
     ],
     [
       "DRAMA MUSIC HOTELS AND RESTAURANTS SCREEN ART RADIO SHOPPERS COLUMNS THE DANCE",
-      1001
+      2,
+      8.59
     ],
     [
       "DRAMA MUSIC HOTELS AND RESTAURANTS SOCIETY ART SCREEN SHOPPERS COLUMNS RADIO",
-      1377
+      1,
+      8.59
     ],
     [
       "DRAMA MUSIC HOTELS AND RESTURENTS SCREEN ART RADIO SHOPPERS COLUMNS THE DANCE",
-      1015
+      1,
+      8.59
     ],
     [
       "DRAMA MUSIC SCREEN ART SCHOOLS FASHION SOCIETY RESORTS STEAMSHIPS",
-      1184
+      1,
+      8.59
     ],
     [
       "DRAMA MUSIC SCREEN ART STEAMSHIPS RESORTS FASHIONS RADIO",
-      904
+      1,
+      8.59
     ],
     [
       "DRAMA MUSIC SOCIETY HOTELS AND RESTAURANTS SCREEN ART RADIO SHOPPERS COLUMNS THE DANCE",
-      1422
+      7,
+      8.59
     ],
     [
       "DRAMA MUSIC SOCIETY HOTELS AND RESTAURENTS SCREEN ART RADIO SHOPPERS COLUMNS THE DANCE",
-      1148
+      1,
+      8.59
     ],
     [
       "DRAMA MUSIC SOCIETY HOTELS RESTAURANTS SCREEN ART RADIO SHOPPERS COLUMN THE DANCE",
-      1268
+      2,
+      8.59
     ],
     [
       "DRAMA RECREATION NEWS",
-      921
+      1,
+      8.59
     ],
     [
       "DRAMA SCREEN HOTELS AND RESTAURANTS MUSIC FASHIONS ART SHOPPERS COLUMNS THE DANCE",
-      1317
+      2,
+      8.59
     ],
     [
       "DRAMA SCREEN HOTELS AND RESTAURANTS MUSIC FASHIONS SHOPPERS COLUMNS THE DANCE",
-      1111
+      2,
+      8.59
     ],
     [
       "DRAMA SCREEN MUSIC DANCE SHOPPERS' COLUMNS ART EDUCATION FASHION GARDENS",
-      579
+      1,
+      8.59
     ],
     [
       "DRAMA SCREEN MUSIC HOTELS AND RESTAURANTS EDUCATION ART FASHIONS SHOPPERS COLUMNS THE DANCE",
-      830
+      2,
+      8.59
     ],
     [
       "DRAMA SCREEN MUSIC HOTELS AND RESTAURANTS RADIO FASHIONS SHOPPERS COLUMNS THE DANCE",
-      1120
+      2,
+      8.59
     ],
     [
       "DRAMA SCREEN MUSIC RADIO FASHIONS ART",
-      1120
+      2,
+      8.59
     ],
     [
       "DRAMA SCREEN MUSIC SHOPPERS COLUMNS FASHIONS ART THE DANCE HOTELS RESTAURANTS",
-      1329
+      1,
+      8.59
     ],
     [
       "DRAMA SCREEN MUSIC SHOPPERS COLUMNS RADIO FASHIONS ART THE DANCE HOTELS RESTAURANTS",
-      1199
+      1,
+      8.59
     ],
     [
       "DRAMA, SCREEN, MUSIC, DANCE, ART, RADIO",
-      950
+      3,
+      8.59
     ],
     [
       "DRAMA---SCREEN---MUSIC---DANCE TELEVISION---RADIO---ART STAMPS---COINS TRAVEL---RESORTS---GARDENS PHOTOGRAPHY---BRIDGE HOME IMPROVEMENT",
-      776
+      1,
+      8.59
     ],
     [
       "DRAMA--MUSIC--ART--SOCIETY--SCHOOLS FASHION--SCREEN--RESORTS--STEAMSHIPS--TRAVEL--SHOPPER'S COLUMN",
-      1348
+      1,
+      8.59
     ],
     [
       "DRAMA--SCREEN--MUSIC ART--RADIO",
-      643
+      1,
+      8.59
     ],
     [
       "DRAMA--SCREEN--MUSIC--RADIO--FASHIONS--ART",
-      1450
+      1,
+      8.59
     ],
     [
       "DRAMA-MUSIC FASHION-SCREEN",
-      1366
+      2,
+      8.59
     ],
     [
       "DRAMA-MUSIC-FASHION-SCREEN",
-      2016
+      1,
+      8.59
     ],
     [
       "DRAMA-SCREEN MUSIC-FASHIONS-ART",
-      1888
+      1,
+      8.59
     ],
     [
       "DRAMA-SCREEN MUSIC-FASHIONS-RADIO",
-      1206
+      1,
+      8.59
     ],
     [
       "DRAMA-SCREEN SHOPPERS COLUMNS MUSIC FASHIONS ART THE DANCE HOTELS RESTAURANTS",
-      933
+      1,
+      8.59
     ],
     [
       "DRAMA-SCREEN-MUSIC ART-RADIO",
-      589
+      1,
+      8.59
     ],
     [
       "DRAMA-SCREEN-MUSIC FASHION-ART",
-      1235
+      1,
+      8.59
     ],
     [
       "DRAMA-SCREEN-MUSIC FASHIONS-ART",
-      1036
+      2,
+      8.59
     ],
     [
       "DRAMA-SCREEN-MUSIC FASHIONS-ART-RADIO",
-      1480
+      2,
+      8.59
     ],
     [
       "DRAMA-SCREEN-MUSIC FASHIONS-RADIO",
-      1421
+      1,
+      8.59
     ],
     [
       "DRAMA-SCREEN-MUSIC RADIO-FASHION-ART",
-      1057
+      1,
+      8.59
     ],
     [
       "DRAMA-SCREEN-MUSIC RADIO-FASHIONS-ART",
-      1067
+      3,
+      8.59
     ],
     [
       "DRAMA-SCREEN-MUSIC-DANCE-ART-EDUCATION-FASHION-SHOPPERS'COLUMNS-GARDENS",
-      836
+      1,
+      8.59
     ],
     [
       "Dealbook",
-      450
+      101,
+      8.59
     ],
     [
       "Desk",
-      688
+      130,
+      8.59
     ],
     [
       "Dining",
-      624
+      13330,
+      8.71
     ],
     [
       "Dining & Wine",
-      365
+      884,
+      8.71
     ],
     [
       "Dining & Wine / Cooking",
-      458
+      58,
+      8.71
     ],
     [
       "Dining & Wine / Dining & Wine",
-      61
+      2,
+      8.71
     ],
     [
       "Dining In, Dining Out",
-      381
+      2,
+      8.71
     ],
     [
       "Dining In, Dining Out/Cultural Desk",
-      681
+      19,
+      8.71
     ],
     [
       "Dining In, Dining Out/Style Desk",
-      761
+      7420,
+      8.78
     ],
     [
       "Dining In, Dining Out/Style DeskDining In, Din",
-      86
+      1,
+      8.78
     ],
     [
       "Dining In/Dining Out",
-      919
+      18,
+      8.78
     ],
     [
       "Dining In/Dining Out/Living Desk",
-      976
+      17,
+      8.78
     ],
     [
       "Dining in, Dining out/Style Desk",
-      194
+      1,
+      8.78
     ],
     [
       "Dining, Dining Out/Cultural Desk",
-      764
+      1324,
+      8.79
     ],
     [
       "Drama, Music",
-      1358
+      9,
+      8.79
     ],
     [
       "Drama, Music, Art",
-      1189
+      2,
+      8.79
     ],
     [
       "Drama, Screen, Music, Etc.",
-      1155
+      1,
+      8.79
     ],
     [
       "Drama-Music & Fashion-Screen",
-      1093
+      1,
+      8.79
     ],
     [
       "Drama-Music, Fashion-Screen",
-      1298
+      5,
+      8.79
     ],
     [
       "E-Business",
-      1149
+      76,
+      8.79
     ],
     [
       "E-Commerce",
-      1116
+      253,
+      8.79
     ],
     [
       "EDT",
-      911
+      7,
+      8.79
     ],
     [
       "EDUCATION",
-      203
+      1,
+      8.79
     ],
     [
       "EDUCATIONAL AMUSEMENTS",
-      365
+      5,
+      8.79
     ],
     [
       "EDUCATIONAL HOTEL AND RESTAURANTS",
-      437
+      1,
+      8.79
     ],
     [
       "EDUCATIONAL HOTELS AND RESTAURANT",
-      315
+      2,
+      8.79
     ],
     [
       "EDUCATIONAL HOTELS AND RESTAURANTS",
-      510
+      3,
+      8.79
     ],
     [
       "ELEC",
-      1566
+      3,
+      8.79
     ],
     [
       "ESC",
-      1412
+      2,
+      8.79
     ],
     [
       "EdLife",
-      1027
+      893,
+      8.8
     ],
     [
       "Editor's Desk",
-      299
+      2,
+      8.8
     ],
     [
       "Editoral Desk",
-      224
+      1,
+      8.8
     ],
     [
       "Editorial",
-      630
+      25616,
+      9.01
     ],
     [
       "Editorial Desk",
-      378
+      169399,
+      10.44
     ],
     [
       "Editorial Desk u",
-      297
+      2,
+      10.44
     ],
     [
       "Editorial Desk\"chastity\"",
-      204
+      1,
+      10.44
     ],
     [
       "Editorial desk",
-      225
+      1,
+      10.44
     ],
     [
       "Editorials/Op-Ed",
-      419
+      6,
+      10.44
     ],
     [
       "Editors Picks",
-      0
+      15,
+      10.44
     ],
     [
       "Education",
-      307
+      437,
+      10.45
     ],
     [
       "Education / Education Life",
-      351
+      13,
+      10.45
     ],
     [
       "Education Desk",
-      1213
+      24,
+      10.45
     ],
     [
       "Education Life",
-      1169
+      279,
+      10.45
     ],
     [
       "Education Life Supple",
-      305
+      7,
+      10.45
     ],
     [
       "Education Life Supplement",
-      1053
+      1385,
+      10.46
     ],
     [
       "Education Life SupplementEducation Life Supple",
-      893
+      1,
+      10.46
     ],
     [
       "Education Life SupplementMetropolitan Desk",
-      1076
+      1,
+      10.46
     ],
     [
       "Education and Welfare. Then in 1977, President Jimmy",
-      1054
+      1,
+      10.46
     ],
     [
       "Educational",
-      503
+      1,
+      10.46
     ],
     [
       "Educational, Resorts",
-      609
+      3,
+      10.46
     ],
     [
       "Energy",
-      1368
+      2,
+      10.46
     ],
     [
       "Entertaining Magazine",
-      1216
+      70,
+      10.46
     ],
     [
       "Entrepreneurs",
-      1043
+      23,
+      10.46
     ],
     [
       "Environment",
-      806
+      3,
+      10.46
     ],
     [
       "Escapes",
-      1029
+      4439,
+      10.5
     ],
     [
       "Express",
-      707
+      3346,
+      10.53
     ],
     [
       "FAMILY FOOD FASHIONS FURNISHINGS",
-      475
+      2,
+      10.53
     ],
     [
       "FOOD FASHION FAMILY FURNISHINGS",
-      375
+      2,
+      10.53
     ],
     [
       "FOOD FASHIONS FAMILY FURNISHING",
-      648
+      1,
+      10.53
     ],
     [
       "FOOD FASHIONS FAMILY FURNISHINGS",
-      529
+      44,
+      10.53
     ],
     [
       "FOOD FASHIONS FAMILY FURNISHINS",
-      300
+      2,
+      10.53
     ],
     [
       "FOOD-FASHIONS-FAMILY-FURNISHINGS",
-      584
+      3,
+      10.53
     ],
     [
       "FOR",
-      779
+      152,
+      10.53
     ],
     [
       "FOR SALE",
-      1511
+      1,
+      10.53
     ],
     [
       "Family/Style",
-      537
+      26,
+      10.53
     ],
     [
       "Fashion",
-      360
+      43,
+      10.53
     ],
     [
       "Fashion & Style",
-      11
+      7695,
+      10.59
     ],
     [
       "Fashion & Style / Sunday Styles",
-      525
+      21,
+      10.59
     ],
     [
       "Fashion & Style / Thursday Styles",
-      163
+      7,
+      10.59
     ],
     [
       "Fashion & Style / Weddings & Celebrations",
-      183
+      91,
+      10.59
     ],
     [
       "Fashion & Style/Weddings",
-      211
+      3,
+      10.59
     ],
     [
       "Fashion & Style/Weddings & Celebrations",
-      238
+      11,
+      10.59
     ],
     [
       "Fashion & Styles",
-      825
+      1,
+      10.59
     ],
     [
       "Fashion & Styles / On the Street",
-      1093
+      2,
+      10.59
     ],
     [
       "Fashions of The Times Magazine",
-      796
+      466,
+      10.6
     ],
     [
       "Fashions of the Times Magazine",
-      172
+      2,
+      10.6
     ],
     [
       "Favorites",
-      389
+      24,
+      10.6
     ],
     [
       "Feeds",
-      0
+      1,
+      10.6
     ],
     [
       "Finacial Desk",
-      677
+      1,
+      10.6
     ],
     [
       "Final",
-      705
+      1,
+      10.6
     ],
     [
       "Finanacial Desk",
-      808
+      1,
+      10.6
     ],
     [
       "Financia",
-      104
+      5,
+      10.6
     ],
     [
       "Financial",
-      376
+      16,
+      10.6
     ],
     [
       "Financial Desk",
-      289
+      386971,
+      13.86
     ],
     [
       "Financial Desk Financial Desk",
-      274
+      6,
+      13.86
     ],
     [
       "Financial Desk Hu",
-      437
+      1,
+      13.86
     ],
     [
       "Financial Desk Ju",
-      786
+      1,
+      13.86
     ],
     [
       "Financial Desk Marks reported pretax profit",
-      296
+      1,
+      13.86
     ],
     [
       "Financial Desk The new division will have",
-      171
+      1,
+      13.86
     ],
     [
       "Financial Desk ket funds",
-      818
+      1,
+      13.86
     ],
     [
       "Financial Desk u",
-      956
+      4,
+      13.86
     ],
     [
       "Financial Desk\"piracy\"",
-      1150
+      1,
+      13.86
     ],
     [
       "Financial Desk(Belgium)",
-      423
+      1,
+      13.86
     ],
     [
       "Financial Desk1 billion, or 2 billion, or",
-      651
+      1,
+      13.86
     ],
     [
       "Financial Desk2 percent, to million, or",
-      407
+      1,
+      13.86
     ],
     [
       "Financial Desk5 million), from 5 million),",
-      182
+      1,
+      13.86
     ],
     [
       "Financial Desk5 percent, to million, in",
-      636
+      1,
+      13.86
     ],
     [
       "Financial Desk;",
-      580
+      331,
+      13.86
     ],
     [
       "Financial DeskE I",
-      196
+      1,
+      13.86
     ],
     [
       "Financial DeskFinancial Desk",
-      1138
+      1,
+      13.86
     ],
     [
       "Financial Deska surplus of a surplus of",
-      815
+      1,
+      13.86
     ],
     [
       "Financial Desksavings",
-      57
+      1,
+      13.86
     ],
     [
       "Financial Planning Guide: Personal",
-      82
+      1,
+      13.86
     ],
     [
       "Financial Planning Guide: Personal Investing",
-      1530
+      16,
+      13.86
     ],
     [
       "Financial Planning Guide: Your Taxes",
-      1212
+      57,
+      13.86
     ],
     [
       "Financial/Business Desk",
-      64
+      1,
+      13.86
     ],
     [
       "Flight",
-      975
+      12,
+      13.86
     ],
     [
       "Food",
-      0
+      1407,
+      13.87
     ],
     [
       "Food Fashions Family Furnishing",
-      692
+      1,
+      13.87
     ],
     [
       "Food Fashions Family Furnishings",
-      589
+      5,
+      13.87
     ],
     [
       "Foreign",
-      770
+      90289,
+      14.63
     ],
     [
       "Foreign DEsk",
-      126
+      1,
+      14.63
     ],
     [
       "Foreign Desk",
-      680
+      174957,
+      16.11
     ],
     [
       "Foreign Desk 0",
-      118
+      1,
+      16.11
     ],
     [
       "Foreign Desk Foreign Desk",
-      184
+      1,
+      16.11
     ],
     [
       "Foreign Desk u",
-      729
+      6,
+      16.11
     ],
     [
       "Foreign Desk(Morocco)",
-      574
+      1,
+      16.11
     ],
     [
       "Foreign Desk;",
-      1002
+      1,
+      16.11
     ],
     [
       "Foreign DeskA NEW A NEW",
-      1021
+      1,
+      16.11
     ],
     [
       "Foreign desk",
-      740
+      2,
+      16.11
     ],
     [
       "Forelgn Desk",
-      445
+      1,
+      16.11
     ],
     [
       "Foriegn Desk",
-      382
+      2,
+      16.11
     ],
     [
       "GN",
-      130
+      1,
+      16.11
     ],
     [
       "Games",
-      686
+      1627,
+      16.12
     ],
     [
       "Gender",
-      975
+      57,
+      16.12
     ],
     [
       "General News Sports Tha Arts",
-      618
+      3,
+      16.12
     ],
     [
       "General News Women's News The Arts Sports",
-      208
+      1,
+      16.12
     ],
     [
       "General News, Education News",
-      605
+      1,
+      16.12
     ],
     [
       "Generations",
-      1050
+      19,
+      16.12
     ],
     [
       "Giving",
-      1065
+      332,
+      16.13
     ],
     [
       "Global Home",
-      0
+      1,
+      16.13
     ],
     [
       "Good Health Magazine",
-      1692
+      21,
+      16.13
     ],
     [
       "Graphics",
-      301
+      3,
+      16.13
     ],
     [
       "Great Homes & Destinations",
-      0
+      1080,
+      16.14
     ],
     [
       "Guides",
-      0
+      14,
+      16.14
     ],
     [
       "HOTEL AND RESTAURANTS",
-      1418
+      1,
+      16.14
     ],
     [
       "HOTEL AND RESTAURANTS SHIPPING AND MAILS",
-      1445
+      1,
+      16.14
     ],
     [
       "HOTELS AND AMUSEMENTS",
-      208
+      2,
+      16.14
     ],
     [
       "HOTELS AND RESTAAURANTS RADIO",
-      1370
+      1,
+      16.14
     ],
     [
       "HOTELS AND RESTAURANTS",
-      778
+      29,
+      16.14
     ],
     [
       "HOTELS AND RESTAURANTS AMUSEMENTS",
-      600
+      2,
+      16.14
     ],
     [
       "HOTELS AND RESTAURANTS EDUCATIONAL",
-      407
+      3,
+      16.14
     ],
     [
       "HOTELS AND RESTAURANTS RADIO",
-      967
+      3,
+      16.14
     ],
     [
       "HOTELS AND RESTAURANTS RESORTS",
-      650
+      4,
+      16.14
     ],
     [
       "Hatch recognized Mr. Abraham in the hearing's waning minutes,",
-      159
+      1,
+      16.14
     ],
     [
       "Health",
-      269
+      940,
+      16.14
     ],
     [
       "Health & Fitness",
-      701
+      3522,
+      16.17
     ],
     [
       "Health & Fitness Desk",
-      1278
+      2,
+      16.17
     ],
     [
       "Health / Anatomy",
-      269
+      1,
+      16.17
     ],
     [
       "Health / Genetics",
-      1450
+      1,
+      16.17
     ],
     [
       "Health / Health Care Policy",
-      1030
+      3,
+      16.17
     ],
     [
       "Health / Mental Health & Behavior",
-      911
+      1,
+      16.17
     ],
     [
       "Health / Psychology",
-      529
+      1,
+      16.17
     ],
     [
       "Health Desk",
-      228
+      4,
+      16.17
     ],
     [
       "Health and Fitness",
-      734
+      27,
+      16.17
     ],
     [
       "Health&Fitness",
-      733
+      836,
+      16.18
     ],
     [
       "Holiday Times Supplement",
-      1484
+      30,
+      16.18
     ],
     [
       "Home",
-      705
+      5246,
+      16.22
     ],
     [
       "Home & Garden",
-      63
+      1589,
+      16.24
     ],
     [
       "Home Design Desk",
-      478
+      2,
+      16.24
     ],
     [
       "Home Design Magazine",
-      879
+      469,
+      16.24
     ],
     [
       "Home Design MagazineHome Design Magazine",
-      1392
+      1,
+      16.24
     ],
     [
       "Home Desk",
-      699
+      14529,
+      16.36
     ],
     [
       "Home Desk 22",
-      669
+      1,
+      16.36
     ],
     [
       "Home Desk u",
-      1199
+      1,
+      16.36
     ],
     [
       "Home Desk;",
-      966
+      94,
+      16.37
     ],
     [
       "Home DeskHome Desk",
-      188
+      44,
+      16.37
     ],
     [
       "Home Entertaining Magazine",
-      1495
+      81,
+      16.37
     ],
     [
       "Home Page",
-      1065
+      1,
+      16.37
     ],
     [
       "Homepage",
-      0
+      5,
+      16.37
     ],
     [
       "Hotels and Restaurants",
-      659
+      10,
+      16.37
     ],
     [
       "Hotels and Restaurants, Resorts",
-      702
+      6,
+      16.37
     ],
     [
       "House & Home/Style",
-      78
+      1,
+      16.37
     ],
     [
       "House & Home/Style Desk",
-      616
+      7533,
+      16.43
     ],
     [
       "House & Home\\Style Desk",
-      571
+      15,
+      16.43
     ],
     [
       "House and Home Style",
-      265
+      1,
+      16.43
     ],
     [
       "I've never heard anyone voice the same outrage over, say, a",
-      175
+      1,
+      16.43
     ],
     [
       "IHT Edit",
-      16
+      3,
+      16.43
     ],
     [
       "IHT Finance",
-      1221
+      1,
+      16.43
     ],
     [
       "Insider",
-      740
+      1602,
+      16.44
     ],
     [
       "Instruction, Radio",
-      691
+      1,
+      16.44
     ],
     [
       "Internationa / International Special",
-      702
+      11,
+      16.44
     ],
     [
       "International",
-      840
+      2446,
+      16.46
     ],
     [
       "International / Africa",
-      518
+      268,
+      16.47
     ],
     [
       "International / After the War",
-      1011
+      54,
+      16.47
     ],
     [
       "International / Americas",
-      490
+      245,
+      16.47
     ],
     [
       "International / Asia Pacific",
-      637
+      1069,
+      16.48
     ],
     [
       "International / Europe",
-      825
+      1552,
+      16.49
     ],
     [
       "International / International Special",
-      863
+      186,
+      16.49
     ],
     [
       "International / Middle East",
-      857
+      1994,
+      16.51
     ]
   ]
 }

@@ -55,7 +55,7 @@ sync_playwright = pytest.importorskip("playwright.sync_api").sync_playwright
 
 @pytest.mark.integration
 def test_hint_and_schema_collapsed_by_default(workspace_server_url: str) -> None:
-    url = f"{workspace_server_url}/practice/times-archive/times-archive-001"
+    url = f"{workspace_server_url}/practice/times-archive/times-archive-011"
 
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True)
@@ -86,7 +86,7 @@ def test_hint_and_schema_collapsed_by_default(workspace_server_url: str) -> None
 
 @pytest.mark.integration
 def test_schema_panel_follows_hint_in_dom(workspace_server_url: str) -> None:
-    url = f"{workspace_server_url}/practice/times-archive/times-archive-001"
+    url = f"{workspace_server_url}/practice/times-archive/times-archive-011"
 
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True)
@@ -117,7 +117,7 @@ def test_schema_panel_follows_hint_in_dom(workspace_server_url: str) -> None:
 def test_context_disclosures_collapse_on_footer_navigation(
     workspace_server_url: str,
 ) -> None:
-    url = f"{workspace_server_url}/practice/times-archive/times-archive-001"
+    url = f"{workspace_server_url}/practice/times-archive/times-archive-011"
 
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True)
@@ -135,7 +135,7 @@ def test_context_disclosures_collapse_on_footer_navigation(
 
             page.click("#workspace-next")
             page.wait_for_function(
-                "() => window.location.pathname.endsWith('times-archive-002')",
+                "() => window.location.pathname.endsWith('times-archive-012')",
                 timeout=10_000,
             )
             assert page.locator("#workspace-hint-details").evaluate("el => el.open") is False

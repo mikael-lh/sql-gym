@@ -57,7 +57,7 @@ sync_playwright = pytest.importorskip("playwright.sync_api").sync_playwright
 def test_drawer_shows_loading_state_before_exercise_list(
     workspace_server_url: str,
 ) -> None:
-    url = f"{workspace_server_url}/practice/times-archive/times-archive-001"
+    url = f"{workspace_server_url}/practice/times-archive/times-archive-011"
 
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True)
@@ -84,7 +84,7 @@ def test_drawer_shows_loading_state_before_exercise_list(
 
 @pytest.mark.integration
 def test_answer_sql_updates_on_footer_navigation(workspace_server_url: str) -> None:
-    url = f"{workspace_server_url}/practice/times-archive/times-archive-001"
+    url = f"{workspace_server_url}/practice/times-archive/times-archive-011"
 
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True)
@@ -100,7 +100,7 @@ def test_answer_sql_updates_on_footer_navigation(workspace_server_url: str) -> N
 
             page.click("#workspace-next")
             page.wait_for_function(
-                "() => window.location.pathname.endsWith('times-archive-002')",
+                "() => window.location.pathname.endsWith('times-archive-012')",
                 timeout=10_000,
             )
             answer_after = page.locator("#workspace-answer-sql").inner_text()
@@ -114,7 +114,7 @@ def test_answer_sql_updates_on_footer_navigation(workspace_server_url: str) -> N
 def test_expected_output_panel_updates_on_footer_navigation(
     workspace_server_url: str,
 ) -> None:
-    url = f"{workspace_server_url}/practice/times-archive/times-archive-001"
+    url = f"{workspace_server_url}/practice/times-archive/times-archive-011"
 
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True)
@@ -129,7 +129,7 @@ def test_expected_output_panel_updates_on_footer_navigation(
 
             page.click("#workspace-next")
             page.wait_for_function(
-                "() => window.location.pathname.endsWith('times-archive-002')",
+                "() => window.location.pathname.endsWith('times-archive-012')",
                 timeout=10_000,
             )
             assert "`headline_main`, `news_desk`" in output.inner_text()
@@ -142,7 +142,7 @@ def test_expected_output_panel_updates_on_footer_navigation(
 def test_footer_next_sets_target_url_on_load_and_updates_location(
     workspace_server_url: str,
 ) -> None:
-    url = f"{workspace_server_url}/practice/times-archive/times-archive-001"
+    url = f"{workspace_server_url}/practice/times-archive/times-archive-011"
 
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True)
@@ -157,11 +157,11 @@ def test_footer_next_sets_target_url_on_load_and_updates_location(
             assert next_button.is_enabled()
             target = next_button.get_attribute("data-target-url")
             assert target is not None
-            assert "times-archive-002" in target
+            assert "times-archive-012" in target
 
             next_button.click()
             page.wait_for_function(
-                "() => window.location.pathname.endsWith('times-archive-002')",
+                "() => window.location.pathname.endsWith('times-archive-012')",
                 timeout=10_000,
             )
             title = page.locator("#workspace-exercise-title").inner_text()
@@ -172,7 +172,7 @@ def test_footer_next_sets_target_url_on_load_and_updates_location(
 
 @pytest.mark.integration
 def test_footer_prev_next_and_back_navigation(workspace_server_url: str) -> None:
-    url = f"{workspace_server_url}/practice/times-archive/times-archive-002"
+    url = f"{workspace_server_url}/practice/times-archive/times-archive-012"
 
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True)
@@ -185,14 +185,14 @@ def test_footer_prev_next_and_back_navigation(workspace_server_url: str) -> None
 
             page.click("#workspace-next")
             page.wait_for_function(
-                "() => window.location.pathname.endsWith('times-archive-003')",
+                "() => window.location.pathname.endsWith('times-archive-013')",
                 timeout=10_000,
             )
             title_after_next = page.locator("#workspace-exercise-title").inner_text()
 
             page.go_back()
             page.wait_for_function(
-                "() => window.location.pathname.endsWith('times-archive-002')",
+                "() => window.location.pathname.endsWith('times-archive-012')",
                 timeout=10_000,
             )
             page.wait_for_function(
@@ -206,7 +206,7 @@ def test_footer_prev_next_and_back_navigation(workspace_server_url: str) -> None
 
             page.click("#workspace-prev")
             page.wait_for_function(
-                "() => window.location.pathname.endsWith('times-archive-001')",
+                "() => window.location.pathname.endsWith('times-archive-011')",
                 timeout=10_000,
             )
             title = page.locator("#workspace-exercise-title").inner_text()
