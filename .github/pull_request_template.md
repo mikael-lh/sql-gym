@@ -12,6 +12,7 @@ Check only after **`sql-gym-pre-review`** passes: independent **reviewer** agent
 - [ ] cursor-team-kit `deslop` (or N/A — docs-only)
 - [ ] Tests/lint run (or **CI not configured yet** — manual checks: ___)
 - [ ] Browser checks for user-facing behavior (or N/A — no UI/client impact) — affected flows listed; relevant Playwright tests + ad-hoc browser validation recorded in PR/review
+- [ ] Layout/responsive CSS (or N/A — no `templates/` / `static/styles.css` layout change) — [ui-layout-review.md](docs/ui-layout-review.md): desktop + mobile viewport tests; all controls in group asserted; pre-review not skipped
 
 ## PRD
 

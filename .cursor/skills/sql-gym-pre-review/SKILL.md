@@ -71,6 +71,7 @@ Check **Agent pre-review** boxes on the PR only after a reviewer pass reports no
 - cursor-team-kit `deslop` (or N/A docs-only)
 - Tests/lint green, or state **CI not configured yet** and note what ran (e.g. `./scripts/validate-env.sh`)
 - Browser checks for user-facing behavior — case-by-case: reviewer lists affected UX, runs relevant committed Playwright tests + ad-hoc browser validation for this PR (or **N/A** — no user-facing behavior)
+- Layout/responsive CSS — [ui-layout-review.md](../../../docs/ui-layout-review.md) (or **N/A** — no layout/CSS change)
 
 PR description must include: summary, risks, test plan, PRD deviations, and any remaining **`Nit:`** items.
 

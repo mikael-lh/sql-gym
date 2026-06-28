@@ -11,7 +11,14 @@ from pathlib import Path
 
 import pytest
 
+from playwright_layout import LAYOUT_VIEWPORTS, assert_controls_on_one_row
+
 REPO_ROOT = Path(__file__).resolve().parents[1]
+WORKSPACE_NAV_CONTROL_IDS = [
+    "workspace-prev",
+    "workspace-nav-position",
+    "workspace-next",
+]
 
 
 def _free_port() -> int:
@@ -88,20 +95,7 @@ def test_prev_next_controls_live_in_top_header(workspace_server_url: str) -> Non
             )
             assert nav_follows_actions is True
 
-            nav_on_one_row = page.evaluate(
-                """() => {
-                    const ids = ['workspace-prev', 'workspace-nav-position', 'workspace-next'];
-                    const tops = ids.map((id) => {
-                        const el = document.getElementById(id);
-                        return el instanceof HTMLElement ? el.getBoundingClientRect().top : null;
-                    });
-                    if (tops.some((top) => top === null)) return false;
-                    const minTop = Math.min(...tops);
-                    const maxTop = Math.max(...tops);
-                    return maxTop - minTop < 8;
-                }"""
-            )
-            assert nav_on_one_row is True
+            assert_controls_on_one_row(page, WORKSPACE_NAV_CONTROL_IDS)
 
             in_header = page.evaluate(
                 """() => {
@@ -116,33 +110,29 @@ def test_prev_next_controls_live_in_top_header(workspace_server_url: str) -> Non
 
 
 @pytest.mark.integration
-def test_prev_next_controls_stay_on_one_row_on_mobile(workspace_server_url: str) -> None:
+def test_prev_next_controls_stay_on_one_row_at_layout_viewports(
+    workspace_server_url: str,
+) -> None:
     url = f"{workspace_server_url}/practice/times-archive/times-archive-006"
 
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True)
         try:
-            page = browser.new_page(viewport={"width": 390, "height": 844})
-            page.goto(url, wait_until="domcontentloaded")
-            page.wait_for_function(
-                "() => document.documentElement.dataset.workspaceReady === 'submit'",
-            )
-
-            nav_on_one_row = page.evaluate(
-                """() => {
-                    const nav = document.querySelector('.workspace-top-nav');
-                    if (!nav) return false;
-                    const style = getComputedStyle(nav);
-                    if (style.gridAutoFlow !== 'column') return false;
-                    const ids = ['workspace-prev', 'workspace-nav-position', 'workspace-next'];
-                    const tops = ids.map((id) => document.getElementById(id)?.getBoundingClientRect().top);
-                    if (tops.some((top) => top === undefined)) return false;
-                    const minTop = Math.min(...tops);
-                    const maxTop = Math.max(...tops);
-                    return maxTop - minTop < 8;
-                }"""
-            )
-            assert nav_on_one_row is True
+            page = browser.new_page()
+            for viewport in LAYOUT_VIEWPORTS.values():
+                page.set_viewport_size(viewport)
+                page.goto(url, wait_until="domcontentloaded")
+                page.wait_for_function(
+                    "() => document.documentElement.dataset.workspaceReady === 'submit'",
+                )
+                grid_column_flow = page.evaluate(
+                    """() => {
+                        const nav = document.querySelector('.workspace-top-nav');
+                        return nav ? getComputedStyle(nav).gridAutoFlow : '';
+                    }"""
+                )
+                assert grid_column_flow == "column"
+                assert_controls_on_one_row(page, WORKSPACE_NAV_CONTROL_IDS)
         finally:
             browser.close()
 

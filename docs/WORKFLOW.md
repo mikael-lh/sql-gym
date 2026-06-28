@@ -122,6 +122,7 @@ Always-on agent guidance: [.cursor/rules/engineering.mdc](../.cursor/rules/engin
 
 - **CI** (add when stack is chosen): automated format, lint, and tests on every PR; add as first pre-review checkbox when enabled
 - **Browser checks** (pre-review): case-by-case — reviewer identifies affected UX, runs **relevant** committed Playwright tests, and performs ad-hoc browser validation for flows not yet automated (see [sql-gym-pre-review-reviewer](../.cursor/skills/sql-gym-pre-review-reviewer/SKILL.md))
+- **Layout/responsive CSS** (pre-review): when `templates/` or `static/styles.css` change layout, follow [ui-layout-review.md](ui-layout-review.md) — viewport matrix (1280×800 + 390×844), assert every control in the group, do not merge on user request alone without pre-review
 - **User PR review:** architecture and design judgment after agent pre-review passes
 
 Optional later: enable **Cursor Bugbot** on the repo for automated PR review once there is substantial code — it catches bugs and issues, not product scope.

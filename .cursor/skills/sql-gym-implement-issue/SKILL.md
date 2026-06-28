@@ -28,9 +28,10 @@ If there is no approved phase implementation plan, stop and run local **`impleme
 6. Implement **only** the acceptance criteria for this Linear issue and its approved plan milestone. Follow [.cursor/rules/engineering.mdc](../../../.cursor/rules/engineering.mdc).
 7. Optional: Superpowers **`executing-plans`** for step order; TDD skills when tests exist.
 8. Run tests/lint if configured. If they fail, **fix and re-run** before opening the PR (same branch).
-9. Open or update a PR using [.github/pull_request_template.md](../../../.github/pull_request_template.md). Title: `TIM-NN: <summary>`. Description: *what*, *why*, test plan ([CL descriptions](https://github.com/google/eng-practices/blob/master/review/developer/cl-descriptions.md)).
-10. Fill the template; leave **Agent pre-review** boxes **unchecked**. Prefer a **small, focused** PR ([small CLs](https://github.com/google/eng-practices/blob/master/review/developer/small-cls.md)).
-11. Optional quick self-check: `code-reviewer` or a diff read against acceptance criteria. If you find **blocking** gaps, fix on the branch before handoff—do not rely on pre-review to discover obvious misses only.
+9. If the diff touches **layout or responsive CSS** (`templates/`, `static/styles.css`), add Playwright tests per [docs/ui-layout-review.md](../../../docs/ui-layout-review.md) using `tests/playwright_layout.py` (desktop + mobile viewports; assert **all** controls in the group).
+10. Open or update a PR using [.github/pull_request_template.md](../../../.github/pull_request_template.md). Title: `TIM-NN: <summary>`. Description: *what*, *why*, test plan ([CL descriptions](https://github.com/google/eng-practices/blob/master/review/developer/cl-descriptions.md)).
+11. Fill the template; leave **Agent pre-review** boxes **unchecked**. Prefer a **small, focused** PR ([small CLs](https://github.com/google/eng-practices/blob/master/review/developer/small-cls.md)).
+12. Optional quick self-check: `code-reviewer` or a diff read against acceptance criteria. If you find **blocking** gaps, fix on the branch before handoff—do not rely on pre-review to discover obvious misses only.
 
 ## Stop
 

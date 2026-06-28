@@ -16,6 +16,7 @@ alwaysApply: true
 - Do **not** check PR boxes, ask for **user** review, or merge while blocking reviewer findings remain.
 - Escalate to the **user** for product/architecture decisions or if stuck—do not mark boxes done to bypass a failed check.
 - Do **not** merge PRs unless the **user** explicitly authorized autonomous merge for that run and PR type. When authorized, use GitHub MCP merge tools, not `gh` write commands.
+- **UI/layout PRs:** user merge authorization does **not** bypass **`sql-gym-pre-review`** when the diff touches templates, styles, or learner-visible chrome. See [docs/ui-layout-review.md](docs/ui-layout-review.md).
 
 # Agent references
 
