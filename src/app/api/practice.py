@@ -8,6 +8,7 @@ from pydantic import BaseModel
 
 from app.api.serializers import (
     serialize_execution_error,
+    serialize_grading,
     serialize_query_result,
 )
 from app.catalog import TIMES_ARCHIVE_CATALOG
@@ -157,13 +158,7 @@ def api_submit_sql(
     )
     response = JSONResponse(
         content={
-            "grading": {
-                "exercise_id": grading.exercise_id,
-                "status": grading.status,
-                "summary": grading.summary,
-                "passed": grading.passed,
-                "is_placeholder": grading.is_placeholder,
-            },
+            "grading": serialize_grading(grading),
             "progress": {
                 "passed_count": progress.passed_count(),
                 "total": len(TIMES_ARCHIVE_CATALOG.exercises),
