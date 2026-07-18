@@ -44,9 +44,9 @@
       <h1 id="workspace-exercise-title">{{ exercise.title }}</h1>
       <p class="workspace-progress-badge">
         Progress:
-        <span class="progress-badge progress-badge-{{ progress_status }}" id="workspace-progress-badge">{{ progress_label }}</span>
-        {% if first_pass_elapsed %}
-        <span id="workspace-first-pass-elapsed"> — solved in {{ first_pass_elapsed }}</span>
+        <span class="progress-badge progress-badge-{{ progress.status }}" id="workspace-progress-badge">{{ progress.label }}</span>
+        {% if progress.first_pass_elapsed %}
+        <span id="workspace-first-pass-elapsed"> — solved in {{ progress.first_pass_elapsed }}</span>
         {% else %}
         <span id="workspace-first-pass-elapsed" hidden></span>
         {% endif %}
@@ -63,7 +63,7 @@
 
       <section class="workspace-panel" aria-labelledby="workspace-output-title">
         <h2 id="workspace-output-title">Expected output</h2>
-        <p id="workspace-output-requirements">{{ output_requirements }}</p>
+        <p id="workspace-output-requirements">{{ exercise.output_requirements }}</p>
       </section>
 
       <section class="workspace-panel">
@@ -128,7 +128,7 @@
           <p class="notice">JavaScript is required to run SQL without a full page reload. Enable JavaScript to use the workspace console.</p>
         </noscript>
         <div class="workspace-editor-shell">
-          <textarea id="practice-sql-input" class="sql-hidden-input" aria-hidden="true">{{ sql }}</textarea>
+          <textarea id="practice-sql-input" class="sql-hidden-input" aria-hidden="true">{{ attempt.sql }}</textarea>
           <div id="practice-editor-host" class="sql-editor-host" aria-label="SQL editor"></div>
           <div id="practice-editor-config"
             data-host-id="practice-editor-host"

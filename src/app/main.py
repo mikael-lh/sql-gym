@@ -94,7 +94,7 @@ def create_app() -> FastAPI:
         filters = parse_workspace_filters(difficulty=difficulty)
         context = get_workspace_context(request, dataset_id, exercise_id, filters)
         if context is not None:
-            template_context: dict[str, Any] = dict(context)
+            template_context: dict[str, Any] = context.as_template_context()
             template_context["request"] = request
             return templates.TemplateResponse(
                 request,
