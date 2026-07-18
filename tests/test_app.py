@@ -1,10 +1,9 @@
 import asyncio
-import json
-from pathlib import Path
 from unittest.mock import MagicMock, patch
 
 import httpx
 
+from app.domain.datasets import TIMES_ARCHIVE_CATALOG_DATASET
 from app.execution.models import QueryResult
 from app.main import app
 
@@ -164,14 +163,12 @@ def test_codemirror_assets_are_served() -> None:
     assert "initPracticeEditor" in bundle.text or "PracticeEditorBundle" in bundle.text
 
 
-def test_times_demo_fixture_records_provenance() -> None:
-    fixture_path = Path("src/app/fixtures/times/archive_articles_demo.json")
-    payload = json.loads(fixture_path.read_text())
+def test_times_catalog_dataset_records_provenance() -> None:
+    dataset = TIMES_ARCHIVE_CATALOG_DATASET
 
-    assert payload["provenance"]["source_repository"] == "https://github.com/mikael-lh/times-api"
-    assert payload["provenance"]["schema_reference"] == "schema/archive_articles.json"
-    assert "not the final production Times dataset" in payload["provenance"]["note"]
-    assert len(payload["rows"]) == 2
+    assert dataset.provenance.source_url == "https://github.com/mikael-lh/times-api"
+    assert dataset.provenance.schema_reference == "times-api/schema/archive_articles.json"
+    assert "docs/times-data-setup.md" in dataset.provenance.note
 
 
 def test_health_endpoint_reports_ok() -> None:

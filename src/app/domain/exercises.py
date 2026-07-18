@@ -60,25 +60,3 @@ DIFFICULTY_OPTIONS: tuple[SelectionOption, ...] = (
         description="Window functions, analytics, and deeper SQL patterns.",
     ),
 )
-
-TIMES_ARCHIVE_PLACEHOLDER_EXERCISE = Exercise(
-    id="times-archive-section-count",
-    dataset_id="times-archive-demo",
-    title="Count articles by section",
-    prompt="Explore how many demo articles appear in each Times section.",
-    difficulty="Intermediate",
-    target_dialect="PostgreSQL",
-    concept_tags=("aggregation", "group-by"),
-    estimated_time_minutes=10,
-    learning_objectives=("Group rows by a categorical column.", "Count rows per group."),
-    hint="Try grouping by section_name and counting rows.",
-    sample_sql="""-- PostgreSQL target dialect
-SELECT section_name, COUNT(*) AS article_count
-FROM times_archive_demo
-GROUP BY section_name
-ORDER BY article_count DESC;""",
-    expected_result=ExpectedResultSpec(
-        description="One row per section with article counts.",
-        column_names=("section_name", "article_count"),
-    ),
-)

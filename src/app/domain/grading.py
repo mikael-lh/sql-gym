@@ -23,14 +23,6 @@ class GradingResult(BaseModel):
     is_placeholder: bool = False
 
 
-GRADING_PLACEHOLDER = GradingResult(
-    exercise_id="times-archive-section-count",
-    status="not_available",
-    summary="Exact-result and AI-assisted grading remain future work.",
-    is_placeholder=True,
-)
-
-
 def grading_result_from_outcome(exercise_id: str, outcome: GradingOutcome) -> GradingResult:
     return GradingResult(
         exercise_id=exercise_id,

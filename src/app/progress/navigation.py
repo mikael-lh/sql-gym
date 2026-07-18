@@ -18,12 +18,6 @@ def find_continue_exercise(
     return None
 
 
-def continue_exercise_url(exercise: Exercise | None) -> str | None:
-    if exercise is None:
-        return None
-    return f"/practice/{exercise.dataset_id}/{exercise.id}"
-
-
 def format_elapsed_seconds(seconds: int | None) -> str | None:
     if seconds is None:
         return None
