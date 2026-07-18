@@ -6,11 +6,16 @@ from fastapi import HTTPException, Request
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
+from app.api.serializers import (
+    serialize_execution_error,
+    serialize_grading,
+    serialize_query_result,
+)
 from app.catalog import TIMES_ARCHIVE_CATALOG
 from app.domain.exercises import Exercise
 from app.domain.progress import ProgressStore
 from app.execution import execute_query
-from app.execution.models import ExecutionError, QueryResult
+from app.execution.models import ExecutionError
 from app.practice import PracticeFilters, lookup_exercise
 from app.practice_session import store_run_result, store_submit_result
 from app.progress import attach_progress_cookie, clear_progress_cookie, load_progress
@@ -31,25 +36,6 @@ class RunRequest(BaseModel):
 class SubmitRequest(BaseModel):
     sql: str
     elapsed_seconds: int | None = None
-
-
-def _serialize_query_result(result: QueryResult) -> dict[str, Any]:
-    return {
-        "columns": list(result.columns),
-        "rows": [list(row) for row in result.rows],
-        "row_count": result.row_count,
-        "truncated": result.truncated,
-    }
-
-
-def _serialize_execution_error(error: ExecutionError) -> dict[str, str]:
-    return {"message": error.message, "code": error.code}
-
-
-def _serialize_run_execution_error(error: ExecutionError) -> dict[str, str]:
-    if error.postgres_message:
-        return {"message": error.postgres_message, "code": error.code}
-    return _serialize_execution_error(error)
 
 
 def _exercise_list_item(exercise: Exercise, request: Request) -> dict[str, Any]:
@@ -136,9 +122,9 @@ def api_run_sql(
     if isinstance(outcome, ExecutionError):
         return JSONResponse(
             status_code=422,
-            content={"error": _serialize_run_execution_error(outcome)},
+            content={"error": serialize_execution_error(outcome, for_run=True)},
         )
-    return JSONResponse(content=_serialize_query_result(outcome))
+    return JSONResponse(content=serialize_query_result(outcome))
 
 
 def api_submit_sql(
@@ -157,7 +143,7 @@ def api_submit_sql(
         if isinstance(outcome, ExecutionError):
             return JSONResponse(
                 status_code=422,
-                content={"error": _serialize_execution_error(outcome)},
+                content={"error": serialize_execution_error(outcome)},
             )
         return JSONResponse(
             status_code=422,
@@ -172,13 +158,7 @@ def api_submit_sql(
     )
     response = JSONResponse(
         content={
-            "grading": {
-                "exercise_id": grading.exercise_id,
-                "status": grading.status,
-                "summary": grading.summary,
-                "passed": grading.passed,
-                "is_placeholder": grading.is_placeholder,
-            },
+            "grading": serialize_grading(grading),
             "progress": {
                 "passed_count": progress.passed_count(),
                 "total": len(TIMES_ARCHIVE_CATALOG.exercises),

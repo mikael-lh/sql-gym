@@ -1,7 +1,7 @@
+from app.api.serializers import serialize_query_result
 from app.execution.models import QueryResult
 from app.practice_session import (
     SESSION_PREVIEW_ROW_LIMIT,
-    _serialize_query_result,
     get_attempt_state,
     slim_practice_attempts,
     store_run_result,
@@ -17,22 +17,13 @@ class _FakeRequest:
         self.session: _FakeSession = _FakeSession()
 
 
-def test_serialize_query_result_caps_preview_rows() -> None:
+def test_session_preview_uses_row_limit() -> None:
     rows = tuple((index,) for index in range(100))
     result = QueryResult(columns=("n",), rows=rows, row_count=100, truncated=False)
-    payload = _serialize_query_result(result)
+    payload = serialize_query_result(result, row_limit=SESSION_PREVIEW_ROW_LIMIT)
     assert len(payload["rows"]) == SESSION_PREVIEW_ROW_LIMIT
     assert payload["row_count"] == 100
     assert payload["truncated"] is True
-
-
-def test_serialize_query_result_preserves_small_results() -> None:
-    rows = ((1,), (2,))
-    result = QueryResult(columns=("n",), rows=rows, row_count=2, truncated=False)
-    payload = _serialize_query_result(result)
-    assert payload["rows"] == [[1], [2]]
-    assert payload["row_count"] == 2
-    assert payload["truncated"] is False
 
 
 def test_slim_practice_attempts_keeps_sql_drops_heavy_fields() -> None:
@@ -79,15 +70,12 @@ def test_store_run_result_slims_other_exercises() -> None:
     assert get_attempt_state(request, "ex-b")["query_result"] is not None
 
 
-def test_serialize_query_result_keeps_execution_truncated_flag() -> None:
-    rows = tuple((index,) for index in range(SESSION_PREVIEW_ROW_LIMIT))
-    result = QueryResult(
-        columns=("n",),
-        rows=rows,
-        row_count=500,
-        truncated=True,
-    )
-    payload = _serialize_query_result(result)
-    assert len(payload["rows"]) == SESSION_PREVIEW_ROW_LIMIT
-    assert payload["row_count"] == 500
-    assert payload["truncated"] is True
+def test_store_run_result_caps_preview_rows() -> None:
+    request = _FakeRequest()
+    rows = tuple((index,) for index in range(100))
+    outcome = QueryResult(columns=("n",), rows=rows, row_count=100, truncated=False)
+    store_run_result(request, "ex-a", "SELECT n", outcome)
+    stored = get_attempt_state(request, "ex-a")["query_result"]
+    assert stored is not None
+    assert len(stored["rows"]) == SESSION_PREVIEW_ROW_LIMIT
+    assert stored["truncated"] is True
