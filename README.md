@@ -4,7 +4,7 @@ A lightweight gym for SQL: practice on curated datasets, run queries, and level 
 
 ## Status
 
-**Phase 5 complete** — single practice workspace with in-page run/submit console, exercise drawer, and JSON APIs ([prd/phase-5-console-workspace.md](prd/phase-5-console-workspace.md)). Phase 4–0 behavior below remains unless superseded in the Phase 5 PRD. New product scope requires a new phase PRD plus an approved implementation plan.
+**Phase 6 complete** — reliability and code-quality hardening on the Phase 5 practice workspace ([prd/phase-6-reliability-and-code-quality.md](prd/phase-6-reliability-and-code-quality.md)). Phase 5–0 behavior below remains unless superseded. New product scope requires a new phase PRD plus an approved implementation plan.
 
 | | |
 |--|--|
@@ -105,17 +105,16 @@ Copy [`.env.example`](.env.example). Notable vars:
 
 In development, a committed fallback secret is used when `SESSION_SECRET` is unset. Do not use that fallback in production.
 
-## Phase 6 reliability notes
+## Phase 6 behavior status
 
-Phase 6 ([prd/phase-6-reliability-and-code-quality.md](prd/phase-6-reliability-and-code-quality.md)) hardens the Phase 5 workspace without changing learner-facing product scope. Notable structure:
+Working reliability/code-quality outcomes (no new learner features):
 
 - **Execution:** PostgreSQL connections are pooled (`psycopg-pool`); learner queries run in a read-only transaction (no keyword-regex write filter).
-- **API wiring:** Practice JSON routes live on an `APIRouter` (`src/app/api/routes.py`).
+- **Config:** `APP_ENV=production` requires `SESSION_SECRET` (startup hard-fail); shared secret helper.
+- **API wiring:** Practice JSON routes on an `APIRouter` (`src/app/api/routes.py`).
 - **Workspace context:** Typed `WorkspaceContext` (Pydantic) feeds the page and `GET` exercise API.
-- **Frontend:** Workspace JS is split under `static/js/workspace/` (render, stopwatch, navigation, api-client, format); `practice-workspace.js` is the thin orchestrator. Shared `formatTime` formats `M:SS`.
+- **Frontend:** Workspace JS under `static/js/workspace/`; shared `formatTime` for `M:SS`.
 - **Docs:** [Phase 6 manual test plan](docs/phase-6-manual-test-plan.md).
-
-Product status remains Phase 5 complete until a separate `update-prd` pass marks Phase 6 done.
 
 ## Phase 5 behavior status
 
