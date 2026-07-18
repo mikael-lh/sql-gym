@@ -666,11 +666,7 @@ export function initPracticeWorkspace() {
         modal.show(payload.grading);
       }
       if (payload.progress) {
-        updateProgressUi({
-          passed_count: payload.progress.passed_count,
-          status: payload.grading?.passed ? "passed" : "attempted",
-          label: payload.grading?.passed ? "Passed" : "Attempted",
-        });
+        updateProgressUi(payload.progress);
       }
       if (payload.grading?.passed === true && elapsedSeconds !== null) {
         const firstPassElapsed = document.getElementById("workspace-first-pass-elapsed");
@@ -796,7 +792,8 @@ export function initPracticeWorkspace() {
         if (!response.ok) {
           return;
         }
-        updateProgressUi({
+        const clearPayload = await response.json();
+        updateProgressUi(clearPayload.progress ?? {
           passed_count: 0,
           status: "not_started",
           label: "Not started",

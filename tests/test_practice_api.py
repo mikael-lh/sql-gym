@@ -169,11 +169,34 @@ def test_api_submit_sql_sets_progress_cookie(mock_execute: MagicMock) -> None:
     assert response.status_code == 200
     payload = response.json()
     assert "grading" in payload
-    assert "progress" in payload
+    assert payload["progress"]["status"] == "passed"
+    assert payload["progress"]["label"] == "Passed"
     assert COOKIE_NAME in response.headers.get("set-cookie", "")
 
 
 def test_api_clear_progress() -> None:
     response = asyncio.run(_post_json("/api/practice/progress/clear", {}))
     assert response.status_code == 200
-    assert response.json() == {"ok": True}
+    assert response.json() == {
+        "ok": True,
+        "progress": {
+            "passed_count": 0,
+            "status": "not_started",
+            "label": "Not started",
+        },
+    }
+
+
+def test_api_list_and_get_include_progress_labels() -> None:
+    list_response = asyncio.run(_get("/api/practice/exercises"))
+    assert list_response.status_code == 200
+    first = list_response.json()["exercises"][0]
+    assert first["progress_label"] in {"Not started", "Attempted", "Passed"}
+
+    get_response = asyncio.run(
+        _get("/api/practice/times-archive/times-archive-011")
+    )
+    assert get_response.status_code == 200
+    progress = get_response.json()["progress"]
+    assert progress["label"] in {"Not started", "Attempted", "Passed"}
+    assert progress["status"] in {"not_started", "attempted", "passed"}

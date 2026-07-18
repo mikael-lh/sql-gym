@@ -322,7 +322,14 @@ def test_clear_progress_wipes_cookie_store() -> None:
 
     response = asyncio.run(_flow())
     assert response.status_code == 200
-    assert response.json() == {"ok": True}
+    assert response.json() == {
+        "ok": True,
+        "progress": {
+            "passed_count": 0,
+            "status": "not_started",
+            "label": "Not started",
+        },
+    }
     set_cookie = response.headers.get("set-cookie", "")
     assert COOKIE_NAME in set_cookie
     cookie_value = set_cookie.split(f"{COOKIE_NAME}=")[1].split(";")[0]

@@ -150,12 +150,15 @@ def api_submit_sql(
         passed=grading.passed is True,
         elapsed_seconds=elapsed,
     )
+    status = progress.get_status(exercise.id)
     response = JSONResponse(
         content={
             "grading": serialize_grading(grading),
             "progress": {
                 "passed_count": progress.passed_count(),
                 "total": len(TIMES_ARCHIVE_CATALOG.exercises),
+                "status": status,
+                "label": progress_label_for_status(status),
             },
         }
     )
@@ -164,7 +167,17 @@ def api_submit_sql(
 
 
 def api_clear_progress() -> JSONResponse:
-    response = JSONResponse(content={"ok": True})
+    cleared = ProgressStore()
+    response = JSONResponse(
+        content={
+            "ok": True,
+            "progress": {
+                "passed_count": 0,
+                "status": "not_started",
+                "label": progress_label_for_status("not_started"),
+            },
+        }
+    )
     clear_progress_cookie(response)
-    attach_progress_cookie(response, ProgressStore())
+    attach_progress_cookie(response, cleared)
     return response
