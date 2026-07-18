@@ -2,7 +2,7 @@
 
 ## Status
 
-**In review — awaiting user approval.** No application code changes until this plan is approved (per `.cursor/rules/workflow.mdc`).
+**Approved** (2026-07-18). Linear epic + per-milestone issues to be created next; implementation proceeds per `.cursor/rules/workflow.mdc`.
 
 ## Source
 
@@ -17,7 +17,8 @@
 | **Missing `SESSION_SECRET` in production** | **Hard-fail:** the app refuses to start in production without a real secret. |
 | **PR sizing** | **Small, focused PRs** — one main concern each. |
 | **Scope** | **Full PRD scope** (R1–R11); nothing trimmed. |
-| **"Production" detection** | Explicit `APP_ENV` env var (`development` default; `production` triggers the secret check). Confirmed during Milestone 3. |
+| **"Production" detection** | Explicit `APP_ENV` env var (`development` default; `production` triggers the secret check). Confirmed 2026-07-18. |
+| **PRD/README status flip** | Handled by a separate **`update-prd`** pass after milestones merge — **not** in M10. Confirmed 2026-07-18. |
 
 ## Guiding constraints
 
@@ -241,13 +242,14 @@ Dependency notes:
 - `README.md`, `docs/session-state.md` — update wording where clean-up changed structure (execution, config, JS layout).
 - `docs/phase-6-manual-test-plan.md` _(new)_ — run/submit happy path, the R2 false-rejection fix, progress tracking, production-secret hard-fail check.
 - `scripts/validate-env.sh` — phase banner if applicable.
-- `prd/phase-6-reliability-and-code-quality.md` — status → Complete after ship; `prd/README.md` — mark Phase 6 complete.
+
+**Note:** the Phase 6 **PRD/README status flip is out of M10** — it is handled by a separate `update-prd` pass after the milestones merge (resolved 2026-07-18).
 
 **Acceptance criteria covered:** R11 (all) + phase-level AC checklist closeout.
 
 **Tests / checks:** `./scripts/validate-env.sh`, full `uv run pytest`, ruff, mypy.
 
-**Risks:** None significant. (PRD closeout status flip may instead be handled by `update-prd` post-merge — see Open items.)
+**Risks:** None significant.
 
 ---
 
@@ -309,11 +311,11 @@ M2 (dead code) and M3 (secret) are independent of M1 and can be reordered if pre
 
 ## Open items for the user
 
-- Confirm `APP_ENV` as the production signal (vs. an existing/other env var).
-- Confirm whether PRD/README status flips happen in M10 or via a separate `update-prd` pass after merges.
+- ~~Confirm `APP_ENV` as the production signal.~~ **Resolved 2026-07-18:** use `APP_ENV`.
+- ~~Confirm whether PRD/README status flips happen in M10 or via `update-prd`.~~ **Resolved 2026-07-18:** via a separate `update-prd` pass after milestones merge.
 
 ## Approval
 
-- [ ] User approves this implementation plan.
-- [ ] Create Linear epic **TIM-___** and one child issue per milestone (M1–M10), each linking `prd/phase-6-reliability-and-code-quality.md` + acceptance criteria.
+- [x] User approves this implementation plan (2026-07-18).
+- [ ] Create Linear epic and one child issue per milestone (M1–M10), each linking `prd/phase-6-reliability-and-code-quality.md` + acceptance criteria.
 - [ ] Begin implementation with **`sql-gym-implement-issue`** (or **`sql-gym-run-phase`** if autonomous execution is authorized).
