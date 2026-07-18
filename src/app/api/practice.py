@@ -13,7 +13,7 @@ from app.api.serializers import (
 )
 from app.catalog import TIMES_ARCHIVE_CATALOG
 from app.domain.exercises import Exercise
-from app.domain.progress import ProgressStore
+from app.domain.progress import ProgressStore, progress_label_for_status
 from app.execution import execute_query
 from app.execution.models import ExecutionError
 from app.practice import PracticeFilters, lookup_exercise
@@ -21,12 +21,6 @@ from app.practice_session import store_run_result, store_submit_result
 from app.progress import attach_progress_cookie, clear_progress_cookie, load_progress
 from app.workspace.context import get_workspace_context, parse_workspace_filters
 from app.workspace.navigation import filtered_exercises
-
-_PROGRESS_LABELS = {
-    "not_started": "Not started",
-    "attempted": "Attempted",
-    "passed": "Passed",
-}
 
 
 class RunRequest(BaseModel):
@@ -47,7 +41,7 @@ def _exercise_list_item(exercise: Exercise, request: Request) -> dict[str, Any]:
         "title": exercise.title,
         "difficulty": exercise.difficulty,
         "progress_status": status,
-        "progress_label": _PROGRESS_LABELS[status],
+        "progress_label": progress_label_for_status(status),
         "url": f"/practice/{exercise.dataset_id}/{exercise.id}",
     }
 

@@ -7,6 +7,16 @@ from pydantic import BaseModel, ConfigDict, Field
 
 ExerciseProgressStatus = Literal["not_started", "attempted", "passed"]
 
+PROGRESS_LABELS: dict[ExerciseProgressStatus, str] = {
+    "not_started": "Not started",
+    "attempted": "Attempted",
+    "passed": "Passed",
+}
+
+
+def progress_label_for_status(status: ExerciseProgressStatus) -> str:
+    return PROGRESS_LABELS[status]
+
 
 class ExerciseProgress(BaseModel):
     model_config = ConfigDict(frozen=True)

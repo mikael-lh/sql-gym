@@ -8,6 +8,7 @@ from app.catalog import TIMES_ARCHIVE_CATALOG
 from app.catalog.output_requirements import build_output_requirements_text
 from app.catalog.schema import DatasetSchema, get_dataset_schema
 from app.domain.exercises import DIFFICULTY_OPTIONS, Difficulty
+from app.domain.progress import progress_label_for_status
 from app.practice import PracticeFilters, lookup_dataset, lookup_exercise
 from app.practice_session import get_attempt_state
 from app.progress import format_elapsed_seconds, load_progress
@@ -17,12 +18,6 @@ from app.workspace.navigation import (
     filtered_exercises,
     workspace_navigation,
 )
-
-_PROGRESS_LABELS = {
-    "not_started": "Not started",
-    "attempted": "Attempted",
-    "passed": "Passed",
-}
 
 
 def parse_workspace_filters(
@@ -120,7 +115,7 @@ def get_workspace_context(
         "grading": attempt_state["grading"],
         "attempt_status": attempt_state["status"],
         "progress_status": status,
-        "progress_label": _PROGRESS_LABELS[status],
+        "progress_label": progress_label_for_status(status),
         "first_pass_elapsed": first_pass_elapsed,
         "navigation": navigation,
         "filters": {
