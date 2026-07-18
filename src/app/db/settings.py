@@ -30,7 +30,7 @@ def get_session_secret() -> str:
     Development may use the committed fallback. Production refuses to start
     without an explicit SESSION_SECRET.
     """
-    secret = os.environ.get("SESSION_SECRET")
+    secret = (os.environ.get("SESSION_SECRET") or "").strip()
     if secret:
         return secret
     if get_app_env() == "production":

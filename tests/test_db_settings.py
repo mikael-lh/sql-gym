@@ -56,6 +56,16 @@ def test_get_session_secret_hard_fails_in_production_without_secret() -> None:
             get_session_secret()
 
 
+def test_get_session_secret_hard_fails_on_whitespace_only_in_production() -> None:
+    with patch.dict(
+        "os.environ",
+        {"APP_ENV": "production", "SESSION_SECRET": "   "},
+        clear=True,
+    ):
+        with pytest.raises(RuntimeError, match="SESSION_SECRET must be set"):
+            get_session_secret()
+
+
 def test_create_app_hard_fails_in_production_without_secret() -> None:
     # Import first so module-level `app = create_app()` runs under development defaults.
     from app.main import create_app
