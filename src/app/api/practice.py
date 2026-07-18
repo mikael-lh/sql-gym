@@ -81,23 +81,25 @@ def api_get_exercise(
     if context is None:
         raise HTTPException(status_code=404, detail="Exercise not found")
     return {
-        "exercise": context["exercise"],
-        "dataset": context["dataset"],
-        "schema": context["schema"],
+        "exercise": context.exercise.model_dump(),
+        "dataset": context.dataset.model_dump(),
+        "schema": (
+            context.dataset_schema.model_dump() if context.dataset_schema is not None else None
+        ),
         "attempt": {
-            "sql": context["sql"],
-            "query_result": context["query_result"],
-            "execution_error": context["execution_error"],
-            "grading": context["grading"],
-            "status": context["attempt_status"],
+            "sql": context.attempt.sql,
+            "query_result": context.attempt.query_result,
+            "execution_error": context.attempt.execution_error,
+            "grading": context.attempt.grading,
+            "status": context.attempt.status,
         },
         "progress": {
-            "status": context["progress_status"],
-            "label": context["progress_label"],
-            "first_pass_elapsed": context["first_pass_elapsed"],
+            "status": context.progress.status,
+            "label": context.progress.label,
+            "first_pass_elapsed": context.progress.first_pass_elapsed,
         },
-        "navigation": context["navigation"],
-        "filters": context["filters"],
+        "navigation": context.navigation.model_dump(),
+        "filters": context.filters.model_dump(),
     }
 
 
