@@ -317,5 +317,5 @@ M2 (dead code) and M3 (secret) are independent of M1 and can be reordered if pre
 ## Approval
 
 - [x] User approves this implementation plan (2026-07-18).
-- [ ] Create Linear epic and one child issue per milestone (M1–M10), each linking `prd/phase-6-reliability-and-code-quality.md` + acceptance criteria.
-- [ ] Begin implementation with **`sql-gym-implement-issue`** (or **`sql-gym-run-phase`** if autonomous execution is authorized).
+- [x] Create Linear epic and one child issue per milestone (M1–M10), each linking `prd/phase-6-reliability-and-code-quality.md` + acceptance criteria.
+- [x] Begin implementation with **`sql-gym-implement-issue`** (or **`sql-gym-run-phase`** if autonomous execution is authorized).
