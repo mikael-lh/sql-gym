@@ -1,3 +1,5 @@
+from collections.abc import AsyncIterator
+from contextlib import asynccontextmanager
 from pathlib import Path
 
 import uvicorn
@@ -17,6 +19,7 @@ from app.api.practice import (
     api_submit_sql,
 )
 from app.db.settings import get_session_secret
+from app.execution.pool import close_pool, open_pool
 from app.practice import get_not_found_context, lookup_dataset, lookup_exercise
 from app.workspace.context import (
     get_default_workspace_redirect_url,
@@ -31,12 +34,22 @@ STATIC_DIR = PROJECT_ROOT / "static"
 templates = Jinja2Templates(directory=TEMPLATES_DIR)
 
 
+@asynccontextmanager
+async def _lifespan(_app: FastAPI) -> AsyncIterator[None]:
+    open_pool()
+    try:
+        yield
+    finally:
+        close_pool()
+
+
 def create_app() -> FastAPI:
     # Resolve at startup so production without SESSION_SECRET fails fast.
     session_secret = get_session_secret()
     app = FastAPI(
         title="SQL Gym",
         summary="A lightweight gym for practicing SQL on curated datasets.",
+        lifespan=_lifespan,
     )
     app.add_middleware(SessionMiddleware, secret_key=session_secret)
     app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
