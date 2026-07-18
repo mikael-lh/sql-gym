@@ -2,9 +2,9 @@
 
 ## Status
 
-**Draft — not approved, not active.** Awaiting user approval before it becomes the active phase and before any implementation plan or code is written.
+**Complete** (2026-07-18) — shipped via TIM-79 epic (TIM-80–TIM-89). Implementation plan: `docs/phase-6-implementation-plan.md`.
 
-This phase changes **how the code is built**, not what the product does. With one small exception (a query-blocking bug fix in R2), learners should not see any behavior change. The goal is a more reliable app and a cleaner, easier-to-work-in codebase.
+This phase changed **how the code is built**, not what the product does. With one small exception (the R2 false-rejection fix), learners should not see behavior change. The goal was a more reliable app and a cleaner codebase.
 
 ## Source context
 
@@ -185,13 +185,13 @@ Acceptance criteria:
 
 ## Phase acceptance criteria
 
-- [ ] Database connections are pooled and reused; timeout/row limits unchanged.
-- [ ] Read-only safety is enforced by the database; valid `SELECT`s with banned words or semicolons inside strings run correctly.
-- [ ] App fails safely (or warns loudly) in production without `SESSION_SECRET`; the default secret lives in one place.
-- [ ] Serializers, progress labels, and time formatting each have a single source of truth.
-- [ ] Confirmed-unused leftover code and its tests are removed; validation stays green.
-- [ ] Route wiring simplified; workspace context typed; large JS file split — all with no user-visible change.
-- [ ] Docs updated; Phase 6 manual test plan added.
+- [x] Database connections are pooled and reused; timeout/row limits unchanged.
+- [x] Read-only safety is enforced by the database; valid `SELECT`s with banned words or semicolons inside strings run correctly.
+- [x] App fails safely (or warns loudly) in production without `SESSION_SECRET`; the default secret lives in one place.
+- [x] Serializers, progress labels, and time formatting each have a single source of truth.
+- [x] Confirmed-unused leftover code and its tests are removed; validation stays green.
+- [x] Route wiring simplified; workspace context typed; large JS file split — all with no user-visible change.
+- [x] Docs updated; Phase 6 manual test plan added.
 
 ## Edge cases and error states
 
@@ -201,7 +201,7 @@ Acceptance criteria:
 | Many concurrent Run/Submit calls | Queries succeed by reusing pooled connections; no connection-exhaustion errors |
 | Valid `SELECT` with a banned word inside a string | Runs and returns rows (no false rejection) |
 | Actual write attempt (e.g. `UPDATE`) | Rejected by the read-only transaction |
-| Production start without `SESSION_SECRET` | Fails fast or logs a loud warning (final choice in implementation plan) |
+| Production start without `SESSION_SECRET` | Fails fast (`APP_ENV=production`; hard-fail) |
 | A "dead code" item turns out to be imported somewhere | It is kept, not deleted; only confirmed-unused code is removed |
 
 ## Out of scope
@@ -219,27 +219,51 @@ Acceptance criteria:
 - Future changes are easier and safer because there are fewer duplicates and clearer types.
 - No regression in existing tests or learner-visible behavior.
 
+## What was actually built (2026-07-18)
+
+Shipped as small focused PRs (TIM-80–TIM-89) per the approved plan:
+
+| Milestone | Issue | Outcome |
+|-----------|-------|---------|
+| M1 R2 | TIM-80 | Read-only SQL transaction; keyword/semicolon regex guards removed |
+| M2 R7 | TIM-81 | Confirmed-unused dead code removed |
+| M3 R3 | TIM-82 | `APP_ENV` + shared `get_session_secret()`; production hard-fail |
+| M4 R1 | TIM-83 | `psycopg-pool` lifespan pool; borrow in `execute_query` |
+| M5 R4 | TIM-84 | Shared serializers module |
+| M6 R5 | TIM-85 | Server `PROGRESS_LABELS`; client uses API labels |
+| M7 R8 | TIM-86 | Practice `APIRouter` + shared `render_not_found` |
+| M8 R9 | TIM-87 | Typed `WorkspaceContext`; nested template/API fields |
+| M9 R10+R6 | TIM-88 | `static/js/workspace/*` modules; shared `formatTime` |
+| M10 R11 | TIM-89 | README/session-state + `docs/phase-6-manual-test-plan.md` |
+
+**Deviations:** none material. Template paths for progress/SQL/output requirements moved to nested keys as required by R9 duplication removal. OpenAPI `operationId`s shifted when wrappers were removed (tags/paths unchanged).
+
 ## Open questions
 
-- **Secret handling (R3):** should the app hard-fail on startup without `SESSION_SECRET` in production, or start with a loud warning? Needs a product/ops call.
-- **How to detect "production" (R3):** by an explicit env var (e.g. `APP_ENV=production`) or another signal? To be settled in the implementation plan.
-- **PR sizing:** per `.cursor/rules/engineering.mdc` (small, focused PRs), these likely ship as several PRs (reliability, de-duplication, dead-code removal, structure). Confirm you want them split rather than one large change.
-- **Scope trimming:** if you'd prefer the smallest first step, R2 (query bug fix) + R7 (dead code) + R3 (secret) give the most value for the least risk; R8–R10 could be deferred.
+Resolved during planning/implementation (2026-07-18):
+
+- **Secret handling (R3):** hard-fail on startup when `APP_ENV=production` and `SESSION_SECRET` is missing/blank.
+- **Production detection (R3):** explicit `APP_ENV=production`.
+- **PR sizing:** small PRs (one milestone / Linear child issue each).
+- **Scope:** full Phase 6 (R1–R11), not a trimmed subset.
 
 ## Approval
 
-- [ ] PRD scope approved by user.
-- [ ] Phase 6 named active in `prd/README.md` (only after approval).
-- [ ] Implementation plan approved (via `implement-from-prd`) before any code changes.
+- [x] PRD scope approved by user.
+- [x] Phase 6 named active in `prd/README.md` (only after approval).
+- [x] Implementation plan approved (via `implement-from-prd`) before any code changes.
 
 ## References
 
 - `prd/00-product-vision.md`
 - `prd/phase-5-console-workspace.md`
+- `docs/phase-6-implementation-plan.md`
+- `docs/phase-6-manual-test-plan.md`
 - `.cursor/rules/engineering.mdc`, `.cursor/rules/workflow.mdc`
-- `src/app/execution/execute.py`, `src/app/execution/sql_sanitize.py`
-- `src/app/api/practice.py`, `src/app/practice_session.py`
-- `src/app/main.py`, `src/app/progress/cookie.py`, `src/app/workspace/context.py`
-- `src/app/domain/progress.py`, `src/app/domain/attempts.py`, `src/app/domain/grading.py`, `src/app/domain/exercises.py`
-- `static/js/practice-workspace.js`, `static/js/practice-timer.js`
+- `src/app/execution/execute.py`, `src/app/execution/pool.py`
+- `src/app/api/practice.py`, `src/app/api/routes.py`, `src/app/api/serializers.py`
+- `src/app/main.py`, `src/app/db/settings.py`, `src/app/progress/cookie.py`
+- `src/app/workspace/context.py`
+- `src/app/domain/progress.py`, `src/app/domain/grading.py`, `src/app/domain/exercises.py`
+- `static/js/practice-workspace.js`, `static/js/workspace/`
 - `docker/postgres/init/02-roles.sql`, `.env.example`
