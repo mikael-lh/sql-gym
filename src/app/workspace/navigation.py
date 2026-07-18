@@ -3,7 +3,7 @@ from __future__ import annotations
 from app.catalog import TIMES_ARCHIVE_CATALOG
 from app.domain.exercises import Difficulty, Exercise
 from app.domain.progress import ProgressStore
-from app.practice import PracticeFilters, lookup_exercise
+from app.practice import PracticeFilters
 from app.progress.navigation import find_continue_exercise
 
 
@@ -89,16 +89,3 @@ def workspace_navigation(
         "next_url": next_url,
     }
 
-
-def resolve_workspace_exercise(
-    dataset_id: str,
-    exercise_id: str,
-    filters: PracticeFilters,
-) -> Exercise | None:
-    exercise = lookup_exercise(dataset_id, exercise_id)
-    if exercise is None:
-        return None
-    eligible = filtered_exercises(filters)
-    if exercise not in eligible:
-        return None
-    return exercise
