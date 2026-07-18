@@ -12,11 +12,8 @@ from app.execution.sql_sanitize import strip_sql_comments
 
 MAX_ROWS = 500
 
+# Friendly UX hint only — safety comes from the read-only transaction below.
 _SELECT_PREFIX = re.compile(r"^\s*(with\s+.+?\)\s*)?select\b", re.IGNORECASE | re.DOTALL)
-_FORBIDDEN_KEYWORDS = re.compile(
-    r"\b(insert|update|delete|drop|alter|create|truncate|grant|revoke|copy)\b",
-    re.IGNORECASE,
-)
 
 
 def _normalize_cell(value: object) -> object:
@@ -32,19 +29,14 @@ def _normalize_cell(value: object) -> object:
 
 
 def validate_select_only(sql: str) -> ExecutionError | None:
+    """Return a friendly message for empty / non-SELECT input.
+
+    This is UX guidance only. Write protection is enforced by running every
+    learner query in a read-only database transaction.
+    """
     stripped = strip_sql_comments(sql)
     if not stripped:
         return ExecutionError(message="Enter a SQL query to run.", code="empty_sql")
-    if ";" in stripped.rstrip(";"):
-        return ExecutionError(
-            message="Only a single SELECT statement is allowed.",
-            code="multiple_statements",
-        )
-    if _FORBIDDEN_KEYWORDS.search(stripped):
-        return ExecutionError(
-            message="Only SELECT queries are allowed in the practice database.",
-            code="forbidden_statement",
-        )
     if not _SELECT_PREFIX.match(stripped):
         return ExecutionError(
             message="Only SELECT queries are allowed in the practice database.",
@@ -71,6 +63,8 @@ def execute_query(sql: str) -> QueryResult | ExecutionError:
     executable_sql = strip_sql_comments(sql).rstrip(";")
     try:
         with psycopg.connect(database_url) as conn:
+            # Defense in depth: refuse writes even if the UX text check is bypassed.
+            conn.read_only = True
             conn.execute(f"SET statement_timeout = {get_statement_timeout_ms()}")
             with conn.cursor() as cur:
                 cur.execute(executable_sql)
@@ -90,6 +84,11 @@ def execute_query(sql: str) -> QueryResult | ExecutionError:
         return ExecutionError(
             message="The query took too long and was stopped. Try simplifying your SQL.",
             code="timeout",
+        )
+    except pg_errors.ReadOnlySqlTransaction:
+        return ExecutionError(
+            message="Only SELECT queries are allowed in the practice database.",
+            code="read_only_violation",
         )
     except pg_errors.SyntaxError as exc:
         return ExecutionError(
