@@ -2,13 +2,13 @@
 
 ## Status
 
-**Approved** (2026-07-18). Linear epic + per-milestone issues to be created next; implementation proceeds per `.cursor/rules/workflow.mdc`.
+**Complete** (2026-07-18). Linear epic [TIM-79](https://linear.app/times-api/issue/TIM-79); children TIM-80–TIM-89 merged.
 
 ## Source
 
-- PRD: `prd/phase-6-reliability-and-code-quality.md` (approved 2026-07-18)
-- Proposed Linear epic: **TIM-___** _(create after plan approval)_
-- Proposed child issues: one per milestone below _(numbers assigned when created)_
+- PRD: `prd/phase-6-reliability-and-code-quality.md` (complete 2026-07-18)
+- Linear epic: **TIM-79**
+- Child issues: TIM-80–TIM-89 (M1–M10)
 
 ## Resolved product decisions (2026-07-18)
 
