@@ -1,3 +1,7 @@
+from typing import Any, cast
+
+from starlette.requests import Request
+
 from app.api.serializers import serialize_query_result
 from app.execution.models import QueryResult
 from app.practice_session import (
@@ -8,13 +12,17 @@ from app.practice_session import (
 )
 
 
-class _FakeSession(dict):
+class _FakeSession(dict[str, Any]):
     pass
 
 
 class _FakeRequest:
     def __init__(self) -> None:
         self.session: _FakeSession = _FakeSession()
+
+
+def _as_request(fake: _FakeRequest) -> Request:
+    return cast(Request, fake)
 
 
 def test_session_preview_uses_row_limit() -> None:
@@ -27,7 +35,7 @@ def test_session_preview_uses_row_limit() -> None:
 
 
 def test_slim_practice_attempts_keeps_sql_drops_heavy_fields() -> None:
-    request = _FakeRequest()
+    request = _as_request(_FakeRequest())
     request.session["practice_attempts"] = {
         "ex-a": {
             "sql": "SELECT 1",
@@ -54,7 +62,7 @@ def test_slim_practice_attempts_keeps_sql_drops_heavy_fields() -> None:
 
 
 def test_store_run_result_slims_other_exercises() -> None:
-    request = _FakeRequest()
+    request = _as_request(_FakeRequest())
     request.session["practice_attempts"] = {
         "ex-a": {
             "sql": "SELECT 1",
@@ -71,7 +79,7 @@ def test_store_run_result_slims_other_exercises() -> None:
 
 
 def test_store_run_result_caps_preview_rows() -> None:
-    request = _FakeRequest()
+    request = _as_request(_FakeRequest())
     rows = tuple((index,) for index in range(100))
     outcome = QueryResult(columns=("n",), rows=rows, row_count=100, truncated=False)
     store_run_result(request, "ex-a", "SELECT n", outcome)
