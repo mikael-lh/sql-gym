@@ -272,16 +272,6 @@ function applyExercisePayload(payload) {
   document.title = `${exercise.title} - SQL Gym`;
 }
 
-function progressLabelForStatus(status) {
-  if (status === "passed") {
-    return "Passed";
-  }
-  if (status === "attempted") {
-    return "Attempted";
-  }
-  return "Not started";
-}
-
 function updateProgressUi(progress) {
   const passedCount = document.getElementById("workspace-passed-count");
   if (passedCount instanceof HTMLElement && progress?.passed_count !== undefined) {
@@ -290,7 +280,8 @@ function updateProgressUi(progress) {
 
   const badge = document.getElementById("workspace-progress-badge");
   if (badge instanceof HTMLElement && progress?.status) {
-    badge.textContent = progress.label ?? progressLabelForStatus(progress.status);
+    // Prefer the server-provided label (single source of truth).
+    badge.textContent = progress.label ?? progress.status;
     badge.className = `progress-badge progress-badge-${progress.status}`;
   }
 }
@@ -675,11 +666,7 @@ export function initPracticeWorkspace() {
         modal.show(payload.grading);
       }
       if (payload.progress) {
-        updateProgressUi({
-          passed_count: payload.progress.passed_count,
-          status: payload.grading?.passed ? "passed" : "attempted",
-          label: payload.grading?.passed ? "Passed" : "Attempted",
-        });
+        updateProgressUi(payload.progress);
       }
       if (payload.grading?.passed === true && elapsedSeconds !== null) {
         const firstPassElapsed = document.getElementById("workspace-first-pass-elapsed");
@@ -805,7 +792,8 @@ export function initPracticeWorkspace() {
         if (!response.ok) {
           return;
         }
-        updateProgressUi({
+        const clearPayload = await response.json();
+        updateProgressUi(clearPayload.progress ?? {
           passed_count: 0,
           status: "not_started",
           label: "Not started",

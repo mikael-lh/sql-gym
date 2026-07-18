@@ -13,7 +13,7 @@ from app.api.serializers import (
 )
 from app.catalog import TIMES_ARCHIVE_CATALOG
 from app.domain.exercises import Exercise
-from app.domain.progress import ProgressStore
+from app.domain.progress import ProgressStore, progress_label_for_status
 from app.execution import execute_query
 from app.execution.models import ExecutionError
 from app.practice import PracticeFilters, lookup_exercise
@@ -21,12 +21,6 @@ from app.practice_session import store_run_result, store_submit_result
 from app.progress import attach_progress_cookie, clear_progress_cookie, load_progress
 from app.workspace.context import get_workspace_context, parse_workspace_filters
 from app.workspace.navigation import filtered_exercises
-
-_PROGRESS_LABELS = {
-    "not_started": "Not started",
-    "attempted": "Attempted",
-    "passed": "Passed",
-}
 
 
 class RunRequest(BaseModel):
@@ -47,7 +41,7 @@ def _exercise_list_item(exercise: Exercise, request: Request) -> dict[str, Any]:
         "title": exercise.title,
         "difficulty": exercise.difficulty,
         "progress_status": status,
-        "progress_label": _PROGRESS_LABELS[status],
+        "progress_label": progress_label_for_status(status),
         "url": f"/practice/{exercise.dataset_id}/{exercise.id}",
     }
 
@@ -156,12 +150,15 @@ def api_submit_sql(
         passed=grading.passed is True,
         elapsed_seconds=elapsed,
     )
+    status = progress.get_status(exercise.id)
     response = JSONResponse(
         content={
             "grading": serialize_grading(grading),
             "progress": {
                 "passed_count": progress.passed_count(),
                 "total": len(TIMES_ARCHIVE_CATALOG.exercises),
+                "status": status,
+                "label": progress_label_for_status(status),
             },
         }
     )
@@ -170,7 +167,17 @@ def api_submit_sql(
 
 
 def api_clear_progress() -> JSONResponse:
-    response = JSONResponse(content={"ok": True})
+    cleared = ProgressStore()
+    response = JSONResponse(
+        content={
+            "ok": True,
+            "progress": {
+                "passed_count": 0,
+                "status": "not_started",
+                "label": progress_label_for_status("not_started"),
+            },
+        }
+    )
     clear_progress_cookie(response)
-    attach_progress_cookie(response, ProgressStore())
+    attach_progress_cookie(response, cleared)
     return response
