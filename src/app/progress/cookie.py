@@ -1,12 +1,12 @@
 from __future__ import annotations
 
-import os
 from typing import Any
 
 from itsdangerous import BadSignature, URLSafeSerializer
 from starlette.requests import Request
 from starlette.responses import Response
 
+from app.db.settings import get_session_secret
 from app.domain.progress import ExerciseProgress, ProgressStore
 
 COOKIE_NAME = "sql_gym_progress"
@@ -14,12 +14,8 @@ MAX_AGE_SECONDS = 5_184_000  # 60 days
 SCHEMA_VERSION = 1
 
 
-def _session_secret() -> str:
-    return os.environ.get("SESSION_SECRET", "dev-only-session-secret-change-me")
-
-
 def _serializer() -> URLSafeSerializer:
-    return URLSafeSerializer(_session_secret(), salt="sql-gym-progress")
+    return URLSafeSerializer(get_session_secret(), salt="sql-gym-progress")
 
 
 def _store_to_payload(store: ProgressStore) -> dict[str, Any]:
