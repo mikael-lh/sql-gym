@@ -40,12 +40,18 @@ Optional negative check:
 
 ## 4. Production session-secret hard-fail
 
-With the app stopped:
+With the app stopped, start uvicorn **with** `APP_ENV=production` and no usable secret:
 
 ```bash
-APP_ENV=production unset SESSION_SECRET
-# or: APP_ENV=production SESSION_SECRET='   '
-uv run uvicorn app.main:app --host 127.0.0.1 --port 8000
+env -u SESSION_SECRET APP_ENV=production \
+  uv run uvicorn app.main:app --host 127.0.0.1 --port 8000
+```
+
+Or with a blank secret:
+
+```bash
+APP_ENV=production SESSION_SECRET='   ' \
+  uv run uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
 
 Expect startup to **fail fast** (missing/blank `SESSION_SECRET` in production).
@@ -54,7 +60,8 @@ Development check (optional):
 
 ```bash
 # APP_ENV unset or development; SESSION_SECRET unset → app starts with the committed dev fallback
-uv run uvicorn app.main:app --host 127.0.0.1 --port 8000
+env -u SESSION_SECRET APP_ENV=development \
+  uv run uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
 
 ## 5. Smoke after JS module split
