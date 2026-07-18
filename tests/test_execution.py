@@ -149,6 +149,49 @@ def test_execute_query_rejects_write_via_read_only_transaction(
     assert connection.read_only is True
 
 
+@patch("app.execution.execute.get_pool")
+@patch("app.execution.execute.get_database_url", return_value="postgresql://example")
+def test_execute_query_uses_pool_when_available(
+    _mock_url: MagicMock,
+    mock_get_pool: MagicMock,
+) -> None:
+    cursor = MagicMock()
+    cursor.description = [_column("n")]
+    cursor.fetchmany.return_value = [(1,)]
+    connection = MagicMock()
+    connection.cursor.return_value.__enter__.return_value = cursor
+    pool = MagicMock()
+    pool.connection.return_value.__enter__.return_value = connection
+    mock_get_pool.return_value = pool
+
+    result = execute_query("SELECT 1 AS n")
+    assert isinstance(result, QueryResult)
+    pool.connection.assert_called()
+    assert connection.read_only is True
+
+
+@patch("app.execution.execute.get_pool")
+@patch("app.execution.execute.get_database_url", return_value="postgresql://example")
+def test_execute_query_reuses_pool_across_calls(
+    _mock_url: MagicMock,
+    mock_get_pool: MagicMock,
+) -> None:
+    cursor = MagicMock()
+    cursor.description = [_column("n")]
+    cursor.fetchmany.return_value = [(1,)]
+    connection = MagicMock()
+    connection.cursor.return_value.__enter__.return_value = cursor
+    pool = MagicMock()
+    pool.connection.return_value.__enter__.return_value = connection
+    mock_get_pool.return_value = pool
+
+    first = execute_query("SELECT 1 AS n")
+    second = execute_query("SELECT 1 AS n")
+    assert isinstance(first, QueryResult)
+    assert isinstance(second, QueryResult)
+    assert pool.connection.call_count == 2
+
+
 @pytest.mark.integration
 def test_execute_query_integration_select() -> None:
     database_url = os.environ.get("DATABASE_URL")

@@ -1,13 +1,17 @@
 from __future__ import annotations
 
 import re
+from collections.abc import Iterator
+from contextlib import contextmanager
 from decimal import Decimal
 
 import psycopg
+from psycopg import Connection
 from psycopg import errors as pg_errors
 
 from app.db.settings import get_database_url, get_statement_timeout_ms
 from app.execution.models import ExecutionError, QueryResult
+from app.execution.pool import get_pool
 from app.execution.sql_sanitize import strip_sql_comments
 
 MAX_ROWS = 500
@@ -45,13 +49,28 @@ def validate_select_only(sql: str) -> ExecutionError | None:
     return None
 
 
+@contextmanager
+def _borrow_connection() -> Iterator[Connection]:
+    """Borrow a pooled connection, or open a one-off connection when no pool."""
+    pool = get_pool()
+    if pool is not None:
+        with pool.connection() as conn:
+            yield conn
+        return
+
+    database_url = get_database_url()
+    if not database_url:
+        raise RuntimeError("database_unavailable")
+    with psycopg.connect(database_url) as conn:
+        yield conn
+
+
 def execute_query(sql: str) -> QueryResult | ExecutionError:
     guard_error = validate_select_only(sql)
     if guard_error is not None:
         return guard_error
 
-    database_url = get_database_url()
-    if not database_url:
+    if get_pool() is None and not get_database_url():
         return ExecutionError(
             message=(
                 "Database is not configured. Start Docker Postgres — "
@@ -62,8 +81,9 @@ def execute_query(sql: str) -> QueryResult | ExecutionError:
 
     executable_sql = strip_sql_comments(sql).rstrip(";")
     try:
-        with psycopg.connect(database_url) as conn:
+        with _borrow_connection() as conn:
             # Defense in depth: refuse writes even if the UX text check is bypassed.
+            # Reset on every checkout so pooled connections stay read-only.
             conn.read_only = True
             conn.execute(f"SET statement_timeout = {get_statement_timeout_ms()}")
             with conn.cursor() as cur:
@@ -80,6 +100,16 @@ def execute_query(sql: str) -> QueryResult | ExecutionError:
                     tuple(_normalize_cell(value) for value in row)
                     for row in fetched[:MAX_ROWS]
                 )
+    except RuntimeError as exc:
+        if str(exc) == "database_unavailable":
+            return ExecutionError(
+                message=(
+                    "Database is not configured. Start Docker Postgres — "
+                    "see docs/times-data-setup.md."
+                ),
+                code="database_unavailable",
+            )
+        raise
     except pg_errors.QueryCanceled:
         return ExecutionError(
             message="The query took too long and was stopped. Try simplifying your SQL.",

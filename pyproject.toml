@@ -13,6 +13,7 @@ dependencies = [
     "pydantic>=2.13.4",
     "python-multipart>=0.0.20",
     "uvicorn>=0.49.0",
+    "psycopg-pool>=3.2",
 ]
 
 [project.scripts]
