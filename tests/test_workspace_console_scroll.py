@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 import socket
 import subprocess
 import time
@@ -55,7 +56,14 @@ sync_playwright = pytest.importorskip("playwright.sync_api").sync_playwright
 
 @pytest.mark.integration
 def test_console_results_scroll_without_page_growth(workspace_server_url: str) -> None:
+    if not os.environ.get("DATABASE_URL"):
+        pytest.skip("DATABASE_URL not set")
+
     url = f"{workspace_server_url}/practice/times-archive/times-archive-011"
+    sample_sql = (
+        "SELECT headline_main, pub_date FROM times_archive "
+        "WHERE section_name = 'Arts' ORDER BY pub_date DESC"
+    )
 
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True)
@@ -72,14 +80,15 @@ def test_console_results_scroll_without_page_growth(workspace_server_url: str) -
                 })"""
             )
             page.evaluate(
-                """() => {
-                document.getElementById('practice-sql-input').value =
-                  "SELECT headline_main, pub_date FROM times_archive WHERE section_name = 'Arts' ORDER BY pub_date DESC";
-            }"""
+                """(sql) => {
+                document.getElementById('practice-sql-input').value = sql;
+            }""",
+                sample_sql,
             )
             page.click("#workspace-run-sql")
             page.wait_for_function(
-                "() => document.querySelectorAll('.workspace-console-results tbody tr').length >= 100"
+                "() => document.querySelectorAll("
+                "'.workspace-console-results tbody tr').length >= 100"
             )
             after = page.evaluate(
                 """() => {
@@ -89,10 +98,15 @@ def test_console_results_scroll_without_page_growth(workspace_server_url: str) -
                 }
                 const beforeScroll = results.scrollTop;
                 results.scrollTop = 300;
+                const rows = document.querySelectorAll(
+                    '.workspace-console-results tbody tr'
+                );
                 return {
                     doc: document.documentElement.scrollHeight,
-                    panel: document.querySelector('.workspace-console-panel')?.offsetHeight ?? 0,
-                    rowCount: document.querySelectorAll('.workspace-console-results tbody tr').length,
+                    panel: document.querySelector(
+                        '.workspace-console-panel'
+                    )?.offsetHeight ?? 0,
+                    rowCount: rows.length,
                     canScroll: results.scrollHeight > results.clientHeight,
                     scrollTopAfter: results.scrollTop,
                     scrollTopBefore: beforeScroll,

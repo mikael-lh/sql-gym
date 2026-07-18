@@ -7,7 +7,7 @@ import shutil
 import sys
 from pathlib import Path
 
-from playwright.sync_api import Page, sync_playwright  # type: ignore[import-not-found]
+from playwright.sync_api import Page, sync_playwright
 
 BASE_URL = "http://127.0.0.1:8000"
 OUTPUT_DIR = Path("/opt/cursor/artifacts")

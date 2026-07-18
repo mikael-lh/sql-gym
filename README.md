@@ -10,6 +10,8 @@ A lightweight gym for SQL: practice on curated datasets, run queries, and level 
 |--|--|
 | Full workflow reference | [docs/WORKFLOW.md](docs/WORKFLOW.md) |
 | Product specs | [prd/README.md](prd/README.md) |
+| Phase 6 implementation plan | [docs/phase-6-implementation-plan.md](docs/phase-6-implementation-plan.md) |
+| Phase 6 manual test plan | [docs/phase-6-manual-test-plan.md](docs/phase-6-manual-test-plan.md) |
 | Phase 5 implementation plan | [docs/phase-5-implementation-plan.md](docs/phase-5-implementation-plan.md) |
 | Session state | [docs/session-state.md](docs/session-state.md) |
 | Phase 5 manual test plan | [docs/phase-5-manual-test-plan.md](docs/phase-5-manual-test-plan.md) |
@@ -91,6 +93,30 @@ docker compose up -d
 
 See [docs/times-data-setup.md](docs/times-data-setup.md) for GCS credentials and troubleshooting.
 
+### App environment and session secret
+
+Copy [`.env.example`](.env.example). Notable vars:
+
+| Variable | Purpose |
+|----------|---------|
+| `DATABASE_URL` | Learner-facing PostgreSQL URL (read-only role) |
+| `APP_ENV` | `development` (default) or `production` |
+| `SESSION_SECRET` | Signs Starlette session + progress cookie; **required** when `APP_ENV=production` (startup hard-fail if missing/blank) |
+
+In development, a committed fallback secret is used when `SESSION_SECRET` is unset. Do not use that fallback in production.
+
+## Phase 6 reliability notes
+
+Phase 6 ([prd/phase-6-reliability-and-code-quality.md](prd/phase-6-reliability-and-code-quality.md)) hardens the Phase 5 workspace without changing learner-facing product scope. Notable structure:
+
+- **Execution:** PostgreSQL connections are pooled (`psycopg-pool`); learner queries run in a read-only transaction (no keyword-regex write filter).
+- **API wiring:** Practice JSON routes live on an `APIRouter` (`src/app/api/routes.py`).
+- **Workspace context:** Typed `WorkspaceContext` (Pydantic) feeds the page and `GET` exercise API.
+- **Frontend:** Workspace JS is split under `static/js/workspace/` (render, stopwatch, navigation, api-client, format); `practice-workspace.js` is the thin orchestrator. Shared `formatTime` formats `M:SS`.
+- **Docs:** [Phase 6 manual test plan](docs/phase-6-manual-test-plan.md).
+
+Product status remains Phase 5 complete until a separate `update-prd` pass marks Phase 6 done.
+
 ## Phase 5 behavior status
 
 Working behavior:
@@ -143,7 +169,7 @@ Working behavior:
 - Docker Compose PostgreSQL with imported Times Archive rows (`times_archive` table).
 - CodeMirror SQL editor on exercise preview pages with **Run SQL** and **Submit for grading**.
 - Strict grid-match grading for all 60 catalog exercises.
-- Learner-facing SELECT-only execution with timeout and row limits.
+- Learner-facing SELECT-only execution with timeout and row limits (Phase 6: pooled connections + DB read-only transaction).
 - Session cookie for draft SQL and last run/grade (browser session).
 
 Placeholder behavior (superseded in Phase 3 where noted):

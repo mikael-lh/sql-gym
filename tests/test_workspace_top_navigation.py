@@ -10,7 +10,6 @@ from collections.abc import Iterator
 from pathlib import Path
 
 import pytest
-
 from playwright_layout import LAYOUT_VIEWPORTS, assert_controls_on_one_row
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -189,7 +188,8 @@ def test_pass_modal_next_exercise_navigates_without_ok(workspace_server_url: str
                 timeout=10_000,
             )
             assert page.locator("#workspace-grading-modal").evaluate("el => el.hidden") is True
-            assert "Desks with many articles" in page.locator("#workspace-exercise-title").inner_text()
+            title = page.locator("#workspace-exercise-title").inner_text()
+            assert "Desks with many articles" in title
         finally:
             browser.close()
 
