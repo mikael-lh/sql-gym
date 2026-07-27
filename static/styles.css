@@ -790,6 +790,25 @@ h3 {
   margin: 0;
 }
 
+.workspace-explain-panel {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.workspace-explain-status,
+.workspace-explain-text {
+  margin: 0;
+}
+
+.workspace-explain-status {
+  color: #5c6578;
+  font-size: 0.95rem;
+}
+
+.workspace-explain-text {
+  white-space: pre-wrap;
+}
+
 .workspace-modal-actions {
   display: flex;
   flex-wrap: wrap;

@@ -1,5 +1,5 @@
 import { formatCell } from "./format.js";
-import { getSqlInput } from "./api-client.js";
+import { buildExplainUrl, getSqlInput } from "./api-client.js";
 
 export function renderQueryResult(consoleEl, result) {
   const truncatedNote = result.truncated
@@ -219,12 +219,16 @@ function hasCoarsePointer() {
   return window.matchMedia("(pointer: coarse)").matches;
 }
 
-export function createGradingModal(submitButton, nextNavButton) {
+export function createGradingModal(submitButton, nextNavButton, config = null) {
   const backdrop = document.getElementById("workspace-grading-modal");
   const title = document.getElementById("workspace-grading-title");
   const summary = document.getElementById("workspace-grading-summary");
   const okButton = document.getElementById("workspace-grading-ok");
   const nextButton = document.getElementById("workspace-grading-next");
+  const explainButton = document.getElementById("workspace-explain-ai");
+  const explainPanel = document.getElementById("workspace-explain-panel");
+  const explainStatus = document.getElementById("workspace-explain-status");
+  const explainText = document.getElementById("workspace-explain-text");
   const workspaceShell = document.querySelector("[data-workspace-shell]");
   if (
     !(backdrop instanceof HTMLElement) ||
@@ -243,6 +247,8 @@ export function createGradingModal(submitButton, nextNavButton) {
     document.body.appendChild(backdrop);
   }
 
+  let explainRequestId = 0;
+
   const isOpen = () => !backdrop.hidden;
 
   const canGoToNextExercise = (passed) =>
@@ -257,7 +263,28 @@ export function createGradingModal(submitButton, nextNavButton) {
     }
   };
 
+  const resetExplainUi = () => {
+    explainRequestId += 1;
+    if (explainButton instanceof HTMLButtonElement) {
+      explainButton.hidden = true;
+      explainButton.disabled = false;
+      explainButton.removeAttribute("aria-busy");
+    }
+    if (explainPanel instanceof HTMLElement) {
+      explainPanel.hidden = true;
+    }
+    if (explainStatus instanceof HTMLElement) {
+      explainStatus.hidden = true;
+      explainStatus.textContent = "";
+    }
+    if (explainText instanceof HTMLElement) {
+      explainText.hidden = true;
+      explainText.textContent = "";
+    }
+  };
+
   const hide = () => {
+    resetExplainUi();
     backdrop.hidden = true;
     nextButton.hidden = true;
     setShellInert(false);
@@ -267,17 +294,29 @@ export function createGradingModal(submitButton, nextNavButton) {
   };
 
   const show = (grading) => {
+    resetExplainUi();
     const passed = grading.passed === true;
     title.textContent = passed ? "Passed" : "Not yet correct";
     summary.textContent = grading.summary ?? "";
     summary.className = passed ? "feedback feedback-pass" : "feedback feedback-fail";
     const showNext = canGoToNextExercise(passed);
     nextButton.hidden = !showNext;
+    const showExplain =
+      !passed &&
+      grading.status === "graded" &&
+      explainButton instanceof HTMLButtonElement &&
+      config?.dataset_id &&
+      config?.exercise_id;
+    if (explainButton instanceof HTMLButtonElement) {
+      explainButton.hidden = !showExplain;
+    }
     backdrop.hidden = false;
     setShellInert(true);
     if (!hasCoarsePointer()) {
       if (showNext) {
         nextButton.focus();
+      } else if (showExplain && explainButton instanceof HTMLButtonElement) {
+        explainButton.focus();
       } else {
         okButton.focus();
       }
@@ -302,6 +341,66 @@ export function createGradingModal(submitButton, nextNavButton) {
       nextNavButton.click();
     }
   });
+
+  if (explainButton instanceof HTMLButtonElement) {
+    explainButton.addEventListener("click", async (event) => {
+      event.preventDefault();
+      if (
+        !config?.dataset_id ||
+        !config?.exercise_id ||
+        !(explainPanel instanceof HTMLElement) ||
+        !(explainStatus instanceof HTMLElement) ||
+        !(explainText instanceof HTMLElement)
+      ) {
+        return;
+      }
+      const requestId = ++explainRequestId;
+      explainPanel.hidden = false;
+      explainText.hidden = true;
+      explainText.textContent = "";
+      explainStatus.hidden = false;
+      explainStatus.textContent = "Getting explanation…";
+      explainButton.disabled = true;
+      explainButton.setAttribute("aria-busy", "true");
+
+      try {
+        const response = await fetch(buildExplainUrl(config), {
+          method: "POST",
+        });
+        const payload = await response.json().catch(() => ({}));
+        if (requestId !== explainRequestId || !isOpen()) {
+          return;
+        }
+        if (response.ok && typeof payload.explanation === "string") {
+          explainStatus.hidden = true;
+          explainStatus.textContent = "";
+          explainText.hidden = false;
+          explainText.textContent = payload.explanation;
+          return;
+        }
+        const message =
+          payload?.error?.message ?? "AI unavailable: could not get an explanation right now.";
+        explainStatus.hidden = true;
+        explainStatus.textContent = "";
+        explainText.hidden = false;
+        explainText.textContent = message;
+      } catch {
+        if (requestId !== explainRequestId || !isOpen()) {
+          return;
+        }
+        explainStatus.hidden = true;
+        explainStatus.textContent = "";
+        explainText.hidden = false;
+        explainText.textContent = "AI unavailable: network error while requesting an explanation.";
+      } finally {
+        if (requestId === explainRequestId) {
+          explainButton.disabled = false;
+          explainButton.removeAttribute("aria-busy");
+        }
+      }
+    });
+  }
+
   backdrop.addEventListener("click", dismissFromBackdrop);
   backdrop.addEventListener("touchend", dismissFromBackdrop);
   document.addEventListener("keydown", (event) => {
