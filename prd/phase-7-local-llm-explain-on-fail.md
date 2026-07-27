@@ -2,7 +2,7 @@
 
 ## Status
 
-**Draft — not approved, not active.** Awaiting user approval before it becomes the active phase and before any implementation plan or code is written.
+**Approved and active** (2026-07-27). Implementation plan required via `implement-from-prd` before application code.
 
 ## Source context
 
@@ -168,8 +168,8 @@ Acceptance criteria:
 
 ## Approval
 
-- [ ] PRD scope approved by user.
-- [ ] Phase 7 named active in `prd/README.md` (only after approval).
+- [x] PRD scope approved by user (2026-07-27).
+- [x] Phase 7 named active in `prd/README.md` (only after approval).
 - [ ] Implementation plan approved (via `implement-from-prd`) before any code changes.
 
 ## References
