@@ -1,6 +1,6 @@
 # Session state
 
-Phase 5 uses the **practice workspace** with JSON APIs. Phase 6 keeps the same stores and routes; it types workspace context and splits the client modules. See [progress.md](progress.md) for the durable progress cookie.
+Phase 5 uses the **practice workspace** with JSON APIs. Phase 6 keeps the same stores and routes; it types workspace context and splits the client modules. Phase 7 adds explain-on-fail (session-backed) without changing progress cookies. See [progress.md](progress.md) for the durable progress cookie.
 
 ## Stores
 
@@ -23,6 +23,8 @@ Per-exercise map keyed by `exercise_id`:
 
 Session preview cap prevents large grids from exceeding browser cookie limits while grading still re-executes SQL on submit.
 
+**Explain-on-fail (Phase 7):** `POST .../explain` uses `get_failed_submit_attempt` — only when the session’s last grading for that exercise has `passed: false`. A subsequent **Run** clears grading from the attempt (draft status), so explain returns “no failed submit” until another failing submit.
+
 ## Workspace APIs
 
 Registered via `APIRouter` prefix `/api/practice` (`src/app/api/routes.py`):
@@ -33,9 +35,12 @@ Registered via `APIRouter` prefix `/api/practice` (`src/app/api/routes.py`):
 | `GET /api/practice/{dataset}/{exercise}` | Exercise payload + attempt restore |
 | `POST /api/practice/{dataset}/{exercise}/run` | Execute SQL → JSON grid or error |
 | `POST /api/practice/{dataset}/{exercise}/submit` | Grade → JSON + `Set-Cookie` progress |
+| `POST /api/practice/{dataset}/{exercise}/explain` | Explain last failed submit → `{explanation}` or `{error:{message}}` (no progress cookie change) |
 | `POST /api/practice/progress/clear` | Clear progress cookie |
 
 `GET` exercise payloads are built from typed `WorkspaceContext` (`src/app/workspace/context.py`).
+
+Explain context is built server-side from the exercise catalog + session attempt (prompt, output requirements, learner SQL, grading summary, expected **column names**). It does **not** include `reference_sql` or expected row values.
 
 ## Pages
 
@@ -46,7 +51,7 @@ Registered via `APIRouter` prefix `/api/practice` (`src/app/api/routes.py`):
 | `GET /practice/{dataset}/{exercise}` | Workspace shell (SSR + client patches) |
 | `GET /practice/interview/*` | Legacy redirect → `/practice` |
 
-Exercise switching restores draft SQL, last run console output, and grading metadata from session via the exercise API. The grading modal is shown only on fresh submit, not on exercise switch.
+Exercise switching restores draft SQL, last run console output, and grading metadata from session via the exercise API. The grading modal is shown only on fresh submit, not on exercise switch. On a **failed graded** submit, the modal offers **Explain with AI** (opt-in fetch to the explain route).
 
 ## Client modules
 
@@ -55,9 +60,18 @@ Exercise switching restores draft SQL, last run console output, and grading meta
 | `static/js/practice-workspace-entry.js` | DOMContentLoaded → `initPracticeWorkspace` |
 | `static/js/practice-workspace.js` | Thin orchestrator (run/submit/clear wiring) |
 | `static/js/workspace/format.js` | Shared `formatTime` (`M:SS`) + `formatCell` |
-| `static/js/workspace/api-client.js` | Config + practice API URL helpers |
-| `static/js/workspace/render.js` | Console, progress UI, grading modal, exercise apply |
+| `static/js/workspace/api-client.js` | Config + practice API URL helpers (including explain) |
+| `static/js/workspace/render.js` | Console, progress UI, grading modal (+ explain), exercise apply |
 | `static/js/workspace/stopwatch.js` | Elapsed timer |
 | `static/js/workspace/navigation.js` | Drawer, prev/next, filter redirect, history |
 
 Initial `workspace_config` JSON is derived from `WorkspaceContext` (dataset/exercise ids, filters, navigation, attempt preview, progress).
+
+## Ollama process lifecycle (not browser session)
+
+Model pull/cleanup is tied to the **uvicorn app process**, not the browser tab:
+
+- Startup: best-effort pull of `OLLAMA_MODEL`
+- Shutdown: best-effort delete if this process pulled it (unless `OLLAMA_KEEP_MODEL`)
+
+See [README.md](../README.md) and [phase-7-manual-test-plan.md](phase-7-manual-test-plan.md).

@@ -4,12 +4,14 @@ A lightweight gym for SQL: practice on curated datasets, run queries, and level 
 
 ## Status
 
-**Phase 6 complete** — reliability and code-quality hardening on the Phase 5 practice workspace ([prd/phase-6-reliability-and-code-quality.md](prd/phase-6-reliability-and-code-quality.md)). Phase 5–0 behavior below remains unless superseded. New product scope requires a new phase PRD plus an approved implementation plan.
+**Phase 7 active** — local LLM explain-on-fail ([prd/phase-7-local-llm-explain-on-fail.md](prd/phase-7-local-llm-explain-on-fail.md)). Phase 6 reliability work remains. New product scope beyond Phase 7 requires a new phase PRD plus an approved implementation plan.
 
 | | |
 |--|--|
 | Full workflow reference | [docs/WORKFLOW.md](docs/WORKFLOW.md) |
 | Product specs | [prd/README.md](prd/README.md) |
+| Phase 7 implementation plan | [docs/phase-7-implementation-plan.md](docs/phase-7-implementation-plan.md) |
+| Phase 7 manual test plan | [docs/phase-7-manual-test-plan.md](docs/phase-7-manual-test-plan.md) |
 | Phase 6 implementation plan | [docs/phase-6-implementation-plan.md](docs/phase-6-implementation-plan.md) |
 | Phase 6 manual test plan | [docs/phase-6-manual-test-plan.md](docs/phase-6-manual-test-plan.md) |
 | Phase 5 implementation plan | [docs/phase-5-implementation-plan.md](docs/phase-5-implementation-plan.md) |
@@ -102,8 +104,36 @@ Copy [`.env.example`](.env.example). Notable vars:
 | `DATABASE_URL` | Learner-facing PostgreSQL URL (read-only role) |
 | `APP_ENV` | `development` (default) or `production` |
 | `SESSION_SECRET` | Signs Starlette session + progress cookie; **required** when `APP_ENV=production` (startup hard-fail if missing/blank) |
+| `OLLAMA_BASE_URL` | Native Ollama HTTP base (default `http://127.0.0.1:11434`) |
+| `OLLAMA_MODEL` | Model name to pull/use (default `llama3.2:3b`) |
+| `OLLAMA_KEEP_MODEL` | Set to `1`/`true` to skip deleting the model on app shutdown |
+| `OLLAMA_PULL_TIMEOUT_SECONDS` | Bounded startup pull timeout (default `120`) |
+| `OLLAMA_REQUEST_TIMEOUT_SECONDS` | Tags/chat/delete timeout (default `30`) |
 
 In development, a committed fallback secret is used when `SESSION_SECRET` is unset. Do not use that fallback in production.
+
+### Local Ollama (Phase 7 explain-on-fail)
+
+Explain-on-fail uses **native Ollama** over HTTP (not Docker-required for the model runtime):
+
+1. Install Ollama from [https://ollama.com](https://ollama.com) and leave it running locally.
+2. Start sql-gym with a **single uvicorn worker** (the default `./scripts/dev.sh` / `uvicorn app.main:app` path). Multi-worker pull/delete races are out of scope.
+3. On app **launch**, the process best-effort pulls `OLLAMA_MODEL` if missing (app still starts if Ollama is down).
+4. On app **shutdown**, the process best-effort deletes that model **only if this process pulled it**, unless `OLLAMA_KEEP_MODEL=1`.
+
+After a **failed** submit, the grading modal offers **Explain with AI**. See [docs/phase-7-manual-test-plan.md](docs/phase-7-manual-test-plan.md).
+
+## Phase 7 behavior status
+
+Working explain-on-fail outcomes:
+
+- **Ollama client:** httpx helpers for tags/pull/chat/delete; env defaults above.
+- **Lifecycle:** best-effort launch pull + ownership-gated shutdown cleanup.
+- **API:** `POST /api/practice/{dataset}/{exercise}/explain` reads the session’s last failed submit (no client-injected grading).
+- **UI:** failed grading modal shows **Explain with AI** (opt-in); passed modal does not. Unavailable responses show the server’s `error.message`.
+- **Docs:** [Phase 7 manual test plan](docs/phase-7-manual-test-plan.md); [session state](docs/session-state.md).
+
+Grading pass/fail and progress cookies are unchanged by explain.
 
 ## Phase 6 behavior status
 
@@ -132,7 +162,7 @@ Working behavior:
 Placeholder behavior:
 
 - Authentication, accounts, and cross-device sync.
-- AI grading, explanations, and partial credit.
+- AI as the grading authority, partial credit, or standing “Ask AI” before a failed submit.
 
 ## Phase 4 behavior status
 
