@@ -4,7 +4,7 @@ A lightweight gym for SQL: practice on curated datasets, run queries, and level 
 
 ## Status
 
-**Phase 7 active** — local LLM explain-on-fail ([prd/phase-7-local-llm-explain-on-fail.md](prd/phase-7-local-llm-explain-on-fail.md)). Phase 6 reliability work remains. New product scope beyond Phase 7 requires a new phase PRD plus an approved implementation plan.
+**Phase 7 complete** — local LLM explain-on-fail ([prd/phase-7-local-llm-explain-on-fail.md](prd/phase-7-local-llm-explain-on-fail.md)). Phase 6 reliability work remains. New product scope requires a new phase PRD plus an approved implementation plan.
 
 | | |
 |--|--|

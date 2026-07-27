@@ -99,4 +99,4 @@ if [[ -f pyproject.toml ]]; then
 else
   echo "Application stack: not scaffolded yet (see prd/phase-0-product-scaffolding.md)."
 fi
-echo "Active phase: Phase 7 active - local LLM explain-on-fail."
+echo "Active phase: Phase 7 complete - local LLM explain-on-fail."

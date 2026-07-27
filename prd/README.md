@@ -1,6 +1,6 @@
 # Product requirements
 
-**Status: Phase 7 active** — local LLM explain-on-fail ([phase-7-local-llm-explain-on-fail.md](phase-7-local-llm-explain-on-fail.md)). Approved 2026-07-27. Implementation plan required before code.
+**Status: Phase 7 complete** — local LLM explain-on-fail ([phase-7-local-llm-explain-on-fail.md](phase-7-local-llm-explain-on-fail.md)). Shipped 2026-07-27 (TIM-90). New product scope needs a new phase PRD.
 
 Specs are added here via the `write-prd` repo skill. Do not treat informal chat notes as requirements.
 
@@ -16,7 +16,7 @@ Specs are added here via the `write-prd` repo skill. Do not treat informal chat 
 | 4 | [phase-4-interview-sessions-and-polish.md](phase-4-interview-sessions-and-polish.md) | [TIM-43](https://linear.app/times-api/issue/TIM-43/phase-4-or-interview-sessions-and-reliability-polish) | Complete; TIM-44, TIM-49, TIM-50, TIM-46, TIM-47, TIM-48, and TIM-45 merged |
 | 5 | [phase-5-console-workspace.md](phase-5-console-workspace.md) | [TIM-56](https://linear.app/times-api/issue/TIM-56/phase-5-or-console-workspace) | Complete; TIM-57–TIM-64 merged |
 | 6 | [phase-6-reliability-and-code-quality.md](phase-6-reliability-and-code-quality.md) | [TIM-79](https://linear.app/times-api/issue/TIM-79) | Complete; TIM-80–TIM-89 merged |
-| 7 | [phase-7-local-llm-explain-on-fail.md](phase-7-local-llm-explain-on-fail.md) | [TIM-90](https://linear.app/times-api/issue/TIM-90) | Active / implementing; plan approved; TIM-91→93→94→92 |
+| 7 | [phase-7-local-llm-explain-on-fail.md](phase-7-local-llm-explain-on-fail.md) | [TIM-90](https://linear.app/times-api/issue/TIM-90) | Complete; TIM-91, TIM-93, TIM-94, TIM-92 merged |
 
 ## Linear
 
@@ -28,8 +28,9 @@ Source of truth: committed markdown in `prd/`. Repo skills and when to use them:
 
 ## Active phase
 
-**Phase 7 — local LLM explain-on-fail** ([phase-7-local-llm-explain-on-fail.md](phase-7-local-llm-explain-on-fail.md)). User-approved 2026-07-27. Implementation plan: [`docs/phase-7-implementation-plan.md`](../docs/phase-7-implementation-plan.md) (**approved** 2026-07-27).
+**No active phase.** Phase 7 is complete ([phase-7-local-llm-explain-on-fail.md](phase-7-local-llm-explain-on-fail.md)). Start the next phase with `write-prd` + `implement-from-prd` before application code.
 
+Completed Phase 7 implementation plan: [`docs/phase-7-implementation-plan.md`](../docs/phase-7-implementation-plan.md).
 Completed Phase 6 implementation plan: [`docs/phase-6-implementation-plan.md`](../docs/phase-6-implementation-plan.md).
 Completed Phase 5 implementation plan: [`docs/phase-5-implementation-plan.md`](../docs/phase-5-implementation-plan.md).
 Completed Phase 4 implementation plan: [`docs/phase-4-implementation-plan.md`](../docs/phase-4-implementation-plan.md).
