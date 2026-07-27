@@ -67,6 +67,17 @@ def get_attempt_state(request: Request, exercise_id: str) -> dict[str, Any]:
     }
 
 
+def get_failed_submit_attempt(request: Request, exercise_id: str) -> dict[str, Any] | None:
+    """Return the session attempt when the last submit failed grading; else None."""
+    attempt = get_attempt_state(request, exercise_id)
+    grading = attempt.get("grading")
+    if not isinstance(grading, dict):
+        return None
+    if grading.get("passed") is not False:
+        return None
+    return attempt
+
+
 def store_run_result(
     request: Request,
     exercise_id: str,
