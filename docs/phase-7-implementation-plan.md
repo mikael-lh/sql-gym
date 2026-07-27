@@ -2,7 +2,7 @@
 
 ## Status
 
-**Approved** (2026-07-27). Linear epic [TIM-90](https://linear.app/times-api/issue/TIM-90); children TIM-91–TIM-94 created.
+**Complete** (2026-07-27). Linear epic [TIM-90](https://linear.app/times-api/issue/TIM-90); children TIM-91, TIM-93, TIM-94, TIM-92 merged.
 
 ## Source
 

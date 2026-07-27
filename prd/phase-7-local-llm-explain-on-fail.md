@@ -2,7 +2,7 @@
 
 ## Status
 
-**Approved and active** (2026-07-27). Implementation plan required via `implement-from-prd` before application code.
+**Complete** (2026-07-27) — shipped via TIM-90 epic (TIM-91, TIM-93, TIM-94, TIM-92). Implementation plan: `docs/phase-7-implementation-plan.md`.
 
 ## Source context
 
@@ -126,11 +126,11 @@ Acceptance criteria:
 
 ## Phase acceptance criteria
 
-- [ ] After a failed submit, learners can get a local-LLM explanation when Ollama is available.
-- [ ] AI never changes pass/fail or progress outcomes.
-- [ ] Unavailable Ollama/model shows a clear AI unavailable message.
-- [ ] Configured model is removed when the app process session ends (not per request).
-- [ ] Docs and validation cover the new paths; app works without Ollama for non-AI flows.
+- [x] After a failed submit, learners can get a local-LLM explanation when Ollama is available.
+- [x] AI never changes pass/fail or progress outcomes.
+- [x] Unavailable Ollama/model shows a clear AI unavailable message.
+- [x] Configured model is removed when the app process session ends (not per request).
+- [x] Docs and validation cover the new paths; app works without Ollama for non-AI flows.
 
 ## Edge cases and error states
 
@@ -157,26 +157,47 @@ Acceptance criteria:
 - Machines without Ollama still run sql-gym; AI failure mode is obvious.
 - After stopping the app, the configured model is not left installed by default.
 
+## What was actually built (2026-07-27)
+
+Shipped as small focused PRs per the approved plan (implement order TIM-91 → TIM-93 → TIM-94 → TIM-92):
+
+| Milestone | Issue | Outcome |
+|-----------|-------|---------|
+| M1 | TIM-91 | Native Ollama httpx client; env helpers; launch pull + ownership-gated shutdown cleanup |
+| M2 | TIM-93 | `POST .../explain` session-backed failed-submit API; spoiler-safe context pack; `{explanation}` / `{error:{message}}` |
+| M3 | TIM-94 | Fail-modal **Explain with AI** (opt-in); loading → text or server unavailable copy; Playwright + layout matrix |
+| M4 | TIM-92 | README / session-state / manual test plan; `validate-env.sh` Phase 7 banner |
+
+**Resolved vs edge-case table:** auto-pull is on **app launch** (not first explain). Cleanup deletes only the configured model **this process pulled** (pre-installed models left alone). Single-worker local assumption documented.
+
+**Deviations:** none material. Plan preferred session-backed explain (no client-injected grading) — implemented. Error responses use a plain `message` string only (no client reason-class taxonomy).
+
 ## Open questions
 
-- **Exact UI chrome:** explain text inside the existing grading modal vs a follow-on panel — decide in `implement-from-prd`.
-- **Context pack:** how much of expected columns/rows / reference SQL to send without spoiling answers.
-- **Default model name / size:** pick a small default suitable for local CPU/GPU in the implementation plan.
-- **Auto-pull on first explain?** vs require `ollama pull` beforehand.
-- **“Session ends”:** confirm app-process shutdown is the intended trigger (vs browser session cookie end). **PRD assumes app-process shutdown** unless the user overrides.
-- **Should cleanup be configurable** (env flag to keep the model installed for frequent local dev)?
+Resolved during planning/implementation (2026-07-27):
+
+- **UI chrome:** Explain with AI button inside the existing grading modal (failed graded submits only).
+- **Context pack:** title, prompt, difficulty, output requirements, learner SQL, grading summary, expected column names — no `reference_sql` / expected rows.
+- **Default model:** `llama3.2:3b` (override via `OLLAMA_MODEL`).
+- **Auto-pull:** on app launch (bounded timeout; app starts if Ollama down).
+- **Session end:** uvicorn/app lifespan shutdown (not browser tab close).
+- **Cleanup opt-out:** `OLLAMA_KEEP_MODEL=1`.
 
 ## Approval
 
 - [x] PRD scope approved by user (2026-07-27).
 - [x] Phase 7 named active in `prd/README.md` (only after approval).
 - [x] Implementation plan approved (via `implement-from-prd`) before any code changes.
+- [x] Phase marked complete after TIM-91–TIM-94/TIM-92 merged (2026-07-27).
 
 ## References
 
 - `prd/00-product-vision.md` — AI explanations / mixed grading (this phase: explain only, not AI grading authority)
 - `prd/phase-5-console-workspace.md` — workspace + grading modal
-- `prd/phase-6-reliability-and-code-quality.md` — current complete phase
-- `src/app/api/practice.py` — submit / grading JSON
-- `static/js/workspace/render.js` — grading modal
+- `prd/phase-6-reliability-and-code-quality.md` — prior complete phase
+- `docs/phase-7-implementation-plan.md`
+- `docs/phase-7-manual-test-plan.md`
+- `src/app/ai/ollama.py`, `src/app/ai/explain.py`
+- `src/app/api/practice.py` — submit / explain JSON
+- `static/js/workspace/render.js` — grading modal + explain
 - `.env.example`, `README.md`
