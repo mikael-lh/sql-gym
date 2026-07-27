@@ -28,6 +28,10 @@ export function buildSubmitUrl(config) {
   return `/api/practice/${config.dataset_id}/${config.exercise_id}/submit`;
 }
 
+export function buildExplainUrl(config) {
+  return `/api/practice/${config.dataset_id}/${config.exercise_id}/explain`;
+}
+
 function filtersToQuery(filters) {
   const params = new URLSearchParams();
   if (filters?.difficulty) {

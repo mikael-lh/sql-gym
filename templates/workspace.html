@@ -169,7 +169,12 @@
   <div class="workspace-modal" role="dialog" aria-modal="true" aria-labelledby="workspace-grading-title" aria-describedby="workspace-grading-summary">
     <h2 id="workspace-grading-title">Grading result</h2>
     <p id="workspace-grading-summary"></p>
+    <div id="workspace-explain-panel" class="workspace-explain-panel" hidden>
+      <p id="workspace-explain-status" class="workspace-explain-status" hidden></p>
+      <p id="workspace-explain-text" class="workspace-explain-text" hidden></p>
+    </div>
     <div class="workspace-modal-actions">
+      <button type="button" class="button-secondary" id="workspace-explain-ai" hidden>Explain with AI</button>
       <button type="button" class="button-secondary" id="workspace-grading-ok">OK</button>
       <button type="button" class="button-secondary" id="workspace-grading-next" hidden>Next exercise</button>
     </div>

@@ -35,7 +35,11 @@ export function initPracticeWorkspace() {
   const workspaceConfig = { ...config, filters: { ...config.filters } };
   renderConsoleAttempt(consoleEl, workspaceConfig.attempt);
 
-  const modal = createGradingModal(submitButton, document.getElementById("workspace-next"));
+  const modal = createGradingModal(
+    submitButton,
+    document.getElementById("workspace-next"),
+    workspaceConfig,
+  );
   let runInFlight = false;
   let submitInFlight = false;
   const initialProgress = workspaceConfig.progress ?? {};
