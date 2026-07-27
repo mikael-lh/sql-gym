@@ -1,6 +1,6 @@
 # Product requirements
 
-**Status: Phase 6 complete.**
+**Status: Phase 6 complete.** Phase 7 PRD drafted (not active until approved).
 
 Specs are added here via the `write-prd` repo skill. Do not treat informal chat notes as requirements.
 
@@ -16,6 +16,7 @@ Specs are added here via the `write-prd` repo skill. Do not treat informal chat 
 | 4 | [phase-4-interview-sessions-and-polish.md](phase-4-interview-sessions-and-polish.md) | [TIM-43](https://linear.app/times-api/issue/TIM-43/phase-4-or-interview-sessions-and-reliability-polish) | Complete; TIM-44, TIM-49, TIM-50, TIM-46, TIM-47, TIM-48, and TIM-45 merged |
 | 5 | [phase-5-console-workspace.md](phase-5-console-workspace.md) | [TIM-56](https://linear.app/times-api/issue/TIM-56/phase-5-or-console-workspace) | Complete; TIM-57–TIM-64 merged |
 | 6 | [phase-6-reliability-and-code-quality.md](phase-6-reliability-and-code-quality.md) | [TIM-79](https://linear.app/times-api/issue/TIM-79) | Complete; TIM-80–TIM-89 merged |
+| 7 | [phase-7-local-llm-explain-on-fail.md](phase-7-local-llm-explain-on-fail.md) | TBD | Draft; not active |
 
 ## Linear
 
@@ -27,10 +28,11 @@ Source of truth: committed markdown in `prd/`. Repo skills and when to use them:
 
 ## Active phase
 
-**None.** Phase 6 — reliability and code-quality is **complete** ([phase-6-reliability-and-code-quality.md](phase-6-reliability-and-code-quality.md)). Shipped via TIM-79 (TIM-80–TIM-89). Implementation plan: [`docs/phase-6-implementation-plan.md`](../docs/phase-6-implementation-plan.md).
+**None.** Phase 6 is complete. Phase 7 ([phase-7-local-llm-explain-on-fail.md](phase-7-local-llm-explain-on-fail.md)) is drafted and awaiting approval before it is named active.
 
-New product scope requires a new phase PRD plus an approved implementation plan.
+New product scope requires an approved phase PRD plus an approved implementation plan.
 
+Completed Phase 6 implementation plan: [`docs/phase-6-implementation-plan.md`](../docs/phase-6-implementation-plan.md).
 Completed Phase 5 implementation plan: [`docs/phase-5-implementation-plan.md`](../docs/phase-5-implementation-plan.md).
 Completed Phase 4 implementation plan: [`docs/phase-4-implementation-plan.md`](../docs/phase-4-implementation-plan.md).
 Completed Phase 3 implementation plan: [`docs/phase-3-implementation-plan.md`](../docs/phase-3-implementation-plan.md).
