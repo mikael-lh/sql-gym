@@ -10,6 +10,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from starlette.middleware.sessions import SessionMiddleware
 
+from app.ai import cleanup_model_on_shutdown, ensure_model_pulled_on_startup
 from app.api.routes import router as practice_api_router
 from app.db.settings import get_session_secret
 from app.execution.pool import close_pool, open_pool
@@ -30,10 +31,14 @@ templates = Jinja2Templates(directory=TEMPLATES_DIR)
 @asynccontextmanager
 async def _lifespan(_app: FastAPI) -> AsyncIterator[None]:
     open_pool()
+    ensure_model_pulled_on_startup()
     try:
         yield
     finally:
-        close_pool()
+        try:
+            close_pool()
+        finally:
+            cleanup_model_on_shutdown()
 
 
 def render_not_found(request: Request, *, resource_label: str = "exercise") -> Response:
