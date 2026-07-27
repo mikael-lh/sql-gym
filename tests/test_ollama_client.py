@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+from collections.abc import Generator
 from unittest.mock import patch
 
 import httpx
@@ -28,7 +29,7 @@ from app.db.settings import (
 
 
 @pytest.fixture(autouse=True)
-def _reset_lifecycle() -> None:
+def _reset_lifecycle() -> Generator[None, None, None]:
     reset_ollama_lifecycle_state_for_tests()
     yield
     reset_ollama_lifecycle_state_for_tests()
