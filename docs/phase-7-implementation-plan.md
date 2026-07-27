@@ -2,13 +2,17 @@
 
 ## Status
 
-**Approved** (2026-07-27). Linear epic + per-milestone issues to be created next; implementation proceeds per `.cursor/rules/workflow.mdc`.
+**Approved** (2026-07-27). Linear epic [TIM-90](https://linear.app/times-api/issue/TIM-90); children TIM-91–TIM-94 created.
 
 ## Source
 
 - PRD: `prd/phase-7-local-llm-explain-on-fail.md` (approved and active 2026-07-27)
-- Proposed Linear epic: **TIM-___** _(create after plan approval)_
-- Proposed child issues: one per milestone below _(numbers assigned when created)_
+- Linear epic: **[TIM-90](https://linear.app/times-api/issue/TIM-90)**
+- Child issues (plan order):
+  - **M1** → [TIM-91](https://linear.app/times-api/issue/TIM-91) Ollama client, launch pull, shutdown cleanup
+  - **M2** → [TIM-93](https://linear.app/times-api/issue/TIM-93) Explain-on-fail API + safe context pack
+  - **M3** → [TIM-94](https://linear.app/times-api/issue/TIM-94) Fail-modal Explain with AI UI
+  - **M4** → [TIM-92](https://linear.app/times-api/issue/TIM-92) Docs, manual test plan, validation
 
 ## Resolved product decisions (from PRD + this plan)
 
@@ -207,7 +211,7 @@ Non-blocking trade-offs for review:
 ## Approval
 
 - [x] User approves this implementation plan (2026-07-27).
-- [ ] Create Linear epic + one child issue per milestone (M1–M4), each linking `prd/phase-7-local-llm-explain-on-fail.md` + acceptance criteria.
+- [x] Create Linear epic + one child issue per milestone (M1–M4), each linking `prd/phase-7-local-llm-explain-on-fail.md` + acceptance criteria.
 - [ ] Begin implementation with **`sql-gym-implement-issue`** (or **`sql-gym-run-phase`** if autonomous execution is authorized).
 
-**Plan approved — application code starts only via implement-issue / run-phase after Linear issues exist.**
+**Plan approved. Implement in order TIM-91 → TIM-93 → TIM-94 → TIM-92.**
