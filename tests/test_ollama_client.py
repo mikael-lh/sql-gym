@@ -163,9 +163,11 @@ def test_cleanup_skips_when_not_pulled() -> None:
 
 def test_cleanup_deletes_when_pulled() -> None:
     ollama_mod._mark_pulled()
+    delete_calls: list[str] = []
 
     def handler(request: httpx.Request) -> httpx.Response:
         if request.url.path == "/api/delete":
+            delete_calls.append(request.method)
             return httpx.Response(200, json={"status": "success"})
         return httpx.Response(404)
 
@@ -181,6 +183,7 @@ def test_cleanup_deletes_when_pulled() -> None:
         patch("app.ai.ollama.httpx.Client", side_effect=fake_client),
     ):
         cleanup_model_on_shutdown()
+    assert delete_calls == ["DELETE"]
     assert ollama_mod.did_pull_model_this_process() is True
 
 

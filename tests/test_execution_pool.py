@@ -37,6 +37,8 @@ def test_create_app_lifespan_opens_and_closes_pool() -> None:
         with (
             patch("app.main.open_pool") as mock_open,
             patch("app.main.close_pool") as mock_close,
+            patch("app.main.ensure_model_pulled_on_startup"),
+            patch("app.main.cleanup_model_on_shutdown"),
         ):
             app = create_app()
             async with app.router.lifespan_context(app):

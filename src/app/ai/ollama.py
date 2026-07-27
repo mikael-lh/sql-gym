@@ -79,11 +79,7 @@ def model_is_installed(
 ) -> bool:
     target = model or get_ollama_model()
     names = list_model_names(client=client, base_url=base_url, timeout=timeout)
-    if target in names:
-        return True
-    # Ollama may list "llama3.2:3b" while callers use "llama3.2" — accept prefix match
-    # only when the configured name appears as an exact tag entry.
-    return any(name.split(":")[0] == target.split(":")[0] and name == target for name in names)
+    return target in names
 
 
 def pull_model(
