@@ -6,6 +6,12 @@ from fastapi import HTTPException, Request
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
+from app.ai.explain import (
+    MSG_NO_FAILED_ATTEMPT,
+    ExplainFailure,
+    ExplainSuccess,
+    explain_failed_attempt,
+)
 from app.api.serializers import (
     serialize_execution_error,
     serialize_grading,
@@ -17,7 +23,11 @@ from app.domain.progress import ProgressStore, progress_label_for_status
 from app.execution import execute_query
 from app.execution.models import ExecutionError
 from app.practice import PracticeFilters, lookup_exercise
-from app.practice_session import store_run_result, store_submit_result
+from app.practice_session import (
+    get_failed_submit_attempt,
+    store_run_result,
+    store_submit_result,
+)
 from app.progress import attach_progress_cookie, clear_progress_cookie, load_progress
 from app.workspace.context import get_workspace_context, parse_workspace_filters
 from app.workspace.navigation import filtered_exercises
@@ -166,6 +176,32 @@ def api_submit_sql(
     )
     attach_progress_cookie(response, progress)
     return response
+
+
+def api_explain_failed_attempt(
+    request: Request,
+    dataset_id: str,
+    exercise_id: str,
+) -> JSONResponse:
+    exercise = lookup_exercise(dataset_id, exercise_id)
+    if exercise is None:
+        raise HTTPException(status_code=404, detail="Exercise not found")
+
+    attempt = get_failed_submit_attempt(request, exercise.id)
+    if attempt is None:
+        return JSONResponse(
+            status_code=422,
+            content={"error": {"message": MSG_NO_FAILED_ATTEMPT}},
+        )
+
+    result = explain_failed_attempt(exercise, attempt)
+    if isinstance(result, ExplainSuccess):
+        return JSONResponse(content={"explanation": result.explanation})
+    assert isinstance(result, ExplainFailure)
+    return JSONResponse(
+        status_code=result.status_code,
+        content={"error": {"message": result.message}},
+    )
 
 
 def api_clear_progress() -> JSONResponse:
