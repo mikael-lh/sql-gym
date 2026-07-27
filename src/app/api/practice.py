@@ -8,7 +8,6 @@ from pydantic import BaseModel
 
 from app.ai.explain import (
     MSG_NO_FAILED_ATTEMPT,
-    ExplainFailure,
     ExplainSuccess,
     explain_failed_attempt,
 )
@@ -197,7 +196,6 @@ def api_explain_failed_attempt(
     result = explain_failed_attempt(exercise, attempt)
     if isinstance(result, ExplainSuccess):
         return JSONResponse(content={"explanation": result.explanation})
-    assert isinstance(result, ExplainFailure)
     return JSONResponse(
         status_code=result.status_code,
         content={"error": {"message": result.message}},

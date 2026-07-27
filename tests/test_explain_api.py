@@ -185,6 +185,34 @@ def test_explain_ollama_down_returns_unavailable(
 
 
 @patch("app.api.practice.execute_query")
+@patch("app.ai.explain.chat", side_effect=httpx.TimeoutException("slow"))
+@patch("app.ai.explain.model_is_installed", return_value=True)
+def test_explain_timeout_returns_unavailable(
+    _mock_installed: MagicMock,
+    _mock_chat: MagicMock,
+    mock_execute: MagicMock,
+) -> None:
+    from app.ai.explain import MSG_TIMEOUT
+    from app.execution.models import QueryResult
+
+    mock_execute.return_value = QueryResult(
+        columns=("wrong",),
+        rows=(("x",),),
+        row_count=1,
+        truncated=False,
+    )
+
+    _submit, explain = asyncio.run(
+        _client_flow(
+            (SUBMIT_PATH, {"sql": "SELECT 1 AS wrong"}),
+            (EXPLAIN_PATH, None),
+        )
+    )
+    assert explain.status_code == 503
+    assert explain.json() == {"error": {"message": MSG_TIMEOUT}}
+
+
+@patch("app.api.practice.execute_query")
 @patch("app.ai.explain.chat", return_value="Try aligning column names.")
 @patch("app.ai.explain.model_is_installed", return_value=True)
 def test_explain_does_not_change_progress_cookie(
