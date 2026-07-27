@@ -10,7 +10,6 @@ from collections.abc import Iterator
 from pathlib import Path
 
 import pytest
-
 from playwright_layout import LAYOUT_VIEWPORTS, assert_controls_on_one_row
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -161,6 +160,12 @@ def test_fail_modal_shows_explain_and_loads_text(workspace_server_url: str) -> N
             browser.close()
 
 
+UNAVAILABLE_EXPLAIN_BODY = (
+    '{"error":{"message":'
+    '"AI unavailable: Ollama is not reachable on this machine."}}'
+)
+
+
 @pytest.mark.integration
 def test_fail_modal_explain_shows_server_unavailable_message(
     workspace_server_url: str,
@@ -175,7 +180,7 @@ def test_fail_modal_explain_shows_server_unavailable_message(
                 lambda route: route.fulfill(
                     status=503,
                     content_type="application/json",
-                    body='{"error":{"message":"AI unavailable: Ollama is not reachable on this machine."}}',
+                    body=UNAVAILABLE_EXPLAIN_BODY,
                 ),
             )
             _open_submit_modal(page, workspace_server_url)

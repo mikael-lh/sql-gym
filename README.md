@@ -148,7 +148,7 @@ Working reliability/code-quality outcomes (no new learner features):
 
 ## Phase 5 behavior status
 
-Working behavior:
+Working behavior of the **practice workspace**:
 
 - **`GET /practice/{dataset}/{exercise}`** workspace: schema, prompt, hint, objectives, editor, output console, drawer, prev/next.
 - **Run/submit without page reload** via `/api/practice/...` JSON endpoints.
