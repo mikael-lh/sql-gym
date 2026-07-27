@@ -170,7 +170,7 @@ Acceptance criteria:
 
 - [x] PRD scope approved by user (2026-07-27).
 - [x] Phase 7 named active in `prd/README.md` (only after approval).
-- [ ] Implementation plan approved (via `implement-from-prd`) before any code changes.
+- [x] Implementation plan approved (via `implement-from-prd`) before any code changes.
 
 ## References
 
