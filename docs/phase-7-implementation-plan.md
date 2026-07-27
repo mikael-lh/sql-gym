@@ -2,7 +2,7 @@
 
 ## Status
 
-**Awaiting approval** (2026-07-27). No application code until this plan is approved.
+**Approved** (2026-07-27). Linear epic + per-milestone issues to be created next; implementation proceeds per `.cursor/rules/workflow.mdc`.
 
 ## Source
 
@@ -206,8 +206,8 @@ Non-blocking trade-offs for review:
 
 ## Approval
 
-- [ ] User approves this implementation plan (or requests adjustments).
+- [x] User approves this implementation plan (2026-07-27).
 - [ ] Create Linear epic + one child issue per milestone (M1–M4), each linking `prd/phase-7-local-llm-explain-on-fail.md` + acceptance criteria.
 - [ ] Begin implementation with **`sql-gym-implement-issue`** (or **`sql-gym-run-phase`** if autonomous execution is authorized).
 
-**No application code until this plan is approved.**
+**Plan approved — application code starts only via implement-issue / run-phase after Linear issues exist.**
